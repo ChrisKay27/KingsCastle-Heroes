@@ -14,11 +14,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -33,6 +34,7 @@ import com.kingscastle.gameElements.livingThings.buildings.Building;
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameUtils.CoordConverter;
 import com.kingscastle.gameUtils.vector;
+import com.kingscastle.heroes.GameActivity;
 import com.kingscastle.heroes.R;
 import com.kingscastle.level.GridUtil;
 import com.kingscastle.teams.Team;
@@ -495,14 +497,12 @@ public class SelectedUI
 */
 
 
-
-
 	private void openSelectedUIView(@Nullable final GameElement selUnit , @Nullable final ArrayList<? extends GameElement> selecteds ) {
 
 		if( selUnit == null && (selecteds == null || selecteds.isEmpty() )) return;
 
 		//TODO: Should probably have a better way of getting the activity
-		final Activity a = Rpg.getGame().getActivity();
+		final GameActivity a = (GameActivity) Rpg.getGame().getActivity();
 
 		a.runOnUiThread(new Runnable() {
 			@Override
@@ -521,7 +521,7 @@ public class SelectedUI
 				//Inflate a new one
 				selectedUIView = a.getLayoutInflater().inflate(R.layout.selected_ui, null);
 
-				a.addContentView(selectedUIView, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+				a.addContentView(selectedUIView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
 				UIView uiView = ui.uiView;
 				if( uiView != null )
 					uiView.bringUIViewToFront();
@@ -529,6 +529,22 @@ public class SelectedUI
 				final ScrollView selOptionsScroller = (ScrollView) selectedUIView.findViewById( R.id.scrollViewSelOptions );
 
 
+                ThumbStick leftThumbStick = new ThumbStick(Rpg.getGame(), new ThumbStick.ThumbStickListener() {
+                    @Override
+                    public void thumbStickPositionChanged(vector position) {
+                        //Log.d( TAG , "left thumbStickPositionChanged: " + position);
+                        ui.selectedThings.getSelectedUnit().moveInDirection(position);
+                    }
+                    @Override
+                    public void thumbLeftThumbStick() {
+                        Log.d(TAG, "left thumbLeftThumbStick");
+                        ui.selectedThings.getSelectedUnit().stopMovingInDirection();
+                    }
+                });
+
+                LayoutParams lp = new LayoutParams((int) (Rpg.getDp()*150), (int) (Rpg.getDp()*150));
+                lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 //				final ImageButton build = (ImageButton) a.findViewById(R.id.build_button);
 //				build.setVisibility(View.INVISIBLE);
 //				build.setOnClickListener(new OnClickListener() {

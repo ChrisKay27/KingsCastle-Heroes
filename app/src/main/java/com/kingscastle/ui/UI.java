@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -30,7 +29,6 @@ import com.kingscastle.gameUtils.vector;
 import com.kingscastle.heroes.R;
 import com.kingscastle.level.Level;
 import com.kingscastle.level.Level.GameState;
-import com.kingscastle.ui.ThumbStick.ThumbStickListener;
 import com.kingscastle.ui.buttons.Zoomer;
 
 import org.jetbrains.annotations.NotNull;
@@ -110,7 +108,7 @@ public class UI implements CoordConverter{
     private final UnitOptions unitOptions;
     private final UnitController unitController;
 
-    private final ThumbStick leftThumbStick;//, rightThumbStick;
+   // private final ThumbStick leftThumbStick;//, rightThumbStick;
 
 
 	@Nullable
@@ -164,18 +162,18 @@ public class UI implements CoordConverter{
         unitCommands = new UnitCommands( this, getCc(), selecter , unitOptions  );
         unitController = new UnitController(this);
 
-        leftThumbStick = new ThumbStick(new Rect(170, height - 450, 570, height-50), new ThumbStickListener() {
-            @Override
-            public void thumbStickPositionChanged(vector position) {
-                //Log.d( TAG , "left thumbStickPositionChanged: " + position);
-                selectedThings.getSelectedUnit().moveInDirection(position);
-            }
-            @Override
-            public void thumbLeftThumbStick() {
-                //Log.d(TAG, "left thumbLeftThumbStick");
-                selectedThings.getSelectedUnit().stopMovingInDirection();
-            }
-        });
+//        leftThumbStick = new ThumbStick(new Rect(170, height - 450, 570, height-50), new ThumbStickListener() {
+//            @Override
+//            public void thumbStickPositionChanged(vector position) {
+//                //Log.d( TAG , "left thumbStickPositionChanged: " + position);
+//                selectedThings.getSelectedUnit().moveInDirection(position);
+//            }
+//            @Override
+//            public void thumbLeftThumbStick() {
+//                //Log.d(TAG, "left thumbLeftThumbStick");
+//                selectedThings.getSelectedUnit().stopMovingInDirection();
+//            }
+//        });
 
 //        rightThumbStick = new ThumbStick(new Rect(width-570, height - 450, width-170, height-50), new ThumbStickListener() {
 //            @Override
@@ -191,7 +189,7 @@ public class UI implements CoordConverter{
 //        });
 
 
-        teas.addAll(Arrays.asList(leftThumbStick, unitController, tapChecker,  effectPlacer)); //unitCommands bb,, uOrders
+        teas.addAll(Arrays.asList(unitController, tapChecker,  effectPlacer)); //unitCommands bb,, uOrders
 
 
         selecter.addSl(new Selecter.OnSelectedListener() {
@@ -342,7 +340,7 @@ public class UI implements CoordConverter{
 		selUI.runOnUIThread();
 
 		tdlp.paint(g);
-        leftThumbStick.paint(g);
+        //leftThumbStick.paint(g);
         //rightThumbStick.paint(g);
 
 //        Unit selectedUnit = selectedThings.getSelectedUnit();
