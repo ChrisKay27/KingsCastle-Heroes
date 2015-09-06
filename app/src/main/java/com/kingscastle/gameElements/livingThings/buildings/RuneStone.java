@@ -12,7 +12,7 @@ import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameUtils.Age;
 import com.kingscastle.gameUtils.vector;
@@ -31,23 +31,23 @@ public class RuneStone extends Building{
 	private static final Image image = Assets.loadImage(R.drawable.rune_stone);
 
 	@NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
 
 	private static Cost cost = new Cost( 1000 , 1000 , 1000 , 0 );
 
 	public static final Buildings name = Buildings.RuneStone;
 
 	static{
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(4);
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(4);
 
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth(300);
-		staticLivingQualities.setHealth(300);
-		staticLivingQualities.setHpRegenAmount(1);
-		staticLivingQualities.setRegenRate(1000);
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth(300);
+		STATIC_ATTRIBUTES.setHealth(300);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1);
+		STATIC_ATTRIBUTES.setRegenRate(1000);
 
 
-		staticLivingQualities.setAge( Age.STONE );
+		STATIC_ATTRIBUTES.setAge( Age.STONE );
 
 		//		images[i++] = Assets.loadImage(R.drawable.statue_monk);
 		//		images[i++] = Assets.loadImage(R.drawable.statue_monk2);
@@ -67,8 +67,8 @@ public class RuneStone extends Building{
 
 	@NonNull
     @Override
-	protected LivingQualities getStaticLQ() {
-		return staticLivingQualities;
+	protected Attributes getStaticLQ() {
+		return STATIC_ATTRIBUTES;
 	}
 
 
@@ -234,9 +234,9 @@ public class RuneStone extends Building{
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

@@ -14,6 +14,7 @@ import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameElements.movement.pathing.Path;
 import com.kingscastle.gameElements.targeting.TargetFinder;
 import com.kingscastle.gameElements.targeting.TargetFinder.CondRespon;
+import com.kingscastle.gameUtils.vector;
 import com.kingscastle.teams.Teams;
 
 import org.jetbrains.annotations.NotNull;
@@ -374,25 +375,35 @@ public abstract class MageSoldier extends Unit{
 		}
 		else
 			return false;
-
 	}
 
 
 	@NonNull
     protected String buffMessage = "";
-
-
 	public String getAbilityMessage() {
 		return buffMessage;
 	}
 
 
+
+    private final vector atkInDirVector = new vector();
 	@Override
-	protected boolean armsAct()
-	{
-        if( team == Teams.BLUE && !getAttackInDirection().equals(0,0)){
-            return getArms().actFromUnitVector(getAttackInDirection());
+	protected boolean armsAct()	{
+        if( team == Teams.BLUE ){ //Added in for Heroes mode
+            getAttackInDirectionVector(atkInDirVector);
+
+            if (!atkInDirVector.equals(0, 0)) {
+                boolean attacked = getArms().actFromUnitVector(getAttackInDirectionVector(atkInDirVector));
+                if (attacked && onlyAttackOnceInDirection()) {
+                    atkInDirVector.set(0, 0);
+                    stopAttackingInDirection();
+                    setOnlyAttackOnceInDirection(false);
+                }
+            }
+
+            return false;
         }
+
 		boolean armsActed = super.armsAct();
 		if( armsActed ){
 			Path path = getPathToFollow();
@@ -403,7 +414,7 @@ public abstract class MageSoldier extends Unit{
 		return armsActed;
 	}
 
-	public void setFriendlyTarget(@Nullable LivingThing friendlyTarget) {
+    public void setFriendlyTarget(@Nullable LivingThing friendlyTarget) {
 		this.friendlyTarget = friendlyTarget;
 	}
 	@Nullable

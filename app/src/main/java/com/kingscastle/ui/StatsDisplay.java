@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 
@@ -45,7 +45,7 @@ public class StatsDisplay extends View
     public static void showStatsDisplay( @NonNull final LivingThing selectedThing ){
 
         String name = selectedThing.getName();
-        LivingQualities lq = selectedThing.lq;
+        Attributes lq = selectedThing.lq;
         AttackerQualities aq = selectedThing.getAQ();
 
         String msg = "";

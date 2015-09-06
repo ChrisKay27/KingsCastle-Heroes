@@ -9,7 +9,7 @@ import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.BasicRangedSoldier;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.Bow;
@@ -28,9 +28,9 @@ public class HumanScout extends BasicRangedSoldier
 	private static ImageFormatInfo imageFormatInfo;
 
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 	@NonNull
     private static final AttackerQualities staticAttackerQualities; @NonNull
                                                                     @Override
@@ -55,18 +55,18 @@ public class HumanScout extends BasicRangedSoldier
 		staticAttackerQualities.setDamage( 10 );  staticAttackerQualities.setdDamageAge( 0 ); staticAttackerQualities.setdDamageLvl( 2 );
 		staticAttackerQualities.setROF(1000);
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresBLvl(2); staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(2);
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresBLvl(2); STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(2);
 
-		staticLivingQualities.setRangeOfSight( 300 );
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth(100);
-		staticLivingQualities.setHealth( 100 ); staticLivingQualities.setdHealthAge( 0 ); staticLivingQualities.setdHealthLvl( 10 );
-		staticLivingQualities.setFullMana(0);
-		staticLivingQualities.setMana(0);
-		staticLivingQualities.setHpRegenAmount(1);
-		staticLivingQualities.setRegenRate(1000);
-		staticLivingQualities.setArmor( 4 );  staticLivingQualities.setdArmorAge( 0 ); staticLivingQualities.setdArmorLvl( 1 );
-		staticLivingQualities.setSpeed(2f * dp);
+		STATIC_ATTRIBUTES.setRangeOfSight( 300 );
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth(100);
+		STATIC_ATTRIBUTES.setHealth( 100 ); STATIC_ATTRIBUTES.setdHealthAge( 0 ); STATIC_ATTRIBUTES.setdHealthLvl( 10 );
+		STATIC_ATTRIBUTES.setFullMana(0);
+		STATIC_ATTRIBUTES.setMana(0);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1);
+		STATIC_ATTRIBUTES.setRegenRate(1000);
+		STATIC_ATTRIBUTES.setArmor( 4 );  STATIC_ATTRIBUTES.setdArmorAge( 0 ); STATIC_ATTRIBUTES.setdArmorLvl( 1 );
+		STATIC_ATTRIBUTES.setSpeed(2f * dp);
 	}
 
 	{
@@ -213,9 +213,9 @@ public class HumanScout extends BasicRangedSoldier
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

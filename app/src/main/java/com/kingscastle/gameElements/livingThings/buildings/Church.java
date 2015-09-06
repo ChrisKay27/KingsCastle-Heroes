@@ -11,7 +11,7 @@ import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameUtils.Age;
 import com.kingscastle.gameUtils.vector;
 import com.kingscastle.teams.Teams;
@@ -31,13 +31,13 @@ public class Church extends Building
 	private static Cost cost = new Cost( 10000 , 0 , 10000 , 0 );
 
 	@NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
 
 
 
 	@NonNull
     @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities;   }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
 	private RectF perceivedArea;
 
@@ -52,13 +52,13 @@ public class Church extends Building
 		int stoneAgeID = R.drawable.church_stone_age;
 
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(4);
-		staticLivingQualities.setRangeOfSight( 250 );
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth(250);
-		staticLivingQualities.setHealth(250); staticLivingQualities.setdHealthLvl(30);
-		staticLivingQualities.setHpRegenAmount(2);
-		staticLivingQualities.setRegenRate( 4000 );
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(4);
+		STATIC_ATTRIBUTES.setRangeOfSight( 250 );
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth(250);
+		STATIC_ATTRIBUTES.setHealth(250); STATIC_ATTRIBUTES.setdHealthLvl(30);
+		STATIC_ATTRIBUTES.setHpRegenAmount(2);
+		STATIC_ATTRIBUTES.setRegenRate( 4000 );
 
 		staticPerceivedArea = Rpg.fourByFourArea;
 	}
@@ -174,9 +174,9 @@ public class Church extends Building
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities( staticLivingQualities );
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

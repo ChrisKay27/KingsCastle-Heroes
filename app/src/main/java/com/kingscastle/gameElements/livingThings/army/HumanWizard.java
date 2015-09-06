@@ -10,7 +10,7 @@ import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.AdvancedMageSoldier;
 import com.kingscastle.gameElements.livingThings.abilities.SpeedShot;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
@@ -24,7 +24,6 @@ import com.kingscastle.teams.Teams;
 
 public class HumanWizard extends AdvancedMageSoldier
 {
-
 	private static final String TAG = "Wizard";
 
 	private static ImageFormatInfo imageFormatInfo;
@@ -36,9 +35,9 @@ public class HumanWizard extends AdvancedMageSoldier
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
 	private static Cost cost = new Cost( 12000 , 12000 , 12000 , 3 );
 
@@ -49,28 +48,28 @@ public class HumanWizard extends AdvancedMageSoldier
 		imageFormatInfo = new ImageFormatInfo( 0 , 0 ,
 				0 , 0 , 1 , 1);
 		imageFormatInfo.setOrangeId( R.drawable.merlin_orange );
-		imageFormatInfo.setRedId( R.drawable.merlin_red );
-		imageFormatInfo.setBlueId( R.drawable.merlin_blue );
-		imageFormatInfo.setGreenId( R.drawable.merlin_green );
-		imageFormatInfo.setWhiteId( R.drawable.merlin_white );
+		imageFormatInfo.setRedId(R.drawable.merlin_red);
+		imageFormatInfo.setBlueId(R.drawable.merlin_blue);
+		imageFormatInfo.setGreenId(R.drawable.merlin_green);
+		imageFormatInfo.setWhiteId(R.drawable.merlin_white);
 
 		staticAttackerQualities= new AttackerQualities();
 
 		staticAttackerQualities.setStaysAtDistanceSquared(10000 * dp * dp);
-		staticAttackerQualities.setFocusRangeSquared(20000*dp*dp);
+		staticAttackerQualities.setFocusRangeSquared(20000 * dp * dp);
 		staticAttackerQualities.setAttackRangeSquared(20000 * dp * dp);
-		staticAttackerQualities.setDamage( 30 );  staticAttackerQualities.setdDamageAge( 0 ); staticAttackerQualities.setdDamageLvl( 15 );
-		staticAttackerQualities.setROF( 500 );
+		staticAttackerQualities.setDamage(100);  staticAttackerQualities.setdDamageAge(0); staticAttackerQualities.setdDamageLvl(15);
+		staticAttackerQualities.setROF(500); staticAttackerQualities.setdROFLvl(-20);
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresCLvl( 11 ); staticLivingQualities.setRequiresAge(Age.STEEL); staticLivingQualities.setRequiresTcLvl(16);
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth( 200 );
-		staticLivingQualities.setHealth( 200 ); staticLivingQualities.setdHealthAge( 0 ); staticLivingQualities.setdHealthLvl( 20 );
-		staticLivingQualities.setFullMana( 200 );
-		staticLivingQualities.setMana( 200 );
-		staticLivingQualities.setHpRegenAmount( 1 );
-		staticLivingQualities.setRegenRate( 1000 );
-		staticLivingQualities.setSpeed( 2.0f * dp );
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresCLvl( 11 ); STATIC_ATTRIBUTES.setRequiresAge(Age.STEEL); STATIC_ATTRIBUTES.setRequiresTcLvl(16);
+		STATIC_ATTRIBUTES.setLevel(1);
+		STATIC_ATTRIBUTES.setFullHealth(3000);
+		STATIC_ATTRIBUTES.setHealth(3000); STATIC_ATTRIBUTES.setdHealthAge(0); STATIC_ATTRIBUTES.setdHealthLvl(50);
+		STATIC_ATTRIBUTES.setFullMana(200);
+		STATIC_ATTRIBUTES.setMana(200);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1); STATIC_ATTRIBUTES.setdRegenRateLvl( -30 );
+        STATIC_ATTRIBUTES.setRegenRate(1000);
+        STATIC_ATTRIBUTES.setSpeed( 2.0f * dp );  STATIC_ATTRIBUTES.setdSpeedLevel(0.1f * dp);
 	}
 
 
@@ -97,8 +96,7 @@ public class HumanWizard extends AdvancedMageSoldier
 		getAQ().setFriendlyAttack( new BuffAttack(getMM(),this , buffSpell ) ) ;
 
 
-		FireBall fireBall = new FireBall();
-		fireBall.setDamage(getAQ().getDamage());
+		FireBall fireBall = new FireBall(getAQ().getDamage());
 		//fireBall.setDamagePerLvl(getAQ().getdDamageLvl());
 		fireBall.setCaster(this);
 
@@ -295,9 +293,9 @@ public class HumanWizard extends AdvancedMageSoldier
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

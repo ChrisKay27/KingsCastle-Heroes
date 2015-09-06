@@ -21,7 +21,7 @@ import com.kingscastle.gameElements.CD;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.GameElement;
 import com.kingscastle.gameElements.ImageFormatInfo;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.AdvancedMageSoldier;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.SpellAttack;
@@ -48,7 +48,7 @@ public class PumpkinKing extends AdvancedMageSoldier
 	@NonNull
     private static final AttackerQualities staticAttackerQualities;
 	@NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
 
 	private static Cost cost = new Cost( 2500 , 2500 , 2000 , 3 );
 
@@ -68,19 +68,19 @@ public class PumpkinKing extends AdvancedMageSoldier
 		staticAttackerQualities.setDamage( 100 );
 		staticAttackerQualities.setROF(300);
 
-		staticLivingQualities = new LivingQualities();
-		staticLivingQualities.setRequiresBLvl(1);
-		staticLivingQualities.setRequiresAge(Age.STONE);
-		staticLivingQualities.setRequiresTcLvl(1);
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth( 20000 );
-		staticLivingQualities.setHealth( 20000 );
-		staticLivingQualities.setFullMana(0);
-		staticLivingQualities.setMana(0);
-		staticLivingQualities.setHpRegenAmount(1);
-		staticLivingQualities.setRegenRate(1000);
-		staticLivingQualities.setArmor( 15 );
-		staticLivingQualities.setSpeed(0.4f * dp);
+		STATIC_ATTRIBUTES = new Attributes();
+		STATIC_ATTRIBUTES.setRequiresBLvl(1);
+		STATIC_ATTRIBUTES.setRequiresAge(Age.STONE);
+		STATIC_ATTRIBUTES.setRequiresTcLvl(1);
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth( 20000 );
+		STATIC_ATTRIBUTES.setHealth( 20000 );
+		STATIC_ATTRIBUTES.setFullMana(0);
+		STATIC_ATTRIBUTES.setMana(0);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1);
+		STATIC_ATTRIBUTES.setRegenRate(1000);
+		STATIC_ATTRIBUTES.setArmor( 15 );
+		STATIC_ATTRIBUTES.setSpeed(0.4f * dp);
 	}
 
 	private long summonPortalAt;
@@ -298,9 +298,9 @@ public class PumpkinKing extends AdvancedMageSoldier
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 	@Override
@@ -406,5 +406,5 @@ public class PumpkinKing extends AdvancedMageSoldier
 
 	@NonNull
     @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 }

@@ -14,7 +14,7 @@ import com.kingscastle.framework.Rpg;
 import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.MageSoldier;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
@@ -39,9 +39,9 @@ public class Gaia extends MageSoldier {
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
 	private static Cost cost = new Cost( 4000 , 4000 , 0 , 2 );
 
@@ -59,16 +59,16 @@ public class Gaia extends MageSoldier {
 		staticAttackerQualities.setDamage( 100 );  staticAttackerQualities.setdDamageAge( 0 ); staticAttackerQualities.setdDamageLvl( 5 );
 		staticAttackerQualities.setROF(1000);
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresBLvl(10); staticLivingQualities.setRequiresAge(Age.STEEL); staticLivingQualities.setRequiresTcLvl(16);
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth( 15000 );
-		staticLivingQualities.setHealth( 15000 ); staticLivingQualities.setdHealthAge( 0 ); staticLivingQualities.setdHealthLvl( 30 );
-		staticLivingQualities.setFullMana(0);
-		staticLivingQualities.setMana(0);
-		staticLivingQualities.setHpRegenAmount(1);
-		staticLivingQualities.setRegenRate(1000);
-		staticLivingQualities.setArmor( 0 );  staticLivingQualities.setdArmorAge( 0 ); staticLivingQualities.setdArmorLvl( 2 );
-		staticLivingQualities.setSpeed(0.5f * dp);
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresBLvl(10); STATIC_ATTRIBUTES.setRequiresAge(Age.STEEL); STATIC_ATTRIBUTES.setRequiresTcLvl(16);
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth( 15000 );
+		STATIC_ATTRIBUTES.setHealth( 15000 ); STATIC_ATTRIBUTES.setdHealthAge( 0 ); STATIC_ATTRIBUTES.setdHealthLvl( 30 );
+		STATIC_ATTRIBUTES.setFullMana(0);
+		STATIC_ATTRIBUTES.setMana(0);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1);
+		STATIC_ATTRIBUTES.setRegenRate(1000);
+		STATIC_ATTRIBUTES.setArmor( 0 );  STATIC_ATTRIBUTES.setdArmorAge( 0 ); STATIC_ATTRIBUTES.setdArmorLvl( 2 );
+		STATIC_ATTRIBUTES.setSpeed(0.5f * dp);
 	}
 
 	@NonNull
@@ -196,8 +196,8 @@ public class Gaia extends MageSoldier {
 	}
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities() {
-		return new LivingQualities(staticLivingQualities);
+	public Attributes getNewLivingQualities() {
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

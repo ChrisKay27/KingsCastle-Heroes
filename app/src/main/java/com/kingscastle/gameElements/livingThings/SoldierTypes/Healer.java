@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.kingscastle.framework.GameTime;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.TargetingParams;
 import com.kingscastle.gameElements.movement.pathing.Path;
@@ -124,7 +124,7 @@ public abstract class Healer extends MageSoldier
 		if( healer == null || healingTarget2 == null )
 			return true;
 
-		LivingQualities lq = healingTarget2.lq;
+		Attributes lq = healingTarget2.lq;
 		if( healer == healingTarget2 )
 			return lq.getHealth() == lq.getFullHealth();
 
@@ -157,7 +157,7 @@ public abstract class Healer extends MageSoldier
                 @Override
 				public CondRespon postRangeCheckCondition( @NonNull LivingThing target )
 				{
-					LivingQualities lq = target.lq;
+					Attributes lq = target.lq;
 
 					if( lq.getHealth() == lq.getFullHealth() )
 						return CondRespon.FALSE;

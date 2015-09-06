@@ -12,7 +12,7 @@ import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
@@ -47,7 +47,7 @@ public class Barracks extends Building
 	@NonNull
     private static final AttackerQualities staticAttackerQualities;
 	@NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
 	private static ArrayList<vector> staticDamageOffsets;
 
 
@@ -57,21 +57,22 @@ public class Barracks extends Building
 		staticAttackerQualities.setFocusRangeSquared(15000*Rpg.getDpSquared());
 		staticAttackerQualities.setAttackRangeSquared(15000*Rpg.getDpSquared());
 
-		staticLivingQualities = new LivingQualities();staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(1);
-		staticLivingQualities.setRangeOfSight(250);
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth(250);
-		staticLivingQualities.setHealth(250);
-		staticLivingQualities.setFullMana(125);
-		staticLivingQualities.setMana(125);
-		staticLivingQualities.setHpRegenAmount(1);
-		staticLivingQualities.setRegenRate(1000);
-		staticLivingQualities.setArmor( 2 );  staticLivingQualities.setdArmorAge( 0 ); staticLivingQualities.setdArmorLvl( 2 );
+		STATIC_ATTRIBUTES = new Attributes();
+        STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(1);
+		STATIC_ATTRIBUTES.setRangeOfSight(250);
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth(250);
+		STATIC_ATTRIBUTES.setHealth(250);
+		STATIC_ATTRIBUTES.setFullMana(125);
+		STATIC_ATTRIBUTES.setMana(125);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1);
+		STATIC_ATTRIBUTES.setRegenRate(1000);
+		STATIC_ATTRIBUTES.setArmor( 2 );  STATIC_ATTRIBUTES.setdArmorAge( 0 ); STATIC_ATTRIBUTES.setdArmorLvl( 2 );
 
 		staticPerceivedArea = new RectF(Rpg.guardTowerArea);
 
-		staticLivingQualities.setAge( Age.STONE );
-		staticLivingQualities.setMaxLevel(4);
+		STATIC_ATTRIBUTES.setAge( Age.STONE );
+		STATIC_ATTRIBUTES.setMaxLevel(4);
 	}
 
 
@@ -174,7 +175,7 @@ public class Barracks extends Building
 
 
 	@Override
-	public boolean create(MM mm) {
+	public boolean create(@NonNull MM mm) {
 		boolean superCreate = super.create(mm);
 		setDeployLoc(loc.x , loc.y+Rpg.twentyDp);
 		return superCreate;
@@ -348,9 +349,9 @@ public class Barracks extends Building
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 
@@ -362,7 +363,7 @@ public class Barracks extends Building
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
     @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities;   }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
 
 

@@ -23,7 +23,7 @@ public class SpecialEffects
 
 	private static MM mm;
 
-	public enum SpellType{
+    public enum SpellType{
 		ICE, LIGHTNING, FIRE, HEAL, NONE
 	}
 
@@ -51,6 +51,10 @@ public class SpecialEffects
 		return SpecialTextEffects.onCreatureHealed( x, y, heal );
 	}
 
+
+    public static void onExperienceGained(int x, int y, int exp) {
+        SpecialTextEffects.onExperienceGained( x, y, exp );
+    }
 
 
 	private static void createBloodSplatter( float x, float y )

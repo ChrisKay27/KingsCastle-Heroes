@@ -9,7 +9,7 @@ import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.ProjectileAttack;
 import com.kingscastle.gameElements.managment.MM;
@@ -35,7 +35,7 @@ public class UndeadBarracks extends AttackingBuilding
 	@NonNull
     private static final AttackerQualities staticAttackerQualities;
 	@NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
 
 	private static final Cost cost = new Cost( 500 , 0 , 500 , 0 );
 
@@ -48,8 +48,8 @@ public class UndeadBarracks extends AttackingBuilding
 	}
 	@NonNull
     @Override
-	protected LivingQualities getStaticLQ() {
-		return staticLivingQualities;
+	protected Attributes getStaticLQ() {
+		return STATIC_ATTRIBUTES;
 	}
 
 	static
@@ -69,14 +69,14 @@ public class UndeadBarracks extends AttackingBuilding
 		staticAttackerQualities.setDamage( 20 );
 		staticAttackerQualities.setROF( 800 );
 
-		staticLivingQualities = new LivingQualities();  staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(1);
-		staticLivingQualities.setRangeOfSight( 250 );
-		staticLivingQualities.setFullHealth( 300 );
-		staticLivingQualities.setHealth( 300 );
-		staticLivingQualities.setFullMana( 0 );
-		staticLivingQualities.setMana( 0 );
-		staticLivingQualities.setHpRegenAmount( 1 );
-		staticLivingQualities.setRegenRate( 4000 );
+		STATIC_ATTRIBUTES = new Attributes();  STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(1);
+		STATIC_ATTRIBUTES.setRangeOfSight( 250 );
+		STATIC_ATTRIBUTES.setFullHealth( 300 );
+		STATIC_ATTRIBUTES.setHealth( 300 );
+		STATIC_ATTRIBUTES.setFullMana( 0 );
+		STATIC_ATTRIBUTES.setMana( 0 );
+		STATIC_ATTRIBUTES.setHpRegenAmount( 1 );
+		STATIC_ATTRIBUTES.setRegenRate( 4000 );
 
 		staticPerceivedArea = Rpg.fourByFourArea;
 	}
@@ -253,9 +253,9 @@ public class UndeadBarracks extends AttackingBuilding
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities( staticLivingQualities );
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

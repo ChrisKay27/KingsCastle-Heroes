@@ -17,11 +17,10 @@ import com.kingscastle.framework.Graphics;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.framework.Screen;
 import com.kingscastle.framework.Settings;
-import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameUtils.vector;
+import com.kingscastle.heroes.R;
 import com.kingscastle.level.Level;
-import com.kingscastle.level.Level.GameState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,9 +110,6 @@ public class GameScreen extends Screen
 	@Override
 	public void paint( @NonNull Graphics g )
 	{
-		if( level.getBackground() == null )
-			return;
-
 		if(nightTime) {
 			if( nightAlpha < 128 ) nightAlpha++;
 			else nightAlpha = 128;
@@ -138,7 +134,7 @@ public class GameScreen extends Screen
 		onScreen.offset( centeredOnX , centeredOnY );
 
 
-		GameState state = game.getState();
+		//GameState state = game.getState();
 
 		if( true ) { // state == GameState.InGamePlay
 

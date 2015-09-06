@@ -11,7 +11,7 @@ import com.kingscastle.framework.Rpg;
 import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.AdvancedMageSoldier;
 import com.kingscastle.gameElements.livingThings.abilities.Haste;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
@@ -40,9 +40,9 @@ public class UndeadPossessed extends AdvancedMageSoldier
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
 	private static Cost cost = new Cost( 5000 , 5000 , 5000 , 3 );
 
@@ -62,18 +62,18 @@ public class UndeadPossessed extends AdvancedMageSoldier
 		staticAttackerQualities.setDamage(80);  staticAttackerQualities.setdDamageAge(0); staticAttackerQualities.setdDamageLvl(10);
 		staticAttackerQualities.setROF(1000);
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresCLvl(1);  staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(1);
-		staticLivingQualities.setLevel(1);
-		staticLivingQualities.setFullHealth(700);
-		staticLivingQualities.setHealth(700); staticLivingQualities.setdHealthAge(0); staticLivingQualities.setdHealthLvl(20);
-		staticLivingQualities.setFullMana(200);
-		staticLivingQualities.setMana(200);
-		staticLivingQualities.setHpRegenAmount(1);
-		staticLivingQualities.setRegenRate(1000);
-		staticLivingQualities.setSpeed(1.5f * dp);
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresCLvl(1);  STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(1);
+		STATIC_ATTRIBUTES.setLevel(1);
+		STATIC_ATTRIBUTES.setFullHealth(700);
+		STATIC_ATTRIBUTES.setHealth(700); STATIC_ATTRIBUTES.setdHealthAge(0); STATIC_ATTRIBUTES.setdHealthLvl(20);
+		STATIC_ATTRIBUTES.setFullMana(200);
+		STATIC_ATTRIBUTES.setMana(200);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1);
+		STATIC_ATTRIBUTES.setRegenRate(1000);
+		STATIC_ATTRIBUTES.setSpeed(1.5f * dp);
 
-		staticLivingQualities.setFireResistancePerc(.80f);
-		staticLivingQualities.setIceResistancePerc(-.50f);
+		STATIC_ATTRIBUTES.setFireResistancePerc(.80f);
+		STATIC_ATTRIBUTES.setIceResistancePerc(-.50f);
 	}
 
 
@@ -306,9 +306,9 @@ public class UndeadPossessed extends AdvancedMageSoldier
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 	@Override

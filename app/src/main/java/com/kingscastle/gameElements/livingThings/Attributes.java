@@ -4,10 +4,11 @@ import android.support.annotation.NonNull;
 
 import com.kingscastle.effects.animations.Barrable;
 import com.kingscastle.framework.Rpg;
+import com.kingscastle.framework.WtfException;
 import com.kingscastle.gameUtils.Age;
 import com.kingscastle.gameUtils.vector;
 
-public class LivingQualities {
+public class Attributes {
 	private static float speedMultiplier = 1.5f;
 
 	private int requiresTcLvl = 1;
@@ -36,7 +37,7 @@ public class LivingQualities {
 	private float savedSpeed;
 	private float speed;
 	private float force;
-	private int expGiven;
+
 	private int goldDropped = 5;
 
 	private float armor = 0;
@@ -59,11 +60,17 @@ public class LivingQualities {
 
 	private final Bonuses bonuses = new Bonuses();
 
-	{
+
+    private int exp;
+    private int expGiven;
+    private float dSpeedLevel;
+
+    {
 		setRangeOfSight(250);
 	}
 
-	public LivingQualities(@NonNull LivingQualities lq) {
+	public Attributes(@NonNull Attributes lq) {
+
 		level = lq.level;
 		maxLevel = lq.maxLevel;
 		health.setFullHealth(lq.health.getFullHealth());
@@ -94,6 +101,7 @@ public class LivingQualities {
 		dRegenRateLvl = lq.dRegenRateLvl;
 		dArmorAge = lq.dArmorAge;
 		dArmorLvl = lq.dArmorLvl;
+        dSpeedLevel = lq.dSpeedLevel;
 
 		dHealAge = lq.dHealAge;
 		dHealLvl = lq.dHealLvl;
@@ -104,207 +112,139 @@ public class LivingQualities {
 		requiresAge = lq.requiresAge;
 	}
 
-	public LivingQualities() {
+	public Attributes() {
 	}
 
-	/**
-	 * 
-	 * @return the healthPercent
-	 */
+
 	public float getHealthPercent() {
 		return ((float) health.getHealth()) / health.getFullHealth();
 	}
 
+
 	public int getRequiresBLvl() {
 		return requiresBLvl;
 	}
-
 	public void setRequiresBLvl(int requiresBLvl) {
 		this.requiresBLvl = requiresBLvl;
 	}
 
-	/**
-	 * @return the requiresCLvl
-	 */
+
 	public int getRequiresCLvl() {
 		return requiresCLvl;
 	}
-
-	/**
-	 * @param requiresCLvl the requiresCLvl to set
-	 */
 	public void setRequiresCLvl(int requiresCLvl) {
 		this.requiresCLvl = requiresCLvl;
 	}
 
+
 	public Age getRequiresAge() {
 		return requiresAge;
 	}
-
 	public void setRequiresAge(Age requiresAge) {
 		this.requiresAge = requiresAge;
 	}
 
-	/**
-	 * @return the requiresTcLvl
-	 */
+
 	public int getRequiresTcLvl() {
 		return requiresTcLvl;
 	}
-
-	/**
-	 * @param requiresTcLvl the requiresTcLvl to set
-	 */
 	public void setRequiresTcLvl(int requiresTcLvl) {
 		this.requiresTcLvl = requiresTcLvl;
 	}
 
-	/**
-	 * @return the manaPercent
-	 */
+
 	public float getManaPercent() {
 		return ((float) mana) / fullMana;
 	}
 
-	/**
-	 * 
-	 */
+
 	public void addHealth(int dHealth) {
 		health.addHealth(dHealth);
 	}
 
-	/**
-	 * 
-	 */
+
 	public void addMana(int dmana) {
 		mana += dmana;
 	}
 
-	/**
-	 * @return the fullMana
-	 */
+
 	public int getFullMana() {
 		return fullMana;
 	}
-
-	/**
-	 * @param fullMana
-	 *            the fullMana to set
-	 */
 	public void setFullMana(int fullMana) {
 		this.fullMana = fullMana;
 	}
 
-	/**
-	 * @return the mana
-	 */
+
 	public int getMana() {
 		return mana;
 	}
-
-	/**
-	 * @param mana
-	 *            the mana to set
-	 */
 	public void setMana(int mana) {
 		this.mana = mana;
 	}
+
 
 	public void setHealth(int hp, int fullHp) {
 		setFullHealth(fullHp);
 		setHealth(hp);
 	}
-	/**
-	 * @return the fullHealth
-	 */
 	public int getFullHealth() {
 		return health.getFullHealth();
 	}
-
-	/**
-	 * @param fullHealth
-	 *            the fullHealth to set
-	 */
 	public void setFullHealth(int fullHealth) {
 		health.setFullHealth(fullHealth);
 	}
 
-	/**
-	 * @return the health
-	 */
+
+
 	public int getHealth() {
 		return health.getHealth();
 	}
-
-	/**
-	 * @param health
-	 *            the health to set
-	 */
 	public void setHealth(int health) {
 		this.health.setHealth(health);
 	}
+
 
 	@NonNull
     public Barrable getHealthObj() {
 		return health;
 	}
 
-	/**
-	 * 
-	 * @return the hpRegenAmount
-	 */
+
 	public int getHpRegenAmount() {
 		return hpRegenAmount;
 	}
-
-	/**
-	 * @param hpRegenAmount
-	 *            the hpRegenAmount to set
-	 */
 	public void setHpRegenAmount(int hpRegenAmount) {
 		this.hpRegenAmount = hpRegenAmount;
 	}
 
-	/**
-	 * @return the mpRegenAmount
-	 */
+
 	public int getMpRegenAmount() {
 		return mpRegenAmount;
 	}
-
-	/**
-	 * @param mpRegenAmount
-	 *            the mpRegenAmount to set
-	 */
 	public void setMpRegenAmount(int mpRegenAmount) {
 		this.mpRegenAmount = mpRegenAmount;
 	}
 
-	/**
-	 * @return the regenRate
-	 */
+
 	public int getRegenRate() {
-
 		return regenRate + bonuses.getHpRegenBonus();
-
 	}
-
-	/**
-	 * @param regenRate
-	 *            the regenRate to set
-	 */
 	public void setRegenRate(int regenRate) {
 		this.regenRate = regenRate;
 	}
 
+
+
 	public float getSpeed() {
 		return speed * bonuses.getSpeedBonusMultiplier();
 	}
-
 	public void setSpeed(float f) {
 		speed = f;
 		setForce(speed / 1.5f);
 	}
+
+
 
 	public float getForce() {
 		return force;
@@ -327,7 +267,7 @@ public class LivingQualities {
 	}
 
 	public static void setSpeedMultiplier(float speedMultiplier) {
-		LivingQualities.speedMultiplier = speedMultiplier;
+		Attributes.speedMultiplier = speedMultiplier;
 	}
 
 	public void setManaPercent(double d) {
@@ -340,7 +280,6 @@ public class LivingQualities {
 	}
 
 	public void setLevel(int level) {
-
 		this.level = level;
 	}
 
@@ -533,4 +472,21 @@ public class LivingQualities {
 	public void setMaxLevel(int maxLevel) {
 		this.maxLevel = maxLevel;
 	}
+
+
+
+    public int getExp() {
+        return exp;
+    }
+    void addExp(int exp) {
+        if( exp < 0 ) throw new WtfException("Don't add negative experience");
+        this.exp += exp;
+    }
+
+    public void setdSpeedLevel(float dSpeedLevel) {
+        this.dSpeedLevel = dSpeedLevel;
+    }
+    public float getdSpeedLevel() {
+        return dSpeedLevel;
+    }
 }

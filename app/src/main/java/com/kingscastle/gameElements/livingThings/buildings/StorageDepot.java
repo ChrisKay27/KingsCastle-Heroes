@@ -9,7 +9,7 @@ import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameUtils.Age;
 
 
@@ -30,26 +30,26 @@ public class StorageDepot extends Building
 	private static final Cost costs = new Cost( 100 , 0 , 100 , 0 );
 
 	@NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
 
 	@NonNull
     @Override
-	protected LivingQualities getStaticLQ() {
-		return staticLivingQualities;
+	protected Attributes getStaticLQ() {
+		return STATIC_ATTRIBUTES;
 	}
 
 	static
 	{
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(2);
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(2);
 
-		staticLivingQualities.setLevel( 1 ); //1);
-		staticLivingQualities.setFullHealth(300);
-		staticLivingQualities.setHealth(300);
-		staticLivingQualities.setHpRegenAmount(1);
-		staticLivingQualities.setRegenRate(1000);
+		STATIC_ATTRIBUTES.setLevel( 1 ); //1);
+		STATIC_ATTRIBUTES.setFullHealth(300);
+		STATIC_ATTRIBUTES.setHealth(300);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1);
+		STATIC_ATTRIBUTES.setRegenRate(1000);
 
-		staticLivingQualities.setdHealthLvl(30);
-		staticLivingQualities.setdArmorLvl(1.5f);
+		STATIC_ATTRIBUTES.setdHealthLvl(30);
+		STATIC_ATTRIBUTES.setdArmorLvl(1.5f);
 
 		staticPerceivedArea = Rpg.fourByTwoArea;
 	}
@@ -168,9 +168,9 @@ public class StorageDepot extends Building
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

@@ -14,7 +14,7 @@ import com.kingscastle.framework.Rpg;
 import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.AdvancedMageSoldier;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
@@ -42,9 +42,9 @@ public class Coyote extends AdvancedMageSoldier
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
 	private static Cost cost = new Cost( 12000 , 12000 , 12000 , 3 );
 
@@ -64,16 +64,16 @@ public class Coyote extends AdvancedMageSoldier
 		staticAttackerQualities.setDamage( 80 );  staticAttackerQualities.setdDamageAge( 0 ); staticAttackerQualities.setdDamageLvl( 15 );
 		staticAttackerQualities.setROF( 2000 );
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresCLvl( 11 ); staticLivingQualities.setRequiresAge(Age.STEEL); staticLivingQualities.setRequiresTcLvl(16);
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth( 8000 );
-		staticLivingQualities.setHealth( 8000 ); staticLivingQualities.setdHealthAge( 0 ); staticLivingQualities.setdHealthLvl( 20 );
-		staticLivingQualities.setFullMana( 200 );
-		staticLivingQualities.setMana( 200 );
-		staticLivingQualities.setHpRegenAmount( 1 );
-		staticLivingQualities.setRegenRate( 1000 );
-		staticLivingQualities.setArmor( 15 );
-		staticLivingQualities.setSpeed( .4f * dp );
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresCLvl( 11 ); STATIC_ATTRIBUTES.setRequiresAge(Age.STEEL); STATIC_ATTRIBUTES.setRequiresTcLvl(16);
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth( 8000 );
+		STATIC_ATTRIBUTES.setHealth( 8000 ); STATIC_ATTRIBUTES.setdHealthAge( 0 ); STATIC_ATTRIBUTES.setdHealthLvl( 20 );
+		STATIC_ATTRIBUTES.setFullMana( 200 );
+		STATIC_ATTRIBUTES.setMana( 200 );
+		STATIC_ATTRIBUTES.setHpRegenAmount( 1 );
+		STATIC_ATTRIBUTES.setRegenRate( 1000 );
+		STATIC_ATTRIBUTES.setArmor( 15 );
+		STATIC_ATTRIBUTES.setSpeed( .4f * dp );
 	}
 
 	@NonNull
@@ -318,9 +318,9 @@ public class Coyote extends AdvancedMageSoldier
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

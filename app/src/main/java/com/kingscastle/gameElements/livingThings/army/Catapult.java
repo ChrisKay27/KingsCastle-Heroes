@@ -12,7 +12,7 @@ import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
 import com.kingscastle.gameElements.livingThings.Animator;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.LookDirectionFinder;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.AdvancedRangedSoldier;
@@ -26,6 +26,8 @@ import com.kingscastle.gameUtils.vector;
 import com.kingscastle.teams.Team;
 import com.kingscastle.teams.Teams;
 import com.kingscastle.teams.races.Races;
+
+import org.jetbrains.annotations.NotNull;
 
 
 public class Catapult extends AdvancedRangedSoldier
@@ -47,9 +49,9 @@ public class Catapult extends AdvancedRangedSoldier
 	//private static final int imageId = R.drawable.catapult;
 
 	@NonNull
-    private static final LivingQualities staticLivingQualities  ; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                   @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 	@NonNull
     private static final AttackerQualities staticAttackerQualities; @NonNull
                                                                     @Override
@@ -101,17 +103,17 @@ public class Catapult extends AdvancedRangedSoldier
 		staticAttackerQualities.setDamage( 50 );  staticAttackerQualities.setdDamageAge( 0 ); staticAttackerQualities.setdDamageLvl( 20 );
 		staticAttackerQualities.setROF(2000);
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresBLvl(11); staticLivingQualities.setRequiresAge(Age.IRON); staticLivingQualities.setRequiresTcLvl(11);
-		staticLivingQualities.setRangeOfSight( 300 );
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth(400);
-		staticLivingQualities.setHealth( 400 ); staticLivingQualities.setdHealthAge( 0 ); staticLivingQualities.setdHealthLvl( 20 );
-		staticLivingQualities.setFullMana(0);
-		staticLivingQualities.setMana(0);
-		staticLivingQualities.setHpRegenAmount( 1 );
-		staticLivingQualities.setRegenRate( 1000 );
-		staticLivingQualities.setArmor( 10 );  staticLivingQualities.setdArmorAge( 0 ); staticLivingQualities.setdArmorLvl( 2 );
-		staticLivingQualities.setSpeed( 1.5f * dp );
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresBLvl(11); STATIC_ATTRIBUTES.setRequiresAge(Age.IRON); STATIC_ATTRIBUTES.setRequiresTcLvl(11);
+		STATIC_ATTRIBUTES.setRangeOfSight( 300 );
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth(400);
+		STATIC_ATTRIBUTES.setHealth( 400 ); STATIC_ATTRIBUTES.setdHealthAge( 0 ); STATIC_ATTRIBUTES.setdHealthLvl( 20 );
+		STATIC_ATTRIBUTES.setFullMana(0);
+		STATIC_ATTRIBUTES.setMana(0);
+		STATIC_ATTRIBUTES.setHpRegenAmount( 1 );
+		STATIC_ATTRIBUTES.setRegenRate( 1000 );
+		STATIC_ATTRIBUTES.setArmor( 10 );  STATIC_ATTRIBUTES.setdArmorAge( 0 ); STATIC_ATTRIBUTES.setdArmorLvl( 2 );
+		STATIC_ATTRIBUTES.setSpeed( 1.5f * dp );
 	}
 
 	private boolean firing = false;
@@ -154,7 +156,7 @@ public class Catapult extends AdvancedRangedSoldier
 	}
 
 	@Override
-	public void loadAnimation( @NonNull MM mm )
+	public void loadAnimation( @NotNull @NonNull MM mm )
 	{
 		if ( aliveAnim == null )
 		{
@@ -345,9 +347,9 @@ public class Catapult extends AdvancedRangedSoldier
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

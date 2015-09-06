@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Input;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameUtils.vector;
@@ -76,7 +76,7 @@ public abstract class ProjectileSpell extends Spell {
 	{
 		if( getCaster() != null )
 		{
-			LivingQualities lq = getCaster().getLQ();
+			Attributes lq = getCaster().getLQ();
 
 			int damage = (int) (( getDamage() + (int) ( Math.random()*10 ) ) * lq.getBonuses().getDamageBonus() );
 			//Log.e(getClass().getSimpleName() , "baseDamage= " +baseDamage+ " damage=" + damage + " lq.getBonuses().getDamageBonus()=" + lq.getBonuses().getDamageBonus());

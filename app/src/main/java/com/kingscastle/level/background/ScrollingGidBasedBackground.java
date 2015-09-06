@@ -7,12 +7,14 @@ import android.support.annotation.Nullable;
 import com.kingscastle.gameUtils.vector;
 import com.kingscastle.level.background.Background.ScreenWidthProvider;
 
+import org.jetbrains.annotations.NotNull;
+
 public class ScrollingGidBasedBackground
 {
 	@NonNull
     private final GidBackground bg;
-	@Nullable
-    private vector centeredOn;
+	@NotNull
+    private final vector centeredOn;
 	private final int fullScreenWidth,fullScreenWidthDiv2,fullScreenHeight,fullScreenHeightDiv2;
 
 	private int scrolledByX, scrolledByY;
@@ -31,7 +33,7 @@ public class ScrollingGidBasedBackground
 	public ScrollingGidBasedBackground(@NonNull GidBackground bg , @Nullable vector centeredOn, ScreenWidthProvider swp , int fullScreenWidth , int fullScreenHeight )
 	{
 		this.bg=bg;
-		this.centeredOn=centeredOn;
+		this.centeredOn = centeredOn;
 		this.fullScreenWidth=fullScreenWidth;
 		this.fullScreenHeight=fullScreenHeight;
 		this.swp = swp;
@@ -41,18 +43,17 @@ public class ScrollingGidBasedBackground
 
 		mapWidth  = bg.getWidthInPx();
 		mapHeight = bg.getHeightInPx();
-
-		if( centeredOn == null )
-			this.centeredOn=new vector();
 	}
 
 
 
 	/**
 	 * Call this method to ensure the screen area stays over the map.
-	 */
-	public void adjustScreenArea()
-	{
+     * @param screenArea
+     * @param centeredOn
+     */
+	public Rect adjustScreenArea(Rect screenArea, vector centeredOn) {
+
 		screenArea.left = centeredOn.getIntX() - swp.getScreenWidth()/2;
 		screenArea.left = screenArea.left <= 0 ? 0 : screenArea.left;
 		screenArea.top = centeredOn.getIntY() - swp.getScreenHeight()/2;
@@ -77,7 +78,7 @@ public class ScrollingGidBasedBackground
 
 			Return = true;
 		}
-		if( Return ) return;
+		if( Return ) return screenArea;
 
 		if (screenArea.right > bg.getWidthInPx()) {
 			screenArea.left = mapWidth - swp.getScreenWidth();
@@ -89,7 +90,8 @@ public class ScrollingGidBasedBackground
 			screenArea.bottom = bg.getHeightInPx();
 		}
 
-		adjustCenteredOn();
+        return screenArea;
+		//adjustCenteredOn();
 	}
 
 
@@ -120,7 +122,7 @@ public class ScrollingGidBasedBackground
 			screenAreaHasChanged=true;
 		}
 
-		adjustScreenArea();
+		adjustScreenArea(screenAreaTemp, centeredOn);
 		adjustCenteredOn();
 
 //		if( centeredOn.x < screenWidthDiv2 ) centeredOn.x = screenWidthDiv2;
@@ -214,22 +216,24 @@ public class ScrollingGidBasedBackground
 		return centeredOn;
 	}
 
-	public void setCenteredOn( @Nullable vector centeredOn2 )
-	{
-		if( centeredOn2 == null )
-			return;
 
-		centeredOn.set( centeredOn2.x , centeredOn2.y );
+    private final Rect screenAreaTemp = new Rect();
+	public void setCenteredOn( @NotNull vector centeredOn2 )	{
+
+		//centeredOn.set( centeredOn2.x , centeredOn2.y );
 
 		//Zoom issue corrections
-		centeredOn.x = Math.round(centeredOn.x);
-		centeredOn.x -= centeredOn.x%2;
+//		centeredOn.x = Math.round(centeredOn.x);
+//		centeredOn.x -= centeredOn.x%2;
+//
+//		centeredOn.y = Math.round(centeredOn.y);
+//		centeredOn.y -= centeredOn.y%2;
 
-		centeredOn.y = Math.round(centeredOn.y);
-		centeredOn.y -= centeredOn.y%2;
 
+		//adjustCenteredOn();
+        screenArea.set(adjustScreenArea( screenAreaTemp, centeredOn2 ));
+        adjustCenteredOn();
 
-		adjustCenteredOn();
 		setScreenAreaHasChanged(true);
 	}
 
@@ -340,11 +344,6 @@ public class ScrollingGidBasedBackground
 
 
 
-	public void nullify()
-	{
-		centeredOn = null;
-	}
-
 
 
 	public void setCenteredOnVelocity(int dxdt, int dydt)
@@ -358,7 +357,7 @@ public class ScrollingGidBasedBackground
 	{
 		if( screenAreaHasChanged )
 		{
-			adjustScreenArea();
+			adjustScreenArea(screenAreaTemp, centeredOn);
 			screenAreaHasChanged=false;
 		}
 		return screenArea;

@@ -10,7 +10,7 @@ import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.UpperRangedSoldier;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.Bow;
@@ -35,9 +35,9 @@ public class UndeadSkeletonBowman extends UpperRangedSoldier
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
 	private static Cost cost = new Cost( 1000 , 1000 , 1000 , 3 );
 
@@ -57,17 +57,17 @@ public class UndeadSkeletonBowman extends UpperRangedSoldier
 		staticAttackerQualities.setDamage( 45 );  staticAttackerQualities.setdDamageAge( 0 ); staticAttackerQualities.setdDamageLvl( 5 );
 		staticAttackerQualities.setROF( 1000 );
 
-		staticLivingQualities = new LivingQualities();  staticLivingQualities.setRequiresBLvl(1); staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(1);
-		staticLivingQualities.setRangeOfSight( 320 );
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth( 350 );
-		staticLivingQualities.setHealth( 350 ); staticLivingQualities.setdHealthAge( 0 ); staticLivingQualities.setdHealthLvl( 15 );
-		staticLivingQualities.setFullMana( 125 );
-		staticLivingQualities.setMana( 125 );
-		staticLivingQualities.setHpRegenAmount( 1 );
-		staticLivingQualities.setRegenRate( 3000 );
-		staticLivingQualities.setArmor( 8 );  staticLivingQualities.setdArmorAge( 0 ); staticLivingQualities.setdArmorLvl( 1.8f );
-		staticLivingQualities.setSpeed( 1.2f * dp );
+		STATIC_ATTRIBUTES = new Attributes();  STATIC_ATTRIBUTES.setRequiresBLvl(1); STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(1);
+		STATIC_ATTRIBUTES.setRangeOfSight( 320 );
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth( 350 );
+		STATIC_ATTRIBUTES.setHealth( 350 ); STATIC_ATTRIBUTES.setdHealthAge( 0 ); STATIC_ATTRIBUTES.setdHealthLvl( 15 );
+		STATIC_ATTRIBUTES.setFullMana( 125 );
+		STATIC_ATTRIBUTES.setMana( 125 );
+		STATIC_ATTRIBUTES.setHpRegenAmount( 1 );
+		STATIC_ATTRIBUTES.setRegenRate( 3000 );
+		STATIC_ATTRIBUTES.setArmor( 8 );  STATIC_ATTRIBUTES.setdArmorAge( 0 ); STATIC_ATTRIBUTES.setdArmorLvl( 1.8f );
+		STATIC_ATTRIBUTES.setSpeed( 1.2f * dp );
 
 	}
 
@@ -214,9 +214,9 @@ public class UndeadSkeletonBowman extends UpperRangedSoldier
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

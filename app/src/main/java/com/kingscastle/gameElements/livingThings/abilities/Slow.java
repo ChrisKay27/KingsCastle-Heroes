@@ -10,7 +10,7 @@ import com.kingscastle.effects.animations.FiveRingsAnim;
 import com.kingscastle.effects.animations.FreezeAnim;
 import com.kingscastle.framework.Image;
 import com.kingscastle.gameElements.livingThings.Bonuses;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.managment.MM;
 
@@ -53,7 +53,7 @@ public class Slow extends Buff
 
 		//Log.d(name, "Slow.doAbility(): at " + start);
 
-		LivingQualities lq = getTarget().getLQ();
+		Attributes lq = getTarget().getLQ();
 		Bonuses b = lq.getBonuses();
 		b.subtractFromSpeedBonusMultiplier(speedBonus);
 	}

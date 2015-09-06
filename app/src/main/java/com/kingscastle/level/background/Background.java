@@ -113,7 +113,7 @@ public class Background
 		getScrollingBackground().adjustCenteredOn();
 	}
 	public void adjustScreenArea(){
-		getScrollingBackground().adjustScreenArea();
+		getScrollingBackground().adjustScreenArea(getScreenArea(), getCenteredOn());
 	}
 
 

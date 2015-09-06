@@ -172,8 +172,7 @@ public abstract class Spell extends GameElement implements Ability
 		return damage;
 	}
 
-	public final void setDamage(int damage)
-	{
+	public final void setDamage(int damage)	{
 		this.damage = damage;
 	}
 
@@ -258,5 +257,10 @@ public abstract class Spell extends GameElement implements Ability
     @Override
     public void undoAbility() {
 
+    }
+
+    /** @return +- 20% of the input damage */
+    public static int slightlyRandomize(int damage) {
+        return (int) ((damage*0.8) + (Math.random()*damage*0.4));
     }
 }

@@ -3,7 +3,6 @@ package com.kingscastle.gameElements.livingThings.SoldierTypes;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.Assets;
@@ -47,10 +46,7 @@ public abstract class Humanoid extends LivingThing {
 	}
 
 
-	//FIXME We do not want these things to upgrade because that will overwrite the health that we have set for it
-	@Override
-	protected void upgrade() {
-	}
+
 
 
 	@Override
@@ -123,7 +119,7 @@ public abstract class Humanoid extends LivingThing {
 
 
 	@Override
-	public void loadAnimation( @NonNull MM mm )
+	public void loadAnimation( @NotNull @NonNull MM mm )
 	{
 		Team team = mm.getTM().getTeam( getTeamName() );
 		Races race = Races.HUMAN;
@@ -156,19 +152,49 @@ public abstract class Humanoid extends LivingThing {
 	}
 
 
+
+    //Methods used to communicate from the UI to a soldier.
+
     private final vector attackInDirection = new vector();
+    private boolean onlyAttackInDirectionOnce = false;
 
     /** @param direction non-Normalized vector */
+    public void attackOnceInDirection(vector direction) {
+        //since the UI thread will mess with this vector we must ensure its not being used by the Team thread while its being fucked with
+        synchronized (attackInDirection) {
+            attackInDirection.set(direction).turnIntoUnitVector();
+            onlyAttackInDirectionOnce = true;
+        }
+    }
+    /** @param direction non-Normalized vector */
     public void attackInDirection(@NotNull vector direction) {
-        attackInDirection.set(direction).turnIntoUnitVector();
+        //since the UI thread will mess with this vector we must ensure its not being used by the Team thread while its being fucked with
+        synchronized (attackInDirection) {
+            attackInDirection.set(direction).turnIntoUnitVector();
+        }
     }
     public void stopAttackingInDirection() {
-        attackInDirection.set(0,0);
+        //since the UI thread will mess with this vector we must ensure its not being used by the Team thread while its being fucked with
+        synchronized (attackInDirection) {
+            attackInDirection.set(0, 0);
+        }
     }
+
     @NotNull
-    public vector getAttackInDirection() {
-        return attackInDirection;
+    public vector getAttackInDirectionVector(vector atkInDirVector) {
+        //since the UI thread will mess with this vector we must ensure its not being used by the Team thread while its being fucked with
+        synchronized (attackInDirection) {
+            return atkInDirVector.set(attackInDirection);
+        }
     }
+
+    public boolean onlyAttackOnceInDirection() {
+        return onlyAttackInDirectionOnce;
+    }
+    public void setOnlyAttackOnceInDirection(boolean b) {
+        onlyAttackInDirectionOnce = b;
+    }
+
 
 
 
@@ -205,15 +231,14 @@ public abstract class Humanoid extends LivingThing {
 
     private final vector moveInDirectionV = new vector();
     public void moveInDirection(vector inDirection) {
-        Log.d(TAG,"moveInDirection: "+ inDirection);
+        //Log.d(TAG,"moveInDirection: "+ inDirection);
         moveInDirectionV.set(inDirection);
     }
     public void stopMovingInDirection(){
-        Log.d(TAG,"stopMovingInDirection");
+        //Log.d(TAG,"stopMovingInDirection");
         moveInDirectionV.set(0,0);
     }
     public vector getMoveInDirectionV() {
-
         return moveInDirectionV;
     }
 
@@ -398,6 +423,7 @@ public abstract class Humanoid extends LivingThing {
 
 	//Path Destination Reached
 	private final List<OnPathDestinationReachedListener> pdrls = new ArrayList<>();
+
 
 
 

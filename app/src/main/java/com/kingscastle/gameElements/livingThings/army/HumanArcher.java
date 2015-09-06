@@ -9,7 +9,7 @@ import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.MediumRangedSoldier;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.Bow;
@@ -28,9 +28,9 @@ public class HumanArcher extends MediumRangedSoldier
 	private static ImageFormatInfo imageFormatInfo;
 
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ()   { return staticLivingQualities; }
+	protected Attributes getStaticLQ()   { return STATIC_ATTRIBUTES; }
 	@NonNull
     private static final AttackerQualities staticAttackerQualities; @NonNull
                                                                     @Override
@@ -53,17 +53,17 @@ public class HumanArcher extends MediumRangedSoldier
 		staticAttackerQualities.setDamage( 20 );  staticAttackerQualities.setdDamageAge( 0 ); staticAttackerQualities.setdDamageLvl( 3 );
 		staticAttackerQualities.setROF(1000);
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresBLvl(6); staticLivingQualities.setRequiresAge(Age.BRONZE); staticLivingQualities.setRequiresTcLvl(6);
-		staticLivingQualities.setRangeOfSight( 350 );
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth( 200 );
-		staticLivingQualities.setHealth( 200 ); staticLivingQualities.setdHealthAge( 0 ); staticLivingQualities.setdHealthLvl( 13 );
-		staticLivingQualities.setFullMana(0);
-		staticLivingQualities.setMana(0);
-		staticLivingQualities.setHpRegenAmount(1);
-		staticLivingQualities.setRegenRate(1000);
-		staticLivingQualities.setArmor( 6 );  staticLivingQualities.setdArmorAge( 0 ); staticLivingQualities.setdArmorLvl( 1.4f );
-		staticLivingQualities.setSpeed(2.1f * dp);
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresBLvl(6); STATIC_ATTRIBUTES.setRequiresAge(Age.BRONZE); STATIC_ATTRIBUTES.setRequiresTcLvl(6);
+		STATIC_ATTRIBUTES.setRangeOfSight( 350 );
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth( 200 );
+		STATIC_ATTRIBUTES.setHealth( 200 ); STATIC_ATTRIBUTES.setdHealthAge( 0 ); STATIC_ATTRIBUTES.setdHealthLvl( 13 );
+		STATIC_ATTRIBUTES.setFullMana(0);
+		STATIC_ATTRIBUTES.setMana(0);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1);
+		STATIC_ATTRIBUTES.setRegenRate(1000);
+		STATIC_ATTRIBUTES.setArmor( 6 );  STATIC_ATTRIBUTES.setdArmorAge( 0 ); STATIC_ATTRIBUTES.setdArmorLvl( 1.4f );
+		STATIC_ATTRIBUTES.setSpeed(2.1f * dp);
 	}
 
 	{
@@ -218,9 +218,9 @@ public class HumanArcher extends MediumRangedSoldier
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities( staticLivingQualities );
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

@@ -49,6 +49,10 @@ public class SpecialTextEffects
 		return true;
 	}
 
+    public static void onExperienceGained(int x, int y, int exp) {
+        if( stillDraw != null && stillDraw.contains( x , y ))
+            makeText( x , y , "" + exp , Color.WHITE , SMALLEST_TXT_SIZE );
+    }
 
 
 	public static boolean onCreatureLvledUp(float x, float y) {
@@ -132,15 +136,6 @@ public class SpecialTextEffects
 		};
 		textPool = new Pool<RisingText>(factory, 200);
 	}
-
-
-
-
-
-
-
-
-
 
 
 

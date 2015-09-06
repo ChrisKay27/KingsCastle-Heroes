@@ -11,7 +11,7 @@ import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.AdvancedRangedSoldier;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.Bow;
@@ -33,9 +33,9 @@ public class SkullFucker extends AdvancedRangedSoldier
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
 	@Nullable
     private static Cost cost = null;
@@ -54,15 +54,15 @@ public class SkullFucker extends AdvancedRangedSoldier
 		staticAttackerQualities.setDamage( 10 );  staticAttackerQualities.setdDamageAge( 3 ); staticAttackerQualities.setdDamageLvl( 1 ); //20);
 		staticAttackerQualities.setROF(600);
 
-		staticLivingQualities = new LivingQualities();  staticLivingQualities.setRequiresBLvl(1); staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(1);
-		staticLivingQualities.setLevel( 1 ); //20);
-		staticLivingQualities.setFullHealth(400);
-		staticLivingQualities.setHealth( 100 ); staticLivingQualities.setdHealthAge( 50 ); staticLivingQualities.setdHealthLvl( 10 ); //400);
-		staticLivingQualities.setFullMana(200);
-		staticLivingQualities.setMana(200);
-		staticLivingQualities.setHpRegenAmount(1);
-		staticLivingQualities.setRegenRate(500);
-		staticLivingQualities.setSpeed(3f * dp);
+		STATIC_ATTRIBUTES = new Attributes();  STATIC_ATTRIBUTES.setRequiresBLvl(1); STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(1);
+		STATIC_ATTRIBUTES.setLevel( 1 ); //20);
+		STATIC_ATTRIBUTES.setFullHealth(400);
+		STATIC_ATTRIBUTES.setHealth( 100 ); STATIC_ATTRIBUTES.setdHealthAge( 50 ); STATIC_ATTRIBUTES.setdHealthLvl( 10 ); //400);
+		STATIC_ATTRIBUTES.setFullMana(200);
+		STATIC_ATTRIBUTES.setMana(200);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1);
+		STATIC_ATTRIBUTES.setRegenRate(500);
+		STATIC_ATTRIBUTES.setSpeed(3f * dp);
 
 	}
 
@@ -142,9 +142,9 @@ public class SkullFucker extends AdvancedRangedSoldier
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

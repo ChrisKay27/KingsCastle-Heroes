@@ -8,7 +8,7 @@ import com.kingscastle.Game;
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.TargetingParams;
 import com.kingscastle.gameElements.livingThings.army.WhiteWizard;
@@ -72,7 +72,7 @@ public abstract class Unit extends Humanoid
 	}
 
 	@Override
-	public boolean create(@NotNull MM mm){
+	public boolean create(@NonNull @NotNull MM mm){
 		boolean superCreate = super.create(mm);
 
 		if( team == Teams.RED )
@@ -539,8 +539,7 @@ public abstract class Unit extends Humanoid
 
 	@Nullable
     @Override
-	protected LivingQualities getStaticLQ() { return null; }
-
+	protected Attributes getStaticLQ() { return null; }
 
 
 }

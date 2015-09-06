@@ -12,7 +12,7 @@ import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.SpellAttack;
 import com.kingscastle.gameElements.spells.Laser;
@@ -38,7 +38,7 @@ public class LaserCatShrine extends Shrine
 	@NonNull
     private static final AttackerQualities staticAttackerQualities;
 	@NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
 
 	private static final Cost costs = new Cost( 500 , 0 , 500 , 0 );
 	@NonNull
@@ -46,7 +46,7 @@ public class LaserCatShrine extends Shrine
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
     @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities;   }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
 
 	static
@@ -60,16 +60,17 @@ public class LaserCatShrine extends Shrine
 		staticAttackerQualities.setROF( 1000 );
 		staticAttackerQualities.setDamage( 14 );
 
-		staticLivingQualities = new LivingQualities();staticLivingQualities.setRequiresAge(Age.IRON); staticLivingQualities.setRequiresTcLvl(14);
-		staticLivingQualities.setRangeOfSight( 250 );
-		staticLivingQualities.setLevel( 1 ); // 2 );
-		staticLivingQualities.setFullHealth( 500 );
-		staticLivingQualities.setHealth( 500 );
-		staticLivingQualities.setFullMana( 100 );
-		staticLivingQualities.setMana( 100 );
-		staticLivingQualities.setHpRegenAmount( 2 );
-		staticLivingQualities.setRegenRate( 1000 );
-		staticLivingQualities.setSpeed( 0 );
+		STATIC_ATTRIBUTES = new Attributes();
+        STATIC_ATTRIBUTES.setRequiresAge(Age.IRON); STATIC_ATTRIBUTES.setRequiresTcLvl(14);
+		STATIC_ATTRIBUTES.setRangeOfSight( 250 );
+		STATIC_ATTRIBUTES.setLevel( 1 ); // 2 );
+		STATIC_ATTRIBUTES.setFullHealth( 500 );
+		STATIC_ATTRIBUTES.setHealth( 500 );
+		STATIC_ATTRIBUTES.setFullMana( 100 );
+		STATIC_ATTRIBUTES.setMana( 100 );
+		STATIC_ATTRIBUTES.setHpRegenAmount( 2 );
+		STATIC_ATTRIBUTES.setRegenRate( 1000 );
+		STATIC_ATTRIBUTES.setSpeed( 0 );
 
 		staticAttackerQualities.setdDamageAge(4);
 		staticAttackerQualities.setdDamageLvl(1);
@@ -77,11 +78,11 @@ public class LaserCatShrine extends Shrine
 		staticAttackerQualities.setdROFLvl(-20);
 		staticAttackerQualities.setdRangeSquaredAge(-3000 * dpSquared);
 		staticAttackerQualities.setdRangeSquaredLvl(-100 * dpSquared);
-		staticLivingQualities.setAge( Age.STONE );
-		staticLivingQualities.setdHealthAge(200);
-		staticLivingQualities.setdHealthLvl(40);
-		staticLivingQualities.setdRegenRateAge( -100 );
-		staticLivingQualities.setdRegenRateLvl(-20);
+		STATIC_ATTRIBUTES.setAge( Age.STONE );
+		STATIC_ATTRIBUTES.setdHealthAge(200);
+		STATIC_ATTRIBUTES.setdHealthLvl(40);
+		STATIC_ATTRIBUTES.setdRegenRateAge( -100 );
+		STATIC_ATTRIBUTES.setdRegenRateLvl(-20);
 
 	}
 
@@ -193,8 +194,8 @@ public class LaserCatShrine extends Shrine
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities() {
-		return new LivingQualities(staticLivingQualities);
+	public Attributes getNewLivingQualities() {
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

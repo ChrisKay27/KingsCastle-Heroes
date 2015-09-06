@@ -13,7 +13,7 @@ import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.TargetingParams;
 import com.kingscastle.gameElements.livingThings.abilities.HealingSpell;
@@ -41,7 +41,7 @@ public class HealingShrine extends Shrine
 	@NonNull
     private static final AttackerQualities staticAttackerQualities;
 	@NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
 
 	private static final Cost costs = new Cost( 300 , 0 , 300 , 300 , 0 );
 	@NonNull
@@ -49,7 +49,7 @@ public class HealingShrine extends Shrine
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
     @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities;   }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
 
 	static
@@ -62,16 +62,16 @@ public class HealingShrine extends Shrine
 		staticAttackerQualities.setAttackRangeSquared    ( 30000 * dpSquared );
 		staticAttackerQualities.setROF( 1000 );
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresAge(Age.IRON); staticLivingQualities.setRequiresTcLvl(12);
-		staticLivingQualities.setRangeOfSight( 250 );
-		staticLivingQualities.setLevel( 1 ); // 1 );
-		staticLivingQualities.setFullHealth( 500 );
-		staticLivingQualities.setHealth( 500 );
-		staticLivingQualities.setFullMana( 100 );
-		staticLivingQualities.setMana( 100 );
-		staticLivingQualities.setHpRegenAmount( 2 );
-		staticLivingQualities.setRegenRate( 1000 );
-		staticLivingQualities.setSpeed( 0 );
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresAge(Age.IRON); STATIC_ATTRIBUTES.setRequiresTcLvl(12);
+		STATIC_ATTRIBUTES.setRangeOfSight( 250 );
+		STATIC_ATTRIBUTES.setLevel( 1 ); // 1 );
+		STATIC_ATTRIBUTES.setFullHealth( 500 );
+		STATIC_ATTRIBUTES.setHealth( 500 );
+		STATIC_ATTRIBUTES.setFullMana( 100 );
+		STATIC_ATTRIBUTES.setMana( 100 );
+		STATIC_ATTRIBUTES.setHpRegenAmount( 2 );
+		STATIC_ATTRIBUTES.setRegenRate( 1000 );
+		STATIC_ATTRIBUTES.setSpeed( 0 );
 
 		staticAttackerQualities.setdDamageAge(4);
 		staticAttackerQualities.setdDamageLvl(1);
@@ -79,12 +79,12 @@ public class HealingShrine extends Shrine
 		staticAttackerQualities.setdROFLvl(-20);
 		staticAttackerQualities.setdRangeSquaredAge(-3000 * dpSquared);
 		staticAttackerQualities.setdRangeSquaredLvl(-100 * dpSquared);
-		staticLivingQualities.setAge( Age.STONE );
+		STATIC_ATTRIBUTES.setAge( Age.STONE );
 
-		staticLivingQualities.setdHealthAge(100);
-		staticLivingQualities.setdHealthLvl(40);
-		staticLivingQualities.setdRegenRateAge( -100 );
-		staticLivingQualities.setdRegenRateLvl(-20);
+		STATIC_ATTRIBUTES.setdHealthAge(100);
+		STATIC_ATTRIBUTES.setdHealthLvl(40);
+		STATIC_ATTRIBUTES.setdRegenRateAge( -100 );
+		STATIC_ATTRIBUTES.setdRegenRateLvl(-20);
 
 	}
 	@NonNull
@@ -269,8 +269,8 @@ public class HealingShrine extends Shrine
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities() {
-		return new LivingQualities(staticLivingQualities);
+	public Attributes getNewLivingQualities() {
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

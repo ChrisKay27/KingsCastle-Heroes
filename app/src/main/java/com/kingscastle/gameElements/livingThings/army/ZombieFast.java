@@ -9,7 +9,7 @@ import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.MeleeSoldier;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameUtils.Age;
@@ -25,7 +25,7 @@ public class ZombieFast extends MeleeSoldier {
     private static Image[] staticImages = Assets.loadImages(R.drawable.zombie, 0, 0, 1, 1);
 
     @NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
     @NonNull
     private static final AttackerQualities staticAttackerQualities;
 
@@ -42,24 +42,24 @@ public class ZombieFast extends MeleeSoldier {
         staticAttackerQualities.setdDamageLvl(1);
         staticAttackerQualities.setROF(100);
 
-        staticLivingQualities = new LivingQualities();
-        staticLivingQualities.setRequiresBLvl(1);
-        staticLivingQualities.setRequiresAge(Age.STONE);
-        staticLivingQualities.setRequiresTcLvl(1);
-        staticLivingQualities.setRangeOfSight(300);
-        staticLivingQualities.setLevel(1);
-        staticLivingQualities.setFullHealth(200);
-        staticLivingQualities.setHealth(200);
-        staticLivingQualities.setdHealthAge(0);
-        staticLivingQualities.setdHealthLvl(10); //
-        staticLivingQualities.setFullMana(0);
-        staticLivingQualities.setMana(0);
-        staticLivingQualities.setHpRegenAmount(1);
-        staticLivingQualities.setRegenRate(10000);
-        staticLivingQualities.setArmor(10);
-        staticLivingQualities.setdArmorAge(3);
-        staticLivingQualities.setdArmorLvl(1);
-        staticLivingQualities.setSpeed(3f * dp);
+        STATIC_ATTRIBUTES = new Attributes();
+        STATIC_ATTRIBUTES.setRequiresBLvl(1);
+        STATIC_ATTRIBUTES.setRequiresAge(Age.STONE);
+        STATIC_ATTRIBUTES.setRequiresTcLvl(1);
+        STATIC_ATTRIBUTES.setRangeOfSight(300);
+        STATIC_ATTRIBUTES.setLevel(1);
+        STATIC_ATTRIBUTES.setFullHealth(200);
+        STATIC_ATTRIBUTES.setHealth(200);
+        STATIC_ATTRIBUTES.setdHealthAge(0);
+        STATIC_ATTRIBUTES.setdHealthLvl(10); //
+        STATIC_ATTRIBUTES.setFullMana(0);
+        STATIC_ATTRIBUTES.setMana(0);
+        STATIC_ATTRIBUTES.setHpRegenAmount(1);
+        STATIC_ATTRIBUTES.setRegenRate(10000);
+        STATIC_ATTRIBUTES.setArmor(10);
+        STATIC_ATTRIBUTES.setdArmorAge(3);
+        STATIC_ATTRIBUTES.setdArmorLvl(1);
+        STATIC_ATTRIBUTES.setSpeed(3f * dp);
     }
 
     {
@@ -99,8 +99,8 @@ public class ZombieFast extends MeleeSoldier {
 
     @NonNull
     @Override
-    public LivingQualities getNewLivingQualities() {
-        return new LivingQualities(staticLivingQualities);
+    public Attributes getNewLivingQualities() {
+        return new Attributes(STATIC_ATTRIBUTES);
     }
 
     @NonNull
@@ -110,8 +110,8 @@ public class ZombieFast extends MeleeSoldier {
     }
     @NonNull
     @Override
-    protected LivingQualities getStaticLQ() {
-        return staticLivingQualities;
+    protected Attributes getStaticLQ() {
+        return STATIC_ATTRIBUTES;
     }
 
 

@@ -4,26 +4,27 @@ import android.graphics.RectF;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.util.Pair;
 
-import com.kingscastle.effects.EffectsManager;
-import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.DecoAnimation;
-import com.kingscastle.effects.animations.StasisZoneAnim;
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.GameElement;
 import com.kingscastle.gameElements.GenericGameElement;
 import com.kingscastle.gameElements.Tree;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.abilities.Haste;
+import com.kingscastle.gameElements.livingThings.army.HumanWizard;
+import com.kingscastle.gameElements.livingThings.army.KratosLightArm;
 import com.kingscastle.gameElements.livingThings.army.KratosMedArm;
-import com.kingscastle.gameElements.livingThings.army.UndeadSkeletonBowman;
 import com.kingscastle.gameElements.livingThings.army.ZombieMedium;
 import com.kingscastle.gameElements.livingThings.army.ZombieStrong;
 import com.kingscastle.gameElements.livingThings.army.ZombieWeak;
 import com.kingscastle.gameUtils.Difficulty;
 import com.kingscastle.gameUtils.vector;
 import com.kingscastle.heroes.PlayerAchievements;
+import com.kingscastle.level.Heroes.BuffPickup;
+import com.kingscastle.level.Heroes.Pickup;
+import com.kingscastle.level.Heroes.TripleAttackPickup;
 import com.kingscastle.teams.HumanPlayer;
 import com.kingscastle.teams.Team;
 import com.kingscastle.teams.Teams;
@@ -31,6 +32,8 @@ import com.kingscastle.teams.races.HumanRace;
 import com.kingscastle.teams.races.UndeadRace;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -39,6 +42,8 @@ import java.util.List;
 public abstract class HeroesLevel extends Level{
     private static final String TAG = HeroesLevel.class.getSimpleName();
     public static final String DONT_ADD_SCORE = "DontAddScore";
+
+    protected HumanWizard hero;
 
     private int startOnRound = 1;
     private long checkMonstersArePathingAt;
@@ -49,7 +54,7 @@ public abstract class HeroesLevel extends Level{
     private long playersScore;
     private final PlayerAchievements playerAchievements = new PlayerAchievements();
 
-
+    private List<Pickup> pickups = new LinkedList<>();
 
     @Override
     protected void subOnCreate() {
@@ -73,33 +78,6 @@ public abstract class HeroesLevel extends Level{
         createBorder();
     }
 
-    protected void setUpStartAndEndLocs(@NonNull List<Pair<vector, vector>> startEndLocPairs){
-        for( Pair<vector, vector> startEndLocPair : startEndLocPairs ) {
-            vector startLoc = startEndLocPair.first;
-            vector endLoc = startEndLocPair.second;
-
-            RectF noBuildZone1 = new RectF(-1 * Rpg.sixTeenDp, -1 * Rpg.sixTeenDp, 1 * Rpg.sixTeenDp, 1 * Rpg.sixTeenDp);
-            RectF noBuildZone2 = new RectF(noBuildZone1);
-            noBuildZone1.offset(startLoc.x, startLoc.y);
-            noBuildZone2.offset(endLoc.x, endLoc.y);
-            noBuildZones.add(noBuildZone1);
-            noBuildZones.add(noBuildZone2);
-            ui.bb.addNoBuildZone(noBuildZone1, noBuildZone2);
-
-            //Setup start and end locations animations
-            Anim startAnim = new StasisZoneAnim(startLoc);
-            startAnim.setLooping(true);
-            startAnim.onlyShowIfOnScreen = false;
-            startAnim.setScale(0.25f);
-            mm.getEm().add(startAnim, EffectsManager.Position.Behind);
-
-            Anim endAnim = new StasisZoneAnim(endLoc);
-            endAnim.setLooping(true);
-            endAnim.setScale(0.25f);
-            endAnim.onlyShowIfOnScreen = false;
-            mm.getEm().add(endAnim, EffectsManager.Position.Behind);
-        }
-    }
 
     private long nextSpawn;
 
@@ -122,11 +100,38 @@ public abstract class HeroesLevel extends Level{
             else if( rand < 0.8 )
                 spawn = new KratosMedArm(new vector(getLevelWidthInPx()*Math.random(), getLevelHeightInPx()*Math.random()), Teams.RED);
             else
-                spawn = new UndeadSkeletonBowman(new vector(getLevelWidthInPx()*Math.random(), getLevelHeightInPx()*Math.random()), Teams.RED);
+                spawn = new KratosLightArm(new vector(getLevelWidthInPx()*Math.random(), getLevelHeightInPx()*Math.random()), Teams.RED);
             mm.add(spawn);
             spawn.aq.setFocusRangeSquared(10000*10000*Rpg.getDpSquared());
-
         }
+
+        if( Math.random() < 0.003){
+            vector pickupLoc = new vector(getLevelWidthInPx() * Math.random(), getLevelHeightInPx() * Math.random());
+            if( Math.random() < 0.5 ) {
+                BuffPickup bp = new BuffPickup(pickupLoc, new Haste(null, null));
+                pickups.add(bp);
+                mm.getEm().add(bp.getAnim());
+            }
+            else{
+                TripleAttackPickup bp = new TripleAttackPickup(pickupLoc);
+                pickups.add(bp);
+                mm.getEm().add(bp.getAnim());
+            }
+        }
+
+
+        Iterator<Pickup> pIt = pickups.iterator();
+        while( pIt.hasNext() ){
+            Pickup p = pIt.next();
+            if(p.isWithinRange(hero.loc) && p.canPickup(hero)) {
+                p.pickedUp(mm, hero);
+            }
+            if( p.isOver() ) {
+                pIt.remove();
+                p.onOver();
+            }
+        }
+
     }
 
     @Override

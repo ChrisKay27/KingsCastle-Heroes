@@ -42,7 +42,7 @@ public class Team implements OnBuildingMovedListener
 	private static final String NO_THIS_UNIT_IS_ALREADY_LEVELING_UP = "No:This unit is already leveling up.";
 	private static final String NO_THIS_UNIT_HAS_REACHED_THE_MAXIMUM_LEVEL = "No:This unit has reached the maximum level.";
 	private static final String TAG = "Team";
-	public static final int MAX_LEVEL = 20;
+	public static final int MAX_LEVEL = Integer.MAX_VALUE;
 	private int roundNum = 1;
 
 

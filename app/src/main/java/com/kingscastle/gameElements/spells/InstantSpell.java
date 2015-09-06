@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Input;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.managment.MM;
 
@@ -72,7 +72,7 @@ public abstract class InstantSpell extends Spell {
 	{
 		if( getCaster() != null )
 		{
-			LivingQualities lq = getCaster().getLQ();
+			Attributes lq = getCaster().getLQ();
 
 			return (int) (( getDamage() + (int) ( Math.random()*10 ) ) * lq.getBonuses().getDamageBonus() );
 		}

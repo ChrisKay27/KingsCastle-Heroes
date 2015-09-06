@@ -246,10 +246,7 @@ public class vector implements Serializable
 		return vector.proj(this, b);
 	}
 
-	public float distance(@NotNull vector v )
-	{
-		if( v == null )
-			return 0;
+	public float distance(@NotNull vector v ) {
 
 		float dx = v.x - x ;
 		float dy = v.y - y ;
@@ -258,10 +255,7 @@ public class vector implements Serializable
 	}
 
 
-	public float distanceSquared(@NotNull vector v )
-	{
-		if( v == null )
-			return 0;
+	public float distanceSquared(@NotNull vector v ) {
 
 		float dx = v.x - x ;
 		float dy = v.y - y ;
@@ -270,8 +264,7 @@ public class vector implements Serializable
 	}
 
 
-	public float distanceSquared(float x2, float y2)
-	{
+	public float distanceSquared(float x2, float y2) {
 		float dx = x2 - x ;
 		float dy = y2 - y ;
 
@@ -296,12 +289,8 @@ public class vector implements Serializable
 	 * @return The same vector but with the component in the same direction as the normalVector set to
 	 */
 	@NonNull
-    public vector removeComponentInDir( @Nullable vector normalVector )
+    public vector removeComponentInDir( @NotNull vector normalVector )
 	{
-		if( normalVector == null )
-		{
-			return this;
-		}
 		if( normalVector.x != 0 )
 		{
 			x = 0;
@@ -747,7 +736,13 @@ public class vector implements Serializable
 		}
 		else
 		{
+            Float oldX = x;
 
+            double angle = Math.toRadians(deg);
+
+            x = (float)(x * Math.cos(angle) - y * Math.sin(angle));
+
+            y = (float)(oldX * Math.sin(angle) + y * Math.cos(angle)) ;
 		}
 		return null;
 	}

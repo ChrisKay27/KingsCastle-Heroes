@@ -12,7 +12,7 @@ import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.SpellAttack;
 import com.kingscastle.gameElements.spells.LightningBolts;
@@ -38,7 +38,7 @@ public class ShockDragonTower extends AttackingBuilding
 	@NonNull
     private static final AttackerQualities staticAttackerQualities;
 	@NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
 	@NonNull
     private static ArrayList<vector> staticDamageOffsets = new ArrayList<>();
 	static{
@@ -54,7 +54,7 @@ public class ShockDragonTower extends AttackingBuilding
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
     @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities;   }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
 
 
@@ -68,23 +68,23 @@ public class ShockDragonTower extends AttackingBuilding
 		staticAttackerQualities.setDamage(20);
 		staticAttackerQualities.setROF(400);
 
-		staticLivingQualities = new LivingQualities();
+		STATIC_ATTRIBUTES = new Attributes();
 
-		staticLivingQualities.setLevel(1);
-		staticLivingQualities.setFullHealth(250);
-		staticLivingQualities.setHealth(250);
-		staticLivingQualities.setFullMana(125);
-		staticLivingQualities.setMana(125);
-		staticLivingQualities.setHpRegenAmount(1);
-		staticLivingQualities.setRegenRate(1000);
-		staticLivingQualities.setArmor(2);
+		STATIC_ATTRIBUTES.setLevel(1);
+		STATIC_ATTRIBUTES.setFullHealth(250);
+		STATIC_ATTRIBUTES.setHealth(250);
+		STATIC_ATTRIBUTES.setFullMana(125);
+		STATIC_ATTRIBUTES.setMana(125);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1);
+		STATIC_ATTRIBUTES.setRegenRate(1000);
+		STATIC_ATTRIBUTES.setArmor(2);
 
 		staticPerceivedArea = new RectF(Rpg.guardTowerArea);
 
 		staticAttackerQualities.setdDamageLvl(12);
 		staticAttackerQualities.setdROFLvl(-75);
 		staticAttackerQualities.setdRangeSquaredLvl(2000 * dpSquared);
-		staticLivingQualities.setMaxLevel(10);
+		STATIC_ATTRIBUTES.setMaxLevel(10);
 	}
 
 
@@ -277,9 +277,9 @@ public class ShockDragonTower extends AttackingBuilding
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

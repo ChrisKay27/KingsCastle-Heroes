@@ -7,7 +7,7 @@ import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.BlackSummonSmokeAnim;
 import com.kingscastle.effects.animations.HealSparklesAnim;
 import com.kingscastle.framework.Image;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.Healer;
 import com.kingscastle.gameElements.managment.MM;
@@ -67,7 +67,7 @@ public class HealingSpell extends InstantAbility{
 		}
 		else
 		{
-			LivingQualities lq = getCaster().getLQ();
+			Attributes lq = getCaster().getLQ();
 			float lvlMultiplier = lq.getHealAmount() + lq.getdHealLvl()*lq.getLevel();
 
 			//////Log.v(TAG, "lvlMultiplier for this heal is " + lvlMultiplier );

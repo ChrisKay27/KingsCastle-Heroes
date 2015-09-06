@@ -63,22 +63,29 @@ public class AttackerQualities
 		attackRangeSquared=aq.attackRangeSquared;
 		attackRange=aq.attackRange;
 		staysAtDistanceSquared=aq.staysAtDistanceSquared;
+
 		damage=aq.damage;
+
 		regenRate=aq.regenRate;
 		ROF=aq.ROF;
-		healAmount=aq.healAmount;
-		focusRange= aq.focusRange ;
-		bonuses = bonuses2;
+
+		healAmount = aq.healAmount;
+		focusRange = aq.focusRange ;
+
 
 		dDamageAge = aq.dDamageAge;
 		dDamageLvl = aq.dDamageLvl;
+
 		dROFAge = aq.dROFAge;
 		dROFLvl = aq.dROFLvl;
 
 		dRangeAge = aq.dRangeAge;
 		dRangeLvl = aq.dRangeLvl;
+
 		dRangeSquaredAge = aq.dRangeSquaredAge;
 		dRangeSquaredLvl = aq.dRangeSquaredLvl;
+
+        bonuses = bonuses2;
 	}
 
 
@@ -102,20 +109,15 @@ public class AttackerQualities
 	 public float getAttackRange() {
 		 return attackRange;
 	 }
-
 	 public void setAttackRange(float attackRange_) {
 		 attackRange = attackRange_;
 		 attackRangeSquared = attackRange*attackRange;
 	 }
-	 /**
-	  * @return the attackRangeSquared
-	  */
+
+
 	 public float getAttackRangeSquared() {
 		 return attackRangeSquared;
 	 }
-	 /**
-	  * @param f the attackRangeSquared to set
-	  */
 	 public void setAttackRangeSquared(float f) {
 		 attackRangeSquared = f;
 		 attackRange = vector.sqrt(f);
@@ -123,67 +125,47 @@ public class AttackerQualities
 
 
 
-	 /**
-	  * @return the staysAtDistanceSquared
-	  */
+
 	 public float getStaysAtDistanceSquared() {
 		 return staysAtDistanceSquared;
 	 }
-	 /**
-	  * @param staysAtDistanceSquared the staysAtDistanceSquared to set
-	  */
 	 public void setStaysAtDistanceSquared(float staysAtDistanceSquared) {
 		 this.staysAtDistanceSquared = staysAtDistanceSquared;
 	 }
 
-	 /**
-	  * @return the damage
-	  */
-	 public int getDamage()
-	 {
+
+	 public int getDamage()	 {
 		 return (int) (damage * bonuses.getDamageBonus()) ;
 	 }
-	 /**
-	  * @param damage the damage to set
-	  */
 	 public void setDamage(int damage) {
 		 this.damage = damage;
 	 }
 
 
-	 /**
-	  * @return the regenRate
-	  */
+
 	 public int getRegenRate()
 	 {
 		 return regenRate + bonuses.getHpRegenBonus() ;
 	 }
-
-	 /**
-	  * @param regenRate the regenRate to set
-	  */
 	 public void setRegenRate(int regenRate) {
 		 this.regenRate = regenRate;
 	 }
-	 /**
-	  * @return the rOF
-	  */
+
 	 public int getROF()
 	 {
 		 return ROF + bonuses.getROABonus() ;
 	 }
-	 /**
-	  * @param rOF the rOF to set
-	  */
 	 public void setROF(int rOF) {
 		 ROF = rOF;
 	 }
+
 	 public int getHealAmount() {
 		 return healAmount;
 	 }
 	 public void setHealAmount(int healAmount) {
 		 this.healAmount = healAmount;
 	 }
+
 
 	 public void addAttack( Attack atk )
 	 {
@@ -196,12 +178,12 @@ public class AttackerQualities
 		attacks.clear();
 	}
 
-	 /**
+
+    /**
 	  * @return one of the attacks
 	  */
 	 @Nullable
-     public synchronized Attack getCurrentAttack()
-	 {
+     public synchronized Attack getCurrentAttack() {
 		 if( cycleThroughAttacks )
 		 {
 			 Attack currAttack = attacks.get(attacksCursor++);
@@ -213,10 +195,8 @@ public class AttackerQualities
 	 }
 
 
-	 public void setCurrentAttack(Attack attack)
-	 {
+	 public void setCurrentAttack(Attack attack) {
 		 currentAttack = attack;
-		 addAttack( attack );
 	 }
 
 
@@ -245,21 +225,27 @@ public class AttackerQualities
 
 
 
-	 public float getFocusRange()
+    public float getFocusRange()
 	 {
 		 return focusRange;
 	 }
-	 public void setCycleThroughAttacks(boolean b) {
+
+    public void setCycleThroughAttacks(boolean b) {
 		 cycleThroughAttacks = b;
 	 }
-	 public boolean isCycleThroughFriendlyAttacks() {
+    public boolean isCyclingThroughAttacks() {
+        return cycleThroughAttacks;
+    }
+
+    public boolean isCycleThroughFriendlyAttacks() {
 		 return cycleThroughFriendlyAttacks;
 	 }
 	 public void setCycleThroughFriendlyAttacks(boolean cycleThroughFriendlyAttacks) {
 		 this.cycleThroughFriendlyAttacks = cycleThroughFriendlyAttacks;
 	 }
 
-	 public int getdDamageAge() {
+
+    public int getdDamageAge() {
 		 return dDamageAge;
 	 }
 

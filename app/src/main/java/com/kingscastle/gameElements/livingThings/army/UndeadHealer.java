@@ -11,7 +11,7 @@ import com.kingscastle.framework.Rpg;
 import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.BasicHealer;
 import com.kingscastle.gameElements.livingThings.abilities.HealingSpell;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
@@ -35,9 +35,9 @@ public class UndeadHealer extends BasicHealer
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
 	private static Cost cost = new Cost( 75 , 50 , 50 , 1 );
 
@@ -55,17 +55,17 @@ public class UndeadHealer extends BasicHealer
 		staticAttackerQualities.setAttackRangeSquared(20000 * dp * dp); staticAttackerQualities.setdRangeSquaredAge(1500 * dp * dp); staticAttackerQualities.setdRangeSquaredLvl(500 * dp * dp);
 		staticAttackerQualities.setROF(1000);
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresCLvl( 1 );  staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(1);
-		staticLivingQualities.setRangeOfSight( 250 );
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth( 50 );
-		staticLivingQualities.setHealth( 50 ); staticLivingQualities.setdHealthAge( 0 ); staticLivingQualities.setdHealthLvl( 10 );
-		staticLivingQualities.setFullMana( 100 );
-		staticLivingQualities.setMana( 100 );
-		staticLivingQualities.setHpRegenAmount( 2 );
-		staticLivingQualities.setRegenRate( 1000 );
-		staticLivingQualities.setSpeed( 1.0f * dp );
-		staticLivingQualities.setHealAmount( 15 ); staticLivingQualities.setdHealLvl( 4 );
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresCLvl( 1 );  STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(1);
+		STATIC_ATTRIBUTES.setRangeOfSight( 250 );
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth( 50 );
+		STATIC_ATTRIBUTES.setHealth( 50 ); STATIC_ATTRIBUTES.setdHealthAge( 0 ); STATIC_ATTRIBUTES.setdHealthLvl( 10 );
+		STATIC_ATTRIBUTES.setFullMana( 100 );
+		STATIC_ATTRIBUTES.setMana( 100 );
+		STATIC_ATTRIBUTES.setHpRegenAmount( 2 );
+		STATIC_ATTRIBUTES.setRegenRate( 1000 );
+		STATIC_ATTRIBUTES.setSpeed( 1.0f * dp );
+		STATIC_ATTRIBUTES.setHealAmount( 15 ); STATIC_ATTRIBUTES.setdHealLvl( 4 );
 	}
 
 	{
@@ -222,9 +222,9 @@ public class UndeadHealer extends BasicHealer
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 	@Override

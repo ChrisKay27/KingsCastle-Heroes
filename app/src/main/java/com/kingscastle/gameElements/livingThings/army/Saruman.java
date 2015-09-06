@@ -8,13 +8,15 @@ import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.MediumMeleeSoldier;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameUtils.Age;
 import com.kingscastle.gameUtils.vector;
 import com.kingscastle.teams.Teams;
+
+import org.jetbrains.annotations.NotNull;
 
 
 public class Saruman extends MediumMeleeSoldier
@@ -32,9 +34,9 @@ public class Saruman extends MediumMeleeSoldier
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
 	private static Cost cost = new Cost( 0 , 0 , 0 , 1 );
 
@@ -46,10 +48,10 @@ public class Saruman extends MediumMeleeSoldier
 
 		staticAttackerQualities.setStaysAtDistanceSquared( 0 );
 
-		staticLivingQualities = new LivingQualities();   staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(1);
-		staticLivingQualities.setRangeOfSight(150*dp);
-		staticLivingQualities.setHealth(100000);
-		staticLivingQualities.setFullHealth(100000);
+		STATIC_ATTRIBUTES = new Attributes();   STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(1);
+		STATIC_ATTRIBUTES.setRangeOfSight(150*dp);
+		STATIC_ATTRIBUTES.setHealth(100000);
+		STATIC_ATTRIBUTES.setFullHealth(100000);
 	}
 
 	{
@@ -77,7 +79,7 @@ public class Saruman extends MediumMeleeSoldier
 	}
 
 	@Override
-	public void loadAnimation( @NonNull MM mm )
+	public void loadAnimation( @NotNull @NonNull MM mm )
 	{
 	}
 
@@ -164,9 +166,9 @@ public class Saruman extends MediumMeleeSoldier
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

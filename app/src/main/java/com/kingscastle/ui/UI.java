@@ -45,7 +45,7 @@ import java.util.List;
  */
 public class UI implements CoordConverter{
 	private static final String TAG = "UI";
-	public static boolean showDebugMessages = true;
+	public static boolean showDebugMessages = false;
 
 
 	@NotNull
@@ -108,8 +108,9 @@ public class UI implements CoordConverter{
     private final UnitOrders uOrders;
     private final UnitCommands unitCommands;
     private final UnitOptions unitOptions;
+    private final UnitController unitController;
 
-    private final ThumbStick leftThumbStick, rightThumbStick;
+    private final ThumbStick leftThumbStick;//, rightThumbStick;
 
 
 	@Nullable
@@ -158,9 +159,10 @@ public class UI implements CoordConverter{
 
 
 
-        uOrders = new UnitOrders(getCc(), ui );
-        unitOptions = new UnitOptions(selUI, ui);
-        unitCommands = new UnitCommands( ui, getCc(), selecter , unitOptions  );
+        uOrders = new UnitOrders(getCc(), this );
+        unitOptions = new UnitOptions(selUI, this);
+        unitCommands = new UnitCommands( this, getCc(), selecter , unitOptions  );
+        unitController = new UnitController(this);
 
         leftThumbStick = new ThumbStick(new Rect(170, height - 450, 570, height-50), new ThumbStickListener() {
             @Override
@@ -170,32 +172,32 @@ public class UI implements CoordConverter{
             }
             @Override
             public void thumbLeftThumbStick() {
-                Log.d(TAG, "left thumbLeftThumbStick");
+                //Log.d(TAG, "left thumbLeftThumbStick");
                 selectedThings.getSelectedUnit().stopMovingInDirection();
             }
         });
 
-        rightThumbStick = new ThumbStick(new Rect(width-570, height - 450, width-170, height-50), new ThumbStickListener() {
-            @Override
-            public void thumbStickPositionChanged(vector direction) {
-                Log.d(TAG, "right thumbStickPositionChanged: " + direction);
-                selectedThings.getSelectedUnit().attackInDirection(direction);
-            }
-            @Override
-            public void thumbLeftThumbStick() {
-                Log.d(TAG, "right thumbLeftThumbStick");
-                selectedThings.getSelectedUnit().stopAttackingInDirection();
-            }
-        });
+//        rightThumbStick = new ThumbStick(new Rect(width-570, height - 450, width-170, height-50), new ThumbStickListener() {
+//            @Override
+//            public void thumbStickPositionChanged(vector direction) {
+//                Log.d(TAG, "right thumbStickPositionChanged: " + direction);
+//                selectedThings.getSelectedUnit().attackInDirection(direction);
+//            }
+//            @Override
+//            public void thumbLeftThumbStick() {
+//                Log.d(TAG, "right thumbLeftThumbStick");
+//                selectedThings.getSelectedUnit().stopAttackingInDirection();
+//            }
+//        });
 
 
-        teas.addAll(Arrays.asList(leftThumbStick, rightThumbStick, tapChecker, unitCommands, bb, effectPlacer, uOrders));
+        teas.addAll(Arrays.asList(leftThumbStick, unitController, tapChecker,  effectPlacer)); //unitCommands bb,, uOrders
 
 
         selecter.addSl(new Selecter.OnSelectedListener() {
             @Override
             public void onSelected(GameElement ge) {
-                Log.d(TAG, "onSelected(" + ge);
+                //Log.d(TAG, "onSelected(" + ge);
                 selecter.clearSelection();
 
                 if (ge instanceof Building)
@@ -334,19 +336,19 @@ public class UI implements CoordConverter{
 		paintUIElements(g , level );
 	}
 
-    private final vector mapRelAtkDirVector = new vector();
+    //private final vector mapRelAtkDirVector = new vector(), atkInDirVector = new vector();
 	public void paintUIElements(@NotNull Graphics g , CoordConverter cc ) {
 
 		selUI.runOnUIThread();
 
 		tdlp.paint(g);
         leftThumbStick.paint(g);
-        rightThumbStick.paint(g);
+        //rightThumbStick.paint(g);
 
-        Unit selectedUnit = selectedThings.getSelectedUnit();
-        vector dir = selectedUnit.getAttackInDirection();
-        vector loc = cc.getCoordsMapToScreen(selectedUnit.loc, mapRelAtkDirVector);
-        g.drawLine(loc.x, loc.y, loc.x+(dir.x*30), loc.y+(dir.y*30), Color.RED, 3 );
+//        Unit selectedUnit = selectedThings.getSelectedUnit();
+//        vector dir = selectedUnit.getAttackInDirectionVector(atkInDirVector);
+//        vector loc = cc.getCoordsMapToScreen(selectedUnit.loc, mapRelAtkDirVector);
+//        g.drawLine(loc.x, loc.y, loc.x+(dir.x*30), loc.y+(dir.y*30), Color.RED, 3 );
 
 
 		++frameCount;

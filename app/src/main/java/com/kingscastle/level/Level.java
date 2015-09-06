@@ -52,8 +52,8 @@ public abstract class Level implements CoordConverter,SoundController
     protected MM mm = new MM(this);
 	protected UI ui;
 
-	private int width = 50;
-	private int height = 25;
+	private int width = 80;
+	private int height = 40;
 
 	@NonNull
     protected final Background background;
@@ -380,8 +380,7 @@ public abstract class Level implements CoordConverter,SoundController
 	//***************   Background Methods   ****************//
 
 	@NonNull
-    public Background getBackground()
-	{
+    public Background getBackground(){
 		return background;
 	}
 

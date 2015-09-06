@@ -10,7 +10,7 @@ import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
 import com.kingscastle.gameElements.livingThings.Animator;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.AdvancedMageSoldier;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.SpellAttack;
@@ -19,6 +19,8 @@ import com.kingscastle.gameElements.spells.EarthQuake;
 import com.kingscastle.gameUtils.Age;
 import com.kingscastle.gameUtils.vector;
 import com.kingscastle.teams.Teams;
+
+import org.jetbrains.annotations.NotNull;
 
 
 public class ButterFlyFairy extends AdvancedMageSoldier
@@ -38,9 +40,9 @@ public class ButterFlyFairy extends AdvancedMageSoldier
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
 	private static Cost cost = new Cost( 10000 , 10000 , 10000 , 4 );
 
@@ -64,15 +66,15 @@ public class ButterFlyFairy extends AdvancedMageSoldier
 		staticAttackerQualities.setDamage( 100 );  staticAttackerQualities.setdDamageAge( 0 ); staticAttackerQualities.setdDamageLvl( 20 );
 		staticAttackerQualities.setROF( 1000 );
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresCLvl( 1 );  staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(1);
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth( 2000 );
-		staticLivingQualities.setHealth( 2000 ); staticLivingQualities.setdHealthAge( 0 ); staticLivingQualities.setdHealthLvl( 30 ); //350 );
-		staticLivingQualities.setFullMana( 200 );
-		staticLivingQualities.setMana( 200 );
-		staticLivingQualities.setHpRegenAmount( 1 );
-		staticLivingQualities.setRegenRate( 1000 );
-		staticLivingQualities.setSpeed( 1.8f * dp );
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresCLvl( 1 );  STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(1);
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth( 2000 );
+		STATIC_ATTRIBUTES.setHealth( 2000 ); STATIC_ATTRIBUTES.setdHealthAge( 0 ); STATIC_ATTRIBUTES.setdHealthLvl( 30 ); //350 );
+		STATIC_ATTRIBUTES.setFullMana( 200 );
+		STATIC_ATTRIBUTES.setMana( 200 );
+		STATIC_ATTRIBUTES.setHpRegenAmount( 1 );
+		STATIC_ATTRIBUTES.setRegenRate( 1000 );
+		STATIC_ATTRIBUTES.setSpeed( 1.8f * dp );
 	}
 
 
@@ -182,7 +184,7 @@ public class ButterFlyFairy extends AdvancedMageSoldier
 
 
 	@Override
-	public void loadAnimation( MM mm )
+	public void loadAnimation( @NotNull MM mm )
 	{
 		super.loadAnimation(mm);
 		Animator anim = getAnim();
@@ -319,9 +321,9 @@ public class ButterFlyFairy extends AdvancedMageSoldier
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 	@Override

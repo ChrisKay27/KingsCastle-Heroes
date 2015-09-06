@@ -11,7 +11,7 @@ import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.ProjectileAttack;
 import com.kingscastle.gameElements.managment.MM;
@@ -44,7 +44,7 @@ public class GuardTower extends AttackingBuilding
 	@NonNull
     private static final AttackerQualities staticAttackerQualities;
 	@NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
 
 	private static ArrayList<vector> staticDamageOffsets;
 
@@ -54,7 +54,7 @@ public class GuardTower extends AttackingBuilding
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
     @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities;   }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
 	static
 	{
@@ -68,15 +68,15 @@ public class GuardTower extends AttackingBuilding
 		staticAttackerQualities.setDamage(25);
 		staticAttackerQualities.setROF(700);
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresAge(Age.BRONZE); staticLivingQualities.setRequiresTcLvl(8);
-		staticLivingQualities.setRangeOfSight(300);
-		staticLivingQualities.setLevel( 1 ); //10);
-		staticLivingQualities.setFullHealth(500);
-		staticLivingQualities.setHealth(500);
-		staticLivingQualities.setFullMana(125);
-		staticLivingQualities.setMana(125);
-		staticLivingQualities.setHpRegenAmount(1);
-		staticLivingQualities.setRegenRate(1000);
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresAge(Age.BRONZE); STATIC_ATTRIBUTES.setRequiresTcLvl(8);
+		STATIC_ATTRIBUTES.setRangeOfSight(300);
+		STATIC_ATTRIBUTES.setLevel( 1 ); //10);
+		STATIC_ATTRIBUTES.setFullHealth(500);
+		STATIC_ATTRIBUTES.setHealth(500);
+		STATIC_ATTRIBUTES.setFullMana(125);
+		STATIC_ATTRIBUTES.setMana(125);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1);
+		STATIC_ATTRIBUTES.setRegenRate(1000);
 
 		staticAttackerQualities.setdDamageAge(4);
 		staticAttackerQualities.setdDamageLvl(1);
@@ -84,11 +84,11 @@ public class GuardTower extends AttackingBuilding
 		staticAttackerQualities.setdROFLvl(-20);
 		staticAttackerQualities.setdRangeSquaredAge(-3000 * dpSquared);
 		staticAttackerQualities.setdRangeSquaredLvl(-100 * dpSquared);
-		staticLivingQualities.setAge( Age.STONE );
-		staticLivingQualities.setdHealthAge(100);
-		staticLivingQualities.setdHealthLvl(30);
-		staticLivingQualities.setdRegenRateAge( -100 );
-		staticLivingQualities.setdRegenRateLvl(-20);
+		STATIC_ATTRIBUTES.setAge( Age.STONE );
+		STATIC_ATTRIBUTES.setdHealthAge(100);
+		STATIC_ATTRIBUTES.setdHealthLvl(30);
+		STATIC_ATTRIBUTES.setdRegenRateAge( -100 );
+		STATIC_ATTRIBUTES.setdRegenRateLvl(-20);
 
 
 
@@ -256,9 +256,9 @@ public class GuardTower extends AttackingBuilding
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 	@Override

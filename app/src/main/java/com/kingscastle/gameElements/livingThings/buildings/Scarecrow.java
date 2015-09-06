@@ -12,7 +12,7 @@ import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameUtils.Age;
 import com.kingscastle.gameUtils.vector;
@@ -31,23 +31,23 @@ public class Scarecrow extends AttackingBuilding {
 	private static final Image image = Assets.loadImage(R.drawable.scarecrow);
 
 	@NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
 
 	private static Cost cost = new Cost( 1000 , 1000 , 1000 , 0 );
 
 	public static final Buildings name = Buildings.Scarecrow;
 
 	static{
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresAge(Age.STONE);  staticLivingQualities.setRequiresTcLvl(6);
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresAge(Age.STONE);  STATIC_ATTRIBUTES.setRequiresTcLvl(6);
 
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth(100);
-		staticLivingQualities.setHealth(100);
-		staticLivingQualities.setHpRegenAmount(1);
-		staticLivingQualities.setRegenRate(1000);
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth(100);
+		STATIC_ATTRIBUTES.setHealth(100);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1);
+		STATIC_ATTRIBUTES.setRegenRate(1000);
 
 
-		staticLivingQualities.setAge( Age.STONE );
+		STATIC_ATTRIBUTES.setAge( Age.STONE );
 	}
 
 
@@ -65,8 +65,8 @@ public class Scarecrow extends AttackingBuilding {
 
 	@NonNull
     @Override
-	protected LivingQualities getStaticLQ() {
-		return staticLivingQualities;
+	protected Attributes getStaticLQ() {
+		return STATIC_ATTRIBUTES;
 	}
 
 
@@ -231,9 +231,9 @@ public class Scarecrow extends AttackingBuilding {
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

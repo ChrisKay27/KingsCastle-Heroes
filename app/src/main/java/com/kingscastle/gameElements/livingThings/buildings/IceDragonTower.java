@@ -12,7 +12,7 @@ import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.SpellAttack;
 import com.kingscastle.gameElements.spells.Icicle;
@@ -38,7 +38,7 @@ public class IceDragonTower extends AttackingBuilding
 	@NonNull
     private static final AttackerQualities staticAttackerQualities;
 	@NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
 	private static ArrayList<vector> staticDamageOffsets;
 
 
@@ -47,7 +47,7 @@ public class IceDragonTower extends AttackingBuilding
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
     @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities;   }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
 
 
@@ -62,24 +62,24 @@ public class IceDragonTower extends AttackingBuilding
 		staticAttackerQualities.setDamage(30);
 		staticAttackerQualities.setROF(1000);
 
-		staticLivingQualities = new LivingQualities();
-		staticLivingQualities.setRangeOfSight(250);
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth(250);
-		staticLivingQualities.setHealth(250);
-		staticLivingQualities.setFullMana(125);
-		staticLivingQualities.setMana(125);
-		staticLivingQualities.setHpRegenAmount(1);
-		staticLivingQualities.setRegenRate(1000);
-		staticLivingQualities.setArmor( 2 );
+		STATIC_ATTRIBUTES = new Attributes();
+		STATIC_ATTRIBUTES.setRangeOfSight(250);
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth(250);
+		STATIC_ATTRIBUTES.setHealth(250);
+		STATIC_ATTRIBUTES.setFullMana(125);
+		STATIC_ATTRIBUTES.setMana(125);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1);
+		STATIC_ATTRIBUTES.setRegenRate(1000);
+		STATIC_ATTRIBUTES.setArmor( 2 );
 
 		staticPerceivedArea = new RectF(Rpg.guardTowerArea);
 
 		staticAttackerQualities.setdDamageLvl(10);
 		staticAttackerQualities.setdROFLvl(-150);
 		staticAttackerQualities.setdRangeSquaredLvl(1000 * dpSquared);
-		staticLivingQualities.setMaxLevel(10);
-		staticLivingQualities.setdHealthLvl(50);
+		STATIC_ATTRIBUTES.setMaxLevel(10);
+		STATIC_ATTRIBUTES.setdHealthLvl(50);
 	}
 
 	//********************************** End Static ***********************************************//
@@ -335,9 +335,9 @@ public class IceDragonTower extends AttackingBuilding
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

@@ -15,7 +15,7 @@ import com.kingscastle.gameUtils.vector;
 import org.jetbrains.annotations.NotNull;
 
 public class Haste extends Buff{		//System.out.println("");
-	private static final int aliveTime = 3000;
+	private static final int aliveTime = 10000;
 	private final float speedBonus = 0.5f* Rpg.getDp();
 
 	private Image iconImage;// = R.drawable.haste_icon;

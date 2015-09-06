@@ -17,7 +17,6 @@ import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.GameElement;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.RangedSoldier;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.SoldierType;
 import com.kingscastle.gameElements.livingThings.abilities.Ability;
 import com.kingscastle.gameElements.livingThings.abilities.ActiveAbilities;
 import com.kingscastle.gameElements.livingThings.attacks.Arms;
@@ -27,85 +26,75 @@ import com.kingscastle.gameElements.livingThings.buildings.Building;
 import com.kingscastle.gameElements.livingThings.orders.Order;
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameElements.targeting.TargetFinder;
+import com.kingscastle.gameUtils.LevelUpChecker;
 import com.kingscastle.gameUtils.vector;
 import com.kingscastle.level.GridUtil;
-import com.kingscastle.teams.Team;
 import com.kingscastle.teams.Teams;
 import com.kingscastle.teams.races.Races;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class LivingThing extends GameElement
 {
 	private static final String TAG = "LivingThing";
+    private final List<Runnable> runnables = new ArrayList<>();
 
 
-	public enum DamageTypes{
+    public enum DamageTypes{
 		Exploding, Normal, Burning, Ice, Lightning
 	}
 
+    protected Teams team;
+
+
+    @NonNull public final Attributes lq;
+    public AttackerQualities aq = new AttackerQualities();
+
+    protected final Arms arms = new Arms( this );
+    private List<Ability> abilities;
+    private final ActiveAbilities activeAbilities = new ActiveAbilities();
+
 	protected boolean hasFinalInited = false;
 
-	protected Teams team;
+    protected GridUtil gUtil;
 
-	protected final Arms arms = new Arms( this );
-
-	@NonNull
-    public final LivingQualities lq;
-	public AttackerQualities aq = new AttackerQualities();
 
 	protected Animator aliveAnim;
 	protected Anim dyingAnim;
-	@Nullable
-    protected Bar healthBar;
+	@Nullable protected Bar healthBar;
+
+
 
 	protected long startTargetingAgainAt;
-	@Nullable
-    protected TargetingParams targetingParams;
+	@Nullable protected TargetingParams targetingParams;
 	protected TargetFinder targetFinder;
 
-	@Nullable
-    protected LivingThing target;
-	@Nullable
-    protected LivingThing attacker;
-	@Nullable
-    protected LivingThing highThreadTarget;
-	@Nullable
-    protected LivingThing lastHurter;
-	protected float targetDistanceSquared;
-	@NonNull
-    protected DamageTypes lastDamageType = DamageTypes.Normal;
+	@Nullable protected LivingThing target;
+	@Nullable protected LivingThing attacker;
+	@Nullable protected LivingThing highThreadTarget;
+	@Nullable protected LivingThing lastHurter;
 
-	protected long waitingSince = GameTime.getTime() - 300;
-	protected long waitForIt = GameTime.getTime();
+	protected float targetDistanceSquared;
+
+
+	@NonNull  protected DamageTypes lastDamageType = DamageTypes.Normal;
+
+
 	private final long spawnedAt = GameTime.getTime();
 	private long nextRegen = spawnedAt;
-	protected long diedAt;
 
 	protected long stunnedUntil;
 
 	private int selectedColor;
 
-	private ArrayList<Ability> abilities;
-
-	private final ActiveAbilities activeAbilities = new ActiveAbilities();
-
-
 	protected long checkedBeingStupidAt;
 	protected int waitLength = 50;
 	protected int buildTime = 10000;
 
-	protected GridUtil gUtil;
 
-	@Nullable
-    protected abstract Anim getDyingAnimation();
-	@NonNull
-    protected abstract LivingQualities getNewLivingQualities();
 
 	protected LivingThing(Teams team){
 		this.team = team;
@@ -147,6 +136,12 @@ public abstract class LivingThing extends GameElement
      */
     public final boolean update(){
         activeAbilities.act();
+        synchronized (runnables){
+            for( Runnable r : runnables ){
+                r.run();
+            }
+            runnables.clear();
+        }
         return act();
     }
 
@@ -159,7 +154,7 @@ public abstract class LivingThing extends GameElement
 	}
 
 	@Override
-	public boolean create( @NonNull MM mm )
+	public boolean create( @NotNull MM mm )
 	{
 		super.create(mm);
 
@@ -191,6 +186,12 @@ public abstract class LivingThing extends GameElement
 
 		loadAnimation(mm);
 		upgrade();
+
+        int expGiven = (int) (lq.getFullHealth()/5 + lq.getHealAmount() + lq.getSpeed()*5);
+        if( getAQ() != null )
+            expGiven += getAQ().getDamage()/2;
+        lq.setExpGiven(expGiven);
+
 
 		if( aliveAnim != null )
 			aliveAnim.setVisible(true);
@@ -227,7 +228,7 @@ public abstract class LivingThing extends GameElement
 				throw new IllegalStateException( " getTeamName() == null " );
 
 
-			if( getTeamName() == Teams.BLUE ) //TODO People will be able to choose their color later on!
+			if( getTeamName() == Teams.BLUE )
 			{
 				healthBar = new Bar( getLQ().getHealthObj() , -8 * Rpg.getDp() , -12 * Rpg.getDp() );
 				Paint nonDistOverPaint = Palette.getPaint(Align.CENTER, Color.RED, Rpg.getTextSize());
@@ -264,18 +265,14 @@ public abstract class LivingThing extends GameElement
 
 
 	public synchronized void upgradeToLevel( int lvl ){
-		if( lvl > Team.MAX_LEVEL )
-			lvl = Team.MAX_LEVEL;
 		while( lq.getLevel() < lvl )
 			upgradeLevel();
 	}
 
 	public synchronized void upgradeLevel(){
-		if( lq.getLevel() >= Team.MAX_LEVEL )
-			return;
 		lq.setLevel(lq.getLevel() + 1);
 		SpecialEffects.onCreatureLvledUp(loc.x, loc.y);
-		upgrade();
+        upgrade();
 	}
 
 
@@ -283,16 +280,19 @@ public abstract class LivingThing extends GameElement
 		AttackerQualities saq = getStaticAQ();
 		AttackerQualities aq = getAQ();
 
-		LivingQualities slq = getStaticLQ();
+		Attributes slq = getStaticLQ();
 
 		int lvl = lq.getLevel()-1;
 
 
 		if( aq != null && saq != null ){
+
 			aq.setROF( saq.getROF() + aq.getdROFLvl()*lvl );
 			aq.setDamage( saq.getDamage() + aq.getdDamageLvl()*lvl );
 			aq.setAttackRange( saq.getAttackRange() + aq.getdRangeLvl()*lvl );
 		}
+
+
 
 		float healthPerc = lq.getHealthPercent();
 
@@ -305,6 +305,8 @@ public abstract class LivingThing extends GameElement
 		lq.setArmor(slq.getArmor() + lq.getdArmorLvl() * lvl);
 
 		lq.setHealAmount(slq.getHealAmount() + lq.getdHealLvl() * lvl);
+
+        lq.setSpeed(slq.getSpeed() + lq.getdSpeedLevel()*lvl);
 	}
 
 
@@ -333,8 +335,8 @@ public abstract class LivingThing extends GameElement
     protected AttackerQualities getStaticAQ(){
 		return null;
 	}
-	@Nullable
-    protected abstract LivingQualities getStaticLQ();
+	@NotNull
+    protected abstract Attributes getStaticLQ();
 
 
 
@@ -765,8 +767,7 @@ public abstract class LivingThing extends GameElement
 	 * If the selectedColor is not yellow it WILL be drawn even if isSelected() is false.
 	 * @param color
 	 */
-	public void setSelectedColor( int color )
-	{
+	public void setSelectedColor( int color )	{
 		selectedColor = color;
 	}
 
@@ -775,8 +776,7 @@ public abstract class LivingThing extends GameElement
 	 * @param b
 	 */
 	@Override
-	public void setSelected ( boolean b )
-	{
+	public void setSelected ( boolean b )	{
 		selected = b;
 		if( b )
 		{
@@ -786,34 +786,24 @@ public abstract class LivingThing extends GameElement
 	}
 
 
-	public boolean getSelected()
-	{
-		return selected;
-	}
 
-
-	public int getSelectedColor()
-	{
+	public int getSelectedColor()	{
 		return selectedColor;
 	}
-
-
 	@Override
-	public boolean isSelected()
-	{
+	public boolean isSelected()	{
 		return selected;
 	}
 
 
-	public void showHealthPercentage()
-	{
+
+	public void showHealthPercentage()	{
 		if( healthBar != null )
 			healthBar.setShowCurrentAndMax( true );
 
 	}
 
-	public void hideHealthPercentage()
-	{
+	public void hideHealthPercentage()	{
 		if( healthBar != null )
 			healthBar.setShowCurrentAndMax( false );
 
@@ -856,23 +846,20 @@ public abstract class LivingThing extends GameElement
 	}
 
 
-	public ArrayList<Ability> getAbilities(){
+	public List<Ability> getAbilities(){
 		if( abilities == null )
 			abilities = new ArrayList<>();
 		return abilities;
 	}
 
-	protected void setAbilities(ArrayList<Ability> castableSpells)
-	{
+	protected void setAbilities(List<Ability> castableSpells)	{
 		abilities = castableSpells;
 	}
 
 
 
 
-	/**
-	 * 	WTF
-	 */
+	/** 	WTF     */
 	@Nullable
     public LivingThing newInstance(vector at, Teams teams) {
 		return null;
@@ -880,27 +867,10 @@ public abstract class LivingThing extends GameElement
 
 
 
-	@Override
-	public void saveYourself( @NonNull BufferedWriter b ) throws IOException{
-		saveYourself( b , false );
-	}
-
-	public void saveYourself(@NonNull BufferedWriter b, boolean ignoreGarrisonCheck) throws IOException
-	{
-		String s;
-
-		s = "<" + getClass().getSimpleName() + " team=\""+ getTeamName() + "\" exp=\""+ 0 + "\" healthPercent=\"" + getLQ().getHealthPercent() + "\" x=\"" + loc.getIntX() + "\" y=\"" +
-					loc.getIntY() + "\"/>";
-
-
-		b.write( s , 0 , s.length() );
-		b.newLine();
-	}
 
 
 
-	public boolean isWithinRange( @Nullable LivingThing lt )
-	{
+	public boolean isWithinRange( @Nullable LivingThing lt )	{
 		if(lt != null)
 		{
 			AttackerQualities aq = this.getAQ();
@@ -911,12 +881,13 @@ public abstract class LivingThing extends GameElement
 
 
 
+
+
 	@NonNull
-    public LivingQualities getLQ()
+    public Attributes getLQ()
 	{
 		return lq;
 	}
-
 	public AttackerQualities getAQ() {
 		return aq;
 	}
@@ -940,7 +911,6 @@ public abstract class LivingThing extends GameElement
 	public RectF getPerceivedArea(){
 		return Rpg.getNormalPerceivedArea();
 	}
-
 	@Override
 	public RectF getStaticPerceivedArea(){
 		return Rpg.getNormalPerceivedArea();
@@ -967,7 +937,11 @@ public abstract class LivingThing extends GameElement
 
 
 
+
 	private final Cost costs = new Cost( 0,0,0,0,0 );
+
+
+
 
 	@Nullable
     public Cost getCosts()	{
@@ -979,40 +953,20 @@ public abstract class LivingThing extends GameElement
 	}
 
 
-	public boolean thisLocationMayBeOfInterestToYou( vector vtemp2 )
-	{
-		return false;
-	}
+
 
 
 	public int getBuildTime(){
 		return buildTime;
 	}
-
-
-	public void setBuildTime( int bt ){
+    public void setBuildTime( int bt ){
 		buildTime = bt;
 	}
 
 
-	public void queueableComplete() {
-	}
 
 
-	public void setSoldierType( SoldierType soldierType ){
-	}
-
-
-	@Nullable
-    public SoldierType getSoldierType()
-	{
-		return null;
-	}
-
-
-
-	public void forgetAboutTargetingUntil( long startTargetingAgainAt )
-	{
+	public void forgetAboutTargetingUntil( long startTargetingAgainAt )	{
 		this.startTargetingAgainAt = startTargetingAgainAt;
 	}
 
@@ -1037,6 +991,37 @@ public abstract class LivingThing extends GameElement
 	public boolean isStunned() {
 		return stunnedUntil > GameTime.getTime();
 	}
+
+
+
+
+
+    @Nullable
+    protected abstract Anim getDyingAnimation();
+    @NonNull
+    protected abstract Attributes getNewLivingQualities();
+
+
+
+    public void addExp(int exp){
+        lq.addExp(exp);
+        SpecialEffects.onExperienceGained(loc.getIntX(), loc.getIntY() , exp);
+        if(LevelUpChecker.getLevelForExp(lq.getExp()) > lq.getLevel() ){
+            upgradeLevel();
+        }
+    }
+
+
+    public void doOnYourThread(Runnable r){
+        synchronized (runnables){
+            runnables.add(r);
+        }
+    }
+
+
+
+
+    //************************************    Listeners  *****************************************//
 
 
 

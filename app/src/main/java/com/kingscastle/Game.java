@@ -115,7 +115,7 @@ public class Game implements View.OnClickListener, RoundOverListener, BuildingBu
 
 
     public Game(@NonNull GameActivity gameActivity, AndroidFastRenderView surface, String levelClassName, Difficulty difficulty){
-        Log.d(TAG, "new TowerDefenceGame()");
+        Log.d(TAG, "new Game()");
         this.gameActivity = gameActivity;
 
         dp = gameActivity.getResources().getDimension(R.dimen.onedp);

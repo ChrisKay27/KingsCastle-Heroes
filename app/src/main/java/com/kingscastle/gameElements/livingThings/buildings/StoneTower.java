@@ -11,7 +11,7 @@ import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.ProjectileAttack;
 import com.kingscastle.gameElements.managment.MM;
@@ -43,7 +43,7 @@ public class StoneTower extends AttackingBuilding
 	@NonNull
     private static final AttackerQualities staticAttackerQualities;
 	@NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
 
 	private static ArrayList<vector> staticDamageOffsets;
 
@@ -55,8 +55,8 @@ public class StoneTower extends AttackingBuilding
 
 	@NonNull
     @Override
-	protected LivingQualities getStaticLQ() {
-		return staticLivingQualities;
+	protected Attributes getStaticLQ() {
+		return STATIC_ATTRIBUTES;
 	}
 
 	static
@@ -70,15 +70,15 @@ public class StoneTower extends AttackingBuilding
 		staticAttackerQualities.setDamage(50);
 		staticAttackerQualities.setROF(600);
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresAge(Age.STEEL); staticLivingQualities.setRequiresTcLvl(17);
-		staticLivingQualities.setRangeOfSight(350);
-		staticLivingQualities.setLevel( 1 ); //15);
-		staticLivingQualities.setFullHealth(1000);
-		staticLivingQualities.setHealth(1000);
-		staticLivingQualities.setFullMana(125);
-		staticLivingQualities.setMana(125);
-		staticLivingQualities.setHpRegenAmount(2);
-		staticLivingQualities.setRegenRate(2000);
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresAge(Age.STEEL); STATIC_ATTRIBUTES.setRequiresTcLvl(17);
+		STATIC_ATTRIBUTES.setRangeOfSight(350);
+		STATIC_ATTRIBUTES.setLevel( 1 ); //15);
+		STATIC_ATTRIBUTES.setFullHealth(1000);
+		STATIC_ATTRIBUTES.setHealth(1000);
+		STATIC_ATTRIBUTES.setFullMana(125);
+		STATIC_ATTRIBUTES.setMana(125);
+		STATIC_ATTRIBUTES.setHpRegenAmount(2);
+		STATIC_ATTRIBUTES.setRegenRate(2000);
 
 
 		image = Assets.loadImage(aliveId);
@@ -245,9 +245,9 @@ public class StoneTower extends AttackingBuilding
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 	@Override

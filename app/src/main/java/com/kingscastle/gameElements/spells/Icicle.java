@@ -9,7 +9,7 @@ import com.kingscastle.effects.animations.IcicleAnim;
 import com.kingscastle.effects.animations.SparksAnim;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.abilities.Slow;
 import com.kingscastle.gameElements.managment.MM;
@@ -66,7 +66,7 @@ public class Icicle extends ProjectileSpell {
 	{
 		if( getCaster() != null )
 		{
-			LivingQualities lq = getCaster().getLQ();
+			Attributes lq = getCaster().getLQ();
 
 			return (int) ( ( baseDamage + (lq.getLevel() * damagePerLvl ) + (int) ( Math.random()*10 ) ) * lq.getBonuses().getDamageBonus() );
 		}

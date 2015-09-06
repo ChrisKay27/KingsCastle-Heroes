@@ -34,8 +34,7 @@ public class SpellAttack extends Attack {
     /**
      * @param p This spell instance is recreated whenever the spell is cast using the newInstance method
      */
-	public SpellAttack( @NotNull MM mm, @NotNull LivingThing caster ,@NotNull Spell p )
-	{
+	public SpellAttack( @NotNull MM mm, @NotNull LivingThing caster ,@NotNull Spell p )	{
 		super(mm, caster);
 		setSpell(p);
 	}
@@ -111,7 +110,7 @@ public class SpellAttack extends Attack {
 
 
 	@NonNull
-    private static SpellCreationParams getSpellCreationParams( @NonNull SpellAttack sa )
+    public static SpellCreationParams getSpellCreationParams( @NonNull SpellAttack sa )
 	{
 		SpellCreationParams params = new SpellCreationParams();
 		params.setShooter( sa.getOwner() );

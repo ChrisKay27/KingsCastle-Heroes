@@ -16,7 +16,7 @@ public class Settings
 
 	public static boolean showSmoothFogOfWar = true;
 	public static boolean showHealthBar = true;
-	public static boolean showDamageText = false;
+	public static boolean showDamageText = true;
 	public static boolean showVectors = false;
 	public static boolean showPath = false;
 	public static boolean showGarrisonDisplay = true;

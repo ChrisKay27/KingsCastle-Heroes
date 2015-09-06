@@ -18,8 +18,6 @@ import org.jetbrains.annotations.NotNull;
 
 
 public class FireBall extends ProjectileSpell {
-
-
 	private static final String TAG = "FireBall";
 
 	private static RectF staticPerceivedArea;
@@ -72,18 +70,20 @@ public class FireBall extends ProjectileSpell {
 	void doDamage( @Nullable LivingThing lt){
 		if( lt != null ){
 			die();
-			lt.takeDamage(getDamage(), getCaster(), LivingThing.DamageTypes.Burning);
 
-			FireDOT burning = new FireDOT(getCaster(), lt, getDamage() / 2);
+            int nDamage = slightlyRandomize(getDamage());
+			lt.takeDamage(nDamage, getCaster(), LivingThing.DamageTypes.Burning);
+
+			FireDOT burning = new FireDOT(getCaster(), lt, nDamage/2);
 			mm.add(burning);
-
 		}
 	}
 
 
 
-	@Override
-	public int calculateManaCost(@NotNull @NonNull LivingThing aWizard)
+
+    @Override
+	public int calculateManaCost(@NotNull LivingThing aWizard)
 	{
 		return 0;
 		//		if( aWizard != null )
@@ -109,8 +109,7 @@ public class FireBall extends ProjectileSpell {
 
 
 	@Override
-	public void die()
-	{
+	public void die() {
 		super.die();
 		EffectsManager em = mm.getEm();
 		em.add(new FireHitAnim(loc),true);
@@ -118,15 +117,13 @@ public class FireBall extends ProjectileSpell {
 
 
 	@Override
-	public RectF getStaticPerceivedArea()
-	{
+	public RectF getStaticPerceivedArea() {
 		loadStaticPerceivedArea();
 		return staticPerceivedArea;
 	}
 
 
-	void loadStaticPerceivedArea()
-	{
+	void loadStaticPerceivedArea() {
 		if (staticPerceivedArea == null)
 		{
 			float sizeDiv2 = 2 * Rpg.getDp();
@@ -137,8 +134,7 @@ public class FireBall extends ProjectileSpell {
 
 
 	@Override
-	public void loadAnimation(@NonNull vector unit)
-	{
+	public void loadAnimation(@NonNull vector unit)	{
 		FireBallAnim fba = new FireBallAnim( loc , vector.getDirection8(unit).getDir() );
 		setAnim(fba);
 	}
@@ -147,7 +143,6 @@ public class FireBall extends ProjectileSpell {
 
 	@Override
 	public void loadAnimation() {
-
 	}
 
 	@Override

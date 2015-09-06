@@ -11,7 +11,7 @@ import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.MediumMage;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.SpellAttack;
@@ -37,9 +37,9 @@ public class UndeadDullahan extends MediumMage
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
 	private static Cost cost = new Cost( 1000 , 1000 , 1000 , 3 );
 
@@ -59,16 +59,16 @@ public class UndeadDullahan extends MediumMage
 		staticAttackerQualities.setROF(1000);
 		staticAttackerQualities.setDamage(25); staticAttackerQualities.setdDamageLvl(5);
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresCLvl( 1 );  staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(1);
-		staticLivingQualities.setRangeOfSight( 275 );
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth( 200 );
-		staticLivingQualities.setHealth( 200 ); staticLivingQualities.setdHealthLvl( 10 );
-		staticLivingQualities.setFullMana( 100 );
-		staticLivingQualities.setMana( 100 );
-		staticLivingQualities.setHpRegenAmount( 2 );
-		staticLivingQualities.setRegenRate( 1000 );
-		staticLivingQualities.setSpeed( 1f * dp );
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresCLvl( 1 );  STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(1);
+		STATIC_ATTRIBUTES.setRangeOfSight( 275 );
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth( 200 );
+		STATIC_ATTRIBUTES.setHealth( 200 ); STATIC_ATTRIBUTES.setdHealthLvl( 10 );
+		STATIC_ATTRIBUTES.setFullMana( 100 );
+		STATIC_ATTRIBUTES.setMana( 100 );
+		STATIC_ATTRIBUTES.setHpRegenAmount( 2 );
+		STATIC_ATTRIBUTES.setRegenRate( 1000 );
+		STATIC_ATTRIBUTES.setSpeed( 1f * dp );
 	}
 
 
@@ -247,9 +247,9 @@ public class UndeadDullahan extends MediumMage
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 	@Override

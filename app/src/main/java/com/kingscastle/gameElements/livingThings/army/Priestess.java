@@ -9,7 +9,7 @@ import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.AdvancedHealer;
 import com.kingscastle.gameElements.livingThings.abilities.HealingSpell;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
@@ -32,9 +32,9 @@ public class Priestess extends AdvancedHealer
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
 	private static Cost cost = new Cost( 10000 , 10000 , 0 , 3 );
 
@@ -51,16 +51,16 @@ public class Priestess extends AdvancedHealer
 		staticAttackerQualities.setAttackRangeSquared(22500 * dp * dp); staticAttackerQualities.setdRangeSquaredAge(1500 * dp * dp); staticAttackerQualities.setdRangeSquaredLvl(500 * dp * dp);
 		staticAttackerQualities.setROF( 1000 );
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresCLvl( 12 );  staticLivingQualities.setRequiresAge(Age.STEEL); staticLivingQualities.setRequiresTcLvl(16);
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth( 400 );
-		staticLivingQualities.setHealth( 400 ); staticLivingQualities.setdHealthAge( 0 ); staticLivingQualities.setdHealthLvl( 20 );
-		staticLivingQualities.setHealAmount( 50 );  staticLivingQualities.setdHealAge( 0 ); staticLivingQualities.setdHealLvl( 20 );
-		staticLivingQualities.setFullMana( 150 );
-		staticLivingQualities.setMana( 150 );
-		staticLivingQualities.setHpRegenAmount( 2 ) ;
-		staticLivingQualities.setRegenRate( 900 );
-		staticLivingQualities.setSpeed( 2.0f * dp );
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresCLvl( 12 );  STATIC_ATTRIBUTES.setRequiresAge(Age.STEEL); STATIC_ATTRIBUTES.setRequiresTcLvl(16);
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth( 400 );
+		STATIC_ATTRIBUTES.setHealth( 400 ); STATIC_ATTRIBUTES.setdHealthAge( 0 ); STATIC_ATTRIBUTES.setdHealthLvl( 20 );
+		STATIC_ATTRIBUTES.setHealAmount( 50 );  STATIC_ATTRIBUTES.setdHealAge( 0 ); STATIC_ATTRIBUTES.setdHealLvl( 20 );
+		STATIC_ATTRIBUTES.setFullMana( 150 );
+		STATIC_ATTRIBUTES.setMana( 150 );
+		STATIC_ATTRIBUTES.setHpRegenAmount( 2 ) ;
+		STATIC_ATTRIBUTES.setRegenRate( 900 );
+		STATIC_ATTRIBUTES.setSpeed( 2.0f * dp );
 
 	}
 
@@ -224,9 +224,9 @@ public class Priestess extends AdvancedHealer
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 	@Override

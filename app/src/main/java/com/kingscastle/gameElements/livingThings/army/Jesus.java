@@ -11,7 +11,7 @@ import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
 import com.kingscastle.gameElements.livingThings.FourFrameAnimator;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.AdvancedMageSoldier;
 import com.kingscastle.gameElements.livingThings.abilities.HotBuff;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
@@ -24,6 +24,8 @@ import com.kingscastle.gameUtils.vector;
 import com.kingscastle.teams.Team;
 import com.kingscastle.teams.Teams;
 import com.kingscastle.teams.races.Races;
+
+import org.jetbrains.annotations.NotNull;
 
 
 public class Jesus extends AdvancedMageSoldier
@@ -41,9 +43,9 @@ public class Jesus extends AdvancedMageSoldier
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
 	private static Cost cost = new Cost( 400 , 200 , 100 , 1 );
 
@@ -64,15 +66,15 @@ public class Jesus extends AdvancedMageSoldier
 		staticAttackerQualities.setDamage( 10 );  staticAttackerQualities.setdDamageAge( 3 ); staticAttackerQualities.setdDamageLvl( 1 ); // 30 );
 		staticAttackerQualities.setROF( 1000 );
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresCLvl( 1 );  staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(1);
-		staticLivingQualities.setLevel( 1 ); // 20 );
-		staticLivingQualities.setFullHealth( 400 );
-		staticLivingQualities.setHealth( 400 ); staticLivingQualities.setdHealthAge( 50 ); staticLivingQualities.setdHealthLvl( 10 ); //400 );
-		staticLivingQualities.setFullMana( 200 );
-		staticLivingQualities.setMana( 200 );
-		staticLivingQualities.setHpRegenAmount( 1 );
-		staticLivingQualities.setRegenRate( 1000 );
-		staticLivingQualities.setSpeed( 2f * dp );
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresCLvl( 1 );  STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(1);
+		STATIC_ATTRIBUTES.setLevel( 1 ); // 20 );
+		STATIC_ATTRIBUTES.setFullHealth( 400 );
+		STATIC_ATTRIBUTES.setHealth( 400 ); STATIC_ATTRIBUTES.setdHealthAge( 50 ); STATIC_ATTRIBUTES.setdHealthLvl( 10 ); //400 );
+		STATIC_ATTRIBUTES.setFullMana( 200 );
+		STATIC_ATTRIBUTES.setMana( 200 );
+		STATIC_ATTRIBUTES.setHpRegenAmount( 1 );
+		STATIC_ATTRIBUTES.setRegenRate( 1000 );
+		STATIC_ATTRIBUTES.setSpeed( 2f * dp );
 	}
 
 
@@ -106,7 +108,7 @@ public class Jesus extends AdvancedMageSoldier
 
 
 	@Override
-	public void loadAnimation( @NonNull MM mm )
+	public void loadAnimation( @NotNull @NonNull MM mm )
 	{
 		if ( aliveAnim == null )
 		{
@@ -316,9 +318,9 @@ public class Jesus extends AdvancedMageSoldier
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 	@Override

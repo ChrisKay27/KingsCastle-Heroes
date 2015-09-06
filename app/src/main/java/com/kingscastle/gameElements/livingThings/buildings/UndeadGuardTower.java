@@ -7,7 +7,7 @@ import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameUtils.Age;
@@ -36,7 +36,7 @@ public class UndeadGuardTower extends AttackingBuilding
 	@NonNull
     private static final AttackerQualities staticAttackerQualities;
 	@NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
 
 	private static ArrayList<vector> staticDamageOffsets;
 
@@ -45,7 +45,7 @@ public class UndeadGuardTower extends AttackingBuilding
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
     @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities;   }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
 
 	static
@@ -61,15 +61,15 @@ public class UndeadGuardTower extends AttackingBuilding
 		staticAttackerQualities.setDamage(25);
 		staticAttackerQualities.setROF(700);
 
-		staticLivingQualities = new LivingQualities();  staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(1);
-		staticLivingQualities.setRangeOfSight(300);
-		staticLivingQualities.setLevel( 1 ); //10);
-		staticLivingQualities.setFullHealth(500);
-		staticLivingQualities.setHealth(500);
-		staticLivingQualities.setFullMana(125);
-		staticLivingQualities.setMana(125);
-		staticLivingQualities.setHpRegenAmount(1);
-		staticLivingQualities.setRegenRate(1000);
+		STATIC_ATTRIBUTES = new Attributes();  STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(1);
+		STATIC_ATTRIBUTES.setRangeOfSight(300);
+		STATIC_ATTRIBUTES.setLevel( 1 ); //10);
+		STATIC_ATTRIBUTES.setFullHealth(500);
+		STATIC_ATTRIBUTES.setHealth(500);
+		STATIC_ATTRIBUTES.setFullMana(125);
+		STATIC_ATTRIBUTES.setMana(125);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1);
+		STATIC_ATTRIBUTES.setRegenRate(1000);
 
 		staticAttackerQualities.setdDamageAge(4);
 		staticAttackerQualities.setdDamageLvl(1);
@@ -77,11 +77,11 @@ public class UndeadGuardTower extends AttackingBuilding
 		staticAttackerQualities.setdROFLvl(-20);
 		staticAttackerQualities.setdRangeSquaredAge(-3000 * dpSquared);
 		staticAttackerQualities.setdRangeSquaredLvl(-100 * dpSquared);
-		staticLivingQualities.setAge( Age.STONE );
-		staticLivingQualities.setdHealthAge(300);
-		staticLivingQualities.setdHealthLvl(50);
-		staticLivingQualities.setdRegenRateAge( -100 );
-		staticLivingQualities.setdRegenRateLvl(-20);
+		STATIC_ATTRIBUTES.setAge( Age.STONE );
+		STATIC_ATTRIBUTES.setdHealthAge(300);
+		STATIC_ATTRIBUTES.setdHealthLvl(50);
+		STATIC_ATTRIBUTES.setdRegenRateAge( -100 );
+		STATIC_ATTRIBUTES.setdRegenRateLvl(-20);
 
 
 
@@ -261,9 +261,9 @@ public class UndeadGuardTower extends AttackingBuilding
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 	@Override

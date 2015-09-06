@@ -10,7 +10,7 @@ import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.AdvancedHealer;
 import com.kingscastle.gameElements.livingThings.abilities.HealingSpell;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
@@ -34,9 +34,9 @@ public class UndeadDemogorgon extends AdvancedHealer
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
 	private static Cost cost = new Cost( 2500 , 2500 , 0 , 3 );
 
@@ -55,17 +55,17 @@ public class UndeadDemogorgon extends AdvancedHealer
 		staticAttackerQualities.setAttackRangeSquared(22500 * dp * dp); staticAttackerQualities.setdRangeSquaredAge(1500 * dp * dp); staticAttackerQualities.setdRangeSquaredLvl(500 * dp * dp); //22500 * dp * dp );
 		staticAttackerQualities.setROF( 1000 );
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresCLvl( 1 );  staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(1);
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth( 400 );
-		staticLivingQualities.setHealth( 400 ); staticLivingQualities.setdHealthAge( 0 ); staticLivingQualities.setdHealthLvl( 20 );
-		staticLivingQualities.setFullMana( 150 );
-		staticLivingQualities.setMana( 150 );
-		staticLivingQualities.setHpRegenAmount( 1 ) ;
-		staticLivingQualities.setRegenRate( 1000 );
-		staticLivingQualities.setArmor( 5 );  staticLivingQualities.setdArmorAge( 0 ); staticLivingQualities.setdArmorLvl( 1 );
-		staticLivingQualities.setSpeed( 1f * dp );
-		staticLivingQualities.setHealAmount( 80 ); staticLivingQualities.setdHealLvl( 20 );
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresCLvl( 1 );  STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(1);
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth( 400 );
+		STATIC_ATTRIBUTES.setHealth( 400 ); STATIC_ATTRIBUTES.setdHealthAge( 0 ); STATIC_ATTRIBUTES.setdHealthLvl( 20 );
+		STATIC_ATTRIBUTES.setFullMana( 150 );
+		STATIC_ATTRIBUTES.setMana( 150 );
+		STATIC_ATTRIBUTES.setHpRegenAmount( 1 ) ;
+		STATIC_ATTRIBUTES.setRegenRate( 1000 );
+		STATIC_ATTRIBUTES.setArmor( 5 );  STATIC_ATTRIBUTES.setdArmorAge( 0 ); STATIC_ATTRIBUTES.setdArmorLvl( 1 );
+		STATIC_ATTRIBUTES.setSpeed( 1f * dp );
+		STATIC_ATTRIBUTES.setHealAmount( 80 ); STATIC_ATTRIBUTES.setdHealLvl( 20 );
 	}
 
 	{
@@ -237,9 +237,9 @@ public class UndeadDemogorgon extends AdvancedHealer
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 	@Override

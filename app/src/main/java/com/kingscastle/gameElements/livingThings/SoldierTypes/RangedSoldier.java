@@ -9,6 +9,8 @@ import com.kingscastle.gameElements.movement.pathing.Path;
 import com.kingscastle.gameElements.projectiles.Arrow;
 import com.kingscastle.teams.Teams;
 
+import org.jetbrains.annotations.NotNull;
+
 public abstract class RangedSoldier extends Unit {
 
 	public RangedSoldier() {
@@ -34,7 +36,7 @@ public abstract class RangedSoldier extends Unit {
 
 
 	@Override
-	public void loadAnimation(@NonNull MM mm) {
+	public void loadAnimation(@NotNull @NonNull MM mm) {
 		super.loadAnimation(mm);
 		getAQ().setCurrentAttack( new Bow( mm, this , new Arrow() ) );
 		aliveAnim.add(getAQ().getCurrentAttack().getAnimator(), true);

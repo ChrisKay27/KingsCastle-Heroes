@@ -21,6 +21,7 @@ public class HasteAnim extends Anim {
 		setImages( staticImages );
 		setTbf(staticTfb);
 		onlyShowIfOnScreen = true;
+        setLooping(true);
 	}
 
 

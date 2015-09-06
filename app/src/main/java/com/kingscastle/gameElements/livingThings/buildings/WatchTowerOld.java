@@ -11,7 +11,7 @@ import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.ProjectileAttack;
 import com.kingscastle.gameElements.projectiles.Arrow;
@@ -42,7 +42,7 @@ public class WatchTowerOld extends AttackingBuilding
 	@NonNull
     private static final AttackerQualities staticAttackerQualities;
 	@NonNull
-    private static final LivingQualities staticLivingQualities;
+    private static final Attributes STATIC_ATTRIBUTES;
 	private static ArrayList<vector> staticDamageOffsets;
 
 
@@ -51,7 +51,7 @@ public class WatchTowerOld extends AttackingBuilding
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
     @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities;   }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
 
 
@@ -66,16 +66,17 @@ public class WatchTowerOld extends AttackingBuilding
 		staticAttackerQualities.setDamage(15);
 		staticAttackerQualities.setROF(1000);
 
-		staticLivingQualities = new LivingQualities();staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(1);
-		staticLivingQualities.setRangeOfSight(250);
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth(250);
-		staticLivingQualities.setHealth(250);
-		staticLivingQualities.setFullMana(125);
-		staticLivingQualities.setMana(125);
-		staticLivingQualities.setHpRegenAmount(1);
-		staticLivingQualities.setRegenRate(1000);
-		staticLivingQualities.setArmor( 2 );  staticLivingQualities.setdArmorAge( 0 ); staticLivingQualities.setdArmorLvl( 2 );
+		STATIC_ATTRIBUTES = new Attributes();
+        STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(1);
+		STATIC_ATTRIBUTES.setRangeOfSight(250);
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth(250);
+		STATIC_ATTRIBUTES.setHealth(250);
+		STATIC_ATTRIBUTES.setFullMana(125);
+		STATIC_ATTRIBUTES.setMana(125);
+		STATIC_ATTRIBUTES.setHpRegenAmount(1);
+		STATIC_ATTRIBUTES.setRegenRate(1000);
+		STATIC_ATTRIBUTES.setArmor( 2 );  STATIC_ATTRIBUTES.setdArmorAge( 0 ); STATIC_ATTRIBUTES.setdArmorLvl( 2 );
 
 		staticPerceivedArea = new RectF(Rpg.guardTowerArea);
 
@@ -85,11 +86,11 @@ public class WatchTowerOld extends AttackingBuilding
 		staticAttackerQualities.setdROFLvl(0);
 		staticAttackerQualities.setdRangeSquaredAge(2000 * dpSquared);
 		staticAttackerQualities.setdRangeSquaredLvl(80 * dpSquared);
-		staticLivingQualities.setAge( Age.STONE );
-		staticLivingQualities.setdHealthAge(0);
-		staticLivingQualities.setdHealthLvl(50);
-		staticLivingQualities.setdRegenRateAge( 0 );
-		staticLivingQualities.setdRegenRateLvl( 0 );
+		STATIC_ATTRIBUTES.setAge( Age.STONE );
+		STATIC_ATTRIBUTES.setdHealthAge(0);
+		STATIC_ATTRIBUTES.setdHealthLvl(50);
+		STATIC_ATTRIBUTES.setdRegenRateAge( 0 );
+		STATIC_ATTRIBUTES.setdRegenRateLvl( 0 );
 
 	}
 
@@ -302,9 +303,9 @@ public class WatchTowerOld extends AttackingBuilding
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 

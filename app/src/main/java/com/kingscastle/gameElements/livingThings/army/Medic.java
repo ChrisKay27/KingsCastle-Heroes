@@ -11,7 +11,7 @@ import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
 import com.kingscastle.gameElements.livingThings.FourFrameAnimator;
-import com.kingscastle.gameElements.livingThings.LivingQualities;
+import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.BasicHealer;
 import com.kingscastle.gameElements.livingThings.abilities.HealingSpell;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
@@ -22,6 +22,8 @@ import com.kingscastle.gameUtils.vector;
 import com.kingscastle.teams.Team;
 import com.kingscastle.teams.Teams;
 import com.kingscastle.teams.races.Races;
+
+import org.jetbrains.annotations.NotNull;
 
 
 public class Medic extends BasicHealer
@@ -38,9 +40,9 @@ public class Medic extends BasicHealer
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	@NonNull
-    private static final LivingQualities staticLivingQualities; @NonNull
+    private static final Attributes STATIC_ATTRIBUTES; @NonNull
                                                                 @Override
-	protected LivingQualities getStaticLQ() { return staticLivingQualities; }
+	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
 	private static Cost cost = new Cost( 1500 , 1500 , 0 , 2 );
 
@@ -60,19 +62,19 @@ public class Medic extends BasicHealer
 		staticAttackerQualities.setAttackRangeSquared(20000 * dp * dp);
 		staticAttackerQualities.setROF( 1000 );
 
-		staticLivingQualities = new LivingQualities(); staticLivingQualities.setRequiresCLvl(1); staticLivingQualities.setRequiresAge(Age.STONE); staticLivingQualities.setRequiresTcLvl(4);
-		staticLivingQualities.setRangeOfSight( 250 );
-		staticLivingQualities.setLevel( 1 );
-		staticLivingQualities.setFullHealth( 100 );
-		staticLivingQualities.setHealth( 100 ); staticLivingQualities.setdHealthAge( 0 ); staticLivingQualities.setdHealthLvl( 10 );
-		staticLivingQualities.setArmor( 1 );  staticLivingQualities.setdArmorAge( 0 ); staticLivingQualities.setdArmorLvl( 0.5f );
-		staticLivingQualities.setHealAmount( 17 );  staticLivingQualities.setdHealAge( 0 ); staticLivingQualities.setdHealLvl( 3 );
-		staticLivingQualities.setFullMana(100);
-		staticLivingQualities.setMana(100);
-		staticLivingQualities.setHpRegenAmount( 2 );
-		staticLivingQualities.setRegenRate( 1000 );
+		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresCLvl(1); STATIC_ATTRIBUTES.setRequiresAge(Age.STONE); STATIC_ATTRIBUTES.setRequiresTcLvl(4);
+		STATIC_ATTRIBUTES.setRangeOfSight( 250 );
+		STATIC_ATTRIBUTES.setLevel( 1 );
+		STATIC_ATTRIBUTES.setFullHealth( 100 );
+		STATIC_ATTRIBUTES.setHealth( 100 ); STATIC_ATTRIBUTES.setdHealthAge( 0 ); STATIC_ATTRIBUTES.setdHealthLvl( 10 );
+		STATIC_ATTRIBUTES.setArmor( 1 );  STATIC_ATTRIBUTES.setdArmorAge( 0 ); STATIC_ATTRIBUTES.setdArmorLvl( 0.5f );
+		STATIC_ATTRIBUTES.setHealAmount( 17 );  STATIC_ATTRIBUTES.setdHealAge( 0 ); STATIC_ATTRIBUTES.setdHealLvl( 3 );
+		STATIC_ATTRIBUTES.setFullMana(100);
+		STATIC_ATTRIBUTES.setMana(100);
+		STATIC_ATTRIBUTES.setHpRegenAmount( 2 );
+		STATIC_ATTRIBUTES.setRegenRate( 1000 );
 
-		staticLivingQualities.setSpeed(2.3f * dp);
+		STATIC_ATTRIBUTES.setSpeed(2.3f * dp);
 	}
 
 	{
@@ -234,9 +236,9 @@ public class Medic extends BasicHealer
 
 	@NonNull
     @Override
-	public LivingQualities getNewLivingQualities()
+	public Attributes getNewLivingQualities()
 	{
-		return new LivingQualities(staticLivingQualities);
+		return new Attributes(STATIC_ATTRIBUTES);
 	}
 
 	@Override
@@ -250,7 +252,7 @@ public class Medic extends BasicHealer
 
 
 	@Override
-	public void loadAnimation( @NonNull MM mm )
+	public void loadAnimation( @NotNull @NonNull MM mm )
 	{
 		if ( aliveAnim == null )
 		{

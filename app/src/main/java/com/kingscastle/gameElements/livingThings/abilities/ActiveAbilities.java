@@ -52,9 +52,9 @@ public class ActiveAbilities {
                 @Override
                 public void run() {
                     synchronized (activeAbilities) {
-                        activeAbilities.remove(a);
+                        if( activeAbilities.remove(a) )
+                            a.undoAbility();
                     }
-                    a.undoAbility();
                 }
             });
         }
@@ -67,10 +67,11 @@ public class ActiveAbilities {
                 @Override
                 public void run() {
                     synchronized (activeAbilities) {
-                        if( a.isStackable() || !containsInstanceOf(a) )
+                        if( a.isStackable() || !containsInstanceOf(a) ) {
                             activeAbilities.add(a);
+                            a.doAbility();
+                        }
                     }
-                    a.doAbility();
                 }
             });
         }
