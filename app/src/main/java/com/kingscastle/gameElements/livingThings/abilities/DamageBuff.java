@@ -5,11 +5,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.kingscastle.effects.animations.BerzerkAnim;
+import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
 import com.kingscastle.gameElements.livingThings.Bonuses;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameUtils.vector;
+import com.kingscastle.heroes.R;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -108,13 +110,11 @@ public class DamageBuff extends Buff
 
 	@Nullable
     @Override
-	public Image getIconImage()
-	{
+	public Image getIconImage()	{
 		if( iconImage == null )
-		{
-			//iconImage = Assets.loadImage(R.drawable.multishot_icon);
-		}
-		return null;
+			iconImage = Assets.loadImage(R.drawable.multishot_icon);
+
+		return iconImage;
 	}
 
 

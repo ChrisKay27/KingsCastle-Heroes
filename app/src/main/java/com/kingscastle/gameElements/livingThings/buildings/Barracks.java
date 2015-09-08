@@ -10,6 +10,7 @@ import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
+import com.kingscastle.gameElements.livingThings.LivingThingListenerAdapter;
 import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.livingThings.Attributes;
@@ -103,7 +104,7 @@ public class Barracks extends Building
 	private final vector v = new vector(500,1000000);
 	private boolean killSoldiers;
 	@NonNull
-    private OnDeathListener deathListener = new OnDeathListener() {
+    private LivingThingListenerAdapter deathListener = new LivingThingListenerAdapter() {
 		@Override
 		public void onDeath(LivingThing lt) {
 			soldiers.remove(lt);
@@ -127,7 +128,7 @@ public class Barracks extends Building
 		boolean superAct =  super.act();
 		if( killSoldiers ) {
 			for (LivingThing u : soldiers){
-				u.removeDL(deathListener);
+				u.removeLTL(deathListener);
 				u.die();
 			}
 			soldiers.clear();
@@ -153,7 +154,7 @@ public class Barracks extends Building
 						e.printStackTrace();
 					}
 
-					u.addDL(deathListener);
+					u.addLTL(deathListener);
 					soldiers.add(u);
 					u.setStayHere(troopDeployLocs.get(soldiers.indexOf(u)));
 					getMM().add(u);

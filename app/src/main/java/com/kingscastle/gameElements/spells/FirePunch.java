@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.kingscastle.effects.animations.FireBallAnim;
 import com.kingscastle.effects.animations.FireHitAnim;
+import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
@@ -12,15 +13,11 @@ import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameUtils.vector;
+import com.kingscastle.heroes.R;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-
-
-
-
-
 
 
 
@@ -37,7 +34,7 @@ public class FirePunch extends ProjectileSpell {
 
 	static{
 		float dp = Rpg.getDp();
-		offsets = new ArrayList<vector>();
+		offsets = new ArrayList<>();
 		offsets.add(new vector(1*dp,-5*dp));
 		offsets.add(new vector(-2*dp,3*dp));
 		offsets.add(new vector(-1*dp,5*dp));
@@ -46,7 +43,7 @@ public class FirePunch extends ProjectileSpell {
 
 
 	private Rpg.Direction dir;
-	private Humanoid hCaster;
+	private final Humanoid hCaster;
 
 
 	@NonNull
@@ -54,8 +51,9 @@ public class FirePunch extends ProjectileSpell {
 	public Abilities getAbility()				 {				return Abilities.FIREPUNCH ; 			}
 
 
-	public FirePunch(){}
-
+    public FirePunch(Humanoid caster){
+        hCaster = caster;
+    }
 
 
 	@Override
@@ -107,12 +105,7 @@ public class FirePunch extends ProjectileSpell {
 
 	}
 
-	@Override
-	public void setCaster(@NonNull LivingThing caster) {
-		super.setCaster(caster);
-		if( caster instanceof Humanoid )
-			hCaster = (Humanoid) caster;
-	}
+
 
 	@Override
 	public int calculateDamage()	{
@@ -132,8 +125,7 @@ public class FirePunch extends ProjectileSpell {
 	{
 		super.act();
 
-		if( hCaster != null )
-			hCaster.getLegs().setLastMoved( GameTime.getTime() );
+		hCaster.getLegs().setLastMoved( GameTime.getTime() );
 
 		return isDead();
 	}
@@ -143,8 +135,7 @@ public class FirePunch extends ProjectileSpell {
 	@Override
 	public void die()
 	{
-		if( hCaster != null )
-			hCaster.unlockLookDirection();
+		hCaster.unlockLookDirection();
 
 		super.die();
 		getMM().getEm().add(new FireHitAnim(loc),true);
@@ -166,8 +157,7 @@ public class FirePunch extends ProjectileSpell {
 	@Override
 	public void loadAnimation(@NonNull vector unit)
 	{
-		if( getAnim() == null )
-		{
+		if( getAnim() == null )	{
 			dir = vector.getDirection4(unit);
 			setAnim( new FireBallAnim(loc, vector.getDirection8(unit).getDir()) );
 		}
@@ -220,14 +210,13 @@ public class FirePunch extends ProjectileSpell {
 
 	@NonNull
     @Override
-	public Spell newInstance()
-	{
-		return new FirePunch();
+	public Spell newInstance(){
+		return new FirePunch(hCaster);
 	}
 
 
 	@Override
-	public void uncast()	{
+	public void uncast(){
 		if( hCaster != null )
 			hCaster.unlockLookDirection();
 	}
@@ -237,9 +226,7 @@ public class FirePunch extends ProjectileSpell {
 	@Override
 	public Image getIconImage() {
 		if( iconImage == null )
-		{
-			//	iconImage = Assets.loadImage(R.drawable.fireball_icon);
-		}
+			iconImage = Assets.loadImage(R.drawable.wall_of_fire_icon);
 		return iconImage;
 	}
 

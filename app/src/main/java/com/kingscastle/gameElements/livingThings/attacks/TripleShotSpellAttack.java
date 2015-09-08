@@ -43,11 +43,11 @@ public class TripleShotSpellAttack extends SpellAttack {
             ((Humanoid)owner).setLookDirectionFromUnit( params.getUnitVectorInDirection() );
 
 
-        tempUnitVector.rotate(-15);
+        tempUnitVector.rotate(-10);
         mm.add((GameElement) SpellInstanceCreator.getSpellInstance(params));
 
 
-        tempUnitVector.rotate(15);
+        tempUnitVector.rotate(20);
         mm.add((GameElement) SpellInstanceCreator.getSpellInstance(params));
     }
 

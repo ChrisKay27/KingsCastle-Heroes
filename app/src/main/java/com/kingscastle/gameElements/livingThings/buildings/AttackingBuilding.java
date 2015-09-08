@@ -69,8 +69,8 @@ public abstract class AttackingBuilding extends Building
 
 		target = nTarget;
 
-		synchronized (tsls){
-			for(OnTargetSetListener tsl : tsls)
+		synchronized (ltls){
+			for(LivingThingListener tsl : ltls)
 				tsl.onTargetSet(this, nTarget);
 		}
 	}

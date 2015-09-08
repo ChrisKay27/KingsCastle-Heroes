@@ -10,15 +10,19 @@ import com.kingscastle.framework.implementation.ImageDrawable;
 import com.kingscastle.gameElements.livingThings.abilities.Ability;
 import com.kingscastle.ui.AbilityCaster;
 
+import org.jetbrains.annotations.NotNull;
+
 
 public class AbilityButton extends SButton
 {
-	private Ability ab;
+	private final Ability ab;
+    private final AbilityCaster ac;
 
-
-	private AbilityButton( Activity a, @NonNull Ability ability )
-	{
+	private AbilityButton( Activity a, @NotNull Ability ability ,@NotNull final AbilityCaster ac_ ) {
 		super(a);
+
+        ab = ability;
+        ac = ac_;
 
 		if( ability.getIconImage() != null ){
 			ImageDrawable id = new ImageDrawable( ability.getIconImage().getBitmap() , 0 , 0 , new Paint());
@@ -28,12 +32,12 @@ public class AbilityButton extends SButton
 		setOnClickListener( new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				AbilityCaster.getInstance().setPendingAbility( ab );
+				ac.setPendingAbility(ab);
 			}
 		});
 	}
 
-
+    @NotNull
 	public Ability getAbility() {
 		return ab;
 	}
@@ -41,26 +45,16 @@ public class AbilityButton extends SButton
 
 
 	@Nullable
-    public static AbilityButton getInstance( Activity a , @Nullable Ability ability )
-	{
-		if( ability == null )
-			throw new IllegalArgumentException("Trying to set ability of an abilityButton and ability was null.");
-
-		AbilityButton ab = new AbilityButton( a , ability );
-		return ab;
+    public static AbilityButton getInstance( Activity a , @NotNull Ability ability ,@NotNull AbilityCaster ac ){
+		return new AbilityButton( a , ability , ac);
 	}
-
-
-
-
-
 
 
 
 	@NonNull
     @Override
 	public AbilityButton clone(){
-		return new AbilityButton( a , ab );
+		return new AbilityButton( a , ab , ac);
 	}
 
 

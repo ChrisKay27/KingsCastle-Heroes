@@ -16,10 +16,14 @@ public class UnitController implements TouchEventAnalyzer, Paintable {
     private static final String TAG = UnitController.class.getSimpleName() ;
 
     private final UI ui;
+    private final AbilityCaster ac;
     private final ThumbStick leftThumbStick;
 
-    public UnitController(final UI ui) {
+
+
+    public UnitController(final UI ui, AbilityCaster ac) {
         this.ui = ui;
+        this.ac = ac;
         float dp = Rpg.getDp();
 
         /*
@@ -73,6 +77,10 @@ public class UnitController implements TouchEventAnalyzer, Paintable {
         if( u != null ){
 
             boolean usedUpTouchEvent = leftThumbStick.analyzeTouchEvent(e);
+            if( usedUpTouchEvent )
+                return true;
+
+            usedUpTouchEvent = ac.analyzeTouchEvent(e);
             if( usedUpTouchEvent )
                 return true;
 

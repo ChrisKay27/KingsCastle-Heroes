@@ -45,7 +45,7 @@ public class TripleAttackPickup extends Pickup {
         this.byThisPlayer = byThisPlayer;
         oldAtk = (SpellAttack) byThisPlayer.getAQ().getCurrentAttack();
         byThisPlayer.getAQ().setCurrentAttack(new TripleShotSpellAttack(mm, byThisPlayer, oldAtk));
-        setOverAt(GameTime.getTime() + 5000);
+        setOverAt(GameTime.getTime() + 10000);
         anim.setOver(true);
     }
 

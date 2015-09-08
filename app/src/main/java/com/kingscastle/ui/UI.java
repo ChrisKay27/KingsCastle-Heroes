@@ -106,8 +106,9 @@ public class UI implements CoordConverter{
 
     private final UnitOrders uOrders;
     private final UnitCommands unitCommands;
-    private final UnitOptions unitOptions;
+    final UnitButtonsScroller unitButtons;
     private final UnitController unitController;
+    private final AbilityCaster ac;
 
    // private final ThumbStick leftThumbStick;//, rightThumbStick;
 
@@ -157,12 +158,12 @@ public class UI implements CoordConverter{
 
 		selectedThings  = new SelectedUnits();
 
-
+        ac = new AbilityCaster(mm);
 
         uOrders = new UnitOrders(getCc(), this );
-        unitOptions = new UnitOptions(selUI, this);
-        unitCommands = new UnitCommands( this, getCc(), selecter , unitOptions  );
-        unitController = new UnitController(this);
+        unitButtons = new UnitButtonsScroller(selUI, this, ac);
+        unitCommands = new UnitCommands( this, getCc(), selecter , unitButtons);
+        unitController = new UnitController(this, ac);
 
 
 

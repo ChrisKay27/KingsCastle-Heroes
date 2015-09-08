@@ -3,75 +3,63 @@ package com.kingscastle.ui;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
-import com.kingscastle.framework.Input;
+import com.kingscastle.framework.Input.TouchEvent;
 import com.kingscastle.gameElements.livingThings.abilities.Ability;
+import com.kingscastle.gameElements.livingThings.abilities.Buff;
+import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.teams.Teams;
 
-public class AbilityCaster
+public class AbilityCaster implements TouchEventAnalyzer
 {
-	//private static final String TAG = "UnitOrders";
+    private static final String TAG = AbilityCaster.class.getSimpleName();
+    private final MM mm;
 
-	private static final AbilityCaster abilityCaster = new AbilityCaster();
 
-	@Nullable
+    @Nullable
     private Ability pendingAbility;
 
 
-	private AbilityCaster()
-	{
-	}
-
-
-	@NonNull
-    public static AbilityCaster getInstance()
-	{
-		return abilityCaster;
-	}
+	AbilityCaster(MM mm){
+        this.mm = mm;
+    }
 
 
 
+    @Override
+    public boolean analyzeTouchEvent(TouchEvent e) {
+        Log.d(TAG, "analyzeTouchEvent pendingAbility=" + pendingAbility + " " + e);
+        if( pendingAbility == null )
+            return false;
+
+
+        if ( pendingAbility.analyseTouchEvent( e ) )  {
+            Log.d(TAG, pendingAbility + " used up touch event");
+            pendingAbility = null;
+            return true;
+        }
+
+        return false;
+    }
 
 
 
-
-	public boolean giveOrders( @NonNull Input.TouchEvent event )
-	{
-		if( pendingAbility == null ){
-			return false;
-		}
-
-		try
-		{
-			if ( pendingAbility.analyseTouchEvent( event ) )
-			{
-				pendingAbility = null;
-				return true;
-			}
-		}
-		catch( Exception e )
-		{
-			pendingAbility = null;
-		}
-		return false;
-	}
-
-
-
-	public void setPendingAbility( @NonNull Ability ab )
-	{
-		pendingAbility = ab;
-		ab.setTeam( Teams.BLUE );
+	public void setPendingAbility( @NonNull Ability ab ) {
+        if( ab instanceof Buff ){
+            mm.add(ab.newInstance(ab.getCaster()));
+        }
+        else {
+            pendingAbility = ab;
+            ab.setTeam(Teams.BLUE);
+        }
 	}
 
 
 
 
 
-
-
-
-	public boolean isThereAPendingOrder(){
+	public boolean isThereAPendingAbility(){
 		return pendingAbility != null;
 	}
 
@@ -87,11 +75,8 @@ public class AbilityCaster
 	}
 
 
-	public void clearOrder(){
+	public void clearAbility(){
 		pendingAbility = null;
 	}
-
-
-
 
 }

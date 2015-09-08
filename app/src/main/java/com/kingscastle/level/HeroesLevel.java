@@ -11,7 +11,11 @@ import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.GameElement;
 import com.kingscastle.gameElements.GenericGameElement;
 import com.kingscastle.gameElements.Tree;
+import com.kingscastle.gameElements.livingThings.LivingThing;
+import com.kingscastle.gameElements.livingThings.LivingThingListenerAdapter;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.abilities.DamageBuff;
 import com.kingscastle.gameElements.livingThings.abilities.Haste;
 import com.kingscastle.gameElements.livingThings.army.HumanWizard;
 import com.kingscastle.gameElements.livingThings.army.KratosLightArm;
@@ -30,6 +34,7 @@ import com.kingscastle.teams.Team;
 import com.kingscastle.teams.Teams;
 import com.kingscastle.teams.races.HumanRace;
 import com.kingscastle.teams.races.UndeadRace;
+import com.kingscastle.util.ManagerListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -58,7 +63,7 @@ public abstract class HeroesLevel extends Level{
 
     @Override
     protected void subOnCreate() {
-
+        createBorder();
         hPlayer = new HumanPlayer();
         mm.add(Team.getNewHumanInstance(hPlayer, new HumanRace(), mm.getGridUtil()));
 
@@ -75,7 +80,49 @@ public abstract class HeroesLevel extends Level{
         });
 
 
-        createBorder();
+
+        hero = new HumanWizard(new vector(getLevelWidthInPx()/2,getLevelHeightInPx()/2), Teams.BLUE);
+        hero.addLTL(new LivingThingListenerAdapter(){
+            @Override
+            public void onLevelUp(LivingThing lt) {
+                if( lt.lq.getLevel() == 2 )
+                    lt.addAbility(new DamageBuff(lt, lt));
+                mm.getUI().refreshSelectedUI();
+            }
+        });
+        mm.add(hero);
+
+
+        getBackground().setCenteredOn(hero.loc);
+
+
+        //Setup exp adder
+        final LivingThingListenerAdapter odl = new LivingThingListenerAdapter() {
+            @Override
+            public void onDeath(final LivingThing lt) {
+                hero.doOnYourThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        hero.addExp(lt.lq.getExpGiven());
+                    }
+                });
+            }
+        };
+
+        mm.getTeam(Teams.RED).getAm().addListener(new ManagerListener<Humanoid>() {
+            @Override
+            public boolean onAdded(Humanoid h) {
+                h.addLTL(odl);
+                return false;
+            }
+
+            @Override
+            public boolean onRemoved(Humanoid humanoid) {
+                return false;
+            }
+        });
+
+
     }
 
 
@@ -85,6 +132,8 @@ public abstract class HeroesLevel extends Level{
     protected void subAct() {
         if( paused )
             return;
+        getBackground().setCenteredOn(hero.loc);
+
 
         if( nextSpawn < GameTime.getTime() ){
             nextSpawn = GameTime.getTime() + 3000;
@@ -131,8 +180,16 @@ public abstract class HeroesLevel extends Level{
                 p.onOver();
             }
         }
-
     }
+
+
+    @Override
+    protected void subOnStart() {
+        super.subOnStart();
+        ui.setSelected(hero);
+    }
+
+
 
     @Override
     protected void createBorder() {
@@ -166,6 +223,8 @@ public abstract class HeroesLevel extends Level{
         for( int j = 0 ; j < numVert ; ++j )
             addDecoGE(getBorderElement(new vector(lvlWidthPx - (treeWidth / 2) , (treeHeight / 2) + (j * treeHeight))));
     }
+
+
 
     @NonNull
     protected GameElement getBorderElement(vector v){

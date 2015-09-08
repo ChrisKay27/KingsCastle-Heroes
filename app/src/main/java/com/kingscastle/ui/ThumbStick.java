@@ -55,18 +55,25 @@ public class ThumbStick implements TouchEventAnalyzer {
         float x = e.x;
         float y = e.y;
 
-        if( x < boundsLeft() || x > boundsRight() || y < boundsTop() || y > boundsBottom() ) {
-            Log.d(TAG, "e out of bounds returning false");
+        Log.d(TAG, e.toString());
+
+        if( e.pointer != pointerID && pointerID != -1 ) {
+            //Log.d(TAG, "Wrong pointer");
+            return false;
+        }
+
+        boolean outOfBounds = x < boundsLeft() || x > boundsRight() || y < boundsTop() || y > boundsBottom();
+        if( pointerID == e.pointer && outOfBounds ) {
+
+            //Log.d(TAG, "e out of bounds("+bounds+") returning false");
             tsl.thumbLeftThumbStick();
             pointerID = -1;
 
             return false;
         }
-
-        if( e.pointer != pointerID && pointerID != -1 ) {
-            Log.d(TAG, "Wrong pointer");
+        else if( outOfBounds )
             return false;
-        }
+
         pointerID = e.pointer;
 
         switch(e.type){

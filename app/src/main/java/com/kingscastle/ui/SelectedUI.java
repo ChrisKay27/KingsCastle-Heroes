@@ -207,8 +207,7 @@ public class SelectedUI
 
 		//Log.d( TAG , "setSelected selectedUnit=" + selGe );
 
-		if( selGe != null )
-		{
+		if( selGe != null )	{
 
 			selGe.setSelected( true );
 			if( somethingWasSelected )
@@ -219,12 +218,13 @@ public class SelectedUI
 			openSelectedUIView( selGe , null );
 
 
-			if( selGe instanceof LivingThing ) {
-				LivingThing lt = (LivingThing) selGe;
+			if( selGe instanceof Unit ) {
+                Unit lt = (Unit) selGe;
 				lt.setSelectedColor( Color.YELLOW );
+                ui.unitButtons.showScroller(lt);
 			}
 
-			if( selGe instanceof Building ){
+			else if( selGe instanceof Building ){
 				Building b = (Building) selGe;
 
 				ui.bo.showBuildingOptionsScroller( b );

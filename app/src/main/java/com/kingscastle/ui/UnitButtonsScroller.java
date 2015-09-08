@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class UnitOptions
+public class UnitButtonsScroller
 {
 	private static final String TAG = "UnitOptions";
 
@@ -42,12 +42,13 @@ public class UnitOptions
 
 	private final UI ui;
 	private final SelectedUI selUI;
+    private final AbilityCaster ac;
 
 
-	public UnitOptions( SelectedUI selUI_ , UI ui_ )
-	{
+    public UnitButtonsScroller(SelectedUI selUI_, UI ui_, AbilityCaster ac_){
 		ui = ui_;
 		selUI = selUI_;
+        ac = ac_;
 		abilities = new ArrayList<>();
 		abilitiesTypes = new ArrayList<>();
 
@@ -61,11 +62,7 @@ public class UnitOptions
 	protected List<? extends Unit> lts;
 
 
-
-
-
-	protected List<SButton> determineIfAndWhatToDisplay( Unit lt )
-	{
+	protected List<SButton> determineIfAndWhatToDisplay( Unit lt )	{
 		Game game = Rpg.getGame();
 		Level level = game.getLevel();
 
@@ -78,9 +75,9 @@ public class UnitOptions
 		List<SButton> buttons = new ArrayList<>();
 
 		buttons.addAll( getAllOrderButtons( lt ) );
-		buttons.addAll(getAllAbilityButtons(lt) );
+		buttons.addAll( getAllAbilityButtons(lt) );
 
-		Team team = level.getMM().getTeam( lt.getTeamName() );
+		//Team team = level.getMM().getTeam( lt.getTeamName() );
 
 
 
@@ -223,7 +220,7 @@ public class UnitOptions
 			if( abilitiesTypes.contains( ab.getAbility() ) )
 				continue;
 
-			AbilityButton abButton = AbilityButton.getInstance( kc.getActivity() , ab );
+			AbilityButton abButton = AbilityButton.getInstance( kc.getActivity() , ab , ac);
 			allAbilityButtons.add(abButton);
 			abilitiesTypes.add( ab.getAbility() );
 		}
@@ -251,7 +248,7 @@ public class UnitOptions
 			if( abilitiesTypes.contains( ab.getAbility() ) )
 				continue;
 
-			AbilityButton abButton = AbilityButton.getInstance( kc.getActivity() , ab );
+			AbilityButton abButton = AbilityButton.getInstance( kc.getActivity() , ab , ac );
 			allAbilityButtons.add(abButton);
 			abilitiesTypes.add( ab.getAbility() );
 		}

@@ -35,6 +35,7 @@ import com.kingscastle.teams.races.Races;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public abstract class LivingThing extends GameElement
@@ -54,7 +55,7 @@ public abstract class LivingThing extends GameElement
     public AttackerQualities aq = new AttackerQualities();
 
     protected final Arms arms = new Arms( this );
-    private List<Ability> abilities;
+    private final List<Ability> abilities = new ArrayList<>();
     private final ActiveAbilities activeAbilities = new ActiveAbilities();
 
 	protected boolean hasFinalInited = false;
@@ -273,6 +274,11 @@ public abstract class LivingThing extends GameElement
 		lq.setLevel(lq.getLevel() + 1);
 		SpecialEffects.onCreatureLvledUp(loc.x, loc.y);
         upgrade();
+
+        synchronized (ltls){
+            for( LivingThingListener ltl : ltls )
+                ltl.onLevelUp(this);
+        }
 	}
 
 
@@ -487,9 +493,9 @@ public abstract class LivingThing extends GameElement
 
 			activeAbilities.die();
 
-			synchronized (dls){
-				for( OnDeathListener dl : dls ){
-					dl.onDeath(this);
+			synchronized (ltls){
+				for( LivingThingListener ltl : ltls ){
+                    ltl.onDeath(this);
 				}
 			}
 		}
@@ -721,9 +727,9 @@ public abstract class LivingThing extends GameElement
 		}
 		target = nTarget;
 
-		synchronized (tsls){
-			for(OnTargetSetListener tsl : tsls)
-				tsl.onTargetSet(this, nTarget);
+		synchronized (ltls){
+			for(LivingThingListener ltl : ltls)
+				ltl.onTargetSet(this, nTarget);
 		}
 	}
 
@@ -846,14 +852,17 @@ public abstract class LivingThing extends GameElement
 	}
 
 
+
+
 	public List<Ability> getAbilities(){
-		if( abilities == null )
-			abilities = new ArrayList<>();
 		return abilities;
 	}
-
-	protected void setAbilities(List<Ability> castableSpells)	{
-		abilities = castableSpells;
+    public void addAbility(@NotNull Ability a)	{
+        abilities.add(a);
+    }
+    public void setAbilities(@NotNull List<Ability> castableSpells)	{
+        abilities.clear();
+        abilities.addAll(castableSpells);
 	}
 
 
@@ -1024,26 +1033,17 @@ public abstract class LivingThing extends GameElement
     //************************************    Listeners  *****************************************//
 
 
+    //LivingThing Listener
+    protected final List<LivingThingListener> ltls = new LinkedList<>();
 
-	//On Death Listener
-	private final ArrayList<OnDeathListener> dls = new ArrayList<>();
+    public interface LivingThingListener{
+        void onLevelUp(LivingThing lt);
+        void onDeath(LivingThing lt);
+        void onTargetSet(LivingThing forThis, LivingThing target);
+    }
 
-	public interface OnDeathListener{
-		void onDeath(LivingThing lt);
-	}
+    public void addLTL(LivingThingListener ltl)		   		{	synchronized( ltls ){	ltls.add( ltl );				}  	}
+    public boolean removeLTL(LivingThingListener ltl)		{	synchronized( ltls ){	return ltls.remove( ltl );		}	}
 
-	public void addDL(OnDeathListener gol)		   		{	synchronized( dls ){	dls.add( gol );				}  	}
-	public boolean removeDL(OnDeathListener gol)		{	synchronized( dls ){	return dls.remove( gol );		}	}
-
-
-
-	//On Target Set Listener
-	protected final ArrayList<OnTargetSetListener> tsls = new ArrayList<>();
-
-	public interface OnTargetSetListener{
-		void onTargetSet(LivingThing forThis, LivingThing target);
-	}
-	public void addTSL(OnTargetSetListener gol)		   		{	synchronized( tsls ){	tsls.add( gol );				}  	}
-	public boolean removeTSL(OnTargetSetListener gol)		{	synchronized( tsls ){	return tsls.remove( gol );		}	}
 
 }

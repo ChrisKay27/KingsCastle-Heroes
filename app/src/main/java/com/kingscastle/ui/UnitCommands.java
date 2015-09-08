@@ -33,11 +33,11 @@ public class UnitCommands implements TouchEventAnalyzer
 	private Grid grid;
 	private final CoordConverter cc;
 	private final Selecter selecter;
-	private final UnitOptions uo;
+	private final UnitButtonsScroller uo;
 
 
 
-	UnitCommands( UI ui_ , CoordConverter cc_ , Selecter selecter_ , UnitOptions uo_ )	{
+	UnitCommands( UI ui_ , CoordConverter cc_ , Selecter selecter_ , UnitButtonsScroller uo_ )	{
 		ui = ui_;
 
 		this.cc = cc_;
