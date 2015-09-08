@@ -53,7 +53,7 @@ public abstract class Level implements CoordConverter,SoundController
 	protected UI ui;
 
 	private int width = 80;
-	private int height = 40;
+	private int height = 60;
 
 	@NonNull
     protected final Background background;
@@ -79,8 +79,6 @@ public abstract class Level implements CoordConverter,SoundController
 
 	public Level()
 	{
-		setWidth(50);
-		setHeight(30);
 
 		gt = new LevelThread();
 

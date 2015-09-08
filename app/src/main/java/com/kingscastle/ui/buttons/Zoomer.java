@@ -9,6 +9,7 @@ import android.widget.ZoomControls;
 import com.kingscastle.framework.implementation.AndroidFastRenderView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -165,14 +166,14 @@ public class Zoomer {
 
 
 
-	public static interface onZoomLevelChangedListener{
+	public interface onZoomLevelChangedListener{
 		void onZoomLevelChanged(float xScale, float yScale);
 	}
 
 
 
 	@NonNull
-    private static ArrayList<onZoomLevelChangedListener> zlcls = new ArrayList<onZoomLevelChangedListener>();
+    private static final List<onZoomLevelChangedListener> zlcls = new ArrayList<>();
 
 	public static boolean addZlcl(onZoomLevelChangedListener object) {
 		synchronized( zlcls ){
@@ -184,7 +185,7 @@ public class Zoomer {
 			zlcls.clear();
 		}
 	}
-	public static boolean remove(Object object) {
+	public static boolean remove(onZoomLevelChangedListener object) {
 		synchronized( zlcls ){
 			return zlcls.remove(object);
 		}

@@ -14,15 +14,16 @@ import java.util.List;
 
 public class MultiTouchHandler implements TouchHandler {
 	private static final int MAX_TOUCHPOINTS = 10;
+    private static final String TAG = "MultiTouchHandler";
 
-	private final boolean[] isTouched = new boolean[MAX_TOUCHPOINTS];
+    private final boolean[] isTouched = new boolean[MAX_TOUCHPOINTS];
 	private final int[] touchX = new int[MAX_TOUCHPOINTS];
 	private final int[] touchY = new int[MAX_TOUCHPOINTS];
 	private final int[] id = new int[MAX_TOUCHPOINTS];
 	@NonNull
     private final Pool<TouchEvent> touchEventPool;
-	private final List<TouchEvent> touchEvents = new ArrayList<TouchEvent>();
-	private final List<TouchEvent> touchEventsBuffer = new ArrayList<TouchEvent>();
+	private final List<TouchEvent> touchEvents = new ArrayList<>();
+	private final List<TouchEvent> touchEventsBuffer = new ArrayList<>();
 	private final float scaleX;
 	private final float scaleY;
 
@@ -96,6 +97,7 @@ public class MultiTouchHandler implements TouchHandler {
 
 	@Override
 	public boolean onTouch(View v, @NonNull MotionEvent event) {
+       // Log.d(TAG, "onTouch " + event);
 		//		if (Game.AUTO_HIDE) {
 		//			if( event.getY() < Rpg.thirtyDp ){
 		//

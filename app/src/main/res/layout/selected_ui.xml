@@ -56,7 +56,7 @@
 	    android:layout_margin="5dp"
 	    android:background="@null"
 	    android:src="@drawable/cancel"
-	    android:visibility="invisible" />
+	    android:visibility="gone" />
 
 	<ImageButton
 	    android:id="@+id/imageButtonBuildButton"
@@ -67,7 +67,7 @@
 	    android:layout_margin="5dp"
 	    android:background="@null"
 	    android:src="@drawable/build_button"
-	    android:visibility="invisible" />
+	    android:visibility="gone" />
 
         <ImageButton
             android:id="@+id/buttonFinishNow"
@@ -79,7 +79,7 @@
             android:layout_toLeftOf="@+id/imageButtonCloseSelDisplay2"
             android:background="@null"
             android:src="@drawable/finish_now"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <ImageButton
             android:id="@+id/buttonSelectedsInfo"
@@ -90,7 +90,8 @@
             android:layout_margin="5dp"
             android:layout_toRightOf="@+id/imageButtonCloseSelDisplay2"
             android:background="@null"
-            android:src="@drawable/info" />
+            android:src="@drawable/info"
+            android:visibility="gone"/>
         
         <LinearLayout
             android:id="@+id/linearLayoutBuildQueue"
@@ -101,7 +102,8 @@
             android:animateLayoutChanges="true"
             android:minHeight="100dp"
             android:minWidth="100dp"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:visibility="gone">
     	</LinearLayout>
 
         <ImageButton
@@ -113,7 +115,8 @@
             android:layout_margin="5dp"
             android:background="@null"
             android:paddingRight="0dp"
-            android:src="@drawable/unselect_button" />
+            android:src="@drawable/unselect_button"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/textViewSelectedsTitle2"
@@ -136,5 +139,5 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:visibility="invisible" />
-   
+
 </RelativeLayout>

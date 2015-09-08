@@ -81,7 +81,6 @@ public interface Graphics {
 
 
 
-
 	void drawImage(Image Image, int srcLeft, int srcTop, int srcRight,
                    int srcBottom, int dstLeft, int dstTop, int dstRight,
                    int dstBottom);
@@ -92,7 +91,7 @@ public interface Graphics {
 
 	void drawImage(Image Image, int x, int y);
 
-	void drawImage(Image fogtile, float xOffs, float yOffs);
+	void drawImage(Image img, float xOffs, float yOffs);
 
 	void drawImage(Image image, float left, float top, Paint paint);
 
@@ -103,8 +102,9 @@ public interface Graphics {
 
 	void drawImage(Image img, float x, float y, float width, float height);
 
+    void drawImage(Image currentImage, float f, float g, vector offset, Paint p);
 
-	void drawImageOnWholeScreen(Image loadingScreen);
+	void drawImageOnWholeScreen(Image img);
 
 	void drawString(String text, float x, float y, Paint paint);
 
@@ -149,8 +149,7 @@ public interface Graphics {
 	void drawString(String string, float centerX, float top, vector offset,
                     Paint paint);
 
-	void drawImage(Image currentImage, float f, float g, vector offset,
-                   Paint dstoverpaint);
+
 
 	void setBitmap(Bitmap framebuff);
 

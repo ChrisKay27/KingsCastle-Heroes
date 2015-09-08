@@ -65,22 +65,22 @@ public class Animator extends Anim
 		standingStillWest = images[4];
 		standingStillEast = images[7];
 		standingStillNorth = images[10];
-		walkingImagesSouth = new ArrayList<Image>();
+		walkingImagesSouth = new ArrayList<>();
 		walkingImagesSouth.add(images[0]);
 		walkingImagesSouth.add(images[1]);
 		walkingImagesSouth.add(images[2]);
 		walkingImagesSouth.add(images[1]);
-		walkingImagesWest = new ArrayList<Image>();
+		walkingImagesWest = new ArrayList<>();
 		walkingImagesWest.add(images[3]);
 		walkingImagesWest.add(images[4]);
 		walkingImagesWest.add(images[5]);
 		walkingImagesWest.add(images[4]);
-		walkingImagesEast = new ArrayList<Image>();
+		walkingImagesEast = new ArrayList<>();
 		walkingImagesEast.add(images[6]);
 		walkingImagesEast.add(images[7]);
 		walkingImagesEast.add(images[8]);
 		walkingImagesEast.add(images[7]);
-		walkingImagesNorth = new ArrayList<Image>();
+		walkingImagesNorth = new ArrayList<>();
 		walkingImagesNorth.add(images[9]);
 		walkingImagesNorth.add(images[10]);
 		walkingImagesNorth.add(images[11]);
@@ -223,8 +223,8 @@ public class Animator extends Anim
 	{
 		if( Settings.showAllAreaBorders )
 			g.drawRectBorder( owner.getPerceivedArea() , v , Color.YELLOW , 1 );
-		else if( owner.getSelectedColor() != 0 )
-			g.drawRectBorder( owner.getPerceivedArea() , v , owner.getSelectedColor() , 1 );
+//		else if( owner.getSelectedColor() != 0 )
+//			g.drawRectBorder( owner.getPerceivedArea() , v , owner.getSelectedColor() , 1 );
 
 
 		if( owner.getLookDirection() != Direction.N && ownersAttackAnimator != null )

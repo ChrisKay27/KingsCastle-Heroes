@@ -55,7 +55,7 @@ public class SelectedUI
 
     private boolean somethingWasSelected = false;
 
-	public View selectedUIView;
+	public RelativeLayout selectedUIView;
 
 
 	@Nullable
@@ -257,6 +257,221 @@ public class SelectedUI
 			ui.setMover( null );
 		}
 	}
+
+    private void openSelectedUIView(@Nullable final GameElement selUnit , @Nullable final List<? extends GameElement> selecteds ) {
+
+        if( selUnit == null && (selecteds == null || selecteds.isEmpty() )) return;
+
+        //TODO: Should probably have a better way of getting the activity
+        final GameActivity a = (GameActivity) Rpg.getGame().getActivity();
+
+        a.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                Log.d(TAG, "openSelectedUIView.run() selUnit=" + selUnit + " selecteds=" + selecteds);
+
+                View v = selectedUIView;
+                //Remove old selectedUIView if it is present
+                if( v != null ){
+                    ViewGroup vg = (ViewGroup) v.getParent();
+                    if( vg != null )
+                        vg.removeView(v);
+                }
+
+                //Inflate a new one
+                selectedUIView = (RelativeLayout) a.getLayoutInflater().inflate(R.layout.selected_ui, null);
+
+
+                a.addContentView(selectedUIView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+                UIView uiView = ui.uiView;
+                if( uiView != null )
+                    uiView.bringUIViewToFront();
+
+                final ScrollView selOptionsScroller = (ScrollView) selectedUIView.findViewById( R.id.scrollViewSelOptions );
+
+
+
+//
+//                LayoutParams lp = new LayoutParams((int) (Rpg.getDp()*150), (int) (Rpg.getDp()*150));
+//                lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+//                lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+//                leftThumbStick.setLayoutParams(lp);
+//                selectedUIView.addView(leftThumbStick,lp);
+
+//				final ImageButton build = (ImageButton) a.findViewById(R.id.build_button);
+//				build.setVisibility(View.INVISIBLE);
+//				build.setOnClickListener(new OnClickListener() {
+//					@Override
+//					public void onClick(View v) {
+//					if( true ){
+//						hideCancelButton();
+//					}
+//					}
+//				});
+
+
+
+                //More info button
+                final ImageButton info = (ImageButton) selectedUIView.findViewById(R.id.buttonSelectedsInfo);
+                info.setOnClickListener(openInfoView);
+                if( selecteds != null || !(selUnit instanceof LivingThing) )
+                    info.setVisibility(View.GONE);
+
+
+
+                //Finish now button
+                // This version of Tower Defence builds towers instantly.
+                final ImageButton finish = (ImageButton) selectedUIView.findViewById(R.id.buttonFinishNow);
+                finish.setVisibility(View.GONE);
+				/*if( selUnit instanceof Building || areBuildings( selecteds ) ){
+					rusher.setHurryButtonAndSetup(finish);
+					if( selUnit != null )
+						rusher.showFinishNowButtonIfNeeded( selUnit );
+					else
+						rusher.showFinishNowButtonIfNeeded( selecteds );
+				}
+				else
+					finish.setTranslationY(RushBuilding.FINISH_NOW_TRANSLATION_Y_OFFSCREEN);*/
+
+
+                //Un-select Button
+                final ImageButton closeSelDisplay = (ImageButton) selectedUIView.findViewById(R.id.imageButtonCloseSelDisplay2);
+                closeSelDisplay.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ui.selecter.clearSelection();
+                    }
+                });
+
+
+                //A button used to drag and select multiple soldiers at once
+                //final ImageButton select = (ImageButton) v.findViewById(R.id.imageButtonSelectSoldiers);
+                //select.setVisibility(View.GONE);
+//				if( uiView != null )
+//					uiView.hideTroopSelectorButton();
+
+
+
+                //Selected's title
+                selTitle = (TextView) selectedUIView.findViewById(R.id.textViewSelectedsTitle);
+                selTitle2 = (TextView) selectedUIView.findViewById(R.id.textViewSelectedsTitle2);
+                selTitle3 = (TextView) selectedUIView.findViewById(R.id.textViewSelectedsTitle3);
+
+                if( selecteds != null || !showTitle ) {
+
+                    selTitle.setVisibility(View.INVISIBLE);
+                    selTitle2.setVisibility(View.INVISIBLE);
+                    selTitle3.setVisibility(View.INVISIBLE);
+
+                    //setText("", selTitle, selTitle2, selTitle3);
+                }else{
+                    UIUtil.applyCooperBlack(selTitle,selTitle2,selTitle3);
+                    UIUtil.setUpForBacking(2, selTitle,selTitle2,selTitle3);
+                    setText(selUnit.getName(),selTitle,selTitle2,selTitle3);
+
+                    selTitle.setVisibility(View.VISIBLE);
+                    selTitle2.setVisibility(View.VISIBLE);
+                    selTitle3.setVisibility(View.VISIBLE);
+
+
+                    Paint tPaint = selTitle.getPaint();
+                    selTitleOffs.set( -tPaint.measureText(selUnit.getName())/2 , -2*tPaint.getFontSpacing() );
+
+
+                    ValueAnimator animation = ValueAnimator.ofFloat(0f, 1f);
+                    animation.addUpdateListener(new AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+                            selTitle.setAlpha((Float) animation.getAnimatedValue());
+                            selTitle2.setAlpha((Float) animation.getAnimatedValue());
+                            selTitle3.setAlpha((Float) animation.getAnimatedValue());
+                        }
+                    });
+                    animation.setDuration(200);
+                    animation.start();
+
+
+                    selTitle.bringToFront();
+                }
+
+
+
+
+                //Selected's hpDisplay, currently not used
+                selectedsHealthView = (TextView) selectedUIView.findViewById(R.id.textViewHpDisplay );
+                UIUtil.applyKcStyle(selectedsHealthView);
+                selectedsHealthView.setVisibility(View.INVISIBLE);
+
+
+
+
+
+                final ViewTreeObserver observer= selectedUIView.getViewTreeObserver();
+                observer.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        infoButtonArea.set(info.getLeft() , info.getTop() , info.getRight() , info.getBottom() );
+                        unselectButtonArea.set(closeSelDisplay.getLeft() , closeSelDisplay.getTop() , closeSelDisplay.getRight() , closeSelDisplay.getBottom() );
+
+                        optionScrollerArea.set(selOptionsScroller.getLeft() , selOptionsScroller.getTop() , selOptionsScroller.getRight() , selOptionsScroller.getBottom() );
+
+                        //buildArea   .set(    build.getLeft() ,     build.getTop() ,     build.getRight() ,     build.getBottom() );
+                        //cancelArea  .set(   cancel.getLeft() ,    cancel.getTop() ,    cancel.getRight() ,    cancel.getBottom() );
+
+                        {
+                            final float origY = infoButtonArea.top;
+                            ValueAnimator animation = ValueAnimator.ofFloat( 75*Rpg.getDp() , 0f );
+                            animation.addUpdateListener(new AnimatorUpdateListener() {
+                                @Override
+                                public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+                                    info.setY(origY + (Float) animation.getAnimatedValue());
+                                }
+                            });
+                            animation.setDuration(300);
+                            animation.start();
+
+
+                            ValueAnimator alphaAnimation = ValueAnimator.ofFloat( 0f , 1f );
+                            alphaAnimation.addUpdateListener(new AnimatorUpdateListener() {
+                                @Override
+                                public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+                                    info.setAlpha((Float) animation.getAnimatedValue());
+                                }
+                            });
+                            alphaAnimation.setDuration(300);
+                            alphaAnimation.start();
+                        }
+
+                        {
+                            final float origY = unselectButtonArea.top;
+                            ValueAnimator animation = ValueAnimator.ofFloat( 75*Rpg.getDp() , 0f );
+                            animation.addUpdateListener(new AnimatorUpdateListener() {
+                                @Override
+                                public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+                                    closeSelDisplay.setY(origY + (Float) animation.getAnimatedValue());
+                                }
+                            });
+                            animation.setDuration(300);
+                            animation.start();
+
+                            ValueAnimator alphaAnimation = ValueAnimator.ofFloat( 0f , 1f );
+                            alphaAnimation.addUpdateListener(new AnimatorUpdateListener() {
+                                @Override
+                                public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+                                    closeSelDisplay.setAlpha((Float) animation.getAnimatedValue());
+                                }
+                            });
+                            alphaAnimation.setDuration(300);
+                            alphaAnimation.start();
+                        }
+                        if( observer.isAlive() )
+                            observer.removeOnGlobalLayoutListener(this);
+                    }
+                });
+            }
+        });
+    }
 
 
 /* FIXME Not used in tower defence
@@ -497,229 +712,7 @@ public class SelectedUI
 */
 
 
-	private void openSelectedUIView(@Nullable final GameElement selUnit , @Nullable final ArrayList<? extends GameElement> selecteds ) {
 
-		if( selUnit == null && (selecteds == null || selecteds.isEmpty() )) return;
-
-		//TODO: Should probably have a better way of getting the activity
-		final GameActivity a = (GameActivity) Rpg.getGame().getActivity();
-
-		a.runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-
-				Log.d(TAG, "openSelectedUIView.run() selUnit=" + selUnit + " selecteds=" + selecteds);
-
-				View v = selectedUIView;
-				//Remove old selectedUIView if it is present
-				if( v != null ){
-					ViewGroup vg = (ViewGroup) v.getParent();
-					if( vg != null )
-						vg.removeView(v);
-				}
-
-				//Inflate a new one
-				selectedUIView = a.getLayoutInflater().inflate(R.layout.selected_ui, null);
-
-				a.addContentView(selectedUIView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
-				UIView uiView = ui.uiView;
-				if( uiView != null )
-					uiView.bringUIViewToFront();
-
-				final ScrollView selOptionsScroller = (ScrollView) selectedUIView.findViewById( R.id.scrollViewSelOptions );
-
-
-                ThumbStick leftThumbStick = new ThumbStick(Rpg.getGame(), new ThumbStick.ThumbStickListener() {
-                    @Override
-                    public void thumbStickPositionChanged(vector position) {
-                        //Log.d( TAG , "left thumbStickPositionChanged: " + position);
-                        ui.selectedThings.getSelectedUnit().moveInDirection(position);
-                    }
-                    @Override
-                    public void thumbLeftThumbStick() {
-                        Log.d(TAG, "left thumbLeftThumbStick");
-                        ui.selectedThings.getSelectedUnit().stopMovingInDirection();
-                    }
-                });
-
-                LayoutParams lp = new LayoutParams((int) (Rpg.getDp()*150), (int) (Rpg.getDp()*150));
-                lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-                lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-//				final ImageButton build = (ImageButton) a.findViewById(R.id.build_button);
-//				build.setVisibility(View.INVISIBLE);
-//				build.setOnClickListener(new OnClickListener() {
-//					@Override
-//					public void onClick(View v) {
-//					if( true ){
-//						hideCancelButton();
-//					}
-//					}
-//				});
-
-
-
-				//More info button
-				final ImageButton info = (ImageButton) selectedUIView.findViewById(R.id.buttonSelectedsInfo);
-				info.setOnClickListener(openInfoView);
-				if( selecteds != null || !(selUnit instanceof LivingThing) )
-					info.setVisibility(View.GONE);
-
-
-
-				//Finish now button
-				// This version of Tower Defence builds towers instantly.
-				final ImageButton finish = (ImageButton) selectedUIView.findViewById(R.id.buttonFinishNow);
-				finish.setVisibility(View.GONE);
-				/*if( selUnit instanceof Building || areBuildings( selecteds ) ){
-					rusher.setHurryButtonAndSetup(finish);
-					if( selUnit != null )
-						rusher.showFinishNowButtonIfNeeded( selUnit );
-					else
-						rusher.showFinishNowButtonIfNeeded( selecteds );
-				}
-				else
-					finish.setTranslationY(RushBuilding.FINISH_NOW_TRANSLATION_Y_OFFSCREEN);*/
-
-
-				//Un-select Button
-				final ImageButton closeSelDisplay = (ImageButton) selectedUIView.findViewById(R.id.imageButtonCloseSelDisplay2);
-				closeSelDisplay.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						ui.selecter.clearSelection();
-					}
-				});
-
-
-				//A button used to drag and select multiple soldiers at once
-				//final ImageButton select = (ImageButton) v.findViewById(R.id.imageButtonSelectSoldiers);
-				//select.setVisibility(View.GONE);
-//				if( uiView != null )
-//					uiView.hideTroopSelectorButton();
-
-
-
-				//Selected's title
-				selTitle = (TextView) selectedUIView.findViewById(R.id.textViewSelectedsTitle);
-				selTitle2 = (TextView) selectedUIView.findViewById(R.id.textViewSelectedsTitle2);
-				selTitle3 = (TextView) selectedUIView.findViewById(R.id.textViewSelectedsTitle3);
-
-                if( selecteds != null || !showTitle ) {
-
-                    selTitle.setVisibility(View.INVISIBLE);
-                    selTitle2.setVisibility(View.INVISIBLE);
-                    selTitle3.setVisibility(View.INVISIBLE);
-
-                    //setText("", selTitle, selTitle2, selTitle3);
-                }else{
-					UIUtil.applyCooperBlack(selTitle,selTitle2,selTitle3);
-					UIUtil.setUpForBacking(2, selTitle,selTitle2,selTitle3);
-					setText(selUnit.getName(),selTitle,selTitle2,selTitle3);
-
-					selTitle.setVisibility(View.VISIBLE);
-					selTitle2.setVisibility(View.VISIBLE);
-					selTitle3.setVisibility(View.VISIBLE);
-
-
-					Paint tPaint = selTitle.getPaint();
-					selTitleOffs.set( -tPaint.measureText(selUnit.getName())/2 , -2*tPaint.getFontSpacing() );
-
-
-					ValueAnimator animation = ValueAnimator.ofFloat(0f, 1f);
-					animation.addUpdateListener(new AnimatorUpdateListener() {
-						@Override
-						public void onAnimationUpdate(@NonNull ValueAnimator animation) {
-							selTitle.setAlpha((Float) animation.getAnimatedValue());
-							selTitle2.setAlpha((Float) animation.getAnimatedValue());
-							selTitle3.setAlpha((Float) animation.getAnimatedValue());
-						}
-					});
-					animation.setDuration(200);
-					animation.start();
-
-
-					selTitle.bringToFront();
-				}
-
-
-
-
-				//Selected's hpDisplay, currently not used
-				selectedsHealthView = (TextView) selectedUIView.findViewById(R.id.textViewHpDisplay );
-				UIUtil.applyKcStyle(selectedsHealthView);
-				selectedsHealthView.setVisibility(View.INVISIBLE);
-
-
-
-
-
-				final ViewTreeObserver observer= selectedUIView.getViewTreeObserver();
-				observer.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-					@Override
-					public void onGlobalLayout() {
-						infoButtonArea.set(info.getLeft() , info.getTop() , info.getRight() , info.getBottom() );
-						unselectButtonArea.set(closeSelDisplay.getLeft() , closeSelDisplay.getTop() , closeSelDisplay.getRight() , closeSelDisplay.getBottom() );
-
-						optionScrollerArea.set(selOptionsScroller.getLeft() , selOptionsScroller.getTop() , selOptionsScroller.getRight() , selOptionsScroller.getBottom() );
-
-						//buildArea   .set(    build.getLeft() ,     build.getTop() ,     build.getRight() ,     build.getBottom() );
-						//cancelArea  .set(   cancel.getLeft() ,    cancel.getTop() ,    cancel.getRight() ,    cancel.getBottom() );
-
-
-
-						{
-							final float origY = infoButtonArea.top;
-							ValueAnimator animation = ValueAnimator.ofFloat( 75*Rpg.getDp() , 0f );
-							animation.addUpdateListener(new AnimatorUpdateListener() {
-								@Override
-								public void onAnimationUpdate(@NonNull ValueAnimator animation) {
-									info.setY(origY + (Float) animation.getAnimatedValue());
-								}
-							});
-							animation.setDuration(300);
-							animation.start();
-
-
-							ValueAnimator alphaAnimation = ValueAnimator.ofFloat( 0f , 1f );
-							alphaAnimation.addUpdateListener(new AnimatorUpdateListener() {
-								@Override
-								public void onAnimationUpdate(@NonNull ValueAnimator animation) {
-									info.setAlpha((Float) animation.getAnimatedValue());
-								}
-							});
-							alphaAnimation.setDuration(300);
-							alphaAnimation.start();
-						}
-
-						{
-							final float origY = unselectButtonArea.top;
-							ValueAnimator animation = ValueAnimator.ofFloat( 75*Rpg.getDp() , 0f );
-							animation.addUpdateListener(new AnimatorUpdateListener() {
-								@Override
-								public void onAnimationUpdate(@NonNull ValueAnimator animation) {
-									closeSelDisplay.setY(origY + (Float) animation.getAnimatedValue());
-								}
-							});
-							animation.setDuration(300);
-							animation.start();
-
-							ValueAnimator alphaAnimation = ValueAnimator.ofFloat( 0f , 1f );
-							alphaAnimation.addUpdateListener(new AnimatorUpdateListener() {
-								@Override
-								public void onAnimationUpdate(@NonNull ValueAnimator animation) {
-									closeSelDisplay.setAlpha((Float) animation.getAnimatedValue());
-								}
-							});
-							alphaAnimation.setDuration(300);
-							alphaAnimation.start();
-						}
-                        if( observer.isAlive() )
-						    observer.removeOnGlobalLayoutListener(this);
-					}
-				});
-			}
-		});
-	}
 
 
 

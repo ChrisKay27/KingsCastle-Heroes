@@ -78,9 +78,10 @@ public class UI implements CoordConverter{
 	private boolean troopSelectorEnabled = true;
 
 	@NonNull
-    private final RectF onScreenArea;
+    private final RectF onScreenArea = new RectF();
+
 	@NonNull
-    private final RectF stillDrawArea;
+    private final RectF stillDrawArea = new RectF();
 
 	@NonNull
     public final SelectedUI selUI;
@@ -118,9 +119,10 @@ public class UI implements CoordConverter{
 	private final vector temp = new vector();
 
 	private final List<TouchEventAnalyzer> teas = new ArrayList<>();
+    private final List<Paintable> paintables = new ArrayList<>();
 
 
-	public UI( @NotNull Game tdg , @NotNull Level level_) {
+    public UI( @NotNull Game tdg , @NotNull Level level_) {
 		Log.e(TAG, "UI.constructor()");
 		this.tdg = tdg;
 		level = level_;
@@ -134,14 +136,14 @@ public class UI implements CoordConverter{
         height = tdg.getGraphics().getHeight();
         heightDiv2 = tdg.getGraphics().getHeightDiv2();
 
-		onScreenArea = new RectF();
-		stillDrawArea = new RectF();
+        onScreenArea.right = width;
+        onScreenArea.bottom = height;
 
 		MM mm = level.getMM();
 
 		//Order of these is important, you must create the SelectedUI b4 passing it to BuildingOptions
 		selUI      = getNewSelectedUI();//new SelectedUI( this );
-        selUI.setDisabled(true);
+        //selUI.setDisabled(true);
 
 		bo         = getNewBuildingOptions(selUI, level_);//new BuildingOptions( tdlp , selUI , this , level_ );
 
@@ -162,34 +164,12 @@ public class UI implements CoordConverter{
         unitCommands = new UnitCommands( this, getCc(), selecter , unitOptions  );
         unitController = new UnitController(this);
 
-//        leftThumbStick = new ThumbStick(new Rect(170, height - 450, 570, height-50), new ThumbStickListener() {
-//            @Override
-//            public void thumbStickPositionChanged(vector position) {
-//                //Log.d( TAG , "left thumbStickPositionChanged: " + position);
-//                selectedThings.getSelectedUnit().moveInDirection(position);
-//            }
-//            @Override
-//            public void thumbLeftThumbStick() {
-//                //Log.d(TAG, "left thumbLeftThumbStick");
-//                selectedThings.getSelectedUnit().stopMovingInDirection();
-//            }
-//        });
-
-//        rightThumbStick = new ThumbStick(new Rect(width-570, height - 450, width-170, height-50), new ThumbStickListener() {
-//            @Override
-//            public void thumbStickPositionChanged(vector direction) {
-//                Log.d(TAG, "right thumbStickPositionChanged: " + direction);
-//                selectedThings.getSelectedUnit().attackInDirection(direction);
-//            }
-//            @Override
-//            public void thumbLeftThumbStick() {
-//                Log.d(TAG, "right thumbLeftThumbStick");
-//                selectedThings.getSelectedUnit().stopAttackingInDirection();
-//            }
-//        });
 
 
-        teas.addAll(Arrays.asList(unitController, tapChecker,  effectPlacer)); //unitCommands bb,, uOrders
+        teas.addAll(Arrays.asList( unitController, tapChecker,  effectPlacer)); //unitCommands bb,, uOrders
+
+        paintables.add(unitController);
+
 
 
         selecter.addSl(new Selecter.OnSelectedListener() {
@@ -208,7 +188,6 @@ public class UI implements CoordConverter{
         });
 
         showUIView(tdg.getActivity(), level_, ui);
-		//UIView.showUIView( tdg , level , this );
 
 		definePaints();
 	}
@@ -339,7 +318,17 @@ public class UI implements CoordConverter{
 
 		selUI.runOnUIThread();
 
+        for( Paintable p : paintables )
+            p.paint(g);
+
 		tdlp.paint(g);
+
+//        float left = (tdg.getGraphics().getWidth()-getScreenWidth())/2;
+//        float top = (tdg.getGraphics().getHeight()-getScreenHeight())/2;
+//
+//        RectF r = new RectF(left+5, top+5, left+getScreenWidth()-5, top+getScreenHeight()-5 );
+//        g.drawRect(r,new vector(),Color.YELLOW);
+
         //leftThumbStick.paint(g);
         //rightThumbStick.paint(g);
 
@@ -857,12 +846,17 @@ public class UI implements CoordConverter{
 
 
 	public int getScreenWidth() {
-		return (int) (onScreenArea.width()/Zoomer.getxScale());
+		return (int) (tdg.getGraphics().getWidth()/Zoomer.getxScale());
 	}
 	public int getScreenHeight() {
-		return (int) (onScreenArea.height()/Zoomer.getyScale());
+		return (int) (tdg.getGraphics().getHeight()/Zoomer.getyScale());
 	}
-
+    public int getScreenWidthIgnoreZoom() {
+        return tdg.getGraphics().getWidth();
+    }
+    public int getScreenHeightIgnoreZoom() {
+        return tdg.getGraphics().getHeight();
+    }
 
 
 

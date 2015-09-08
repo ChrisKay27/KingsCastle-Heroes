@@ -1,7 +1,6 @@
 package com.kingscastle.framework.implementation;
 
 import android.app.Activity;
-import android.os.Build.VERSION;
 import android.support.annotation.NonNull;
 import android.view.View;
 
@@ -14,10 +13,7 @@ public class AndroidInput implements Input {
     private final TouchHandler touchHandler;
 
 	public AndroidInput(Activity context, View view, float scaleX, float scaleY) {
-		if(Integer.parseInt(VERSION.SDK) < 5)
-			touchHandler = new SingleTouchHandler(context, view, scaleX, scaleY);
-		else
-			touchHandler = new MultiTouchHandler(context, view, scaleX, scaleY);
+		touchHandler = new MultiTouchHandler(context, view, scaleX, scaleY);
 	}
 
 

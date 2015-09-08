@@ -259,28 +259,24 @@ public class ScrollingGidBasedBackground
 
 
 	@NonNull
-    public vector getCoordinatesMapToScreen(float x, float y, @NonNull vector intoThisVector)
-	{
+    public vector getCoordinatesMapToScreen(float x, float y, @NonNull vector intoThisVector)	{
 		intoThisVector.set((x - centeredOn.x + fullScreenWidthDiv2), (y - centeredOn.y + fullScreenHeightDiv2));
 		return intoThisVector;
 	}
 
 	@NonNull
-    public vector getCoordinatesMapToScreen(float x, float y )
-	{
+    public vector getCoordinatesMapToScreen(float x, float y )	{
 		return this.getCoordinatesMapToScreen( x , y , new vector() );
 	}
 
 	@NonNull
-    public vector getCoordinatesScreenToMap(float x, float y, @NonNull vector intoThisVector )
-	{
+    public vector getCoordinatesScreenToMap(float x, float y, @NonNull vector intoThisVector )	{
 		intoThisVector.set(x - (fullScreenWidthDiv2) + centeredOn.x, (y - fullScreenHeightDiv2) + centeredOn.y);
 		return intoThisVector;
 	}
 
 	@NonNull
-    public vector getCoordinatesScreenToMap(float x, float y)
-	{
+    public vector getCoordinatesScreenToMap(float x, float y){
 		return this.getCoordinatesScreenToMap( x , y , new vector() );
 	}
 
