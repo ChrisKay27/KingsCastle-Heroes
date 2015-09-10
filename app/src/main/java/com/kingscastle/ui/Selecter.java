@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.kingscastle.framework.Input;
 import com.kingscastle.gameElements.GameElement;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameUtils.vector;
 import com.kingscastle.teams.Teams;
 
@@ -71,11 +71,11 @@ public class Selecter implements TouchEventAnalyzer
 
 	public boolean setSelected( @NotNull List<? extends GameElement> ges )
 	{
-		List<Unit> units = new ArrayList<>();
+		List<Humanoid> units = new ArrayList<>();
 
 		for( GameElement ge : ges )
-			if( ge instanceof Unit )
-                units.add( (Unit) ge );
+			if( ge instanceof Humanoid )
+                units.add( (Humanoid) ge );
 
 		////Log.d( TAG , "lts.size() = " + lts.size() );
 		if( units.size() == 1 )
@@ -86,7 +86,7 @@ public class Selecter implements TouchEventAnalyzer
 		{
 			clearSelection();
 
-			ui.setSelectedUnits(units);
+			ui.setSelectedHumanoids(units);
 
 
 			//UI ui = UI.getInstance();
@@ -153,7 +153,7 @@ public class Selecter implements TouchEventAnalyzer
 	}
 
 
-    public static interface OnSelectedListener{
+    public interface OnSelectedListener{
 		void onSelected(GameElement ge);
 	}
 

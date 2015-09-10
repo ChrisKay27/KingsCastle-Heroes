@@ -59,7 +59,7 @@ public class BrownHorned extends MeleeSoldier {
 		STATIC_ATTRIBUTES.setHpRegenAmount(1);
 		STATIC_ATTRIBUTES.setRegenRate(1000);
 		STATIC_ATTRIBUTES.setArmor( 10 );  STATIC_ATTRIBUTES.setdArmorAge( 0 ); STATIC_ATTRIBUTES.setdArmorLvl( 2 );
-		STATIC_ATTRIBUTES.setSpeed(2.3f * dp);
+		STATIC_ATTRIBUTES.setSpeed(1f * dp);
 	}
 
 	{

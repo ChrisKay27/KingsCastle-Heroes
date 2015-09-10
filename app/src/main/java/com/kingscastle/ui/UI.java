@@ -20,7 +20,7 @@ import com.kingscastle.framework.Rpg;
 import com.kingscastle.framework.Settings;
 import com.kingscastle.gameElements.CD;
 import com.kingscastle.gameElements.GameElement;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.buildings.Barracks;
 import com.kingscastle.gameElements.livingThings.buildings.Building;
 import com.kingscastle.gameElements.managment.MM;
@@ -102,12 +102,12 @@ public class UI implements CoordConverter{
 	@NonNull
     private final EffectPlacer effectPlacer;
 	@NonNull
-    final SelectedUnits selectedThings;
+    final SelectedSoldiers selectedThings;
 
-    private final UnitOrders uOrders;
-    private final UnitCommands unitCommands;
-    final UnitButtonsScroller unitButtons;
-    private final UnitController unitController;
+    private final SoldierOrders uOrders;
+    private final SoldierCommander unitCommands;
+    final SoldierButtonsScroller unitButtons;
+    private final SoldierController unitController;
     private final AbilityCaster ac;
 
    // private final ThumbStick leftThumbStick;//, rightThumbStick;
@@ -156,14 +156,14 @@ public class UI implements CoordConverter{
 		tapChecker      = new TapChecker(ui, ui.getCc());
 		effectPlacer    = new EffectPlacer(mm.getEm(),ui.getCc());
 
-		selectedThings  = new SelectedUnits();
+		selectedThings  = new SelectedSoldiers();
 
         ac = new AbilityCaster(mm);
 
-        uOrders = new UnitOrders(getCc(), this );
-        unitButtons = new UnitButtonsScroller(selUI, this, ac);
-        unitCommands = new UnitCommands( this, getCc(), selecter , unitButtons);
-        unitController = new UnitController(this, ac);
+        uOrders = new SoldierOrders(getCc(), this );
+        unitButtons = new SoldierButtonsScroller(selUI, this, ac);
+        unitCommands = new SoldierCommander( this, getCc(), selecter , unitButtons);
+        unitController = new SoldierController(this, ac);
 
 
 
@@ -181,8 +181,8 @@ public class UI implements CoordConverter{
 
                 if (ge instanceof Building)
                     setSelectedBuilding((Building) ge);
-                else if (ge instanceof Unit)
-                    setSelected((Unit) ge);
+                else if (ge instanceof Humanoid)
+                    setSelected((Humanoid) ge);
                 else
                     setSelectedThing(ge);
             }
@@ -333,9 +333,9 @@ public class UI implements CoordConverter{
         //leftThumbStick.paint(g);
         //rightThumbStick.paint(g);
 
-//        Unit selectedUnit = selectedThings.getSelectedUnit();
-//        vector dir = selectedUnit.getAttackInDirectionVector(atkInDirVector);
-//        vector loc = cc.getCoordsMapToScreen(selectedUnit.loc, mapRelAtkDirVector);
+//        Humanoid selectedHumanoid = selectedThings.getSelectedHumanoid();
+//        vector dir = selectedHumanoid.getAttackInDirectionVector(atkInDirVector);
+//        vector loc = cc.getCoordsMapToScreen(selectedHumanoid.loc, mapRelAtkDirVector);
 //        g.drawLine(loc.x, loc.y, loc.x+(dir.x*30), loc.y+(dir.y*30), Color.RED, 3 );
 
 
@@ -728,7 +728,7 @@ public class UI implements CoordConverter{
         selUI.setSelected(b);
     }
 
-	public void setSelected(Unit lt) {
+	public void setSelected(Humanoid lt) {
 		selectedThings.setSelected(lt);
 		selUI.setSelected( lt );
 	}
@@ -738,19 +738,19 @@ public class UI implements CoordConverter{
 		selUI.setSelected( ge );
 	}
 
-	public void setSelectedUnits(List<Unit> units) {
-		selectedThings.setSelectedUnits(units);
-		//selUI.setSelectedThings( ges );
+	public void setSelectedHumanoids(List<Humanoid> units) {
+		selectedThings.setSelectedHumanoids(units);
+        //selUI.setSelectedThings( ges );
 	}
 
 
 
 	/* Not used in Tower Defence
-	public void setSelectedUnit(LivingThing u) {
-		selectedThings.setSelectedUnit(u);
+	public void setSelectedHumanoid(LivingThing u) {
+		selectedThings.setSelectedHumanoid(u);
 	}
 
-	public void setSelectedUnits(ArrayList<LivingThing> soldiers) {
+	public void setSelectedHumanoids(ArrayList<LivingThing> soldiers) {
 		selectedThings.setSelected(soldiers);
 	}*/
 
@@ -776,11 +776,11 @@ public class UI implements CoordConverter{
 		selectedThings.clearSelectedBuilding();
 	}
 
-	public void clearSelectedUnit() {
-		selectedThings.clearSelectedUnit();
-	}
+	public void clearSelectedHumanoid() {
+		selectedThings.clearSelectedHumanoid();
+    }
 
-	public void clearSelectedUnits() {
+    public void clearSelectedHumanoids() {
 		selectedThings.clearSelectedThings();
 	}
 
@@ -791,16 +791,16 @@ public class UI implements CoordConverter{
 		//	selecter.clearSelection();
 	}
 
-	public Unit getSelectedUnit() {
-		return selectedThings.getSelectedUnit();
-	}
+	public Humanoid getSelectedHumanoid() {
+		return selectedThings.getSelectedHumanoid();
+    }
 
-	public void moveSelected(vector inDirection) {
+    public void moveSelected(vector inDirection) {
 		selectedThings.moveSelected(inDirection);
 	}
 
-	//	public boolean moveSelectedUnits(Vector dest) {
-	//		return selectedThings.moveSelectedUnits(dest);
+	//	public boolean moveSelectedHumanoids(Vector dest) {
+	//		return selectedThings.moveSelectedHumanoids(dest);
 	//	}
 
 	public boolean somethingIsSelected() {
@@ -819,14 +819,12 @@ public class UI implements CoordConverter{
 		return selectedThings.getSelectedThing();
 	}
 
-	public List<Unit> getSelectedUnits() {
-		return selectedThings.getSelectedUnits();
-	}
+	public List<Humanoid> getSelectedHumanoids() {
+		return selectedThings.getSelectedHumanoids();
+    }
 
 
-
-
-	@NonNull
+    @NonNull
     public RectF getOnScreenArea() {
 		return onScreenArea;
 	}
@@ -887,7 +885,7 @@ public class UI implements CoordConverter{
 		return effectPlacer;
 	}
 
-    public UnitOrders getUnitOrders() {
+    public SoldierOrders getSoldierOrders() {
         return uOrders;
     }
 

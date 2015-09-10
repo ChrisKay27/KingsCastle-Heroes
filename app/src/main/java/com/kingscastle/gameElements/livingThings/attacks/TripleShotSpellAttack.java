@@ -29,25 +29,25 @@ public class TripleShotSpellAttack extends SpellAttack {
         this.atkToTriple = atkToTriple;
     }
 
-    private final vector tempUnitVector = new vector();
+    private final vector tempHumanoidVector = new vector();
     @Override
-    public void attackFromUnitVector(@NonNull vector unitVector) {
+    public void attackFromHumanoidVector(@NonNull vector unitVector) {
         SpellCreationParams params = getSpellCreationParams(atkToTriple);
-        tempUnitVector.set(unitVector);
-        params.setUnitVectorInDirection(tempUnitVector);
+        tempHumanoidVector.set(unitVector);
+        params.setHumanoidVectorInDirection(tempHumanoidVector);
         Spell spell = SpellInstanceCreator.getSpellInstance(params);
 
         mm.add((GameElement) spell);
 
         if( owner instanceof Humanoid)
-            ((Humanoid)owner).setLookDirectionFromUnit( params.getUnitVectorInDirection() );
+            ((Humanoid)owner).setLookDirectionFromHumanoid( params.getHumanoidVectorInDirection() );
 
 
-        tempUnitVector.rotate(-10);
+        tempHumanoidVector.rotate(-10);
         mm.add((GameElement) SpellInstanceCreator.getSpellInstance(params));
 
 
-        tempUnitVector.rotate(20);
+        tempHumanoidVector.rotate(20);
         mm.add((GameElement) SpellInstanceCreator.getSpellInstance(params));
     }
 

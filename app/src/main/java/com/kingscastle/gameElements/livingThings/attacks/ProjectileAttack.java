@@ -20,7 +20,7 @@ public class ProjectileAttack extends Attack {
 	}
 
 
-	public void attackFromUnitVector(@NotNull vector unitVector) {
+	public void attackFromHumanoidVector(@NotNull vector unitVector) {
 		mm.add(proj.newInstance(owner, unitVector));
 	}
 

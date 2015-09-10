@@ -16,7 +16,7 @@ import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.livingThings.Attributes;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.army.HumanArmoredSoldier;
 import com.kingscastle.gameElements.livingThings.army.HumanSoldier;
 import com.kingscastle.gameElements.livingThings.army.Knight;
@@ -80,7 +80,7 @@ public class Barracks extends Building
 	private long lastCheckedSoldiers;
 
 	@NonNull
-    private List<Class<? extends Unit>> soldersForLvls = new ArrayList<>();
+    private List<Class<? extends Humanoid>> soldersForLvls = new ArrayList<>();
 	{
 		soldersForLvls.add(Warrior.class);
 		soldersForLvls.add(HumanSoldier.class);
@@ -139,9 +139,9 @@ public class Barracks extends Building
 				//we add to soldiers in this loop so we cant keep calling soldiers.size() or we wont create enough
 				int numSoldiers = soldiers.size();
 				for( int i = 0 ; i < 3-numSoldiers; i++){
-					Class<? extends Unit> c = soldersForLvls.get(attributes.getLevel()-1);
+					Class<? extends Humanoid> c = soldersForLvls.get(attributes.getLevel()-1);
 					Object[] args = {getMM().getGridUtil().getWalkableLocNextToThis(v,getArea()),team};
-					Unit u=null;
+					Humanoid u=null;
 					try {
 						u = c.getConstructor(vector.class,Teams.class).newInstance(args);
 					} catch (InstantiationException e) {

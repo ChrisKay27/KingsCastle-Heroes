@@ -97,8 +97,8 @@ public class MeleeAttack extends Attack
 
 
 	@Override
-	public void attackFromUnitVector( vector unitVector ) {
-		weapon.attackFromUnitVector(unitVector);
+	public void attackFromHumanoidVector( vector unitVector ) {
+		weapon.attackFromHumanoidVector(unitVector);
 	}
 
 
@@ -207,7 +207,7 @@ public class MeleeAttack extends Attack
 
 	private void doAttack()
 	{
-		checkHit( weapon.getAttackingInDirectionUnitVector() );
+		checkHit( weapon.getAttackingInDirectionHumanoidVector() );
 	}
 
 

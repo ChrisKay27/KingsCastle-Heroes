@@ -6,7 +6,7 @@ import com.kingscastle.gameElements.livingThings.SoldierTypes.Healer;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.MageSoldier;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.MeleeSoldier;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.RangedSoldier;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.buildings.Building;
 import com.kingscastle.gameUtils.vector;
 
@@ -85,13 +85,13 @@ public class GameElementUtil {
 	}
 
 
-	public static List<? extends Unit> getUnits( List<? extends GameElement> ges ){
+	public static List<? extends Humanoid> getHumanoids( List<? extends GameElement> ges ){
 
-		List<Unit> lts = new ArrayList<>();
+		List<Humanoid> lts = new ArrayList<>();
 
 		for( GameElement ge : ges )
-			if( ge instanceof Unit ){
-				Unit lt = (Unit) ge;
+			if( ge instanceof Humanoid ){
+				Humanoid lt = (Humanoid) ge;
 				lts.add( lt );
 			}
 

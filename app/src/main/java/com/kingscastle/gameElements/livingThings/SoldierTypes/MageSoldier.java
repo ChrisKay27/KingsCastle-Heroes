@@ -20,7 +20,7 @@ import com.kingscastle.teams.Teams;
 import org.jetbrains.annotations.NotNull;
 
 
-public abstract class MageSoldier extends Unit{
+public abstract class MageSoldier extends Humanoid{
 	protected static final String TAG = "MageSoldier";
 
 	@Nullable
@@ -393,7 +393,7 @@ public abstract class MageSoldier extends Unit{
             getAttackInDirectionVector(atkInDirVector);
 
             if (!atkInDirVector.equals(0, 0)) {
-                boolean attacked = getArms().actFromUnitVector(getAttackInDirectionVector(atkInDirVector));
+                boolean attacked = getArms().actFromHumanoidVector(getAttackInDirectionVector(atkInDirVector));
                 if (attacked && onlyAttackOnceInDirection()) {
                     atkInDirVector.set(0, 0);
                     stopAttackingInDirection();

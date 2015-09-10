@@ -441,7 +441,7 @@ public class MovingTechnique
 	 * @return  The vector unitVector with only one component.
 	 */
 	@NonNull
-    protected vector removeUnitVectorsCompInDirOfNormal( @NonNull vector unitVector , @Nullable vector normal )
+    protected vector removeHumanoidVectorsCompInDirOfNormal( @NonNull vector unitVector , @Nullable vector normal )
 	{
 		if( normal == null )
 		{

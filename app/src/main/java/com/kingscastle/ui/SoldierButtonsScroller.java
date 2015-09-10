@@ -3,7 +3,7 @@ package com.kingscastle.ui;
 import com.kingscastle.Game;
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.livingThings.LivingThing;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.abilities.Ability;
 import com.kingscastle.gameElements.livingThings.abilities.Ability.Abilities;
 import com.kingscastle.gameElements.livingThings.orders.Order;
@@ -19,9 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class UnitButtonsScroller
+public class SoldierButtonsScroller
 {
-	private static final String TAG = "UnitOptions";
+	private static final String TAG = "HumanoidOptions";
 
 	//private final Scroller unitOptionsScroller;
 
@@ -45,7 +45,7 @@ public class UnitButtonsScroller
     private final AbilityCaster ac;
 
 
-    public UnitButtonsScroller(SelectedUI selUI_, UI ui_, AbilityCaster ac_){
+    public SoldierButtonsScroller(SelectedUI selUI_, UI ui_, AbilityCaster ac_){
 		ui = ui_;
 		selUI = selUI_;
         ac = ac_;
@@ -58,11 +58,11 @@ public class UnitButtonsScroller
 
 
 
-	protected Unit lt;
-	protected List<? extends Unit> lts;
+	protected Humanoid lt;
+	protected List<? extends Humanoid> lts;
 
 
-	protected List<SButton> determineIfAndWhatToDisplay( Unit lt )	{
+	protected List<SButton> determineIfAndWhatToDisplay( Humanoid lt )	{
 		Game game = Rpg.getGame();
 		Level level = game.getLevel();
 
@@ -81,16 +81,16 @@ public class UnitButtonsScroller
 
 
 
-		//		if( Settings.yourBaseMode && lt instanceof Unit && !(lt instanceof Worker)){
+		//		if( Settings.yourBaseMode && lt instanceof Humanoid && !(lt instanceof Worker)){
 		//
-		//			buttons.add( AddToArmyButton.getInstance( game , (Unit) lt ,  team.getArmy() , team.getArmyManager() ));
+		//			buttons.add( AddToArmyButton.getInstance( game , (Humanoid) lt ,  team.getArmy() , team.getArmyManager() ));
 		//		}
 
 
 		return buttons;
 	}
 
-	protected List<SButton> determineIfAndWhatToDisplay( List<? extends Unit> lts )
+	protected List<SButton> determineIfAndWhatToDisplay( List<? extends Humanoid> lts )
 	{
 		Game game = Rpg.getGame();
 		Level level = game.getLevel();
@@ -115,14 +115,14 @@ public class UnitButtonsScroller
 
 
 
-	protected List<Unit> getUnits( List<? extends LivingThing> lts2) {
+	protected List<Humanoid> getHumanoids( List<? extends LivingThing> lts2) {
 
 		if( lts2 != null ){
-			ArrayList<Unit> units = new ArrayList<>();
+			ArrayList<Humanoid> units = new ArrayList<>();
 
 			for( LivingThing lt : lts2 )
-				if(lt instanceof Unit )
-					units.add( (Unit) lt );
+				if(lt instanceof Humanoid )
+					units.add( (Humanoid) lt );
 
 			return units;
 		}
@@ -132,7 +132,7 @@ public class UnitButtonsScroller
 
 
 
-	protected List<SButton> getAllOrderButtons( Unit selectedUnit )
+	protected List<SButton> getAllOrderButtons( Humanoid selectedHumanoid )
 	{
 		Game kc = Rpg.getGame();
 
@@ -140,21 +140,21 @@ public class UnitButtonsScroller
 		orders.clear();
 		orderTypes.clear();
 
-		if( selectedUnit != null )
-			if( selectedUnit.getPossibleOrders() != null )
-				orders.addAll( selectedUnit.getPossibleOrders() );
+		if( selectedHumanoid != null )
+			if( selectedHumanoid.getPossibleOrders() != null )
+				orders.addAll( selectedHumanoid.getPossibleOrders() );
 
 
-		ArrayList<Unit> unitsOrdering = null ;
+		ArrayList<Humanoid> unitsOrdering = null ;
 
 
 		for ( Order o : orders ) {
 			if( orderTypes.contains( o.getOrderType() ) )
 				continue;
 
-			OrderButton abButton = OrderButton.getInstance( kc.getActivity() , o , selectedUnit , unitsOrdering , ui.getUnitOrders());
+			OrderButton abButton = OrderButton.getInstance( kc.getActivity() , o , selectedHumanoid , unitsOrdering , ui.getSoldierOrders());
 
-			allOrderButtons.add( abButton );
+            allOrderButtons.add( abButton );
 
 			orderTypes.add( o.getOrderType() );
 		}
@@ -163,7 +163,7 @@ public class UnitButtonsScroller
 	}
 
 
-	protected List<SButton> getAllOrderButtons( List<? extends Unit> selectedUnits )
+	protected List<SButton> getAllOrderButtons( List<? extends Humanoid> selectedHumanoids )
 	{
 		Game kc = Rpg.getGame();
 
@@ -171,15 +171,15 @@ public class UnitButtonsScroller
 		orders.clear();
 		orderTypes.clear();
 
-		if( selectedUnits == null )	return allOrderButtons;
+		if( selectedHumanoids == null )	return allOrderButtons;
 
 
-		for( LivingThing lt : selectedUnits )
+		for( LivingThing lt : selectedHumanoids )
 			if( lt.getPossibleOrders() != null )
 				orders.addAll( lt.getPossibleOrders() );
 
 
-		List<? extends Unit> unitsOrdering = selectedUnits;
+		List<? extends Humanoid> unitsOrdering = selectedHumanoids;
 
 		OrderButton abButton;
 
@@ -188,9 +188,9 @@ public class UnitButtonsScroller
 			if( orderTypes.contains( o.getOrderType() ) )
 				continue;
 
-			abButton = OrderButton.getInstance( kc.getActivity() , o , null , unitsOrdering , ui.getUnitOrders() );
+			abButton = OrderButton.getInstance( kc.getActivity() , o , null , unitsOrdering , ui.getSoldierOrders() );
 
-			allOrderButtons.add( abButton );
+            allOrderButtons.add( abButton );
 
 			orderTypes.add( o.getOrderType() );
 		}
@@ -203,7 +203,7 @@ public class UnitButtonsScroller
 
 
 
-	protected List<SButton> getAllAbilityButtons( Unit selectedUnit  )
+	protected List<SButton> getAllAbilityButtons( Humanoid selectedHumanoid  )
 	{
         Game kc = Rpg.getGame();
 		allAbilityButtons.clear();
@@ -211,8 +211,8 @@ public class UnitButtonsScroller
 		abilities.clear();
 		abilitiesTypes.clear();
 
-		if( selectedUnit != null )
-			abilities.addAll( selectedUnit.getAbilities() );
+		if( selectedHumanoid != null )
+			abilities.addAll( selectedHumanoid.getAbilities() );
 
 
 		for ( Ability ab : abilities )
@@ -228,7 +228,7 @@ public class UnitButtonsScroller
 		return allAbilityButtons;
 	}
 
-	protected List<SButton> getAllAbilityButtons( List<? extends Unit> selectedUnits )
+	protected List<SButton> getAllAbilityButtons( List<? extends Humanoid> selectedHumanoids )
 	{
         Game kc = Rpg.getGame();
 		allAbilityButtons.clear();
@@ -237,8 +237,8 @@ public class UnitButtonsScroller
 		abilitiesTypes.clear();
 
 
-		if( selectedUnits != null )
-			for(LivingThing lt : selectedUnits )
+		if( selectedHumanoids != null )
+			for(LivingThing lt : selectedHumanoids )
 				abilities.addAll( lt.getAbilities() );
 
 
@@ -260,13 +260,13 @@ public class UnitButtonsScroller
 
 
 
-	public void showScroller( Unit lt ){
+	public void showScroller( Humanoid lt ){
 		List<? extends SButton> buttons = determineIfAndWhatToDisplay( lt );
 		if( buttons != null )
 			selUI.displayTheseInRightScroller( buttons , TAG );
 	}
 
-	public void showScroller( List<? extends Unit> lts ){
+	public void showScroller( List<? extends Humanoid> lts ){
 		List<? extends SButton> buttons = determineIfAndWhatToDisplay( lts );
 		if( buttons != null )
 			selUI.displayTheseInRightScroller( buttons , TAG );

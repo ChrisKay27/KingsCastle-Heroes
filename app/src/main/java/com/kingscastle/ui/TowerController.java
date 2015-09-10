@@ -37,7 +37,7 @@ public class TowerController implements TouchEventAnalyzer{
         cc.getCoordsScreenToMap(dir, dir);
         if( dir.distanceSquared(sb.loc) < sb.aq.getAttackRangeSquared() ) {
             dir.minus(sb.loc);
-            dir.turnIntoUnitVector();
+            dir.turnIntoHumanoidVector();
             sb.setAttackInDirectionVector(dir);
             return true;
         }

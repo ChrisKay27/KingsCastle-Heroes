@@ -3,7 +3,7 @@ package com.kingscastle.gameElements.livingThings.orders;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Input;
 import com.kingscastle.gameElements.CD;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameUtils.CoordConverter;
 
 import java.io.BufferedWriter;
@@ -16,7 +16,7 @@ public final class CancelAction extends Order
 {
 
 	private static Image iconImage;
-    private final List<Unit> units = new ArrayList<>();
+    private final List<Humanoid> units = new ArrayList<>();
 
     //private static CancelAction cancelAction;
 
@@ -47,7 +47,7 @@ public final class CancelAction extends Order
 
 
 	@Override
-	public List<? extends Unit> getUnitsToBeOrdered()
+	public List<? extends Humanoid> getHumanoidsToBeOrdered()
 	{
 		return units;
 	}
@@ -56,7 +56,7 @@ public final class CancelAction extends Order
 
 
 	@Override
-	public void setUnitsToBeOrdered(List<? extends Unit> units)
+	public void setHumanoidsToBeOrdered(List<? extends Humanoid> units)
 	{
         this.units.clear();
 		this.units.addAll(units);
@@ -65,7 +65,7 @@ public final class CancelAction extends Order
 
 
 	@Override
-	public void setUnitToBeOrdered(Unit u)
+	public void setHumanoidToBeOrdered(Humanoid u)
 	{
 		units.clear();
 		units.add( u);
@@ -77,7 +77,7 @@ public final class CancelAction extends Order
 	public boolean analyseTouchEvent( Input.TouchEvent event , CoordConverter cc, CD cd)
 	{
 		makeEveryoneCancel(units);
-		//UnitOptions.get().resetScroller();
+		//HumanoidOptions.get().resetScroller();
 		return true;
 	}
 
@@ -89,10 +89,10 @@ public final class CancelAction extends Order
 
 
 
-	void makeEveryoneCancel(List<Unit> units)
+	void makeEveryoneCancel(List<Humanoid> units)
 	{
 
-		for( Unit u : units )
+		for( Humanoid u : units )
 		{
 
 		}

@@ -73,11 +73,11 @@ public class BowAnimator extends AttackAnimator
 		super.attack(inDirection);
 	}
 
-	public void attackFromUnitVector(
+	public void attackFromHumanoidVector(
 			vector unitVector, Projectile arrow)
 	{
 		nextArrow=arrow;
-		super.attackFromUnitVector(unitVector);
+		super.attackFromHumanoidVector(unitVector);
 	}
 
 	public void attack(Projectile arrow)
@@ -97,10 +97,10 @@ public class BowAnimator extends AttackAnimator
 	//	private Projectile getNewArrow()
 	//	{
 	//
-	//		if( attackingInDirectionUnitVector != null )
+	//		if( attackingInDirectionHumanoidVector != null )
 	//		{
-	//			Projectile p = nextArrow.newInstance( owner , attackingInDirectionUnitVector );
-	//			attackingInDirectionUnitVector = null ;
+	//			Projectile p = nextArrow.newInstance( owner , attackingInDirectionHumanoidVector );
+	//			attackingInDirectionHumanoidVector = null ;
 	//			return p;
 	//		}
 	//		else

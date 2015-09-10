@@ -14,7 +14,7 @@ public class LevelThread implements Runnable {
 	private static final String TAG = "GameThread";
 
 	@Nullable
-    private Thread renderThread = null;
+    private Thread thread = null;
 
 	private Level level;
 	//private long nextMessageAt;
@@ -37,8 +37,8 @@ public class LevelThread implements Runnable {
 		this.level = level;
 
 		running = true;
-		renderThread = new Thread( this , "GameThread" );
-		renderThread.start();
+		thread = new Thread( this , "GameThread" );
+		thread.start();
 	}
 
 
@@ -79,10 +79,10 @@ public class LevelThread implements Runnable {
 					//Thread.sleep(0);
 				}
 			}
-
-			catch( Exception t )
+			catch( RuntimeException t )
 			{
 				t.printStackTrace();
+                pause();
 			}
 		}
 
@@ -95,17 +95,16 @@ public class LevelThread implements Runnable {
 		{
 			try
 			{
-				if( renderThread != null )
-					renderThread.join();
+				if( thread != null )
+					thread.join();
 
 				break;
-			} catch (InterruptedException e)
-			{
+			} catch (InterruptedException e) {
 				// retry
 			}
 		}
 
-		renderThread = null;
+		thread = null;
 
 	}
 

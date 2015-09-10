@@ -15,7 +15,7 @@ import com.kingscastle.framework.Settings;
 import com.kingscastle.gameElements.Technology;
 import com.kingscastle.effects.animations.Bar;
 import com.kingscastle.effects.animations.Barrable;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.ui.CTextView;
 import com.kingscastle.ui.UI;
 import com.kingscastle.ui.UIUtil;
@@ -596,8 +596,8 @@ public class BuildQueue implements Barrable, Serializable
 			b.write( curr , 0 , curr.length() );
 			b.newLine();
 
-			if( currentlyBuilding instanceof Unit)
-				((Unit)currentlyBuilding).saveYourself( b );
+			if( currentlyBuilding instanceof Humanoid)
+				((Humanoid)currentlyBuilding).saveYourself( b );
 			else if( currentlyBuilding instanceof Technology)
 				((Technology)currentlyBuilding).saveYourself( b );
 
@@ -612,8 +612,8 @@ public class BuildQueue implements Barrable, Serializable
 			b.newLine();
 
 			for( Queueable q : theQueued )
-				if( q instanceof Unit )
-					((Unit) q ).saveYourself( b );
+				if( q instanceof Humanoid )
+					((Humanoid) q ).saveYourself( b );
 
 				else if( q instanceof Technology )
 					((Technology) q ).saveYourself( b );

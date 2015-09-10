@@ -28,8 +28,8 @@ class Wander  {
 //		if (velocity == null)
 //			velocity = truncate(Vector.vectorBetween(position, dest));
 //		System.out.println("velocity is : " +velocity);
-//		Vector unitVector = new Vector(position, dest).getUnitVector();
-//		System.out.println("UnitVector: " +unitVector);
+//		Vector unitVector = new Vector(position, dest).getHumanoidVector();
+//		System.out.println("HumanoidVector: " +unitVector);
 //		velocity = velocity.add(unitVector.times(max_force));
 //		System.out.println("Velocity after adding unitVector times max_force: " +unitVector);
 //		velocity = truncate(velocity);
@@ -92,11 +92,11 @@ class Wander  {
 //	}
 //
 //	public Vector truncate(Vector v) {
-//		return v.getUnitVector().times(max_speed);
+//		return v.getHumanoidVector().times(max_speed);
 //	}
 //
 //	public static Vector truncate(Vector v, float max_force) {
-//		return v.getUnitVector().times(max_force);
+//		return v.getHumanoidVector().times(max_force);
 //	}
 //
 //	public void stop() {

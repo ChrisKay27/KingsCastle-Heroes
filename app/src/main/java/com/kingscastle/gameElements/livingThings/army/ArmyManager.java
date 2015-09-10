@@ -2,6 +2,7 @@ package com.kingscastle.gameElements.livingThings.army;
 
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.kingscastle.framework.GameTime;
@@ -205,7 +206,7 @@ public class ArmyManager {
                     if (troop.update())
                     {
                         deadTroops.add(troop);
-                        mm.getTM().onUnitDestroyed(troop);
+                        mm.getTM().onHumanoidDestroyed(troop);
                     }
                 } catch (Exception e) {
                     Log.e(TAG, "Exception thrown while making " + troop + " act!", e);
@@ -242,7 +243,9 @@ public class ArmyManager {
             refreshPartitionsAt = GameTime.getTime();
     }
 
-
+    public boolean add(@NotNull final Humanoid lt){
+        return add(lt, null);
+    }
     /**
      * Synchronously adds the LivingThing to the army.
      *
@@ -250,12 +253,11 @@ public class ArmyManager {
      * @throws WtfException if the lt is already in the army
      */
 
-    public boolean add(@NotNull final Humanoid lt) {
+    public boolean add(@NotNull final Humanoid lt, @Nullable final ManagerListener<Humanoid> onAddedListener) {
         synchronized(runnables) {
             runnables.add(new Runnable() {
                 @Override
                 public void run() {
-
                     if (army.contains(lt))
                         throw new WtfException(lt + " is already inside the army list!");
 
@@ -278,6 +280,9 @@ public class ArmyManager {
                                     i.remove();
                             }
                         }
+
+                        if( onAddedListener != null )
+                            onAddedListener.onAdded(lt);
                     }
                 }
             });
@@ -299,7 +304,7 @@ public class ArmyManager {
 //                                lt.getAnim().setOver(true);
 //                                Team t = mm.getTeam(lt.getTeamName());
 //                                if (t != null)
-//                                    t.onUnitDestroyed(lt);
+//                                    t.onHumanoidDestroyed(lt);
 //                            }
 //                        }
 //                    }
@@ -308,21 +313,21 @@ public class ArmyManager {
 //        }
 //    }
 //
-//    public void remove(@NotNull final ArrayList<LivingThing> removedUnits) {
-//        if (removedUnits == null)
+//    public void remove(@NotNull final ArrayList<LivingThing> removedHumanoids) {
+//        if (removedHumanoids == null)
 //            return;
 //        synchronized (runnables) {
 //            runnables.add(new Runnable() {
 //                @Override
 //                public void run() {
 //                    synchronized (army) {
-//                        army.removeAll(removedUnits);
+//                        army.removeAll(removedHumanoids);
 //
-//                        for (LivingThing lt : removedUnits) {
+//                        for (LivingThing lt : removedHumanoids) {
 //                            Anim a = lt.getAnim();
 //                            if (a != null)
 //                                a.setOver(true);
-//                            mm.getTM().onUnitDestroyed(lt);
+//                            mm.getTM().onHumanoidDestroyed(lt);
 //                        }
 //                    }
 //                }

@@ -10,7 +10,7 @@ import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.MageSoldier;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.MeleeSoldier;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.RangedSoldier;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.army.Warrior;
 import com.kingscastle.gameElements.movement.pathing.Grid;
 import com.kingscastle.gameUtils.vector;
@@ -73,7 +73,7 @@ public class SquareFormation extends Formation {
 			else if( u instanceof Healer)			
 				rangedSoldiers.add( u ) ;
 				
-			else if ( u instanceof Unit)			
+			else if ( u instanceof Humanoid)
 				rangedSoldiers.add( u ) ;
 							
 			else			
@@ -85,22 +85,22 @@ public class SquareFormation extends Formation {
 		float unitSize = units.get(0).getPerceivedArea().width() + Rpg.fiveDp ;
 
 		vector origLoc = GameElementUtil.getAverageLoc(units) ;
-		Direction dirToDest = vector.getDirection4( new vector( origLoc , dest ).getUnitVector()) ;
+		Direction dirToDest = vector.getDirection4( new vector( origLoc , dest ).getHumanoidVector()) ;
 
 		//int unitSize = Rpg.getNormalPerceivedArea().width() + 5*Rpg.getDp() ;
 
-		int numMeleeUnits  = meleeSoldiers.size() ;
-		int meleeUnitRows  = numMeleeUnits/NUM_SOLDIERS_PER_ROW;
-		meleeUnitRows += numMeleeUnits%NUM_SOLDIERS_PER_ROW != 0 ? 1 : 0;
+		int numMeleeHumanoids  = meleeSoldiers.size() ;
+		int meleeHumanoidRows  = numMeleeHumanoids/NUM_SOLDIERS_PER_ROW;
+		meleeHumanoidRows += numMeleeHumanoids%NUM_SOLDIERS_PER_ROW != 0 ? 1 : 0;
 
-		int numRangedUnits = rangedSoldiers.size() ;
-		int rangedUnitRows = numRangedUnits/NUM_SOLDIERS_PER_ROW ;
-		rangedUnitRows += ( numRangedUnits%NUM_SOLDIERS_PER_ROW != 0 ? 1 : 0 );
+		int numRangedHumanoids = rangedSoldiers.size() ;
+		int rangedHumanoidRows = numRangedHumanoids/NUM_SOLDIERS_PER_ROW ;
+		rangedHumanoidRows += ( numRangedHumanoids%NUM_SOLDIERS_PER_ROW != 0 ? 1 : 0 );
 
-		//		int numMeleeUnits = meleeSoldiers.size() ;
-		//		int meleeUnitRows = numMeleeUnits/7 + 1 ;
-		//		int numRangedUnits = rangedSoldiers.size() ;
-		//		int rangedUnitRows = numRangedUnits/7 + 1 ;
+		//		int numMeleeHumanoids = meleeSoldiers.size() ;
+		//		int meleeHumanoidRows = numMeleeHumanoids/7 + 1 ;
+		//		int numRangedHumanoids = rangedSoldiers.size() ;
+		//		int rangedHumanoidRows = numRangedHumanoids/7 + 1 ;
 
 		vector unitsDest ;
 		int index = 0 ;
@@ -109,7 +109,7 @@ public class SquareFormation extends Formation {
 		{
 		default:
 		case W :
-			for(int i = 0  ;  i  <  meleeUnitRows  ;  ++i )
+			for(int i = 0  ;  i  <  meleeHumanoidRows  ;  ++i )
 			{
 				for( int j = 0  ;  j  <  NUM_SOLDIERS_PER_ROW  ;  ++j )
 				{
@@ -124,7 +124,7 @@ public class SquareFormation extends Formation {
 			}
 			index = 0 ;
 
-			for( int i = 0  ;  i  <  rangedUnitRows  ;  ++i )
+			for( int i = 0  ;  i  <  rangedHumanoidRows  ;  ++i )
 			{
 				for( int j = 0  ;  j  <  NUM_SOLDIERS_PER_ROW  ;  ++j )
 				{
@@ -134,14 +134,14 @@ public class SquareFormation extends Formation {
 					}
 					unitsDest = new vector(dest) ;
 					unitsDest.translate( unitSize + i*unitSize ,-unitSize*3 + j*unitSize ) ;
-                    ((Unit)rangedSoldiers.get(index)).walkToAndStayHere(unitsDest,true) ;
+                    ((Humanoid)rangedSoldiers.get(index)).walkToAndStayHere(unitsDest,true) ;
 					index++ ;
 				}
 			}
 			break ;
 
 		case E :
-			for( int i = 0  ;  i  <  meleeUnitRows  ;  ++i )
+			for( int i = 0  ;  i  <  meleeHumanoidRows  ;  ++i )
 			{
 				for( int j = 0  ;  j  <  NUM_SOLDIERS_PER_ROW  ;  ++j )
 				{
@@ -155,7 +155,7 @@ public class SquareFormation extends Formation {
 				}
 			}
 			index = 0 ;
-			for(int i = 0 ; i < rangedUnitRows ;  ++i )
+			for(int i = 0 ; i < rangedHumanoidRows ;  ++i )
 			{
 				for(int j=0 ; j < NUM_SOLDIERS_PER_ROW  ;  ++j )
 				{
@@ -170,7 +170,7 @@ public class SquareFormation extends Formation {
 			} break ;
 
 		case N :
-			for(int i = 0 ; i < meleeUnitRows ;  ++i )
+			for(int i = 0 ; i < meleeHumanoidRows ;  ++i )
 			{
 				for(int j=0 ; j < NUM_SOLDIERS_PER_ROW ;  ++j )
 				{
@@ -179,12 +179,12 @@ public class SquareFormation extends Formation {
 						break ;
 					}
 					unitsDest = new vector(dest) ;
-					unitsDest.translate(-unitSize*3 + j*unitSize, -meleeUnitRows*unitSize + i*unitSize) ;
+					unitsDest.translate(-unitSize*3 + j*unitSize, -meleeHumanoidRows*unitSize + i*unitSize) ;
 					meleeSoldiers.remove(0).walkToAndStayHere(unitsDest,true) ;
 				}
 			}
 			index = 0 ;
-			for(int i = 0 ; i < rangedUnitRows ;  ++i )
+			for(int i = 0 ; i < rangedHumanoidRows ;  ++i )
 			{
 				for(int j=0 ; j < NUM_SOLDIERS_PER_ROW ;  ++j ){
 					if(rangedSoldiers.size()==0)
@@ -197,7 +197,7 @@ public class SquareFormation extends Formation {
 				}
 			} break ;
 		case S :
-			for(int i = 0 ; i < meleeUnitRows ;  ++i )
+			for(int i = 0 ; i < meleeHumanoidRows ;  ++i )
 			{
 				for(int j=0 ; j < NUM_SOLDIERS_PER_ROW ;  ++j )
 				{
@@ -211,7 +211,7 @@ public class SquareFormation extends Formation {
 				}
 			}
 			index = 0 ;
-			for(int i = 0  ;  i < rangedUnitRows ;  ++i )
+			for(int i = 0  ;  i < rangedHumanoidRows ;  ++i )
 			{
 				for(int j = 0 ; j < NUM_SOLDIERS_PER_ROW ;  ++j )
 				{
@@ -220,7 +220,7 @@ public class SquareFormation extends Formation {
 						break ;
 					}
 					unitsDest = new vector(dest) ;
-					unitsDest.translate(-unitSize*3 + j*unitSize, -rangedUnitRows*unitSize + i*unitSize) ;
+					unitsDest.translate(-unitSize*3 + j*unitSize, -rangedHumanoidRows*unitSize + i*unitSize) ;
 
 					rangedSoldiers.remove(0).walkToAndStayHere(unitsDest,true) ;
 				}
@@ -294,7 +294,7 @@ public class SquareFormation extends Formation {
 				rangedSoldiers.add( u ) ;
 				
 			}
-			else if ( u instanceof Unit )
+			else if ( u instanceof Humanoid )
 			{
 				rangedSoldiers.add( u ) ;
 				
@@ -307,7 +307,7 @@ public class SquareFormation extends Formation {
 		}
 
 		vector origLoc = GameElementUtil.getAverageLoc ( units ) ;
-		Direction dirToDest = vector.getDirection4( new vector( origLoc , dest ).getUnitVector()) ;
+		Direction dirToDest = vector.getDirection4( new vector( origLoc , dest ).getHumanoidVector()) ;
 
 		//int unitSize = Rpg.getNormalPerceivedArea().width() + 5*Rpg.getDp() ;
 
@@ -316,24 +316,24 @@ public class SquareFormation extends Formation {
 		if( numSoldiers > 40 )
 			numSoldiersPerRow = 8;
 
-		int numMeleeUnits  = meleeSoldiers.size() ;
+		int numMeleeHumanoids  = meleeSoldiers.size() ;
 
 
-		////Log.d( TAG , "numMeleeUnits = " + numMeleeUnits );
-		int meleeUnitRows  = numMeleeUnits/numSoldiersPerRow;// + numMeleeUnits%NUM_SOLDIERS_PER_ROW != 0 ? 1 : 0 ;
-		////Log.d( TAG , "numMeleeUnits/NUM_SOLDIERS_PER_ROW = " + numMeleeUnits/NUM_SOLDIERS_PER_ROW );
-		meleeUnitRows += numMeleeUnits%numSoldiersPerRow != 0 ? 1 : 0;
-		////Log.d( TAG , "numMeleeUnits/NUM_SOLDIERS_PER_ROW + numMeleeUnits%NUM_SOLDIERS_PER_ROW != 0 ? 1 : 0 " + meleeUnitRows );
-		////Log.d( TAG , "numMeleeUnits%NUM_SOLDIERS_PER_ROW = " + numMeleeUnits%NUM_SOLDIERS_PER_ROW );
+		////Log.d( TAG , "numMeleeHumanoids = " + numMeleeHumanoids );
+		int meleeHumanoidRows  = numMeleeHumanoids/numSoldiersPerRow;// + numMeleeHumanoids%NUM_SOLDIERS_PER_ROW != 0 ? 1 : 0 ;
+		////Log.d( TAG , "numMeleeHumanoids/NUM_SOLDIERS_PER_ROW = " + numMeleeHumanoids/NUM_SOLDIERS_PER_ROW );
+		meleeHumanoidRows += numMeleeHumanoids%numSoldiersPerRow != 0 ? 1 : 0;
+		////Log.d( TAG , "numMeleeHumanoids/NUM_SOLDIERS_PER_ROW + numMeleeHumanoids%NUM_SOLDIERS_PER_ROW != 0 ? 1 : 0 " + meleeHumanoidRows );
+		////Log.d( TAG , "numMeleeHumanoids%NUM_SOLDIERS_PER_ROW = " + numMeleeHumanoids%NUM_SOLDIERS_PER_ROW );
 
 
-		int numRangedUnits = rangedSoldiers.size() ;
-		////Log.d( TAG , "numRangedUnits = " + numRangedUnits );
-		int rangedUnitRows = numRangedUnits/numSoldiersPerRow ;
-		////Log.d( TAG , "numRangedUnits/NUM_SOLDIERS_PER_ROW = " + rangedUnitRows );
-		rangedUnitRows += ( numRangedUnits%numSoldiersPerRow != 0 ? 1 : 0 );
-		////Log.d( TAG , "numRangedUnits%NUM_SOLDIERS_PER_ROW = " + numRangedUnits%NUM_SOLDIERS_PER_ROW );
-		////Log.d( TAG , "numRangedUnits%NUM_SOLDIERS_PER_ROW != 0 ? 1 : 0  = " + ( numRangedUnits%NUM_SOLDIERS_PER_ROW != 0 ? 1 : 0 ) );
+		int numRangedHumanoids = rangedSoldiers.size() ;
+		////Log.d( TAG , "numRangedHumanoids = " + numRangedHumanoids );
+		int rangedHumanoidRows = numRangedHumanoids/numSoldiersPerRow ;
+		////Log.d( TAG , "numRangedHumanoids/NUM_SOLDIERS_PER_ROW = " + rangedHumanoidRows );
+		rangedHumanoidRows += ( numRangedHumanoids%numSoldiersPerRow != 0 ? 1 : 0 );
+		////Log.d( TAG , "numRangedHumanoids%NUM_SOLDIERS_PER_ROW = " + numRangedHumanoids%NUM_SOLDIERS_PER_ROW );
+		////Log.d( TAG , "numRangedHumanoids%NUM_SOLDIERS_PER_ROW != 0 ? 1 : 0  = " + ( numRangedHumanoids%NUM_SOLDIERS_PER_ROW != 0 ? 1 : 0 ) );
 
 
 		vector unitsDest ;
@@ -457,7 +457,7 @@ public class SquareFormation extends Formation {
 
 
 					unitsDest = new vector(dest) ;
-					unitsDest.translate(-unitSize*3 + j*unitSize, -meleeUnitRows*unitSize + i*unitSize) ;
+					unitsDest.translate(-unitSize*3 + j*unitSize, -meleeHumanoidRows*unitSize + i*unitSize) ;
 
 					if( !isWalkable( unitsDest , gridTiles , gridSize ) )
 						continue;
@@ -583,7 +583,7 @@ public class SquareFormation extends Formation {
 
 
 					unitsDest = new vector(dest) ;
-					unitsDest.translate( -unitSize*3 + j*unitSize , -rangedUnitRows*unitSize + i*unitSize ) ;
+					unitsDest.translate( -unitSize*3 + j*unitSize , -rangedHumanoidRows*unitSize + i*unitSize ) ;
 
 					if( !isWalkable( unitsDest , gridTiles , gridSize ) )
 						continue;

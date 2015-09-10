@@ -39,7 +39,7 @@ public class BuildQueueChecker
 
 					Team t = mm.getTeam( unit.getTeamName() );
 					if( t != null )
-						t.onUnitCreated( unit );
+						t.onHumanoidCreated( unit );
 
 					if( lts == null )
 						lts = new ArrayList<LivingThing>();

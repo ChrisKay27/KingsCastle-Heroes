@@ -25,7 +25,7 @@ public class SpellAttack extends Attack {
 
 	private SpellType st;
 	private Spell s;
-	private final vector tempUnit = new vector();
+	private final vector tempHumanoid = new vector();
 
 //	public SpellAttack(MM mm, LivingThing lt , Spell p ){
 //		super(mm, lt);
@@ -40,30 +40,30 @@ public class SpellAttack extends Attack {
 	}
 
 	@Override
-	public void attackFromUnitVector(@NonNull vector unitVector) {
+	public void attackFromHumanoidVector(@NonNull vector unitVector) {
 		SpellCreationParams params = getSpellCreationParams(this);
-		tempUnit.set(unitVector);
-		params.setUnitVectorInDirection(tempUnit);
+		tempHumanoid.set(unitVector);
+		params.setHumanoidVectorInDirection(tempHumanoid);
 		Spell spell = SpellInstanceCreator.getSpellInstance(params);
 
 		mm.add((GameElement) spell);
 
 		if( owner instanceof Humanoid )
-			((Humanoid)owner).setLookDirectionFromUnit( params.getUnitVectorInDirection() );
+			((Humanoid)owner).setLookDirectionFromHumanoid( params.getHumanoidVectorInDirection() );
 	}
 
 	@Override
 	public void attack( @NonNull vector inDirection )
 	{
 		SpellCreationParams params = getSpellCreationParams(this);
-		tempUnit.set( inDirection );
-		params.setUnitVectorInDirection(tempUnit.turnIntoUnitVector());
+		tempHumanoid.set( inDirection );
+		params.setHumanoidVectorInDirection(tempHumanoid.turnIntoHumanoidVector());
 		Spell spell = SpellInstanceCreator.getSpellInstance(params);
 
 		mm.add((GameElement) spell);
 
 		if( owner instanceof Humanoid )
-			((Humanoid)owner).setLookDirectionFromUnit( params.getUnitVectorInDirection() );
+			((Humanoid)owner).setLookDirectionFromHumanoid( params.getHumanoidVectorInDirection() );
 	}
 
 
@@ -78,17 +78,17 @@ public class SpellAttack extends Attack {
 		if( s instanceof InstantSpell && target != null )
 			params.setLocation( target.loc );
 
-		if( params.getUnitVectorInDirection() == null )
+		if( params.getHumanoidVectorInDirection() == null )
 		{
-			tempUnit.set( target.loc );
+			tempHumanoid.set( target.loc );
 			vector tVelocity = target.getVelocity();
 			if( tVelocity != null ){
 				float multiplier = owner.loc.distanceSquared(target.loc)/10000;
-				tempUnit.add( tVelocity.x*multiplier , tVelocity.y*multiplier );
+				tempHumanoid.add( tVelocity.x*multiplier , tVelocity.y*multiplier );
 			}
-			tempUnit.minus(owner.loc);
-			tempUnit.turnIntoUnitVector();
-			params.setUnitVectorInDirection( tempUnit );
+			tempHumanoid.minus(owner.loc);
+			tempHumanoid.turnIntoHumanoidVector();
+			params.setHumanoidVectorInDirection( tempHumanoid );
 		}
 
 		Spell spell = SpellInstanceCreator.getSpellInstance(params);
@@ -103,7 +103,7 @@ public class SpellAttack extends Attack {
 		////Log.d(TAG , "Spell added?: " + added );
 
 		if( owner instanceof Humanoid )
-			((Humanoid)owner).setLookDirectionFromUnit(params.getUnitVectorInDirection());
+			((Humanoid)owner).setLookDirectionFromHumanoid(params.getHumanoidVectorInDirection());
 
 		return true;
 	}

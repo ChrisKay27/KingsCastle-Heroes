@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.kingscastle.gameElements.GameElement;
 import com.kingscastle.gameElements.livingThings.LivingThing;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.buildings.Building;
 import com.kingscastle.gameUtils.vector;
 
@@ -16,30 +16,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SelectedUnits {
+public class SelectedSoldiers {
 
-    private static final String TAG = SelectedUnits.class.getSimpleName();
+    private static final String TAG = SelectedSoldiers.class.getSimpleName();
 
     @Nullable
     private Building selectedBuilding;
 	@Nullable
-    private Unit selectedUnit;
+    private Humanoid selectedHumanoid;
 	@Nullable
     private GameElement selectedThing;
     @Nullable
     private List<GameElement> selectedGameElements;
 	@Nullable
-    private List<Unit> selectedUnits;
+    private List<Humanoid> selectedHumanoids;
 
 
 
-	public void setSelected(@NotNull Unit u) {
-        Log.d(TAG, "setSelected Unit:" + u);
-        if (selectedUnit != null)
-            selectedUnit.setSelected(false);
+	public void setSelected(@NotNull Humanoid u) {
+        Log.d(TAG, "setSelected Humanoid:" + u);
+        if (selectedHumanoid != null)
+            selectedHumanoid.setSelected(false);
 
-        selectedUnit = u;
-        selectedUnit.setSelected(true);
+        selectedHumanoid = u;
+        selectedHumanoid.setSelected(true);
 	}
 
     public void setSelected(@NotNull Building b) {
@@ -67,7 +67,7 @@ public class SelectedUnits {
         selectedGameElements = new ArrayList<>(ges);
 	}
 
-    public void setSelectedUnits(@NotNull List<Unit> ges) {
+    public void setSelectedHumanoids(@NotNull List<Humanoid> ges) {
         clearSelected();
 
         for( GameElement ge : ges) {
@@ -75,19 +75,19 @@ public class SelectedUnits {
             if( ge instanceof LivingThing )
                 ((LivingThing)ge).setSelectedColor(Color.YELLOW);
         }
-        selectedUnits = ges;
+        selectedHumanoids = ges;
     }
 
 /*
-	public void setSelectedUnit(LivingThing u) {
+	public void setSelectedHumanoid(LivingThing u) {
 		clearSelected();
 
-		selectedUnit = u;
+		selectedHumanoid = u;
 		selectedThing = u;
-		if (selectedUnit != null) {
+		if (selectedHumanoid != null) {
 
-			selectedUnit.setSelected(true);
-			selectedUnit.setSelectedColor(Color.YELLOW);
+			selectedHumanoid.setSelected(true);
+			selectedHumanoid.setSelectedColor(Color.YELLOW);
 		}
 	}*/
 
@@ -114,9 +114,9 @@ public class SelectedUnits {
 
 		clearSelectedBuilding();
 
-		clearSelectedUnit();
+		clearSelectedHumanoid();
 
-		clearSelectedThings();
+        clearSelectedThings();
 	}
 
 	public void clearSelectedBuilding() {
@@ -128,13 +128,13 @@ public class SelectedUnits {
 		this.selectedBuilding = null;
 	}
 
-	public void clearSelectedUnit() {
-		LivingThing selectedUnit = this.selectedUnit;
-		if (selectedUnit == null)
+	public void clearSelectedHumanoid() {
+		LivingThing selectedHumanoid = this.selectedHumanoid;
+		if (selectedHumanoid == null)
 			return;
 
-		selectedUnit.setSelected(false);
-		this.selectedUnit = null;
+		selectedHumanoid.setSelected(false);
+		this.selectedHumanoid = null;
 	}
 
 	public void clearSelectedThings() {
@@ -154,8 +154,8 @@ public class SelectedUnits {
 
 	public synchronized void setUnSelected(@NotNull GameElement ge) {
 
-		if (selectedUnit == ge) {
-			selectedUnit = null;
+		if (selectedHumanoid == ge) {
+			selectedHumanoid = null;
 			ge.setSelected(false);
 			return;
 		} else if (selectedBuilding == ge) {
@@ -178,19 +178,19 @@ public class SelectedUnits {
 
 
 
-    public synchronized void setUnSelected(@Nullable Unit u) {
+    public synchronized void setUnSelected(@Nullable Humanoid u) {
         if( u != null ) {
-            if (selectedUnit == u) {
-                selectedUnit = null;
+            if (selectedHumanoid == u) {
+                selectedHumanoid = null;
                 u.setSelected(false);
             }
 
-            if (selectedUnits != null) {
-                if (selectedUnits.remove(u))
+            if (selectedHumanoids != null) {
+                if (selectedHumanoids.remove(u))
                     u.setSelected(false);
 
-                if (selectedUnits.isEmpty())
-                    selectedUnits = null;
+                if (selectedHumanoids.isEmpty())
+                    selectedHumanoids = null;
             }
         }
     }
@@ -205,17 +205,17 @@ public class SelectedUnits {
 
 
 	public void moveSelected(vector inDirection) {
-        Unit u = getSelectedUnit();
-		if (u != null) {
+        Humanoid u = getSelectedHumanoid();
+        if (u != null) {
             Log.d(TAG , "moveSelected");
 			u.walkToAndStayHereAlreadyCheckedPlaceable(null);
             u.getLegs().act(inDirection, true);
 		}
 	}
 
-	//	public boolean moveSelectedUnits(Vector dest) {
-	//		if( getSelectedUnits() != null ) {
-	//			return SquareFormation.staticMoveTroops(getSelectedUnits(), dest);
+	//	public boolean moveSelectedHumanoids(Vector dest) {
+	//		if( getSelectedHumanoids() != null ) {
+	//			return SquareFormation.staticMoveTroops(getSelectedHumanoids(), dest);
 	//
 	//		} else if (getSelectedSquad() != null) {
 	//			return getSelectedSquad().setGroupHere(dest);
@@ -227,15 +227,15 @@ public class SelectedUnits {
 
 
 	public boolean somethingIsSelected() {
-		if (getSelectedThing() != null || getSelectedUnits() != null
-				|| getSelectedUnit() != null || getSelectedBuilding() != null)
+		if (getSelectedThing() != null || getSelectedHumanoids() != null
+				|| getSelectedHumanoid() != null || getSelectedBuilding() != null)
 			return true;
 		else
 			return false;
 	}
 
 	public boolean multipleThingsAreSelected() {
-		if (getSelectedUnits() != null)
+		if (getSelectedHumanoids() != null)
 			return true;
 		else
 			return false;
@@ -254,16 +254,16 @@ public class SelectedUnits {
 	}
 
     @Nullable
-    public Unit getSelectedUnit() {
-        if (selectedUnit != null)
-            selectedUnit.setSelected(true);
+    public Humanoid getSelectedHumanoid() {
+        if (selectedHumanoid != null)
+            selectedHumanoid.setSelected(true);
 
-        return selectedUnit;
+        return selectedHumanoid;
     }
 
     @Nullable
-    public List<Unit> getSelectedUnits() {
-		return selectedUnits;
+    public List<Humanoid> getSelectedHumanoids() {
+		return selectedHumanoids;
 	}
 
 }

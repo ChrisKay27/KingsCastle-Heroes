@@ -280,7 +280,7 @@ public class vector implements Serializable
 	@NonNull
     public vector truncate(float speed)
 	{
-		return getUnitVector().times(speed);
+		return getHumanoidVector().times(speed);
 	}
 
 	/**
@@ -351,14 +351,14 @@ public class vector implements Serializable
 	 * returns a new Vector object which is a vector in the direction of v but with a magnitute of 1. The vector v is not mutated.
 	 */
 	@NonNull
-    public vector getUnitVector(){
-		return vector.getUnitVector(this);
+    public vector getHumanoidVector(){
+		return vector.getHumanoidVector(this);
 	}
 
 	@NonNull
-    public static vector getUnitVector( @NonNull vector from , @NonNull vector to )
+    public static vector getHumanoidVector( @NonNull vector from , @NonNull vector to )
 	{
-		return new vector(to.x-from.x,to.y-from.y).turnIntoUnitVector();
+		return new vector(to.x-from.x,to.y-from.y).turnIntoHumanoidVector();
 	}
 
 	//	private static long lastDisplay,displayEvery=2000,startTime,sqrtTime,fastMathTime;
@@ -370,12 +370,12 @@ public class vector implements Serializable
 	 * @param v Vector used to create a unit vector in the same direction as v.
 	 */
 	@NonNull
-    private static vector getUnitVector(@NonNull vector v)
+    private static vector getHumanoidVector(@NonNull vector v)
 	{
-		return getUnitVectorSqrt(v);
+		return getHumanoidVectorSqrt(v);
 	}
-	//	public static Vector getUnitVector(Vector v){
-	//		//System.out.println("Vector:getUnitVector() being called");
+	//	public static Vector getHumanoidVector(Vector v){
+	//		//System.out.println("Vector:getHumanoidVector() being called");
 	//		if(sqrtCount!=0&&fastMathCount!=0&&lastDisplay+displayEvery<GameTime.getTime()){
 	//			lastDisplay=GameTime.getTime();
 	//			System.out.println("Average time for " + sqrtCount + " sqrts is " + sqrtTime/sqrtCount + " nanoSeconds.");
@@ -384,7 +384,7 @@ public class vector implements Serializable
 	//
 	//		if(onSqrt){
 	//			startTime=System.nanoTime();
-	//			Vector v2 = getUnitVectorSqrt(v);
+	//			Vector v2 = getHumanoidVectorSqrt(v);
 	//			if(dir4)
 	//				getDirection4(v2);
 	//			else
@@ -396,7 +396,7 @@ public class vector implements Serializable
 	//		}
 	//		else{
 	//			startTime=System.nanoTime();
-	//			Vector unit = getUnitVectorFastMath(v);
+	//			Vector unit = getHumanoidVectorFastMath(v);
 	//			fastMathTime+=System.nanoTime()-startTime;
 	//			fastMathCount++;
 	//			onSqrt=true;
@@ -409,7 +409,7 @@ public class vector implements Serializable
 	 * @param v Vector used to create a unit vector in the same direction as v.
 	 */
 	@NonNull
-    private static vector getUnitVectorSqrt(@NonNull vector v)
+    private static vector getHumanoidVectorSqrt(@NonNull vector v)
 	{
 		float mag = sqrt( v.x*v.x + v.y*v.y );
 		if( mag == 0)
@@ -422,11 +422,11 @@ public class vector implements Serializable
 	@NonNull
     public vector normalize()
 	{
-		return turnIntoUnitVector();
+		return turnIntoHumanoidVector();
 	}
 
 	@NonNull
-    public vector turnIntoUnitVector( )
+    public vector turnIntoHumanoidVector( )
 	{
 		float mag = sqrt( x*x + y*y );
 

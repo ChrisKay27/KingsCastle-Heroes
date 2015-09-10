@@ -209,14 +209,14 @@ public abstract class Projectile extends GameElement
 	/**
 	 * @return the unit
 	 */
-	vector getUnit() {
+	vector getHumanoid() {
 		return unit;
 	}
 
 	/**
 	 * @param unit the unit to set
 	 */
-	public void setUnit(vector unit) {
+	public void setHumanoid(vector unit) {
 		this.unit = unit;
 	}
 

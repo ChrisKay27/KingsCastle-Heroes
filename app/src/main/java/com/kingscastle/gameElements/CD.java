@@ -402,7 +402,7 @@ public class CD
 
 
 	@Nullable
-    public GameElement checkPlaceable( @NonNull RectF rectF , boolean ignoreUnits )
+    public GameElement checkPlaceable( @NonNull RectF rectF , boolean ignoreHumanoids )
 	{
 
 		float x = rectF.centerX();
@@ -411,7 +411,7 @@ public class CD
 
 		for ( Team team :  mm.getTM().getTeams() )
 		{
-			if( !ignoreUnits )
+			if( !ignoreHumanoids )
 			{
 				CollisionPartitions cp = team.getArmyManager().getCollisionPartitions();
 
@@ -465,13 +465,13 @@ public class CD
 
 
 
-	public boolean checkPlaceable2( @NonNull RectF area , boolean ignoreUnits ){
-		return checkPlaceable2( area , ignoreUnits , true );
+	public boolean checkPlaceable2( @NonNull RectF area , boolean ignoreHumanoids ){
+		return checkPlaceable2( area , ignoreHumanoids , true );
 	}
 
 
 
-	public boolean checkPlaceable2( @NonNull RectF area , boolean ignoreUnits , boolean checkBuildings )
+	public boolean checkPlaceable2( @NonNull RectF area , boolean ignoreHumanoids , boolean checkBuildings )
 	{
 		boolean[][] tiles = grid.getGridTiles();
 		float gridSize = grid.getGridSize();
@@ -519,7 +519,7 @@ public class CD
 			}
 
 
-			if( ignoreUnits )
+			if( ignoreHumanoids )
 				continue;
 
 			CollisionPartitions cp = team.getArmyManager().getCollisionPartitions();

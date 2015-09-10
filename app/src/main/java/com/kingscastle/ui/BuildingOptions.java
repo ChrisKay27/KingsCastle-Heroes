@@ -24,7 +24,7 @@ import java.util.List;
 public class BuildingOptions
 {
 	private static final String TAG = "BuildingOptions";
-	private static final String UPS = "UnitPurchaseScroller";
+	private static final String UPS = "HumanoidPurchaseScroller";
 	private static final String BS = "BuildingScroller";
 
 

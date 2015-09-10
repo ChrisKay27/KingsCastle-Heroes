@@ -15,7 +15,7 @@ import com.kingscastle.gameElements.livingThings.army.Medic;
 import com.kingscastle.gameElements.livingThings.army.Priestess;
 import com.kingscastle.gameElements.livingThings.army.Warrior;
 import com.kingscastle.gameElements.livingThings.buildings.Barracks;
-import com.kingscastle.gameElements.livingThings.buildings.BuildableUnits;
+import com.kingscastle.gameElements.livingThings.buildings.BuildableSoldiers;
 import com.kingscastle.gameElements.livingThings.buildings.Building;
 import com.kingscastle.gameElements.livingThings.buildings.Buildings;
 import com.kingscastle.gameElements.livingThings.buildings.Church;
@@ -40,23 +40,23 @@ public class OrcRace extends Race
 
 	}
 
-	private BuildableUnits stoneAgeBarracksUnits;
-	private  BuildableUnits bronzeAgeBarracksUnits;
-	private  BuildableUnits ironAgeBarracksUnits;
-	private  BuildableUnits steelAgeBarracksUnits;
+	private BuildableSoldiers stoneAgeBarracksHumanoids;
+	private BuildableSoldiers bronzeAgeBarracksHumanoids;
+	private BuildableSoldiers ironAgeBarracksHumanoids;
+	private BuildableSoldiers steelAgeBarracksHumanoids;
 
 
-	private  BuildableUnits stoneAgeChurchUnits;
-	private  BuildableUnits bronzeAgeChurchUnits;
-	private  BuildableUnits ironAgeChurchUnits;
-	private  BuildableUnits steelAgeChurchUnits;
+	private BuildableSoldiers stoneAgeChurchHumanoids;
+	private BuildableSoldiers bronzeAgeChurchHumanoids;
+	private BuildableSoldiers ironAgeChurchHumanoids;
+	private BuildableSoldiers steelAgeChurchHumanoids;
 
 
 
-	private  BuildableUnits stoneAgeTownCenterUnits;
-	private  BuildableUnits bronzeAgeTownCenterUnits;
-	private  BuildableUnits ironAgeTownCenterUnits;
-	private  BuildableUnits steelAgeTownCenterUnits;
+	private BuildableSoldiers stoneAgeTownCenterHumanoids;
+	private BuildableSoldiers bronzeAgeTownCenterHumanoids;
+	private BuildableSoldiers ironAgeTownCenterHumanoids;
+	private BuildableSoldiers steelAgeTownCenterHumanoids;
 
 
 
@@ -71,26 +71,26 @@ public class OrcRace extends Race
 		HumanLongBowMan armoredArcher = new HumanLongBowMan();
 		Knight knight = new Knight();
 
-		stoneAgeBarracksUnits = new BuildableUnits( warrior );
-		bronzeAgeBarracksUnits = new BuildableUnits( warrior , soldier, archer );
-		ironAgeBarracksUnits = new BuildableUnits( soldier , archer , armoredArcher );
-		steelAgeBarracksUnits = new BuildableUnits( soldier , knight , archer , armoredArcher );
+		stoneAgeBarracksHumanoids = new BuildableSoldiers( warrior );
+		bronzeAgeBarracksHumanoids = new BuildableSoldiers( warrior , soldier, archer );
+		ironAgeBarracksHumanoids = new BuildableSoldiers( soldier , archer , armoredArcher );
+		steelAgeBarracksHumanoids = new BuildableSoldiers( soldier , knight , archer , armoredArcher );
 
 		HumanScout scout = new HumanScout();
 
-		stoneAgeTownCenterUnits = new BuildableUnits( scout );
-		bronzeAgeTownCenterUnits = ironAgeTownCenterUnits = steelAgeTownCenterUnits = stoneAgeTownCenterUnits;
-		//		bronzeAgeTownCenterUnits = new BuildableUnits( worker , scout );
-		//		ironAgeTownCenterUnits = new BuildableUnits( worker , scout );
-		//		steelAgeTownCenterUnits = new BuildableUnits( worker , scout );
+		stoneAgeTownCenterHumanoids = new BuildableSoldiers( scout );
+		bronzeAgeTownCenterHumanoids = ironAgeTownCenterHumanoids = steelAgeTownCenterHumanoids = stoneAgeTownCenterHumanoids;
+		//		bronzeAgeTownCenterHumanoids = new BuildableSoldiers( worker , scout );
+		//		ironAgeTownCenterHumanoids = new BuildableSoldiers( worker , scout );
+		//		steelAgeTownCenterHumanoids = new BuildableSoldiers( worker , scout );
 
 		Medic medic = new Medic();
 		Priestess priestess = new Priestess();
 
-		stoneAgeChurchUnits = new BuildableUnits( medic );
-		bronzeAgeChurchUnits = new BuildableUnits( medic );
-		ironAgeChurchUnits = new BuildableUnits( medic , priestess );
-		steelAgeChurchUnits = new BuildableUnits( priestess );
+		stoneAgeChurchHumanoids = new BuildableSoldiers( medic );
+		bronzeAgeChurchHumanoids = new BuildableSoldiers( medic );
+		ironAgeChurchHumanoids = new BuildableSoldiers( medic , priestess );
+		steelAgeChurchHumanoids = new BuildableSoldiers( priestess );
 	}
 
 
@@ -233,7 +233,7 @@ public class OrcRace extends Race
 
 	@Nullable
     @Override
-	public  BuildableUnits getUnitsFor( @NonNull Buildings building , @NonNull Age age )
+	public BuildableSoldiers getHumanoidsFor( @NonNull Buildings building , @NonNull Age age )
 	{
 
 		switch( building )
@@ -241,18 +241,18 @@ public class OrcRace extends Race
 		case UndeadBarracks:
 		case Barracks:
 		case DwarfBarracks:
-			return getBarracksUnitsFor ( age );
+			return getBarracksHumanoidsFor ( age );
 
 		case DwarfMushroomFarm:
 		case UndeadChurch:
 		case Church:
-			return getChurchUnitsFor ( age );
+			return getChurchHumanoidsFor ( age );
 
 
 		case DwarfTownCenter:
 		case UndeadTownCenter:
 		case TownCenter:
-			return getTownCenterUnitsFor ( age );
+			return getTownCenterHumanoidsFor ( age );
 
 
 		default:
@@ -264,22 +264,22 @@ public class OrcRace extends Race
 
 
 
-	BuildableUnits getChurchUnitsFor(@NonNull Age age)
+	BuildableSoldiers getChurchHumanoidsFor(@NonNull Age age)
 	{
 		switch( age )
 		{
 		default:
 		case STONE:
-			return getStoneAgeChurchUnits();
+			return getStoneAgeChurchHumanoids();
 
 		case BRONZE:
-			return getBronzeAgeChurchUnits();
+			return getBronzeAgeChurchHumanoids();
 
 		case IRON:
-			return getIronAgeChurchUnits();
+			return getIronAgeChurchHumanoids();
 
 		case STEEL:
-			return getSteelAgeChurchUnits();
+			return getSteelAgeChurchHumanoids();
 
 		}
 	}
@@ -287,22 +287,22 @@ public class OrcRace extends Race
 
 
 
-	BuildableUnits getTownCenterUnitsFor(@NonNull Age age)
+	BuildableSoldiers getTownCenterHumanoidsFor(@NonNull Age age)
 	{
 		switch( age )
 		{
 		default:
 		case STONE:
-			return getStoneAgeTownCenterUnits();
+			return getStoneAgeTownCenterHumanoids();
 
 		case BRONZE:
-			return getBronzeAgeTownCenterUnits();
+			return getBronzeAgeTownCenterHumanoids();
 
 		case IRON:
-			return getIronAgeTownCenterUnits();
+			return getIronAgeTownCenterHumanoids();
 
 		case STEEL:
-			return getSteelAgeTownCenterUnits();
+			return getSteelAgeTownCenterHumanoids();
 
 		}
 	}
@@ -310,22 +310,22 @@ public class OrcRace extends Race
 
 
 
-	BuildableUnits getBarracksUnitsFor(@NonNull Age age)
+	BuildableSoldiers getBarracksHumanoidsFor(@NonNull Age age)
 	{
 		switch( age )
 		{
 		default:
 		case STONE:
-			return getStoneAgeBarracksUnits();
+			return getStoneAgeBarracksHumanoids();
 
 		case BRONZE:
-			return getBronzeAgeBarracksUnits();
+			return getBronzeAgeBarracksHumanoids();
 
 		case IRON:
-			return getIronAgeBarracksUnits();
+			return getIronAgeBarracksHumanoids();
 
 		case STEEL:
-			return getSteelAgeBarracksUnits();
+			return getSteelAgeBarracksHumanoids();
 
 		}
 	}
@@ -341,136 +341,136 @@ public class OrcRace extends Race
 
 
 
-	BuildableUnits getStoneAgeBarracksUnits() {
-		return stoneAgeBarracksUnits;
+	BuildableSoldiers getStoneAgeBarracksHumanoids() {
+		return stoneAgeBarracksHumanoids;
 	}
 
-	public  void setStoneAgeBarracksUnits(BuildableUnits stoneAgeBarracksUnits) {
-		this.stoneAgeBarracksUnits = stoneAgeBarracksUnits;
+	public  void setStoneAgeBarracksHumanoids(BuildableSoldiers stoneAgeBarracksHumanoids) {
+		this.stoneAgeBarracksHumanoids = stoneAgeBarracksHumanoids;
 	}
 
-	BuildableUnits getBronzeAgeBarracksUnits() {
-		return bronzeAgeBarracksUnits;
+	BuildableSoldiers getBronzeAgeBarracksHumanoids() {
+		return bronzeAgeBarracksHumanoids;
 	}
 
-	public  void setBronzeAgeBarracksUnits(BuildableUnits bronzeAgeBarracksUnits) {
-		this.bronzeAgeBarracksUnits = bronzeAgeBarracksUnits;
+	public  void setBronzeAgeBarracksHumanoids(BuildableSoldiers bronzeAgeBarracksHumanoids) {
+		this.bronzeAgeBarracksHumanoids = bronzeAgeBarracksHumanoids;
 	}
 
-	BuildableUnits getIronAgeBarracksUnits() {
-		return ironAgeBarracksUnits;
+	BuildableSoldiers getIronAgeBarracksHumanoids() {
+		return ironAgeBarracksHumanoids;
 	}
 
-	public  void setIronAgeBarracksUnits(BuildableUnits ironAgeBarracksUnits) {
-		this.ironAgeBarracksUnits = ironAgeBarracksUnits;
+	public  void setIronAgeBarracksHumanoids(BuildableSoldiers ironAgeBarracksHumanoids) {
+		this.ironAgeBarracksHumanoids = ironAgeBarracksHumanoids;
 	}
 
-	BuildableUnits getSteelAgeBarracksUnits() {
-		return steelAgeBarracksUnits;
+	BuildableSoldiers getSteelAgeBarracksHumanoids() {
+		return steelAgeBarracksHumanoids;
 	}
 
-	public  void setSteelAgeBarracksUnits(BuildableUnits steelAgeBarracksUnits) {
-		this.steelAgeBarracksUnits = steelAgeBarracksUnits;
-	}
-
-
-
-	BuildableUnits getStoneAgeChurchUnits() {
-		return stoneAgeChurchUnits;
+	public  void setSteelAgeBarracksHumanoids(BuildableSoldiers steelAgeBarracksHumanoids) {
+		this.steelAgeBarracksHumanoids = steelAgeBarracksHumanoids;
 	}
 
 
 
-	public  void setStoneAgeChurchUnits(BuildableUnits stoneAgeChurchUnits) {
-		this.stoneAgeChurchUnits = stoneAgeChurchUnits;
+	BuildableSoldiers getStoneAgeChurchHumanoids() {
+		return stoneAgeChurchHumanoids;
 	}
 
 
 
-	BuildableUnits getBronzeAgeChurchUnits() {
-		return bronzeAgeChurchUnits;
+	public  void setStoneAgeChurchHumanoids(BuildableSoldiers stoneAgeChurchHumanoids) {
+		this.stoneAgeChurchHumanoids = stoneAgeChurchHumanoids;
 	}
 
 
 
-	public  void setBronzeAgeChurchUnits(BuildableUnits bronzeAgeChurchUnits) {
-		this.bronzeAgeChurchUnits = bronzeAgeChurchUnits;
+	BuildableSoldiers getBronzeAgeChurchHumanoids() {
+		return bronzeAgeChurchHumanoids;
 	}
 
 
 
-	BuildableUnits getIronAgeChurchUnits() {
-		return ironAgeChurchUnits;
+	public  void setBronzeAgeChurchHumanoids(BuildableSoldiers bronzeAgeChurchHumanoids) {
+		this.bronzeAgeChurchHumanoids = bronzeAgeChurchHumanoids;
 	}
 
 
 
-	public  void setIronAgeChurchUnits(BuildableUnits ironAgeChurchUnits) {
-		this.ironAgeChurchUnits = ironAgeChurchUnits;
+	BuildableSoldiers getIronAgeChurchHumanoids() {
+		return ironAgeChurchHumanoids;
 	}
 
 
 
-	BuildableUnits getSteelAgeChurchUnits() {
-		return steelAgeChurchUnits;
+	public  void setIronAgeChurchHumanoids(BuildableSoldiers ironAgeChurchHumanoids) {
+		this.ironAgeChurchHumanoids = ironAgeChurchHumanoids;
 	}
 
 
 
-	public  void setSteelAgeChurchUnits(BuildableUnits steelAgeChurchUnits) {
-		this.steelAgeChurchUnits = steelAgeChurchUnits;
+	BuildableSoldiers getSteelAgeChurchHumanoids() {
+		return steelAgeChurchHumanoids;
 	}
 
 
 
-	BuildableUnits getStoneAgeTownCenterUnits() {
-		return stoneAgeTownCenterUnits;
+	public  void setSteelAgeChurchHumanoids(BuildableSoldiers steelAgeChurchHumanoids) {
+		this.steelAgeChurchHumanoids = steelAgeChurchHumanoids;
 	}
 
 
 
-	public  void setStoneAgeTownCenterUnits(
-			BuildableUnits stoneAgeTownCenterUnits) {
-		this.stoneAgeTownCenterUnits = stoneAgeTownCenterUnits;
+	BuildableSoldiers getStoneAgeTownCenterHumanoids() {
+		return stoneAgeTownCenterHumanoids;
 	}
 
 
 
-	BuildableUnits getBronzeAgeTownCenterUnits() {
-		return bronzeAgeTownCenterUnits;
+	public  void setStoneAgeTownCenterHumanoids(
+			BuildableSoldiers stoneAgeTownCenterHumanoids) {
+		this.stoneAgeTownCenterHumanoids = stoneAgeTownCenterHumanoids;
 	}
 
 
 
-	public  void setBronzeAgeTownCenterUnits(
-			BuildableUnits bronzeAgeTownCenterUnits) {
-		this.bronzeAgeTownCenterUnits = bronzeAgeTownCenterUnits;
+	BuildableSoldiers getBronzeAgeTownCenterHumanoids() {
+		return bronzeAgeTownCenterHumanoids;
 	}
 
 
 
-	BuildableUnits getIronAgeTownCenterUnits() {
-		return ironAgeTownCenterUnits;
+	public  void setBronzeAgeTownCenterHumanoids(
+			BuildableSoldiers bronzeAgeTownCenterHumanoids) {
+		this.bronzeAgeTownCenterHumanoids = bronzeAgeTownCenterHumanoids;
 	}
 
 
 
-	public  void setIronAgeTownCenterUnits(
-			BuildableUnits ironAgeTownCenterUnits) {
-		this.ironAgeTownCenterUnits = ironAgeTownCenterUnits;
+	BuildableSoldiers getIronAgeTownCenterHumanoids() {
+		return ironAgeTownCenterHumanoids;
 	}
 
 
 
-	BuildableUnits getSteelAgeTownCenterUnits() {
-		return steelAgeTownCenterUnits;
+	public  void setIronAgeTownCenterHumanoids(
+			BuildableSoldiers ironAgeTownCenterHumanoids) {
+		this.ironAgeTownCenterHumanoids = ironAgeTownCenterHumanoids;
 	}
 
 
 
-	public  void setSteelAgeTownCenterUnits(
-			BuildableUnits steelAgeTownCenterUnits) {
-		this.steelAgeTownCenterUnits = steelAgeTownCenterUnits;
+	BuildableSoldiers getSteelAgeTownCenterHumanoids() {
+		return steelAgeTownCenterHumanoids;
+	}
+
+
+
+	public  void setSteelAgeTownCenterHumanoids(
+			BuildableSoldiers steelAgeTownCenterHumanoids) {
+		this.steelAgeTownCenterHumanoids = steelAgeTownCenterHumanoids;
 	}
 
 

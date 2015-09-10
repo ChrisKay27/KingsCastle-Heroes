@@ -3,14 +3,14 @@ package com.kingscastle.teams.races;
 
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.SoldierType;
-import com.kingscastle.gameElements.livingThings.buildings.BuildableUnits;
+import com.kingscastle.gameElements.livingThings.buildings.BuildableSoldiers;
 import com.kingscastle.gameElements.livingThings.buildings.Building;
 import com.kingscastle.gameElements.livingThings.buildings.Buildings;
 import com.kingscastle.gameUtils.Age;
 
 public abstract class Race
 {
-	public abstract BuildableUnits getUnitsFor( Buildings building , Age age );
+	public abstract BuildableSoldiers getHumanoidsFor( Buildings building , Age age );
 
 	public abstract SoldierType getMy( GeneralSoldierType advancedHealer ) ;
 

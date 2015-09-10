@@ -3,10 +3,10 @@ package com.kingscastle.level.Heroes;
 import android.util.Log;
 
 import com.kingscastle.effects.animations.Anim;
-import com.kingscastle.effects.animations.CycloneAnim;
+import com.kingscastle.effects.animations.ExplosionAnim;
 import com.kingscastle.framework.GameTime;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.MageSoldier;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.SpellAttack;
 import com.kingscastle.gameElements.livingThings.attacks.TripleShotSpellAttack;
@@ -24,18 +24,19 @@ public class TripleAttackPickup extends Pickup {
     private final Anim anim;
 
     private SpellAttack oldAtk;
-    private Unit byThisPlayer;
+    private Humanoid byThisPlayer;
     private boolean isPickedUp;
 
 
     public TripleAttackPickup(@NotNull vector loc) {
         super(loc);
-        anim = new CycloneAnim(loc);
+        anim = new ExplosionAnim(loc);
+        anim.setScale(0.25f);
         anim.setLooping(true);
     }
 
     @Override
-    public void pickedUp(@NotNull MM mm, @NotNull Unit byThisPlayer) {
+    public void pickedUp(@NotNull MM mm, @NotNull Humanoid byThisPlayer) {
         if( isPickedUp ) {
             Log.d(TAG , "triple attack already picked up!");
             return;
@@ -67,7 +68,7 @@ public class TripleAttackPickup extends Pickup {
 
 
     @Override
-    public boolean canPickup(@NotNull Unit byThisPlayer) {
+    public boolean canPickup(@NotNull Humanoid byThisPlayer) {
         if( byThisPlayer instanceof MageSoldier) {
             AttackerQualities aq = byThisPlayer.getAQ();
             return aq.getCurrentAttack() instanceof SpellAttack && !(aq.getCurrentAttack() instanceof TripleShotSpellAttack);

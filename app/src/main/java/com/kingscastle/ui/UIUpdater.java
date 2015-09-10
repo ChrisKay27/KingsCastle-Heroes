@@ -3,7 +3,7 @@ package com.kingscastle.ui;
 
 import android.support.annotation.Nullable;
 
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 
 public class UIUpdater
 {
@@ -23,7 +23,7 @@ public class UIUpdater
 
 
 
-	public static void onUnitRemovedFromMap(@Nullable Unit u) {
+	public static void onHumanoidRemovedFromMap(@Nullable Humanoid u) {
 		UIUpdater updater = UIUpdater.updater;
 		if( updater == null ) return;
 

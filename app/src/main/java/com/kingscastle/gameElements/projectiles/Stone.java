@@ -42,9 +42,9 @@ public class Stone extends Projectile
 		to.randomize((int)(Math.random()*Rpg.tenDp));
 
 		vector unit = new vector( shooter.loc , to );
-		unit.turnIntoUnitVector();
+		unit.turnIntoHumanoidVector();
 
-		setUnit(unit);
+		setHumanoid(unit);
 		setAttributes(shooter, unit, to);
 	}
 

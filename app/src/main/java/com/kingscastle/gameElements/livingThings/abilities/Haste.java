@@ -33,6 +33,8 @@ public class Haste extends Buff{		//System.out.println("");
         return isDead();
     }
 
+
+
     @NonNull
     @Override
 	public Abilities getAbility()				 {				return Abilities.HASTE ; 			}
@@ -60,7 +62,7 @@ public class Haste extends Buff{		//System.out.println("");
 	@Override
 	public void loadAnimation( @NonNull MM mm )	{
         Anim anim;
-        anim=new HasteAnim(getTarget().loc);
+        anim = new HasteAnim(getTarget().loc);
         anim.setAliveTime(aliveTime);
         anim.setOffs(new vector(0,getTarget().area.height()/2));
         anim.setLooping(true);
@@ -82,4 +84,9 @@ public class Haste extends Buff{		//System.out.println("");
 		return new Haste(getCaster(),target);
 	}
 
+    @NotNull
+    @Override
+    public Class<? extends Anim> getAnimClass() {
+        return HasteAnim.class;
+    }
 }

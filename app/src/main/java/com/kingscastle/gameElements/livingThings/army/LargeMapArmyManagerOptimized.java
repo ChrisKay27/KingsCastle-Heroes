@@ -221,7 +221,7 @@ public class LargeMapArmyManagerOptimized
 				if( troop.act() )//&& !(troop instanceof Hero) )
 				{
 					deadTroops.add( troop );
-					mm.getTM().onUnitDestroyed( troop );
+					mm.getTM().onHumanoidDestroyed( troop );
 				}
 			}
 			army.removeAll( deadTroops );
@@ -287,29 +287,29 @@ public class LargeMapArmyManagerOptimized
 						lt.getAnim().setOver( true );
 						Team t = mm.getTeam(lt.getTeamName());
 						if( t != null )
-							t.onUnitDestroyed( lt );
+							t.onHumanoidDestroyed( lt );
 					}
 				}
 			}
 		}
 	}
 
-	public void remove( @Nullable ArrayList<LivingThing> removedUnits )
+	public void remove( @Nullable ArrayList<LivingThing> removedHumanoids )
 	{
-		if( removedUnits == null)
+		if( removedHumanoids == null)
 			return;
 
 		else
 		{
 			synchronized( army ){
-				army.removeAll( removedUnits );
+				army.removeAll( removedHumanoids );
 
-				for( LivingThing lt : removedUnits )
+				for( LivingThing lt : removedHumanoids )
 				{
 					Anim a = lt.getAnim();
 					if( a != null )
 						a.setOver( true );
-					mm.getTM().onUnitDestroyed( lt );
+					mm.getTM().onHumanoidDestroyed( lt );
 				}
 			}
 		}

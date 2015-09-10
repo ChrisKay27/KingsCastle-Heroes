@@ -47,20 +47,20 @@ public class SpellInstanceCreator {
 		{
 			ProjectileSpell ps = (ProjectileSpell) s;
 
-			if( params.getUnitVectorInDirection() == null ) //determine its units vector
+			if( params.getHumanoidVectorInDirection() == null ) //determine its units vector
 			{
 				if ( params.getVelocity() != null )
-					params.setUnitVectorInDirection( params.getVelocity().getUnitVector() );
+					params.setHumanoidVectorInDirection( params.getVelocity().getHumanoidVector() );
 
 				else if( params.getDestination() != null)
 				{
 					vector unit = new vector(ps.loc,params.getDestination());
 
-					unit= unit.getUnitVector();
-					params.setUnitVectorInDirection(unit); // Used to load the animation on some spells
+					unit= unit.getHumanoidVector();
+					params.setHumanoidVectorInDirection(unit); // Used to load the animation on some spells
 				}
 			}
-			if( params.getUnitVectorInDirection() != null )
+			if( params.getHumanoidVectorInDirection() != null )
 			{
 				if( ps.getVelocity() == null )
 				{
@@ -69,14 +69,14 @@ public class SpellInstanceCreator {
 					if( speed == 0 )
 						speed = ps.getStaticSpeed();
 
-					vector velocity = new vector( params.getUnitVectorInDirection() ).times(speed);
+					vector velocity = new vector( params.getHumanoidVectorInDirection() ).times(speed);
 					params.setVelocity( velocity );
 					//ps.setVelocity(velocity);
 				}
 			}
 
-			if( params.getUnitVectorInDirection() != null )
-				ps.loadAnimation(params.getUnitVectorInDirection());
+			if( params.getHumanoidVectorInDirection() != null )
+				ps.loadAnimation(params.getHumanoidVectorInDirection());
 
 
 			if( params.getRangeSquared() != 0 )

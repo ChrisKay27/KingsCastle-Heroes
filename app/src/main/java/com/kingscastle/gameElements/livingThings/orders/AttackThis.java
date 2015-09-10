@@ -8,7 +8,7 @@ import com.kingscastle.framework.Input;
 import com.kingscastle.gameElements.CD;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameUtils.CoordConverter;
 import com.kingscastle.gameUtils.vector;
@@ -31,7 +31,7 @@ public final class AttackThis extends Order
 	//private static BuildThis buildThis;
 
 
-	private final List<Unit> unitsToBeOrdered = new ArrayList<>();
+	private final List<Humanoid> unitsToBeOrdered = new ArrayList<>();
 
 
 
@@ -57,7 +57,7 @@ public final class AttackThis extends Order
 
 	@NonNull
     @Override
-	public List<? extends Unit> getUnitsToBeOrdered() {
+	public List<? extends Humanoid> getHumanoidsToBeOrdered() {
 		return unitsToBeOrdered;
 	}
 
@@ -65,7 +65,7 @@ public final class AttackThis extends Order
 
 
 	@Override
-	public void setUnitsToBeOrdered(@NonNull List<? extends Unit> livingThings) {
+	public void setHumanoidsToBeOrdered(@NonNull List<? extends Humanoid> livingThings) {
 		unitsToBeOrdered.clear();
 		unitsToBeOrdered.addAll( livingThings );
 	}
@@ -73,7 +73,7 @@ public final class AttackThis extends Order
 
 
 	@Override
-	public void setUnitToBeOrdered(Unit person) {
+	public void setHumanoidToBeOrdered(Humanoid person) {
 		unitsToBeOrdered.clear();
 		unitsToBeOrdered.add( person );
 	}

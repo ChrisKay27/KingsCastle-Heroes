@@ -5,9 +5,9 @@ import android.graphics.Paint;
 import android.view.View;
 
 import com.kingscastle.framework.implementation.ImageDrawable;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.orders.Order;
-import com.kingscastle.ui.UnitOrders;
+import com.kingscastle.ui.SoldierOrders;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ public class OrderButton extends SButton
 {
 
 	private final Order order;
-	private final UnitOrders uOrders;
+	private final SoldierOrders uOrders;
 
-	private OrderButton( Activity a, Order o , final UnitOrders uOrders_ )
+	private OrderButton( Activity a, Order o , final SoldierOrders uOrders_ )
 	{
 		super(a);
 		uOrders = uOrders_;
@@ -46,14 +46,14 @@ public class OrderButton extends SButton
 
 
 
-	public static OrderButton getInstance( Activity c, Order order , Unit orderable , List<? extends Unit> orderables , final UnitOrders uOrders )
+	public static OrderButton getInstance( Activity c, Order order , Humanoid orderable , List<? extends Humanoid> orderables , final SoldierOrders uOrders )
 	{
 		OrderButton ob = new OrderButton(c, order , uOrders );
 
 		if( orderable != null )
-			order.setUnitToBeOrdered( orderable );
+			order.setHumanoidToBeOrdered(orderable);
 		else if( orderables != null )
-			order.setUnitsToBeOrdered( orderables );
+			order.setHumanoidsToBeOrdered(orderables);
 
 
 		return ob;

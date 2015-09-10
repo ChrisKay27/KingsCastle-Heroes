@@ -11,7 +11,7 @@ public class LookDirectionFinder
 
 	public static Rpg.Direction getDir( @NonNull vector from , @NonNull vector towards )
 	{		
-		return vector.getDirection4(new vector(from, towards).turnIntoUnitVector());
+		return vector.getDirection4(new vector(from, towards).turnIntoHumanoidVector());
 	}
 
 }

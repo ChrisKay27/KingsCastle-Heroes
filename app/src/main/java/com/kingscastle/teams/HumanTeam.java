@@ -52,9 +52,9 @@ public class HumanTeam extends Team
 			}
 		});
 
-		addUdl(new OnUnitDestroyedListener() {
+		addUdl(new OnHumanoidDestroyedListener() {
 			@Override
-			public void onUnitDestroyed(@Nullable LivingThing lt) {
+			public void onHumanoidDestroyed(@Nullable LivingThing lt) {
 				if (lt == null) return;
 				if (lt.isSelected())
 					mm.getUI().setUnSelected(lt);

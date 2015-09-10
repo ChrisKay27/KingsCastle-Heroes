@@ -7,7 +7,7 @@ import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.GameElement;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.Healer;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.orders.AttackThis;
 import com.kingscastle.gameElements.livingThings.orders.GoHere;
 import com.kingscastle.gameElements.movement.pathing.Grid;
@@ -19,9 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class UnitCommands implements TouchEventAnalyzer
+public class SoldierCommander implements TouchEventAnalyzer
 {
-	private static final String TAG = "UnitCommands";
+	private static final String TAG = "HumanoidCommands";
 
 
 	private vector mapRelCoord  = new vector();
@@ -33,11 +33,11 @@ public class UnitCommands implements TouchEventAnalyzer
 	private Grid grid;
 	private final CoordConverter cc;
 	private final Selecter selecter;
-	private final UnitButtonsScroller uo;
+	private final SoldierButtonsScroller uo;
 
 
 
-	UnitCommands( UI ui_ , CoordConverter cc_ , Selecter selecter_ , UnitButtonsScroller uo_ )	{
+    SoldierCommander(UI ui_, CoordConverter cc_, Selecter selecter_, SoldierButtonsScroller uo_)	{
 		ui = ui_;
 
 		this.cc = cc_;
@@ -50,7 +50,7 @@ public class UnitCommands implements TouchEventAnalyzer
 	public boolean analyzeTouchEvent( TouchEvent e )
 	{
 		if( !ui.somethingIsSelected() ){
-			Log.d( TAG , "Unit Commands told to act and nothing is selected.");
+			Log.d( TAG , "Humanoid Commands told to act and nothing is selected.");
 			return false;
 		}
 
@@ -84,7 +84,7 @@ public class UnitCommands implements TouchEventAnalyzer
 			//
 			//			if( temp == null )
 			//			{
-			//				moveSelectedUnits( vtemp );
+			//				moveSelectedHumanoids( vtemp );
 			//				return true;
 			//			}
 
@@ -97,13 +97,13 @@ public class UnitCommands implements TouchEventAnalyzer
 
 
 
-	private final List<Unit> selectedUnits = new ArrayList<>();
+	private final List<Humanoid> selectedHumanoids = new ArrayList<>();
 
 	private boolean informSelectedOfALocation( vector mapRelCoord )
 	{
-		selectedUnits.clear();
+		selectedHumanoids.clear();
 
-		Unit selected = ui.selectedThings.getSelectedUnit();
+        Humanoid selected = ui.selectedThings.getSelectedHumanoid();
 
 		if( selected != null )
 		{
@@ -114,26 +114,26 @@ public class UnitCommands implements TouchEventAnalyzer
 				return true;
 			}
 
-            selectedUnits.add( selected );
+            selectedHumanoids.add( selected );
 		}
 		else
 		{
 			//Log.d( TAG , "multiple things must be selected");
-			List<Unit> units = ui.getSelectedUnits() ;
+			List<Humanoid> units = ui.getSelectedHumanoids() ;
 
 			if( units != null ) {
-				//Log.d( TAG , "they are " + selectedUnits);
-				selectedUnits.addAll( units );
+				//Log.d( TAG , "they are " + selectedHumanoids);
+				selectedHumanoids.addAll( units );
 			}
 		}
 
 
-		if( selectedUnits.size() > 0 )	{
+		if( selectedHumanoids.size() > 0 )	{
 
-			boolean success = AttackThis.analyseCoordinate(ui.getCD(), mapRelCoord, selectedUnits);
+			boolean success = AttackThis.analyseCoordinate(ui.getCD(), mapRelCoord, selectedHumanoids);
 			if( success )
 			{
-				uo.showScroller( selectedUnits );
+				uo.showScroller( selectedHumanoids );
 				Log.d( TAG , "AttackThis used up touch event.");
 				return true;
 			}
@@ -156,12 +156,12 @@ public class UnitCommands implements TouchEventAnalyzer
 
 			boolean isWalkable = grid.isWalkable( mapRelCoord );
 			if( isWalkable ){
-				success = GoHere.analyseCoordinate(mapRelCoord, selectedUnits, ui.getCD(), grid, ui.getMapWidth(), ui.getMapHeight() );
+				success = GoHere.analyseCoordinate(mapRelCoord, selectedHumanoids, ui.getCD(), grid, ui.getMapWidth(), ui.getMapHeight() );
 				if( success )
 				{
-//					for( LivingThing lt : selectedUnits )
-//						if( lt instanceof Unit )
-//							((Unit) lt).setGarrisonBuilding( null );
+//					for( LivingThing lt : selectedHumanoids )
+//						if( lt instanceof Humanoid )
+//							((Humanoid) lt).setGarrisonBuilding( null );
 
 					///Log.d( TAG , "GoHere used up touch event.");
 					return true;

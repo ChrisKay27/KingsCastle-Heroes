@@ -21,7 +21,7 @@ class StatsInfo
 {
 
 	@Nullable
-    private static LivingThing selectedUnit;
+    private static LivingThing selectedHumanoid;
 
 	@NonNull
     private static final TextLabel statsLabel1;
@@ -74,7 +74,7 @@ class StatsInfo
 	public static void act()
 	{
 
-		if( selectedUnit == null )
+		if( selectedHumanoid == null )
 		{
 			return;
 		}
@@ -115,7 +115,7 @@ class StatsInfo
 	public static void paint( @NonNull Graphics g )
 	{
 
-		if ( selectedUnit != null )
+		if ( selectedHumanoid != null )
 		{
 
 			g.drawTextLabel( statsLabel1 );
@@ -127,25 +127,25 @@ class StatsInfo
 
 
 	@Nullable
-    public static LivingThing getSelectedUnit() {
-		return selectedUnit;
+    public static LivingThing getSelectedHumanoid() {
+		return selectedHumanoid;
 	}
 
 
 
 	@SuppressLint("DefaultLocale")
-	public static void setSelectedUnit( @Nullable LivingThing selectedUnit )
+	public static void setSelectedHumanoid( @Nullable LivingThing selectedHumanoid )
 	{
 
 
-		if( selectedUnit != null )
+		if( selectedHumanoid != null )
 		{
 			InfoMessage.getInstance().setMessage( null , 0 );
-			int damage = selectedUnit.getAQ() != null ? selectedUnit.getAQ().getDamage() : 0;
+			int damage = selectedHumanoid.getAQ() != null ? selectedHumanoid.getAQ().getDamage() : 0;
 
-			String speed = String.format( "%.2f" , ( selectedUnit.attributes.getSpeed() / Rpg.getDp() ) );
-			String msg = "Type: " + getSoldierType( selectedUnit ) + "Atk: "+ damage + getOptionalInfo( selectedUnit );
-			String msg2 = "MaxHp: " + selectedUnit.attributes.getFullHealth() + "  Speed: " + speed + getOptionalInfo2( selectedUnit );
+			String speed = String.format( "%.2f" , ( selectedHumanoid.attributes.getSpeed() / Rpg.getDp() ) );
+			String msg = "Type: " + getSoldierType( selectedHumanoid ) + "Atk: "+ damage + getOptionalInfo( selectedHumanoid );
+			String msg2 = "MaxHp: " + selectedHumanoid.attributes.getFullHealth() + "  Speed: " + speed + getOptionalInfo2( selectedHumanoid );
 
             statsLabel1.setMsg( msg );
 			statsLabel2.setMsg( msg2 );
@@ -156,7 +156,7 @@ class StatsInfo
 
 
 
-		StatsInfo.selectedUnit = selectedUnit;
+		StatsInfo.selectedHumanoid = selectedHumanoid;
 	}
 
 
@@ -166,32 +166,32 @@ class StatsInfo
 	private static final String METERS    = "m";
 
 	@NonNull
-    private static String getOptionalInfo(LivingThing selUnit)
+    private static String getOptionalInfo(LivingThing selHumanoid)
 	{
-		if( selUnit instanceof Building)
+		if( selHumanoid instanceof Building)
 		{
 			return EMPTY;
 		}
-		else if( selUnit.getAQ() == null )
+		else if( selHumanoid.getAQ() == null )
 		{
 			return EMPTY;
 		}
 
-		int range = (int) (selUnit.getAQ().getAttackRange()/10);
+		int range = (int) (selHumanoid.getAQ().getAttackRange()/10);
 
-		if( selUnit instanceof MageSoldier)
+		if( selHumanoid instanceof MageSoldier)
 		{
 			return RANGE + range + METERS;
 		}
-		else if( selUnit instanceof RangedSoldier)
+		else if( selHumanoid instanceof RangedSoldier)
 		{
 			return RANGE + range + METERS;
 		}
-		else if( selUnit instanceof Healer)
+		else if( selHumanoid instanceof Healer)
 		{
 			return RANGE + range + METERS;
 		}
-		else if( selUnit instanceof AttackingBuilding)
+		else if( selHumanoid instanceof AttackingBuilding)
 		{
 			return RANGE + range + METERS;
 		}
@@ -209,12 +209,12 @@ class StatsInfo
 	//	private static final String HEALINGBUFF = "Healing Buff";
 
 	@NonNull
-    private static String getOptionalInfo2( LivingThing selUnit )
+    private static String getOptionalInfo2( LivingThing selHumanoid )
 	{
 
-		//		if( selUnit instanceof WizardBuffer2 )
+		//		if( selHumanoid instanceof WizardBuffer2 )
 		//		{
-		//			WizardBuffer2 wb = (WizardBuffer2) selUnit;
+		//			WizardBuffer2 wb = (WizardBuffer2) selHumanoid;
 		//
 		//			return BUFF + wb.getAbilityMessage();
 		//		}
@@ -230,25 +230,25 @@ class StatsInfo
 	private static final String MAGE     = "Mage     ";
 
 	@NonNull
-    private static String getSoldierType( LivingThing selUnit )
+    private static String getSoldierType( LivingThing selHumanoid )
 	{
-		if( selUnit instanceof MageSoldier )
+		if( selHumanoid instanceof MageSoldier )
 		{
 			return MAGE;
 		}
-		else if( selUnit instanceof Healer )
+		else if( selHumanoid instanceof Healer )
 		{
 			return HEALER;
 		}
-		else if( selUnit instanceof RangedSoldier )
+		else if( selHumanoid instanceof RangedSoldier )
 		{
 			return RANGED;
 		}
-		else if( selUnit instanceof AttackingBuilding )
+		else if( selHumanoid instanceof AttackingBuilding )
 		{
 			return RANGED;
 		}
-		else if( selUnit instanceof Building )
+		else if( selHumanoid instanceof Building )
 		{
 			return BUILDING;
 		}

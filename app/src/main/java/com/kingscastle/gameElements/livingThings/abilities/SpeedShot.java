@@ -4,6 +4,7 @@ package com.kingscastle.gameElements.livingThings.abilities;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.SpeedShotAnim;
 import com.kingscastle.framework.Image;
 import com.kingscastle.gameElements.livingThings.Bonuses;
@@ -117,7 +118,11 @@ public class SpeedShot extends Buff
 	public Abilities getAbility()				 {				return Abilities.SPEEDSHOT ; 			}
 
 
-
+    @NotNull
+    @Override
+    public Class<? extends Anim> getAnimClass() {
+        return SpeedShotAnim.class;
+    }
 
 
 }

@@ -39,7 +39,7 @@ public class SpellCreationParams
 	/**
 	 * @return the unitVectorInDirection
 	 */
-	public vector getUnitVectorInDirection() {
+	public vector getHumanoidVectorInDirection() {
 		return unitVectorInDirection;
 	}
 
@@ -47,7 +47,7 @@ public class SpellCreationParams
 	/**
 	 * @param unitVectorInDirection the unitVectorInDirection to set
 	 */
-	public void setUnitVectorInDirection(vector unitVectorInDirection) {
+	public void setHumanoidVectorInDirection(vector unitVectorInDirection) {
 		this.unitVectorInDirection = unitVectorInDirection;
 	}
 

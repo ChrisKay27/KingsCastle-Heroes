@@ -67,13 +67,13 @@ public class ProjectileParams {
 	/**
 	 * @return the unitVectorInDirection
 	 */
-	public vector getUnitVectorInDirection() {
+	public vector getHumanoidVectorInDirection() {
 		return unitVectorInDirection;
 	}
 	/**
 	 * @param unitVectorInDirection the unitVectorInDirection to set
 	 */
-	public void setUnitVectorInDirection(vector unitVectorInDirection) {
+	public void setHumanoidVectorInDirection(vector unitVectorInDirection) {
 		this.unitVectorInDirection = unitVectorInDirection;
 	}
 	/**

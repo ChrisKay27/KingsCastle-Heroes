@@ -14,8 +14,8 @@ public class EnemyAtLocationChecker
 
 
 	/**
-	 * 
-	 * @param teamOfInterest Team to either ignore or look on based on onThatTeam paramater.
+	 *
+	 * @param teamOfInterest Team to either ignore or look on based on onThatTeam parameter.
 	 * @param onThatTeam If true it looks only on that team, used for finding players to heal on your own team. If false only looks at every other team.
 	 * @return null if nothing is found.
 	 */

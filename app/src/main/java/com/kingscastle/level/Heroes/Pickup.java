@@ -3,7 +3,7 @@ package com.kingscastle.level.Heroes;
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Rpg;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameUtils.vector;
 
@@ -39,9 +39,9 @@ public abstract class Pickup {
     }
 
 
-    public abstract void pickedUp(@NotNull MM mm ,@NotNull Unit byThisPlayer);
+    public abstract void pickedUp(@NotNull MM mm ,@NotNull Humanoid byThisPlayer);
 
     public abstract Anim getAnim();
 
-    public abstract boolean canPickup(@NotNull Unit byThisPlayer);
+    public abstract boolean canPickup(@NotNull Humanoid byThisPlayer);
 }

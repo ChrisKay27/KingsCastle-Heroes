@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
-import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
 import com.kingscastle.gameElements.livingThings.Attributes;
@@ -15,6 +14,7 @@ import com.kingscastle.gameElements.livingThings.SoldierTypes.UpperMeleeSoldier;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameUtils.Age;
 import com.kingscastle.gameUtils.vector;
+import com.kingscastle.heroes.R;
 import com.kingscastle.teams.Teams;
 
 
@@ -23,7 +23,7 @@ public class HumanArmoredSoldier extends UpperMeleeSoldier
 
 	private static final String TAG = "Armored Soldier";
 
-	private static Image[] redImages , blueImages , greenImages , orangeImages , whiteImages ;
+	private static Image[] staticImages = Assets.loadImages(R.drawable.armored_soldier_blue,0,0,1,1);// blueImages , greenImages , orangeImages , whiteImages ;
 	private static ImageFormatInfo imageFormatInfo;
 
 
@@ -90,62 +90,10 @@ public class HumanArmoredSoldier extends UpperMeleeSoldier
 
 
 	@Override
-	public Image[] getImages()
-	{
-		loadImages();
-
-		Teams teamName = getTeamName();
-		if( teamName == null )
-		{
-			teamName = Teams.BLUE;
-		}
-
-		switch( teamName )
-		{
-		default:
-		case RED:
-			return redImages;
-
-		case GREEN:
-			return greenImages;
-
-		case BLUE:
-			return blueImages;
-
-		case ORANGE:
-			return orangeImages;
-
-		case WHITE:
-			return whiteImages;
-
-		}
-
+	public Image[] getImages()	{
+		return staticImages;
 	}
 
-	@Override
-	public void loadImages()
-	{
-		if( redImages == null )
-		{
-			redImages = Assets.loadImages(imageFormatInfo.getRedId(), 0, 0, 1, 1);
-		}
-		if( orangeImages == null )
-		{
-			orangeImages = Assets.loadImages( imageFormatInfo.getOrangeId()  , 0 , 0 , 1 , 1 );
-		}
-		if( blueImages == null )
-		{
-			blueImages = Assets.loadImages( imageFormatInfo.getBlueId()  , 0 , 0 , 1 , 1 );
-		}
-		if( greenImages == null )
-		{
-			greenImages = Assets.loadImages( imageFormatInfo.getGreenId()  , 0 , 0 , 1 , 1 );
-		}
-		if( whiteImages == null )
-		{
-			whiteImages = Assets.loadImages( imageFormatInfo.getWhiteId()  , 0 , 0 , 1 , 1 );
-		}
-	}
 
 
 

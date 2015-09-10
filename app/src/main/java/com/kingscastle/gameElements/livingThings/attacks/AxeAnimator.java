@@ -109,7 +109,7 @@ public class AxeAnimator extends AttackAnimator
 	//	@Override
 	//	public void doAttack()
 	//	{
-	//		ownersAttack.checkHit( attackingInDirectionUnitVector );
+	//		ownersAttack.checkHit( attackingInDirectionHumanoidVector );
 	//	}
 
 

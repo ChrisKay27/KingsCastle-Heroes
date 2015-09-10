@@ -21,17 +21,13 @@ public class Warrior extends BasicMeleeSoldier
 {
 	private static final String TAG = "Warrior";
 
-	private static Image[] staticImages , redImages , blueImages , greenImages , orangeImages , whiteImages ;
+	private static Image[] staticImages = Assets.loadImages(R.drawable.warrior_blue,0,0,1,1);
 	private static ImageFormatInfo imageFormatInfo;
 
 	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
-                                                                    @Override
-	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
-                                                                @Override
-	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
+    private static final AttackerQualities staticAttackerQualities;
+    @NonNull
+    private static final Attributes STATIC_ATTRIBUTES;
 
 	private static Cost cost = new Cost( 50 , 50 , 0 , 1 );
 
@@ -40,10 +36,6 @@ public class Warrior extends BasicMeleeSoldier
 	{
 		float dp = Rpg.getDp();
 
-		imageFormatInfo = new ImageFormatInfo( 0 , 0 ,
-				2 , 0 , 4 , 2 );
-		imageFormatInfo.setRedId( R.drawable.warrior_red );
-		imageFormatInfo.setBlueId( R.drawable.warrior_blue );
 
 		staticAttackerQualities= new AttackerQualities();
 
@@ -83,55 +75,8 @@ public class Warrior extends BasicMeleeSoldier
 
 
 	@Override
-	public Image[] getImages()
-	{
-		loadImages();
-
-		Teams teamName = getTeamName();
-		if( teamName == null )
-		{
-			teamName = Teams.BLUE;
-		}
-
-		switch( teamName )
-		{
-		default:
-		case RED:
-			return redImages;
-
-		case GREEN:
-			return greenImages;
-
-		case BLUE:
-			return blueImages;
-
-		case ORANGE:
-			return orangeImages;
-
-		case WHITE:
-			return whiteImages;
-
-		}
-
-	}
-
-	@Override
-	public void loadImages()
-	{
-		if( redImages == null )
-			redImages = Assets.loadImages(imageFormatInfo.getRedId(), 0, 0, 1, 1);
-
-		if( orangeImages == null )
-			orangeImages = Assets.loadImages( imageFormatInfo.getOrangeId()  , 0 , 0 , 1 , 1 );
-
-		if( blueImages == null )
-			blueImages = Assets.loadImages( imageFormatInfo.getBlueId()  , 0 , 0 , 1 , 1 );
-
-		if( greenImages == null )
-			greenImages = Assets.loadImages( imageFormatInfo.getGreenId()  , 0 , 0 , 1 , 1 );
-
-		if( whiteImages == null )
-			whiteImages = Assets.loadImages( imageFormatInfo.getWhiteId()  , 0 , 0 , 1 , 1 );
+	public Image[] getImages()	{
+		return staticImages;
 	}
 
 
@@ -222,6 +167,13 @@ public class Warrior extends BasicMeleeSoldier
 
 
 
+
+    @NonNull
+    @Override
+    protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
+    @NonNull
+    @Override
+    protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
 
 }

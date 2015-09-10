@@ -9,13 +9,13 @@ class Sounds {
 	//public static Sound mudStep;
 
 
-	//	public static void playUnitSelectionSound()
+	//	public static void playHumanoidSelectionSound()
 	//	{
-	//		//loadUnitSelectionSounds();
+	//		//loadHumanoidSelectionSounds();
 	//		//unitSelectionSounds.get((int) (Math.random()*unitSelectionSounds.size())).play(0.2f);
 	//	}
 
-	//	private static void loadUnitSelectionSounds()
+	//	private static void loadHumanoidSelectionSounds()
 	//	{
 	//		if( unitSelectionSounds == null )
 	//		{

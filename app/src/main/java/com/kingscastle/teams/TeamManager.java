@@ -126,7 +126,7 @@ public class TeamManager
 		}
 	}
 
-	public void onUnitDestroyed( @Nullable LivingThing lt )
+	public void onHumanoidDestroyed( @Nullable LivingThing lt )
 	{
 		if( lt == null || lt.getTeamName() == null )
 		{
@@ -136,11 +136,11 @@ public class TeamManager
 
 		Team team = getTeam( lt.getTeamName() );
 		if( team != null )
-			team.onUnitDestroyed(lt);
+			team.onHumanoidDestroyed(lt);
 
 	}
 
-	public void onUnitCreated( @Nullable LivingThing lt )
+	public void onHumanoidCreated( @Nullable LivingThing lt )
 	{
 		if( lt == null || lt.getTeamName() == null )
 		{
@@ -155,7 +155,7 @@ public class TeamManager
 			}
 
 		//TODO Level up the soldier appropriately here! (i think)
-		//Log.d( TAG , "onUnitCreated() finished");
+		//Log.d( TAG , "onHumanoidCreated() finished");
 		//Team team = getTeam( lt.getTeamName() );
 
 		//team.getPlayer().getPersonalResources().incPopCurr( lt.getCosts().getPopCost() );

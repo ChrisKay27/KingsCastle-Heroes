@@ -21,7 +21,7 @@ import com.kingscastle.teams.Teams;
 public class Knight extends AdvancedMeleeSoldier {
 
     private static ImageFormatInfo imageFormatInfo;
-    private static Image[] redImages, blueImages, greenImages, orangeImages, whiteImages;
+    private static Image[] redImages = Assets.loadImages(R.drawable.soldier_deen_red,0,0,1,1), blueImages = Assets.loadImages(R.drawable.soldier_deen_blue, 0, 0, 1, 1), greenImages, orangeImages, whiteImages;
 
     private static final Attributes STATIC_ATTRIBUTES;
     private static final AttackerQualities staticAttackerQualities;
@@ -83,11 +83,7 @@ public class Knight extends AdvancedMeleeSoldier {
     @Override
     public Image[] getImages() {
 
-        Teams teamName = getTeamName();
-        if (teamName == null)
-            teamName = Teams.BLUE;
-
-        switch (teamName) {
+        switch (getTeamName()) {
             default:
             case RED:
                 return redImages;

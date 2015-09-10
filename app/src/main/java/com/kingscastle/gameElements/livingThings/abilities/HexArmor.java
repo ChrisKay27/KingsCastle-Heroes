@@ -131,7 +131,11 @@ public class HexArmor extends Buff
 	}
 
 
-
+    @NotNull
+    @Override
+    public Class<? extends Anim> getAnimClass() {
+        return HexBubbleAnim.class;
+    }
 
 
 

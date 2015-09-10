@@ -36,7 +36,10 @@ public abstract class Buff implements Ability
 
 	private EffectsManager em;
 
-
+    /**
+     * Always add a constructor to subclasses with the same signature as this one! Classes are sometimes stored in lists and new instances are created
+     * via the getConstructor(LivingThing.class, LivingThing.class).newInstance( lt1, lt2 ) methods.
+     */
 	public Buff(@NotNull LivingThing caster,@NotNull LivingThing target ){
 		this.caster = caster;
 		this.target = target;
@@ -190,14 +193,18 @@ public abstract class Buff implements Ability
 		this.casted = casted;
 	}
 
+
+
 	@Override
 	public final Anim getAnim() {
 		return anim;
 	}
-
 	void setAnim(@NotNull Anim anim) {
 		this.anim = anim;
 	}
+
+    @NotNull
+    public abstract Class<? extends Anim> getAnimClass();
 
 
 

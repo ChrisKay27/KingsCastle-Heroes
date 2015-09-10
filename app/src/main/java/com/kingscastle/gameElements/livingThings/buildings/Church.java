@@ -42,7 +42,7 @@ public class Church extends Building
 	private RectF perceivedArea;
 
 
-	private BuildableUnits buildableUnits ;
+	private BuildableSoldiers buildableHumanoids ;
 
 
 

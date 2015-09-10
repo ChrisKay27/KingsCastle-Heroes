@@ -159,7 +159,7 @@ public class LevelUpTechnology extends Technology {
 		teamName = team;
 	}
 
-	public boolean isLvlingUpAUnit() {
+	public boolean isLvlingUpAHumanoid() {
 		if( lt != null ){
 			if( lt instanceof Building )
 				return false;
@@ -169,8 +169,8 @@ public class LevelUpTechnology extends Technology {
 		else if( ltClass != null ){
 			try
 			{
-				Class<?> aUnit = Class.forName("com.kaebe.kingscastle27.livingThings.army." + ltClass );
-				if( aUnit != null )
+				Class<?> aHumanoid = Class.forName("com.kaebe.kingscastle27.livingThings.army." + ltClass );
+				if( aHumanoid != null )
 					return true;
 				else
 					return false;

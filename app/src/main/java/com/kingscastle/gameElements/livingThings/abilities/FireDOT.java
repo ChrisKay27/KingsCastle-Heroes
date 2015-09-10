@@ -57,4 +57,9 @@ public class FireDOT extends DOTBuff {
         return TAG;
     }
 
+    @NotNull
+    @Override
+    public Class<? extends Anim> getAnimClass() {
+        return TorchLightAnim.class;
+    }
 }

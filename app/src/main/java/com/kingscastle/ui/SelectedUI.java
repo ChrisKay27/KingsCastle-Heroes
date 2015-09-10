@@ -29,7 +29,8 @@ import com.kingscastle.framework.WtfException;
 import com.kingscastle.gameElements.CD;
 import com.kingscastle.gameElements.GameElement;
 import com.kingscastle.gameElements.livingThings.LivingThing;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.buildings.Building;
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameUtils.CoordConverter;
@@ -102,8 +103,7 @@ public class SelectedUI
 	{
 		infDisplay.runOnUIThread();
 
-
-		Unit selected = ui.getSelectedUnit();
+        Humanoid selected = ui.getSelectedHumanoid();
         if( showTitle ) {
             TextView selTitle = this.selTitle;
             TextView selTitle2 = this.selTitle2;
@@ -163,10 +163,10 @@ public class SelectedUI
         if( disabled ) return;
 		//Log.d( TAG , "refreshUI()");
 
-		Unit u = ui.getSelectedUnit();
+        Humanoid u = ui.getSelectedHumanoid();
 		if( u != null ){
 			if( infDisplay.isInfoDisplayOpen() ){
-				//LivingThing sel = (LivingThing) selectedUnit;
+				//LivingThing sel = (LivingThing) selectedHumanoid;
 				//Log.d( TAG , "ge instanceof LivingThing && StatsDisplay2.isStatsDisplayOpen()");
 				infDisplay.hide();
 				infDisplay.showInfoDisplay();
@@ -188,7 +188,7 @@ public class SelectedUI
                 //rusher.showFinishNowButtonIfNeededTSafe(b);
             }
 //            else {
-//                List<Unit> units = ui.getSelectedUnits();
+//                List<Humanoid> units = ui.getSelectedHumanoids();
 //                if (units != null) {
 //                    ui.uo.refresh(ges);
 //                }
@@ -205,7 +205,7 @@ public class SelectedUI
 //		if( selGe != null )
 //			setSelectedThings( null );
 
-		//Log.d( TAG , "setSelected selectedUnit=" + selGe );
+		//Log.d( TAG , "setSelected selectedHumanoid=" + selGe );
 
 		if( selGe != null )	{
 
@@ -218,8 +218,8 @@ public class SelectedUI
 			openSelectedUIView( selGe , null );
 
 
-			if( selGe instanceof Unit ) {
-                Unit lt = (Unit) selGe;
+			if( selGe instanceof Humanoid ) {
+                Humanoid lt = (Humanoid) selGe;
 				lt.setSelectedColor( Color.YELLOW );
                 ui.unitButtons.showScroller(lt);
 			}
@@ -258,9 +258,9 @@ public class SelectedUI
 		}
 	}
 
-    private void openSelectedUIView(@Nullable final GameElement selUnit , @Nullable final List<? extends GameElement> selecteds ) {
+    private void openSelectedUIView(@Nullable final GameElement selHumanoid , @Nullable final List<? extends GameElement> selecteds ) {
 
-        if( selUnit == null && (selecteds == null || selecteds.isEmpty() )) return;
+        if( selHumanoid == null && (selecteds == null || selecteds.isEmpty() )) return;
 
         //TODO: Should probably have a better way of getting the activity
         final GameActivity a = (GameActivity) Rpg.getGame().getActivity();
@@ -269,7 +269,7 @@ public class SelectedUI
             @Override
             public void run() {
 
-                Log.d(TAG, "openSelectedUIView.run() selUnit=" + selUnit + " selecteds=" + selecteds);
+                Log.d(TAG, "openSelectedUIView.run() selHumanoid=" + selHumanoid + " selecteds=" + selecteds);
 
                 View v = selectedUIView;
                 //Remove old selectedUIView if it is present
@@ -315,7 +315,7 @@ public class SelectedUI
                 //More info button
                 final ImageButton info = (ImageButton) selectedUIView.findViewById(R.id.buttonSelectedsInfo);
                 info.setOnClickListener(openInfoView);
-                if( selecteds != null || !(selUnit instanceof LivingThing) )
+                if( selecteds != null || !(selHumanoid instanceof LivingThing) )
                     info.setVisibility(View.GONE);
 
 
@@ -324,10 +324,10 @@ public class SelectedUI
                 // This version of Tower Defence builds towers instantly.
                 final ImageButton finish = (ImageButton) selectedUIView.findViewById(R.id.buttonFinishNow);
                 finish.setVisibility(View.GONE);
-				/*if( selUnit instanceof Building || areBuildings( selecteds ) ){
+				/*if( selHumanoid instanceof Building || areBuildings( selecteds ) ){
 					rusher.setHurryButtonAndSetup(finish);
-					if( selUnit != null )
-						rusher.showFinishNowButtonIfNeeded( selUnit );
+					if( selHumanoid != null )
+						rusher.showFinishNowButtonIfNeeded( selHumanoid );
 					else
 						rusher.showFinishNowButtonIfNeeded( selecteds );
 				}
@@ -368,7 +368,7 @@ public class SelectedUI
                 }else{
                     UIUtil.applyCooperBlack(selTitle,selTitle2,selTitle3);
                     UIUtil.setUpForBacking(2, selTitle,selTitle2,selTitle3);
-                    setText(selUnit.getName(),selTitle,selTitle2,selTitle3);
+                    setText(selHumanoid.getName(),selTitle,selTitle2,selTitle3);
 
                     selTitle.setVisibility(View.VISIBLE);
                     selTitle2.setVisibility(View.VISIBLE);
@@ -376,7 +376,7 @@ public class SelectedUI
 
 
                     Paint tPaint = selTitle.getPaint();
-                    selTitleOffs.set( -tPaint.measureText(selUnit.getName())/2 , -2*tPaint.getFontSpacing() );
+                    selTitleOffs.set( -tPaint.measureText(selHumanoid.getName())/2 , -2*tPaint.getFontSpacing() );
 
 
                     ValueAnimator animation = ValueAnimator.ofFloat(0f, 1f);
@@ -466,7 +466,7 @@ public class SelectedUI
                             alphaAnimation.start();
                         }
                         if( observer.isAlive() )
-                            observer.removeOnGlobalLayoutListener(this);
+                            observer.removeGlobalOnLayoutListener(this);
                     }
                 });
             }
@@ -582,10 +582,10 @@ public class SelectedUI
 		{
 			openSelectedUIView(null, ges_);
 			GameElement firstGe = ges_.get(0);
-			if( firstGe instanceof Unit ){
-				ArrayList<? extends LivingThing> lts = GameElementUtil.getUnits(ges_);
+			if( firstGe instanceof Humanoid ){
+				ArrayList<? extends LivingThing> lts = GameElementUtil.getHumanoids(ges_);
 				if( lts != null && !lts.isEmpty() ){
-					UnitOptions uo = ui.uo;
+					HumanoidOptions uo = ui.uo;
 					if( uo != null )
 						uo.showScroller( lts );
 				}
@@ -735,17 +735,17 @@ public class SelectedUI
     private final OnClickListener openInfoView = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			//Log.d( TAG , "openInfoView.onClick() selectedUnit=" + selectedUnit );
+			//Log.d( TAG , "openInfoView.onClick() selectedHumanoid=" + selectedHumanoid );
 
-			final Unit selUnit = ui.getSelectedUnit();
-			if( selUnit == null ) return;
+			final Humanoid selHumanoid = ui.getSelectedHumanoid();
+			if( selHumanoid == null ) return;
 
-			Team team = mm.getTeam( selUnit.getTeamName() );
+			Team team = mm.getTeam( selHumanoid.getTeamName() );
 			if( team == null && Game.testingVersion )
-				throw new WtfException(" MM.get().getTeam( selUnit.getTeamName() ) == null, fix getting the MM like this.");
+				throw new WtfException(" MM.get().getTeam( selHumanoid.getTeamName() ) == null, fix getting the MM like this.");
 			//selectedUIView.setVisibility(View.INVISIBLE);
 			hide();
-			infDisplay.showInfoDisplay( selUnit , team );
+			infDisplay.showInfoDisplay( selHumanoid , team );
 		}
 	};
 
@@ -1024,11 +1024,11 @@ public class SelectedUI
 
 
 
-	public static void updateFlagLoc( LivingThing selectedUnit )
+	public static void updateFlagLoc( LivingThing selectedHumanoid )
 	{
 	}
 
-	public static void updateFlagLoc(ArrayList<LivingThing> selectedUnits)
+	public static void updateFlagLoc(ArrayList<LivingThing> selectedHumanoids)
 	{
 	}
 
@@ -1043,7 +1043,7 @@ public class SelectedUI
 
 	public void clearSelections()
 	{
-		//Log.d( TAG , "clearSelections() ges=" + ges + " selectedUnit=" + selectedUnit );
+		//Log.d( TAG , "clearSelections() ges=" + ges + " selectedHumanoid=" + selectedHumanoid );
 		setSelected(null);
 		//setSelectedThings( null );
 	}

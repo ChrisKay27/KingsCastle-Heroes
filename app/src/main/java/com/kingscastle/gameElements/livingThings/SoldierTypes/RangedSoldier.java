@@ -11,7 +11,7 @@ import com.kingscastle.teams.Teams;
 
 import org.jetbrains.annotations.NotNull;
 
-public abstract class RangedSoldier extends Unit {
+public abstract class RangedSoldier extends Humanoid {
 
 	public RangedSoldier() {
 	}

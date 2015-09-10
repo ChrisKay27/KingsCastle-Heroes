@@ -20,7 +20,7 @@ import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.livingThings.LivingThing;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.buildings.Building;
 import com.kingscastle.gameUtils.vector;
 import com.kingscastle.level.Level;
@@ -256,7 +256,7 @@ public class Console {
 
 			Team t = level.getMM().getTeam(teams);
 			vector loc = new vector(level.getBackground().getCenteredOn());
-			Unit u = Unit.getFromString( inputs[1] , teams , loc );
+			Humanoid u = Humanoid.getFromString( inputs[1] , teams , loc );
 			Building b=null;
 			if( u != null ){
 				u.setNearDistSquared(u.getAQ().getFocusRangeSquared()*4);

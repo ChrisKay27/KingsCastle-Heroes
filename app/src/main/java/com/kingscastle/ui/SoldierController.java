@@ -5,15 +5,15 @@ import android.graphics.Rect;
 import com.kingscastle.framework.Graphics;
 import com.kingscastle.framework.Input;
 import com.kingscastle.framework.Rpg;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameUtils.vector;
 import com.kingscastle.ui.buttons.Zoomer;
 
 /**
  * Created by Chris on 9/4/2015 for KingsCastle-Heroes
  */
-public class UnitController implements TouchEventAnalyzer, Paintable {
-    private static final String TAG = UnitController.class.getSimpleName() ;
+public class SoldierController implements TouchEventAnalyzer, Paintable {
+    private static final String TAG = SoldierController.class.getSimpleName() ;
 
     private final UI ui;
     private final AbilityCaster ac;
@@ -21,7 +21,7 @@ public class UnitController implements TouchEventAnalyzer, Paintable {
 
 
 
-    public UnitController(final UI ui, AbilityCaster ac) {
+    public SoldierController(final UI ui, AbilityCaster ac) {
         this.ui = ui;
         this.ac = ac;
         float dp = Rpg.getDp();
@@ -55,11 +55,11 @@ public class UnitController implements TouchEventAnalyzer, Paintable {
             @Override
             public void thumbStickPositionChanged(vector position) {
                 //Log.d( TAG , "left thumbStickPositionChanged: " + position);
-                ui.selectedThings.getSelectedUnit().moveInDirection(position);
+                ui.selectedThings.getSelectedHumanoid().moveInDirection(position);
             }
             @Override
             public void thumbLeftThumbStick() {
-                ui.selectedThings.getSelectedUnit().stopMovingInDirection();
+                ui.selectedThings.getSelectedHumanoid().stopMovingInDirection();
             }
         });
 
@@ -72,7 +72,7 @@ public class UnitController implements TouchEventAnalyzer, Paintable {
 
     @Override
     public boolean analyzeTouchEvent(Input.TouchEvent e) {
-        Unit u = ui.getSelectedUnit();
+        Humanoid u = ui.getSelectedHumanoid();
 
         if( u != null ){
 

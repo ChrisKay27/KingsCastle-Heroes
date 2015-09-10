@@ -104,7 +104,7 @@ public class CatapultTower extends AttackingBuilding
 
 
 	@NonNull
-    private vector targetDirUnitVector = new vector();
+    private vector targetDirHumanoidVector = new vector();
 
 	@Override
 	protected boolean armsAct()
@@ -114,8 +114,8 @@ public class CatapultTower extends AttackingBuilding
 //			LivingThing targ = getTarget();
 //			if( targ != null ){
 //
-//				targetDirUnitVector.set(targ.loc).minus(loc).turnIntoUnitVector();
-//				lookDir = Vector.getDirection4(targetDirUnitVector);
+//				targetDirHumanoidVector.set(targ.loc).minus(loc).turnIntoHumanoidVector();
+//				lookDir = Vector.getDirection4(targetDirHumanoidVector);
 			firing = true;
 			//}
 			return true;

@@ -76,12 +76,12 @@ public class GridUtil
 
 
 
-	private boolean isPlaceable( @NonNull RectF area, boolean ignoreUnits )
+	private boolean isPlaceable( @NonNull RectF area, boolean ignoreHumanoids )
 	{
 		if( area.left < 0 || area.top < 0 || area.bottom >= mapHeight || area.right >= mapWidth )
 			return false;
 
-		return mm.getCD().checkPlaceable2(area, ignoreUnits);
+		return mm.getCD().checkPlaceable2(area, ignoreHumanoids);
 	}
 
 

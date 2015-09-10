@@ -3,6 +3,7 @@ package com.kingscastle.gameElements.livingThings.abilities;
 
 import android.support.annotation.NonNull;
 
+import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.AuraAnim;
 import com.kingscastle.framework.Image;
 import com.kingscastle.gameElements.livingThings.LivingThing;
@@ -91,7 +92,11 @@ public class Stun extends Buff{
 	}
 
 
-
+    @NotNull
+    @Override
+    public Class<? extends Anim> getAnimClass() {
+        return AuraAnim.class;
+    }
 
 
 

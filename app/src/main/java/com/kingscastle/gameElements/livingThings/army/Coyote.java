@@ -1,27 +1,25 @@
 package com.kingscastle.gameElements.livingThings.army;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.graphics.RectF;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.kingscastle.effects.animations.LightEffect2;
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
-import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.Cost;
-import com.kingscastle.gameElements.ImageFormatInfo;
 import com.kingscastle.gameElements.livingThings.Attributes;
-import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.AdvancedMageSoldier;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
+import com.kingscastle.gameElements.livingThings.attacks.Bow;
+import com.kingscastle.gameElements.livingThings.attacks.BowAnimator;
 import com.kingscastle.gameElements.livingThings.attacks.SummonAttack;
 import com.kingscastle.gameElements.managment.MM;
+import com.kingscastle.gameElements.projectiles.Arrow;
 import com.kingscastle.gameUtils.Age;
 import com.kingscastle.gameUtils.vector;
+import com.kingscastle.heroes.R;
 import com.kingscastle.teams.Teams;
 
 import java.util.ArrayList;
@@ -33,8 +31,7 @@ public class Coyote extends AdvancedMageSoldier
 
 	private static final String TAG = "Coyote";
 
-	private static ImageFormatInfo imageFormatInfo;
-	private static Image[] redImages , blueImages , greenImages , orangeImages , whiteImages ;
+	private static Image[] images = Assets.loadImages(R.drawable.coyote, 0, 0, 1, 1);
 
 
 	@NonNull
@@ -51,16 +48,13 @@ public class Coyote extends AdvancedMageSoldier
 	static
 	{
 		float dp = Rpg.getDp();
-		imageFormatInfo = new ImageFormatInfo( 0 , 0 ,
-				0 , 0 , 1 , 1);
-		imageFormatInfo.setRedId( R.drawable.coyote );
 
 
 		staticAttackerQualities= new AttackerQualities();
 
 		staticAttackerQualities.setStaysAtDistanceSquared(10000 * dp * dp);
-		staticAttackerQualities.setFocusRangeSquared(5000*dp*dp);
-		staticAttackerQualities.setAttackRangeSquared(22500 * dp * dp);
+		staticAttackerQualities.setFocusRangeSquared(10000*dp*dp);
+		staticAttackerQualities.setAttackRangeSquared(10000 * dp * dp);
 		staticAttackerQualities.setDamage( 80 );  staticAttackerQualities.setdDamageAge( 0 ); staticAttackerQualities.setdDamageLvl( 15 );
 		staticAttackerQualities.setROF( 2000 );
 
@@ -73,7 +67,7 @@ public class Coyote extends AdvancedMageSoldier
 		STATIC_ATTRIBUTES.setHpRegenAmount( 1 );
 		STATIC_ATTRIBUTES.setRegenRate( 1000 );
 		STATIC_ATTRIBUTES.setArmor( 15 );
-		STATIC_ATTRIBUTES.setSpeed( .4f * dp );
+		STATIC_ATTRIBUTES.setSpeed( .6f * dp );
 	}
 
 	@NonNull
@@ -100,7 +94,7 @@ public class Coyote extends AdvancedMageSoldier
 	@Override
 	public boolean act() {
 		if( checkSummonsAt < GameTime.getTime() ) {
-			checkSummonsAt = GameTime.getTime() + 1500;
+			checkSummonsAt = GameTime.getTime() + 4000;
 			for (SummonAttack sa : summonAtks)
 				sa.act();
 		}
@@ -112,96 +106,33 @@ public class Coyote extends AdvancedMageSoldier
 	public boolean create(@NonNull MM mm) {
 		boolean superCreate =  super.create(mm);
 		getAnim().setScale(1.5f);
-		final LightEffect2 le = new LightEffect2(loc);
-		le.setScale(3);
-		mm.getEm().add(le);
-		getAnim().addAnimationListener(new AnimatorListenerAdapter() {
-			@Override
-			public void onAnimationEnd(Animator animation) {
-				le.setOver(true);
-			}
-		});
+//		final LightEffect2 le = new LightEffect2(loc);
+//		le.setScale(3);
+//		mm.getEm().add(le);
+//		getAnim().addAnimationListener(new AnimatorListenerAdapter() {
+//			@Override
+//			public void onAnimationEnd(Animator animation) {
+//				le.setOver(true);
+//			}
+//		});
 		return superCreate;
 	}
 
 	@Override
 	protected void setupSpells(){
-		summonAtks.add(new SummonAttack(getMM(), this, new Rat(new vector(), team), 4));
-		summonAtks.add(new SummonAttack(getMM(), this, new KratosHeavyArcher(new vector(), team), 4));
-		summonAtks.add(new SummonAttack(getMM(), this, new RatGrey(new vector(), team), 4));
+		summonAtks.add(new SummonAttack(getMM(), this, new Rat(new vector(), team), 1));
+		summonAtks.add(new SummonAttack(getMM(), this, new RatGrey(new vector(), team),1));
+        aq.setCurrentAttack(new Bow(getMM(), this, new Arrow(), BowAnimator.BowTypes.RecurveBow));
 	}
 
-	@Override
-	public void setTarget(LivingThing nTarget) {
-	}
 
 
 	@Override
-	public Image[] getImages()
-	{
-		loadImages();
-
-		Teams teamName = getTeamName();
-		if( teamName == null )
-			teamName = Teams.BLUE;
-
-		switch( teamName )
-		{
-		default:
-		case RED:
-			return redImages;
-		case GREEN:
-			return greenImages;
-		case BLUE:
-			return blueImages;
-		case ORANGE:
-			return orangeImages;
-		case WHITE:
-			return whiteImages;
-		}
-	}
-
-	@Override
-	public void loadImages()
-	{
-		if( redImages == null )
-		{
-			redImages = Assets.loadImages(imageFormatInfo.getRedId(), 0, 0, 1, 1);
-		}
-		if( orangeImages == null )
-		{
-			orangeImages = Assets.loadImages( imageFormatInfo.getOrangeId()  , 0 , 0 , 1 , 1 );
-		}
-		if( blueImages == null )
-		{
-			blueImages = Assets.loadImages( imageFormatInfo.getBlueId()  , 0 , 0 , 1 , 1 );
-		}
-		if( greenImages == null )
-		{
-			greenImages = Assets.loadImages( imageFormatInfo.getGreenId()  , 0 , 0 , 1 , 1 );
-		}
-		if( whiteImages == null )
-		{
-			whiteImages = Assets.loadImages( imageFormatInfo.getWhiteId()  , 0 , 0 , 1 , 1 );
-		}
+	public Image[] getImages(){
+		return images;
 	}
 
 
-	/**
-	 * @return the imageFormatInfo
-	 */
-	@Override
-	public ImageFormatInfo getImageFormatInfo() {
-		return imageFormatInfo;
-	}
-
-
-	/**
-	 * @param imageFormatInfo the imageFormatInfo to set
-	 */
-	public void setImageFormatInfo(ImageFormatInfo imageFormatInfo) {
-		Coyote.imageFormatInfo = imageFormatInfo;
-	}
 
 
 
@@ -210,8 +141,6 @@ public class Coyote extends AdvancedMageSoldier
 	public RectF getStaticPerceivedArea(){
 		return Rpg.getNormalPerceivedArea();
 	}
-
-
 
 	@Override
 	public void setStaticPerceivedArea(RectF staticPercArea2) {
@@ -234,73 +163,9 @@ public class Coyote extends AdvancedMageSoldier
 	 */
 	@Override
 	public void setStaticImages(Image[] staticImages) {
-
 	}
 
-	public static Image[] getRedImages()
-	{
-		if ( redImages == null )
-		{
-			redImages = Assets.loadImages( imageFormatInfo.getRedId()  , 3 , 4, 0 , 0 , 1 , 1 );
-		}
-		return redImages;
-	}
 
-	public static void setRedImages(Image[] redImages) {
-		Coyote.redImages = redImages;
-	}
-
-	public static Image[] getBlueImages()
-	{
-		if ( blueImages == null )
-		{
-			blueImages = Assets.loadImages( imageFormatInfo.getBlueId()  , 3 , 4, 0 , 0 , 1 , 1 );
-		}
-		return blueImages;
-	}
-
-	public static void setBlueImages(Image[] blueImages) {
-		Coyote.blueImages = blueImages;
-	}
-
-	public static Image[] getGreenImages()
-	{
-		if ( greenImages == null )
-		{
-			greenImages = Assets.loadImages( imageFormatInfo.getGreenId()  , 3 , 4 , 0 , 0 , 1 , 1 );
-		}
-		return greenImages;
-	}
-
-	public static void setGreenImages(Image[] greenImages) {
-		Coyote.greenImages = greenImages;
-	}
-
-	public static Image[] getOrangeImages()
-	{
-		if ( orangeImages == null )
-		{
-			orangeImages = Assets.loadImages( imageFormatInfo.getOrangeId()  , 3 , 4 , 0 , 0 , 1 , 1 );
-		}
-		return orangeImages;
-	}
-
-	public static void setOrangeImages(Image[] orangeImages) {
-		Coyote.orangeImages = orangeImages;
-	}
-
-	public static Image[] getWhiteImages()
-	{
-		if ( whiteImages == null )
-		{
-			whiteImages = Assets.loadImages( imageFormatInfo.getWhiteId()  , 3 , 4 , 0 , 0 , 1 , 1 );
-		}
-		return whiteImages;
-	}
-
-	public static void setWhiteImages(Image[] whiteImages) {
-		Coyote.whiteImages = whiteImages;
-	}
 
 
 	@NonNull

@@ -57,7 +57,7 @@ public abstract class Attack
 	public void checkHit(vector attackingInDirection) {
 	}
 
-	public void attackFromUnitVector(vector unitVector) {
+	public void attackFromHumanoidVector(vector unitVector) {
 	}
 
 

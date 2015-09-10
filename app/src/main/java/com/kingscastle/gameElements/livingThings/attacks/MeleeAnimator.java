@@ -233,7 +233,7 @@ public class MeleeAnimator extends AttackAnimator
 	//	@Override
 	//	public void doAttack()
 	//	{
-	//		ownersAttack.checkHit( attackingInDirectionUnitVector );
+	//		ownersAttack.checkHit( attackingInDirectionHumanoidVector );
 	//	}
 
 	@Override

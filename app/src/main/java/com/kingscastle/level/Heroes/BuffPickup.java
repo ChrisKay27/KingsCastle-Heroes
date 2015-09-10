@@ -1,8 +1,7 @@
 package com.kingscastle.level.Heroes;
 
 import com.kingscastle.effects.animations.Anim;
-import com.kingscastle.effects.animations.HasteAnim;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.abilities.Ability;
 import com.kingscastle.gameElements.livingThings.abilities.Buff;
 import com.kingscastle.gameElements.managment.MM;
@@ -19,14 +18,16 @@ public class BuffPickup extends Pickup {
     private final Anim anim;
 
 
-    public BuffPickup(@NotNull vector loc, @NotNull Buff buff) {
+    public BuffPickup(@NotNull vector loc, @NotNull Buff buff) throws Exception {
         super(loc);
         this.buff = buff;
-        anim = new HasteAnim(loc);
+        anim = buff.getAnimClass().getConstructor(vector.class).newInstance(loc);
+        anim.setLooping(true);
+        anim.setLoc(loc);
     }
 
     @Override
-    public void pickedUp(@NotNull MM mm, @NotNull Unit byThisPlayer) {
+    public void pickedUp(@NotNull MM mm, @NotNull Humanoid byThisPlayer) {
         Ability b = buff.newInstance(byThisPlayer);
         mm.add(b);
         anim.setOver(true);
@@ -46,7 +47,7 @@ public class BuffPickup extends Pickup {
 
 
     @Override
-    public boolean canPickup(@NotNull Unit byThisPlayer) {
+    public boolean canPickup(@NotNull Humanoid byThisPlayer) {
         return !byThisPlayer.getActiveAbilities().containsInstanceOf(buff);
     }
 }

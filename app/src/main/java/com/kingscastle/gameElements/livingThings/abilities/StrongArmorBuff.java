@@ -123,6 +123,11 @@ public class StrongArmorBuff extends Buff
 
 
 
+    @NotNull
+    @Override
+    public Class<? extends Anim> getAnimClass() {
+        return FiveRingsAnim.class;
+    }
 
 
 

@@ -17,42 +17,7 @@ import java.util.Comparator;
 public class AllowedBuildings
 {
 	private static final String TAG = "AllowedBuildings";
-	private class AllowedBuildingsArrayList<T> extends ArrayList<T>{
-		private static final long serialVersionUID = 7815637449367727912L;
-		@Override
-		public boolean add( T b ){
-			throw new UnsupportedOperationException("Do not mess with this list outside the AllowedBuildings class.");
-		}
-		@Override
-		public void add( int i , T b ){
-			throw new UnsupportedOperationException("Do not mess with this list outside the AllowedBuildings class.");
-		}
-		@Override
-		public boolean remove( Object b ){
-			throw new UnsupportedOperationException("Do not mess with this list outside the AllowedBuildings class.");
-		}
-		@NonNull
-        @Override
-		public T remove( int i ){
-			throw new UnsupportedOperationException("Do not mess with this list outside the AllowedBuildings class.");
-		}
 
-		private boolean ladd( T b ){
-			return super.add(b);
-		}
-
-		private void ladd( int i , T b ){
-			super.add(i,b);
-		}
-
-		private boolean lremove( Object b ){
-			return super.remove( b );
-		}
-
-		private T lremove( int i ){
-			return super.remove(i);
-		}
-	}
 
 	private final AllowedBuildingsArrayList<Building> allowedBuildings = new AllowedBuildingsArrayList<Building>();
 
@@ -198,6 +163,41 @@ public class AllowedBuildings
 
 
 
+    private class AllowedBuildingsArrayList<T> extends ArrayList<T>{
+        private static final long serialVersionUID = 7815637449367727912L;
+        @Override
+        public boolean add( T b ){
+            throw new UnsupportedOperationException("Do not mess with this list outside the AllowedBuildings class.");
+        }
+        @Override
+        public void add( int i , T b ){
+            throw new UnsupportedOperationException("Do not mess with this list outside the AllowedBuildings class.");
+        }
+        @Override
+        public boolean remove( Object b ){
+            throw new UnsupportedOperationException("Do not mess with this list outside the AllowedBuildings class.");
+        }
+        @NonNull
+        @Override
+        public T remove( int i ){
+            throw new UnsupportedOperationException("Do not mess with this list outside the AllowedBuildings class.");
+        }
 
+        private boolean ladd( T b ){
+            return super.add(b);
+        }
+
+        private void ladd( int i , T b ){
+            super.add(i,b);
+        }
+
+        private boolean lremove( Object b ){
+            return super.remove( b );
+        }
+
+        private T lremove( int i ){
+            return super.remove(i);
+        }
+    }
 
 }

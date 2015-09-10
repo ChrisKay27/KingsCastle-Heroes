@@ -47,11 +47,11 @@ public class Arms {
 	 * @return true if the attack happened
 	 *
 	 */
-	public boolean actFromUnitVector(@NotNull vector unitVector )	{
+	public boolean actFromHumanoidVector(@NotNull vector unitVector )	{
 		if( timeToAttack() ){
 			lastAttackedAt = GameTime.getTime();
 			//owner.setLookDirection(owner.getTarget().loc);
-			return attackFromUnitVector( unitVector );
+			return attackFromHumanoidVector( unitVector );
 		}
 		return false;
 	}
@@ -141,10 +141,10 @@ public class Arms {
 
 
 
-	private boolean attackFromUnitVector(@NotNull vector unitVector )	{
+	private boolean attackFromHumanoidVector(@NotNull vector unitVector )	{
 		Attack a = owner.getAQ().getCurrentAttack();
 		if( a != null )		{
-			a.attackFromUnitVector(unitVector);
+			a.attackFromHumanoidVector(unitVector);
 			return true;
 		}
 		return false;

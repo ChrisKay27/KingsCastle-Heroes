@@ -7,16 +7,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.kingscastle.effects.animations.Anim;
-import com.kingscastle.effects.animations.EruptionAnim;
-import com.kingscastle.effects.animations.ExplosionAnim;
 import com.kingscastle.effects.animations.LightEffect2;
-import com.kingscastle.effects.animations.RapidImpact;
-import com.kingscastle.effects.animations.TapAnim;
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
-import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.CD;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.GameElement;
@@ -26,12 +21,12 @@ import com.kingscastle.gameElements.livingThings.SoldierTypes.AdvancedMageSoldie
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.SpellAttack;
 import com.kingscastle.gameElements.livingThings.buildings.Building;
-import com.kingscastle.gameElements.managment.ListPkg;
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameElements.spells.LightningBolts;
 import com.kingscastle.gameElements.spells.SummoningPortal;
 import com.kingscastle.gameUtils.Age;
 import com.kingscastle.gameUtils.vector;
+import com.kingscastle.heroes.R;
 import com.kingscastle.level.Level;
 import com.kingscastle.teams.Teams;
 
@@ -65,7 +60,7 @@ public class PumpkinKing extends AdvancedMageSoldier
 		staticAttackerQualities.setStaysAtDistanceSquared(0);
 		staticAttackerQualities.setFocusRangeSquared(15000*dp*dp);
 		staticAttackerQualities.setAttackRangeSquared(22500 * dp * dp);
-		staticAttackerQualities.setDamage( 100 );
+		staticAttackerQualities.setDamage( 15 );
 		staticAttackerQualities.setROF(300);
 
 		STATIC_ATTRIBUTES = new Attributes();
@@ -80,7 +75,7 @@ public class PumpkinKing extends AdvancedMageSoldier
 		STATIC_ATTRIBUTES.setHpRegenAmount(1);
 		STATIC_ATTRIBUTES.setRegenRate(1000);
 		STATIC_ATTRIBUTES.setArmor( 15 );
-		STATIC_ATTRIBUTES.setSpeed(0.4f * dp);
+		STATIC_ATTRIBUTES.setSpeed(0.7f * dp);
 	}
 
 	private long summonPortalAt;
@@ -106,53 +101,6 @@ public class PumpkinKing extends AdvancedMageSoldier
 
 	@Override
 	public boolean act() {
-
-		if( tryToDestroyBuildingAt < GameTime.getTime() ){
-
-			ListPkg<Building> goodBuildings = getMM().getBuildingsOnTeam(Teams.BLUE);
-			if( goodBuildings.size != 0 ) {
-
-				tryToDestroyBuildingAt = GameTime.getTime() + 3000 + (int)(Math.random()*6000);
-				destroyBuildingAt = GameTime.getTime() + 4000;
-
-
-				int bIndex = (int) (Math.random() * goodBuildings.size);
-				final Building b = goodBuildings.list[bIndex];
-				buildingToDestroy = b;
-				buildingToDestroy.setStunnedUntil(destroyBuildingAt);
-
-				final Anim glow = new LightEffect2(b.loc);
-				final TapAnim tapThis = new TapAnim(b.loc);
-				tapThis.setAliveTime(4000);
-				//tapThis.setLooping(true);
-				getMM().getUI().addTappable(b, new Runnable() {
-					@Override
-					public void run() {
-						tapThis.setOver(true);
-						glow.setOver(true);
-						destroyBuildingAt = Long.MAX_VALUE;
-					}
-				});
-				this.tapThis = tapThis;
-				this.glow = glow;
-				getMM().getEm().add(glow);
-				getMM().getEm().add(tapThis);
-			}
-		}
-
-		if( destroyBuildingAt < GameTime.getTime() ){
-			destroyBuildingAt = Long.MAX_VALUE;
-			if( tapThis != null )
-				tapThis.setOver(true);
-			if( glow != null )
-				glow.setOver(true);
-			if( buildingToDestroy != null ) {
-				buildingToDestroy.attributes.setHealth(-100);
-				getMM().getEm().add(new EruptionAnim(buildingToDestroy.loc));
-				getMM().getEm().add(new ExplosionAnim(buildingToDestroy.loc));
-				getMM().getEm().add(new RapidImpact(buildingToDestroy.loc));
-			}
-		}
 
 		if( summonPortalAt < GameTime.getTime() ) {
 			summonPortalAt = GameTime.getTime() + 10000;

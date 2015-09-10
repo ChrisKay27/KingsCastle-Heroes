@@ -38,7 +38,7 @@ public abstract class AttackAnimator extends Anim
     List<Image> imagesSouth;
     List<Image> imagesNorth;
 
-	private vector attackingInDirectionUnitVector;
+	private vector attackingInDirectionHumanoidVector;
 	private vector offset = new vector();
 
 	private vector EOffset = new vector();
@@ -77,10 +77,10 @@ public abstract class AttackAnimator extends Anim
 
 
 	/**
-	 * Tells the animator to attack in the direction of inDirectionUnitVector.
-	 * @param inDirectionUnitVector MUST be a vector with magnitude of 1 (ie. A unit vector).
+	 * Tells the animator to attack in the direction of inDirectionHumanoidVector.
+	 * @param inDirectionHumanoidVector MUST be a vector with magnitude of 1 (ie. A unit vector).
 	 */
-	public void attackFromUnitVector( vector inDirectionUnitVector )
+	public void attackFromHumanoidVector( vector inDirectionHumanoidVector )
 	{
 		if( currentROA != owner.getAQ().getROF() )
 		{
@@ -90,21 +90,21 @@ public abstract class AttackAnimator extends Anim
 		}
 
 		++onFrame;
-		attackingInDirectionUnitVector = inDirectionUnitVector;
-		owner.lockLookDirectionFromUnitVector( inDirectionUnitVector );
+		attackingInDirectionHumanoidVector = inDirectionHumanoidVector;
+		owner.lockLookDirectionFromHumanoidVector( inDirectionHumanoidVector );
 	}
 
-	private final vector tempUnitVector = new vector();
+	private final vector tempHumanoidVector = new vector();
 	/**
 	 * Tells the animator to attack in the direction of inDirection.
-	 * @param inDirection Does not have to be a unit vector, you should use attackFromUnitVector(...) if you have already computed the unit vector
+	 * @param inDirection Does not have to be a unit vector, you should use attackFromHumanoidVector(...) if you have already computed the unit vector
 	 * to save on unnecessary repeated calculations.
 	 */
 	public void attack( @NonNull vector inDirection )
 	{
-		tempUnitVector.set( inDirection );
-		tempUnitVector.turnIntoUnitVector();
-		this.attackFromUnitVector( tempUnitVector );
+		tempHumanoidVector.set( inDirection );
+		tempHumanoidVector.turnIntoHumanoidVector();
+		this.attackFromHumanoidVector( tempHumanoidVector );
 	}
 
 
@@ -119,9 +119,9 @@ public abstract class AttackAnimator extends Anim
 			return;
 		}else
 		{
-			tempUnitVector.set( target.loc.x - owner.loc.x ,  target.loc.y - owner.loc.y );
-			tempUnitVector.turnIntoUnitVector();
-			this.attackFromUnitVector( tempUnitVector );
+			tempHumanoidVector.set( target.loc.x - owner.loc.x ,  target.loc.y - owner.loc.y );
+			tempHumanoidVector.turnIntoHumanoidVector();
+			this.attackFromHumanoidVector( tempHumanoidVector );
 		}
 
 	}
@@ -347,8 +347,8 @@ public abstract class AttackAnimator extends Anim
 		this.timeFromAttackStartTillDoAttack = timeFromAttackStartTillDoAttack;
 	}
 
-	public vector getAttackingInDirectionUnitVector() {
-		return attackingInDirectionUnitVector;
+	public vector getAttackingInDirectionHumanoidVector() {
+		return attackingInDirectionHumanoidVector;
 	}
 
 

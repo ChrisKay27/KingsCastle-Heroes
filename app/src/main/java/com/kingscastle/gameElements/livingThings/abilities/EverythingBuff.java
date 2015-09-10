@@ -4,6 +4,7 @@ package com.kingscastle.gameElements.livingThings.abilities;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.RisingHeartsAnim;
 import com.kingscastle.framework.Image;
 import com.kingscastle.gameElements.livingThings.Bonuses;
@@ -128,7 +129,11 @@ public class EverythingBuff extends Buff
 
 
 
-
+    @NotNull
+    @Override
+    public Class<? extends Anim> getAnimClass() {
+        return RisingHeartsAnim.class;
+    }
 
 
 

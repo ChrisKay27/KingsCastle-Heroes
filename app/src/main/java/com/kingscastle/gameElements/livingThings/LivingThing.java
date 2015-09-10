@@ -191,7 +191,7 @@ public abstract class LivingThing extends GameElement
         int expGiven = (int) (attributes.getFullHealth()/5 + attributes.getHealAmount() + attributes.getSpeed()*5);
         if( getAQ() != null )
             expGiven += getAQ().getDamage()/2;
-        attributes.setExpGiven(expGiven);
+        attributes.setExpGiven(expGiven/2);
 
 
 		if( aliveAnim != null )

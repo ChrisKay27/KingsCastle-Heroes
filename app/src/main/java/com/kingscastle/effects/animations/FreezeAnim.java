@@ -27,7 +27,12 @@ public class FreezeAnim extends Anim {
 
 	private final int staticTfb = 100;
 
-
+    public FreezeAnim( @NonNull vector loc ){
+        super(loc);
+        setImages(staticImages.get((int) (Math.random() * staticImages.size())));
+        setTbf(staticTfb);
+        setAliveTime( 2000 );
+    }
 
 	public FreezeAnim( @NonNull vector loc , int aliveTime )	{
         super(loc);

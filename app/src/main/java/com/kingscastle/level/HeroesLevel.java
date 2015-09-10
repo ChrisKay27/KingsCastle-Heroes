@@ -14,9 +14,8 @@ import com.kingscastle.gameElements.Tree;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.LivingThingListenerAdapter;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
+import com.kingscastle.gameElements.livingThings.abilities.Buff;
 import com.kingscastle.gameElements.livingThings.abilities.DamageBuff;
-import com.kingscastle.gameElements.livingThings.abilities.Haste;
-import com.kingscastle.gameElements.livingThings.army.HumanSoldier;
 import com.kingscastle.gameElements.livingThings.army.HumanWizard;
 import com.kingscastle.gameUtils.Difficulty;
 import com.kingscastle.gameUtils.vector;
@@ -32,7 +31,6 @@ import com.kingscastle.teams.races.HumanRace;
 import com.kingscastle.teams.races.UndeadRace;
 import com.kingscastle.util.ManagerListener;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -45,7 +43,11 @@ public abstract class HeroesLevel extends Level{
     private static final String TAG = HeroesLevel.class.getSimpleName();
     public static final String DONT_ADD_SCORE = "DontAddScore";
 
-    protected HumanWizard hero;
+    public static final float ENEMY_FOCUS_RANGE_SQUARED = 10000*10000*Rpg.getDpSquared();
+    public static final float ALLIED_FOCUS_RANGE_SQUARED = Float.MAX_VALUE;
+
+
+    protected Humanoid hero;
 
     private int startOnRound = 1;
     private long checkMonstersArePathingAt;
@@ -57,6 +59,11 @@ public abstract class HeroesLevel extends Level{
     private final PlayerAchievements playerAchievements = new PlayerAchievements();
 
     private List<Pickup> pickups = new LinkedList<>();
+
+    private ForestSpawns forestSpawns = new ForestSpawns();
+
+
+
 
     @Override
     protected void subOnCreate() {
@@ -77,17 +84,18 @@ public abstract class HeroesLevel extends Level{
         });
 
 
-
-        hero = new HumanWizard(new vector(getLevelWidthInPx()/2,getLevelHeightInPx()/2), Teams.BLUE);
-        hero.addLTL(new LivingThingListenerAdapter(){
+        if( !fromSavedState ) {
+            hero = new HumanWizard(new vector(getLevelWidthInPx() / 2, getLevelHeightInPx() / 2), Teams.BLUE);
+            mm.add(hero);
+        }
+        hero.addLTL(new LivingThingListenerAdapter() {
             @Override
             public void onLevelUp(LivingThing lt) {
-                if( lt.attributes.getLevel() == 2 )
+                if (lt.attributes.getLevel() == 2)
                     lt.addAbility(new DamageBuff(lt, lt));
                 mm.getUI().refreshSelectedUI();
             }
         });
-        mm.add(hero);
 
 
         getBackground().setCenteredOn(hero.loc);
@@ -111,9 +119,9 @@ public abstract class HeroesLevel extends Level{
             @Override
             public boolean onAdded(Humanoid h) {
                 h.addLTL(odl);
+                h.aq.setFocusRangeSquared(ENEMY_FOCUS_RANGE_SQUARED);
                 return false;
             }
-
             @Override
             public boolean onRemoved(Humanoid humanoid) {
                 return false;
@@ -125,6 +133,8 @@ public abstract class HeroesLevel extends Level{
 
 
     private long nextSpawn;
+    private boolean bossisNotAlive = true;
+    private long nextPickupSpawn;
 
     @Override
     protected void subAct() {
@@ -133,36 +143,70 @@ public abstract class HeroesLevel extends Level{
         getBackground().setCenteredOn(hero.loc);
 
 
-        if( nextSpawn < GameTime.getTime() ){
+        if( nextSpawn < GameTime.getTime() && bossisNotAlive){
             nextSpawn = GameTime.getTime() + 1000;
 
             try{
-                Humanoid spawn = ForestSpawns.getSpawnClass(hero.attributes.getLevel()).getConstructor(vector.class, Teams.class).newInstance(getRandomLocOnMap(), Teams.RED);
+                Humanoid spawn = forestSpawns.getSpawnClass(hero.attributes.getLevel()).getConstructor(vector.class, Teams.class).newInstance(getRandomLocOnMap(), Teams.RED);
                 mm.add(spawn);
-                spawn.aq.setFocusRangeSquared(Float.MAX_VALUE);
-            } catch (InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
-                e.printStackTrace();
+
+
+                //Spawn a boss if the level is right
+                Class<? extends Humanoid> bossClass = forestSpawns.getBossSpawnClass(hero.attributes.getLevel());
+                if( bossClass != null ) {
+                    Humanoid boss = bossClass.getConstructor(vector.class, Teams.class).newInstance(getRandomLocOnMap(), Teams.RED);
+                    mm.add(boss);
+                    bossisNotAlive = false;
+                    boss.addLTL(new LivingThingListenerAdapter(){
+                        @Override
+                        public void onDeath(LivingThing lt) {
+                            bossisNotAlive = true;
+                        }
+                    });
+                }
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
 
             if( Math.random() < 0.8 ) {
-                Humanoid ally = new HumanSoldier(getRandomLocOnMap(), Teams.BLUE);
-                mm.add(ally);
-                ally.aq.setFocusRangeSquared(Float.MAX_VALUE);
+                try {
+                    Humanoid ally = forestSpawns.getAllyClass(hero.attributes.getLevel()).getConstructor(vector.class, Teams.class).newInstance(getRandomLocOnMap(),Teams.BLUE);
+                    mm.add(ally);
+                    ally.aq.setFocusRangeSquared(ALLIED_FOCUS_RANGE_SQUARED);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
 
-        if( Math.random() < 0.005){
+
+
+        if( nextPickupSpawn < GameTime.getTime() ){
+            nextPickupSpawn = GameTime.getTime() + 2000 + (long) (Math.random()* 5000);
+
             vector pickupLoc = new vector(getLevelWidthInPx() * Math.random(), getLevelHeightInPx() * Math.random());
-            if( Math.random() < 0.3 ) {
-                BuffPickup bp = new BuffPickup(pickupLoc, new Haste(null, null));
-                pickups.add(bp);
-                mm.getEm().add(bp.getAnim());
+
+
+            if( Math.random() < 0.8 ) {
+                List<Class<? extends Buff>> buffPickups = forestSpawns.getBuffPickups();
+                int buffIndex = (int)(Math.random()*buffPickups.size());
+                try {
+                    Buff b = buffPickups.get(buffIndex).getConstructor(LivingThing.class, LivingThing.class).newInstance(null,null);
+                    BuffPickup bp = new BuffPickup(pickupLoc, b);
+                    pickups.add(bp);
+                    mm.getEm().add(bp.getAnim());
+                } catch (Exception e) {
+                    Log.e(TAG, "Exception thrown while trying to create a " + buffPickups.get(buffIndex).getSimpleName());
+                   throw new RuntimeException(e);
+                }
             }
             else{
                 TripleAttackPickup bp = new TripleAttackPickup(pickupLoc);
                 pickups.add(bp);
                 mm.getEm().add(bp.getAnim());
             }
+
         }
 
 
@@ -280,6 +324,10 @@ public abstract class HeroesLevel extends Level{
 
     public Humanoid getHero() {
         return hero;
+    }
+
+    public void setHero(Humanoid hero) {
+        this.hero = hero;
     }
 
 

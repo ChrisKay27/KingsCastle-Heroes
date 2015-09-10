@@ -46,7 +46,7 @@ import com.kingscastle.level.HeroesForestLevel;
 import com.kingscastle.level.HeroesLevel;
 import com.kingscastle.level.Level.GameState;
 import com.kingscastle.level.Levels;
-import com.kingscastle.level.TowerDefenceLevelSaverLoader;
+import com.kingscastle.level.HeroesSaverLoader;
 import com.kingscastle.teams.Player;
 import com.kingscastle.teams.Team;
 import com.kingscastle.teams.Teams;
@@ -161,18 +161,21 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
 
         String levelClass = levelClassName;
         ObjectInputStream ois = null;
+        boolean fromSavedState = false;
         try {
             FileInputStream fis = gameActivity.openFileInput(FILENAME);
             ois = new ObjectInputStream(fis);
             levelClass = (String) ois.readObject();
+            fromSavedState = true;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            levelClass = HeroesForestLevel.class.getSimpleName(); //Guarantees there's no spelling issues
+            levelClass = HeroesForestLevel.class.getName(); //Guarantees there's no spelling issues
         }
 
         level = Levels.get(levelClass);
+        level.setFromSavedState(fromSavedState);
         level.setDifficulty(difficulty);
         ui = new UI(this, level);
 
@@ -186,7 +189,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
 
         if( ois != null ) {
             try {
-                TowerDefenceLevelSaverLoader.loadGame(ois, level);
+                HeroesSaverLoader.loadGame(ois, level);
             } catch ( IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -201,8 +204,13 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
         });
         level.getHero().addLTL(new LivingThingListenerAdapter(){
             @Override
-            public void onLevelUp(LivingThing lt) {
-                ((CTextView2)(gameActivity.findViewById(R.id.level_textView))).setText("Level: " + lt.attributes.getLevel());
+            public void onLevelUp(final LivingThing lt) {
+                gameActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ((CTextView2) (gameActivity.findViewById(R.id.level_textView))).setText("Level: " + lt.attributes.getLevel());
+                    }
+                });
             }
         });
     }
@@ -379,7 +387,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
                 public void run() {
                     Settings.savingLevel = true;
                     try {
-                        TowerDefenceLevelSaverLoader.saveLevel(getActivity().openFileOutput(FILENAME, Context.MODE_PRIVATE), level);
+                        HeroesSaverLoader.saveLevel(getActivity().openFileOutput(FILENAME, Context.MODE_PRIVATE), level);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }finally{

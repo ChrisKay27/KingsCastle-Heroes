@@ -6,15 +6,12 @@ import android.graphics.RectF;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.LightEffect2;
-import com.kingscastle.effects.animations.TapAnim;
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
-import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
 import com.kingscastle.gameElements.livingThings.Attributes;
@@ -26,6 +23,7 @@ import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.gameElements.spells.LightningBolts;
 import com.kingscastle.gameUtils.Age;
 import com.kingscastle.gameUtils.vector;
+import com.kingscastle.heroes.R;
 import com.kingscastle.teams.Teams;
 
 import java.util.ArrayList;
@@ -39,7 +37,7 @@ public class SkeletonKing extends AdvancedMageSoldier
 	private static final String NAME = "Skeleton King";
 
 	private static ImageFormatInfo imageFormatInfo;
-	private static Image[] redImages , blueImages , greenImages , orangeImages , whiteImages ;
+	private static Image[] redImages = Assets.loadImages(R.drawable.skeleton_king,0,0,1,1), blueImages , greenImages , orangeImages , whiteImages ;
 
 
 	@NonNull
@@ -66,7 +64,7 @@ public class SkeletonKing extends AdvancedMageSoldier
 		staticAttackerQualities.setStaysAtDistanceSquared(0);
 		staticAttackerQualities.setFocusRangeSquared(15000*dp*dp);
 		staticAttackerQualities.setAttackRangeSquared(22500 * dp * dp);
-		staticAttackerQualities.setDamage( 100 );
+		staticAttackerQualities.setDamage( 20 );
 		staticAttackerQualities.setROF(300);
 
 		STATIC_ATTRIBUTES = new Attributes();
@@ -81,7 +79,7 @@ public class SkeletonKing extends AdvancedMageSoldier
 		STATIC_ATTRIBUTES.setHpRegenAmount(1);
 		STATIC_ATTRIBUTES.setRegenRate(1000);
 		STATIC_ATTRIBUTES.setArmor( 15 );
-		STATIC_ATTRIBUTES.setSpeed(0.5f * dp);
+		STATIC_ATTRIBUTES.setSpeed(0.7f * dp);
 	}
 
 	@NonNull
@@ -104,7 +102,6 @@ public class SkeletonKing extends AdvancedMageSoldier
 	public SkeletonKing(){
 	}
 
-	private long summonAt = Long.MAX_VALUE,stopSummoningAt;
 	private final List<Anim> anims = new ArrayList<>();
 
 
@@ -112,42 +109,9 @@ public class SkeletonKing extends AdvancedMageSoldier
 	public boolean act() {
 
 		if( checkSummonsAt < GameTime.getTime() ) {
-			summonAt = 0;
 			checkSummonsAt = GameTime.getTime() + 2500+ (int)(Math.random()*5000);
-			stopSummoningAt = GameTime.getTime() + 2000;
-
-			final Anim tapAnim = new TapAnim(loc);
-			tapAnim.setAliveTime(2000);
-			getMM().getUI().addTappable(this, new Runnable() {
-				@Override
-				public void run() {
-					summonAt = Long.MAX_VALUE;
-					tapAnim.setOver(true);
-					stopSummoningAt = 0;
-				}
-			});
-			synchronized (anims) {
-				anims.add(tapAnim);
-			}
-			getMM().getEm().add(tapAnim, EffectsManager.Position.InFront);
-		}
-
-		if( stopSummoningAt < GameTime.getTime() )
-			summonAt = Long.MAX_VALUE;
-
-
-		if( summonAt < GameTime.getTime() && stopSummoningAt > GameTime.getTime() ){
-			for (SummonAttack sa : summonAtks)
-				sa.act();
-			summonAt = GameTime.getTime() + 500;
-		}
-
-		if( summonAt != Long.MAX_VALUE ) {
-//			vector v = new vector(loc);
-//			v.randomize((int) Rpg.sixtyFourDp);
-//			getMM().getEm().add(new BlackSummonSmokeAnim(v));
-//			getMM().getEm().add(new LightningStrikeAnim(v));
-			return isDead();
+            for (SummonAttack sa : summonAtks)
+                sa.act();
 		}
 
 		return super.act();
@@ -198,12 +162,7 @@ public class SkeletonKing extends AdvancedMageSoldier
 	@Override
 	public Image[] getImages()
 	{
-		loadImages();
-
 		Teams teamName = getTeamName();
-		if( teamName == null )
-			teamName = Teams.BLUE;
-
 		switch( teamName )
 		{
 		default:
@@ -220,37 +179,7 @@ public class SkeletonKing extends AdvancedMageSoldier
 		}
 	}
 
-	@Override
-	public void loadImages()
-	{
-		if( redImages == null )
-			redImages = Assets.loadImages(imageFormatInfo.getRedId(), 0, 0, 1, 1);
-		if( orangeImages == null )
-			orangeImages = Assets.loadImages( imageFormatInfo.getOrangeId()  , 0 , 0 , 1 , 1 );
-		if( blueImages == null )
-			blueImages = Assets.loadImages( imageFormatInfo.getBlueId()  , 0 , 0 , 1 , 1 );
-		if( greenImages == null )
-			greenImages = Assets.loadImages( imageFormatInfo.getGreenId()  , 0 , 0 , 1 , 1 );
-		if( whiteImages == null )
-			whiteImages = Assets.loadImages( imageFormatInfo.getWhiteId()  , 0 , 0 , 1 , 1 );
-	}
 
-
-	/**
-	 * @return the imageFormatInfo
-	 */
-	@Override
-	public ImageFormatInfo getImageFormatInfo() {
-		return imageFormatInfo;
-	}
-
-
-	/**
-	 * @param imageFormatInfo the imageFormatInfo to set
-	 */
-	public void setImageFormatInfo(ImageFormatInfo imageFormatInfo) {
-		SkeletonKing.imageFormatInfo = imageFormatInfo;
-	}
 
 
 	/**
@@ -262,14 +191,8 @@ public class SkeletonKing extends AdvancedMageSoldier
 	public Image[] getStaticImages() {
 		return null;
 	}
-
-
-	/**
-	 * @param staticImages the staticImages to set
-	 */
 	@Override
 	public void setStaticImages(Image[] staticImages) {
-
 	}
 
 
@@ -297,76 +220,10 @@ public class SkeletonKing extends AdvancedMageSoldier
 	public Cost getCosts() {
 		return cost;
 	}
-
-
 	public static void setCost(Cost cost) {
 		SkeletonKing.cost = cost;
 	}
 
-	public static Image[] getRedImages()
-	{
-		if ( redImages == null )
-		{
-			redImages = Assets.loadImages( imageFormatInfo.getRedId()  , 3 , 4, 0 , 0 , 1 , 1 );
-		}
-		return redImages;
-	}
-
-	public static void setRedImages(Image[] redImages) {
-		SkeletonKing.redImages = redImages;
-	}
-
-	public static Image[] getBlueImages()
-	{
-		if ( blueImages == null )
-		{
-			blueImages = Assets.loadImages( imageFormatInfo.getBlueId()  , 3 , 4, 0 , 0 , 1 , 1 );
-		}
-		return blueImages;
-	}
-
-	public static void setBlueImages(Image[] blueImages) {
-		SkeletonKing.blueImages = blueImages;
-	}
-
-	public static Image[] getGreenImages()
-	{
-		if ( greenImages == null )
-		{
-			greenImages = Assets.loadImages( imageFormatInfo.getGreenId()  , 3 , 4 , 0 , 0 , 1 , 1 );
-		}
-		return greenImages;
-	}
-
-	public static void setGreenImages(Image[] greenImages) {
-		SkeletonKing.greenImages = greenImages;
-	}
-
-	public static Image[] getOrangeImages()
-	{
-		if ( orangeImages == null )
-		{
-			orangeImages = Assets.loadImages( imageFormatInfo.getOrangeId()  , 3 , 4 , 0 , 0 , 1 , 1 );
-		}
-		return orangeImages;
-	}
-
-	public static void setOrangeImages(Image[] orangeImages) {
-		SkeletonKing.orangeImages = orangeImages;
-	}
-
-	public static Image[] getWhiteImages()
-	{
-		if ( whiteImages == null )
-		{
-			whiteImages = Assets.loadImages( imageFormatInfo.getWhiteId()  , 3 , 4 , 0 , 0 , 1 , 1 );
-		}
-		return whiteImages;
-	}
-
-	public static void setWhiteImages(Image[] whiteImages) {
-		SkeletonKing.whiteImages = whiteImages;
-	}
 
 	@Override
 	public Anim getDyingAnimation(){

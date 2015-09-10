@@ -26,7 +26,7 @@ public class UndeadDeathKnight extends AdvancedMeleeSoldier
 	private static final String NAME = "Death Knight";
 
 	private static ImageFormatInfo imageFormatInfo;
-	private static Image[] redImages , blueImages , greenImages , orangeImages , whiteImages ;
+	private static Image[] redImages = Assets.loadImages(R.drawable.demon_soldier_red ,0,0,1,1) , blueImages , greenImages , orangeImages , whiteImages ;
 
 
 	@NonNull
@@ -87,66 +87,20 @@ public class UndeadDeathKnight extends AdvancedMeleeSoldier
 
 
 
-
-
-
 	@Override
 	public Image[] getImages()
 	{
-		loadImages();
-
 		Teams teamName = getTeamName();
-		if( teamName == null )
-		{
-			teamName = Teams.BLUE;
-		}
-
-		switch( teamName )
-		{
+		switch( teamName ) {
 		default:
-		case RED:
-			return redImages;
-
-		case GREEN:
-			return greenImages;
-
-		case BLUE:
-			return blueImages;
-
-		case ORANGE:
-			return orangeImages;
-
-		case WHITE:
-			return whiteImages;
-
-		}
-
-	}
-
-	@Override
-	public void loadImages()
-	{
-		if( redImages == null )
-		{
-			redImages = Assets.loadImages(imageFormatInfo.getRedId(), 0, 0, 1, 1);
-		}
-		if( orangeImages == null )
-		{
-			orangeImages = Assets.loadImages( imageFormatInfo.getOrangeId()  , 0 , 0 , 1 , 1 );
-		}
-		if( blueImages == null )
-		{
-			blueImages = Assets.loadImages( imageFormatInfo.getBlueId()  , 0 , 0 , 1 , 1 );
-		}
-		if( greenImages == null )
-		{
-			greenImages = Assets.loadImages( imageFormatInfo.getGreenId()  , 0 , 0 , 1 , 1 );
-		}
-		if( whiteImages == null )
-		{
-			whiteImages = Assets.loadImages( imageFormatInfo.getWhiteId()  , 0 , 0 , 1 , 1 );
+		case RED:    return redImages;
+		case GREEN:	 return greenImages;
+		case BLUE:   return blueImages;
+		case ORANGE: return orangeImages;
+		case WHITE:  return whiteImages;
 		}
 	}
+
 
 
 	/**
@@ -166,6 +120,7 @@ public class UndeadDeathKnight extends AdvancedMeleeSoldier
 	}
 
 
+
 	/**
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
@@ -175,14 +130,8 @@ public class UndeadDeathKnight extends AdvancedMeleeSoldier
 	public Image[] getStaticImages() {
 		return null;
 	}
-
-
-	/**
-	 * @param staticImages the staticImages to set
-	 */
 	@Override
 	public void setStaticImages(Image[] staticImages) {
-
 	}
 
 

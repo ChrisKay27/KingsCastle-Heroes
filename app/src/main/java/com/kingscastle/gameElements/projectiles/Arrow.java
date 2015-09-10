@@ -35,8 +35,8 @@ public class Arrow extends Projectile
 
 	public Arrow(LivingThing shooter, vector unitVectorInDirection)	{
 		super( shooter );
-		setUnit( unitVectorInDirection );
-		setAttributes( shooter , getUnit() );
+		setHumanoid( unitVectorInDirection );
+		setAttributes( shooter , getHumanoid() );
 	}
 
 	public Arrow( @NonNull LivingThing caster , LivingThing target ) {
@@ -53,21 +53,21 @@ public class Arrow extends Projectile
 		if( to != null )
 		{
 			unit = new vector( shooter.loc , to );
-			unit.turnIntoUnitVector();
+			unit.turnIntoHumanoidVector();
 
-			//setUnit( Vector.vectorBetween( shooter.loc , to ).getUnitVector());
+			//setHumanoid( Vector.vectorBetween( shooter.loc , to ).getHumanoidVector());
 		}
 		else if( target != null )
 		{
 			unit = new vector( shooter.loc , target.loc );
-			unit.turnIntoUnitVector();
-			//setUnit( Vector.vectorBetween( shooter.loc , target.loc ).getUnitVector() );
+			unit.turnIntoHumanoidVector();
+			//setHumanoid( Vector.vectorBetween( shooter.loc , target.loc ).getHumanoidVector() );
 		}
 		if( unit == null )
 			unit = new vector();
 
 
-		setUnit( unit );
+		setHumanoid( unit );
 
 		setAttributes( shooter ,unit );
 	}

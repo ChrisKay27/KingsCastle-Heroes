@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
+import com.kingscastle.effects.animations.FlameZone;
 import com.kingscastle.framework.Image;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.managment.MM;
@@ -23,6 +24,10 @@ public class DOTBuff extends Buff
 		setAliveTime( 10000 );
 		setRefreshEvery(2000);
 	}
+
+    public DOTBuff(@NotNull LivingThing caster, @NotNull LivingThing target) {
+        super(caster, target);
+    }
 
 	public DOTBuff(@NotNull LivingThing caster, @NotNull LivingThing target, int damage) {
 		super(caster, target);
@@ -99,4 +104,11 @@ public class DOTBuff extends Buff
 	public int getDamage() {
 		return damage;
 	}
+
+
+    @NotNull
+    @Override
+    public Class<? extends Anim> getAnimClass() {
+        return FlameZone.class;
+    }
 }

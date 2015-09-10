@@ -126,5 +126,9 @@ public class HotBuff extends Buff
 	}
 
 
-
+    @NotNull
+    @Override
+    public Class<? extends Anim> getAnimClass() {
+        return AuraAnim.class;
+    }
 }

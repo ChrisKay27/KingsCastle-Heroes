@@ -117,7 +117,11 @@ public class ShieldBuff extends Buff
 
 
 
-
+    @NotNull
+    @Override
+    public Class<? extends Anim> getAnimClass() {
+        return HexBubbleAnim.class;
+    }
 
 
 

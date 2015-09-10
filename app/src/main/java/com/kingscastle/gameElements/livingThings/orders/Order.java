@@ -4,7 +4,7 @@ package com.kingscastle.gameElements.livingThings.orders;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Input.TouchEvent;
 import com.kingscastle.gameElements.CD;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.movement.pathing.Grid;
 import com.kingscastle.gameUtils.CoordConverter;
 
@@ -22,9 +22,9 @@ public abstract class Order
 
 	public abstract void saveYourSelf(BufferedWriter b) throws IOException;
 
-	public abstract List<? extends Unit> getUnitsToBeOrdered();
+	public abstract List<? extends Humanoid> getHumanoidsToBeOrdered();
 
-	public abstract void setUnitToBeOrdered( Unit unit );
+	public abstract void setHumanoidToBeOrdered( Humanoid unit );
 
 	public boolean analyseTouchEvent( TouchEvent event , CoordConverter cc ,CD cd){
 		return false;
@@ -33,7 +33,7 @@ public abstract class Order
 		return false;
 	}
 
-	public abstract void setUnitsToBeOrdered(List<? extends Unit> livingThings);
+	public abstract void setHumanoidsToBeOrdered(List<? extends Humanoid> livingThings);
 
 	public abstract OrderTypes getOrderType();
 

@@ -58,9 +58,9 @@ public class Bow extends Attack{
 	}
 
 	@Override
-	public void attackFromUnitVector( vector unitVector )
+	public void attackFromHumanoidVector( vector unitVector )
 	{
-		bowAnim.attackFromUnitVector( unitVector , arrow );
+		bowAnim.attackFromHumanoidVector( unitVector , arrow );
 		nextArrow = arrow;
 		doAttackAt = GameTime.getTime() + bowAnim.getTimeFromAttackStartTillDoAttack();
 	}
@@ -110,16 +110,19 @@ public class Bow extends Attack{
 	@Nullable
     private Projectile getNewArrow()
 	{
-		vector attackingInDirectionUnitVector = bowAnim.getAttackingInDirectionUnitVector();
-		if( attackingInDirectionUnitVector != null )
+		vector attackingInDirectionHumanoidVector = bowAnim.getAttackingInDirectionHumanoidVector();
+		if( attackingInDirectionHumanoidVector != null )
 		{
-			Projectile p = nextArrow.newInstance( owner , attackingInDirectionUnitVector );
-			attackingInDirectionUnitVector = null ;
+			Projectile p = nextArrow.newInstance( owner , attackingInDirectionHumanoidVector );
+			attackingInDirectionHumanoidVector = null ;
 			return p;
 		}
 		else
 		{
-			return nextArrow.newInstance( owner , null , owner.getTarget() );
+            LivingThing lt = owner.getTarget();
+            if( lt != null )
+			    return nextArrow.newInstance( owner , null , lt );
+            return null;
 		}
 	}
 

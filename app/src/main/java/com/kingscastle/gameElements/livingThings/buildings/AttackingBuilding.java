@@ -60,7 +60,7 @@ public abstract class AttackingBuilding extends Building
 	protected boolean armsAct()	{
 		vector dir = atkInDirVector;
 		if( dir != null )
-			return getArms().actFromUnitVector(dir);
+			return getArms().actFromHumanoidVector(dir);
 		return getArms().act();
 	}
 

@@ -48,28 +48,28 @@ class ProjectileCreator {
 
 
 
-		if( params.getUnitVectorInDirection() == null ) //determine its units vector
+		if( params.getHumanoidVectorInDirection() == null ) //determine its units vector
 		{
 
 			if ( params.getVelocity() != null)
 			{
-				vector unit = params.getVelocity().getUnitVector();
-				params.setUnitVectorInDirection( unit );
+				vector unit = params.getVelocity().getHumanoidVector();
+				params.setHumanoidVectorInDirection( unit );
 				p.setVelocity( params.getVelocity() );
-				p.setUnit( unit );
+				p.setHumanoid( unit );
 
 			}
 			else if( params.getDestination() != null)
 			{
 				vector unit = new vector(p.loc,params.getDestination());
-				unit.turnIntoUnitVector();
-				params.setUnitVectorInDirection( unit ); // Used to load the animation on some spells
-				p.setUnit( unit );
+				unit.turnIntoHumanoidVector();
+				params.setHumanoidVectorInDirection( unit ); // Used to load the animation on some spells
+				p.setHumanoid( unit );
 			}
 
-			if( params.getUnitVectorInDirection() != null )
+			if( params.getHumanoidVectorInDirection() != null )
 			{
-				p.setUnit(params.getUnitVectorInDirection());
+				p.setHumanoid(params.getHumanoidVectorInDirection());
 				if( p.getVelocity() == null )
 				{
 					float speed = params.getSpeed();
@@ -77,7 +77,7 @@ class ProjectileCreator {
 					{
 						speed = p.getStaticSpeed();
 					}
-					vector velocity = new vector(params.getUnitVectorInDirection()).times( speed );
+					vector velocity = new vector(params.getHumanoidVectorInDirection()).times( speed );
 					p.setVelocity(velocity);
 				}
 			}

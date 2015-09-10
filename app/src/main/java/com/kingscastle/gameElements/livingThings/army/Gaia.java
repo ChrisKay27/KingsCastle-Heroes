@@ -95,7 +95,7 @@ public class Gaia extends MageSoldier {
 	@Override
 	public boolean act() {
 		if( checkSummonsAt < GameTime.getTime() ) {
-			checkSummonsAt = GameTime.getTime() + 200;
+			checkSummonsAt = GameTime.getTime() + 5000;
 			for (SummonAttack sa : summonAtks)
 				sa.act();
 		}

@@ -5,9 +5,9 @@ import com.kingscastle.framework.Input;
 import com.kingscastle.gameElements.livingThings.orders.Order;
 import com.kingscastle.gameUtils.CoordConverter;
 
-public class UnitOrders implements TouchEventAnalyzer
+public class SoldierOrders implements TouchEventAnalyzer
 {
-	//private static final String TAG = "UnitOrders";
+	//private static final String TAG = "HumanoidOrders";
 
 
 	private Order pendingOrder;
@@ -15,7 +15,7 @@ public class UnitOrders implements TouchEventAnalyzer
 	private final CoordConverter cc;
 	private final UI ui;
 
-	UnitOrders( CoordConverter cc_ , UI ui){
+    SoldierOrders(CoordConverter cc_, UI ui){
 		cc = cc_;
 		this.ui = ui;
 	}

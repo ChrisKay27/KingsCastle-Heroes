@@ -6,7 +6,7 @@ import com.kingscastle.gameElements.CD;
 import com.kingscastle.gameElements.GameElementUtil;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.movement.pathing.Grid;
 import com.kingscastle.gameElements.movement.pathing.Path;
 import com.kingscastle.gameElements.movement.pathing.PathFinder;
@@ -29,7 +29,7 @@ public final class GoHere extends Order
 
 	//private static BuildThis buildThis;
 
-	private List<Unit> unitsToBeOrdered = new ArrayList<>();
+	private List<Humanoid> unitsToBeOrdered = new ArrayList<>();
 
 
 	private final Grid grid;
@@ -53,30 +53,30 @@ public final class GoHere extends Order
 
 
 	@Override
-	public List<? extends Unit> getUnitsToBeOrdered() {
+	public List<? extends Humanoid> getHumanoidsToBeOrdered() {
 		return unitsToBeOrdered;
 	}
 
 
 
 	@Override
-	public void setUnitsToBeOrdered(List<? extends Unit> livingThings) {
+	public void setHumanoidsToBeOrdered(List<? extends Humanoid> livingThings) {
 		unitsToBeOrdered.clear();
 
 		if( livingThings == null )
 			return;
 
-        List<Unit> units = new ArrayList<>();
+        List<Humanoid> units = new ArrayList<>();
         for( LivingThing lt : livingThings )
-            if( lt instanceof Unit )
-                units.add((Unit) lt);
+            if( lt instanceof Humanoid )
+                units.add((Humanoid) lt);
         unitsToBeOrdered = units;
 	}
 
 
 
 	@Override
-	public void setUnitToBeOrdered(Unit person)
+	public void setHumanoidToBeOrdered(Humanoid person)
 	{
 		unitsToBeOrdered.clear();
 		unitsToBeOrdered.add( person );
@@ -97,7 +97,7 @@ public final class GoHere extends Order
 		//ArrayList<vector> troopLocs = SquareFormation.getFormationPositions( unitsToBeOrdered , mapRel );
 		vector avgLoc = GameElementUtil.getAverageLoc(unitsToBeOrdered);
 
-        final List<Unit> units = new ArrayList<>(unitsToBeOrdered);
+        final List<Humanoid> units = new ArrayList<>(unitsToBeOrdered);
         PathFinderParams pfp = new PathFinderParams();
         pfp.fromHere = avgLoc;
         pfp.toHere = new vector(mapRel);
@@ -109,7 +109,7 @@ public final class GoHere extends Order
             public void onPathFound(Path path) {
                 path.setHumanOrdered(true);
                 if( !path.isEmpty() ) {
-                    for( Unit lt : units )
+                    for( Humanoid lt : units )
                     {
                         //Log.d( TAG , "Setting path of a " + lt);
                         lt.setPathToFollow( path );

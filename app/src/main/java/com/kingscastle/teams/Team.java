@@ -370,31 +370,31 @@ public class Team implements OnBuildingMovedListener
 
 
 
-	public void onUnitPurchased( Building fromHere , @Nullable LivingThing lt ){
+	public void onHumanoidPurchased( Building fromHere , @Nullable LivingThing lt ){
 		if( lt == null ){
-			Log.e(TAG, team + "_Team.onUnitPurchased(" + lt + ")");
+			Log.e(TAG, team + "_Team.onHumanoidPurchased(" + lt + ")");
 			return;
 		}
 	}
 
-	public void onUnitCreated( @Nullable LivingThing lt ){
+	public void onHumanoidCreated( @Nullable LivingThing lt ){
 		if( lt == null ){
-			Log.e( TAG , team+"_Team.onUnitCreated("+lt+")");
+			Log.e( TAG , team+"_Team.onHumanoidCreated("+lt+")");
 			return;
 		}
-		//Log.d( TAG , "onUnitCreated( "+lt+" )");
+		//Log.d( TAG , "onHumanoidCreated( "+lt+" )");
 	}
 
 
-	public void onUnitDestroyed( @Nullable LivingThing lt ){
+	public void onHumanoidDestroyed( @Nullable LivingThing lt ){
 		if( lt == null ){
-			Log.e( TAG , team+"_Team.onUnitDestroyed("+lt+")");
+			Log.e( TAG , team+"_Team.onHumanoidDestroyed("+lt+")");
 			return;
 		}
 
 		synchronized( udls ){
-			for( OnUnitDestroyedListener udl : udls )
-				udl.onUnitDestroyed(lt);
+			for( OnHumanoidDestroyedListener udl : udls )
+				udl.onHumanoidDestroyed(lt);
 		}
 	}
 
@@ -601,15 +601,15 @@ public class Team implements OnBuildingMovedListener
 
 
 
-	//Unit Destroyed
-	private final ArrayList<OnUnitDestroyedListener> udls = new ArrayList<OnUnitDestroyedListener>();
+	//Humanoid Destroyed
+	private final ArrayList<OnHumanoidDestroyedListener> udls = new ArrayList<OnHumanoidDestroyedListener>();
 
-	public static interface OnUnitDestroyedListener{
-		void onUnitDestroyed(LivingThing lt);
+	public static interface OnHumanoidDestroyedListener{
+		void onHumanoidDestroyed(LivingThing lt);
 	}
 
-	public void addUdl(OnUnitDestroyedListener udl)		        {	synchronized( udls ){	udls.add( udl );			}  	}
-	public boolean removeUdl(OnUnitDestroyedListener udl)		{	synchronized( udls ){	return udls.remove( udl );	}	}
+	public void addUdl(OnHumanoidDestroyedListener udl)		        {	synchronized( udls ){	udls.add( udl );			}  	}
+	public boolean removeUdl(OnHumanoidDestroyedListener udl)		{	synchronized( udls ){	return udls.remove( udl );	}	}
 
 
 

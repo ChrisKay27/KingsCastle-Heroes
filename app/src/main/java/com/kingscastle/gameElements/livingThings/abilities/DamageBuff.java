@@ -4,6 +4,7 @@ package com.kingscastle.gameElements.livingThings.abilities;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.BerzerkAnim;
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -129,7 +130,11 @@ public class DamageBuff extends Buff
 
 
 
-
+    @NotNull
+    @Override
+    public Class<? extends Anim> getAnimClass() {
+        return BerzerkAnim.class;
+    }
 
 
 }

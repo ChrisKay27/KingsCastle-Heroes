@@ -9,7 +9,7 @@ import com.kingscastle.teams.Teams;
 
 import org.jetbrains.annotations.NotNull;
 
-public abstract class MeleeSoldier extends Unit {
+public abstract class MeleeSoldier extends Humanoid {
 
 	public MeleeSoldier() {
 	}

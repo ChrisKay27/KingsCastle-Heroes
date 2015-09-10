@@ -4,6 +4,7 @@ package com.kingscastle.gameElements.livingThings.abilities;
 import android.support.annotation.NonNull;
 
 import com.kingscastle.effects.EffectsManager;
+import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.MagicShieldAnim;
 import com.kingscastle.framework.Image;
 import com.kingscastle.gameElements.livingThings.LivingThing;
@@ -161,7 +162,11 @@ public class MagicShield extends Buff{
 
 
 
-
+    @NotNull
+    @Override
+    public Class<? extends Anim> getAnimClass() {
+        return MagicShieldAnim.class;
+    }
 
 
 

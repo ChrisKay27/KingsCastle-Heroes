@@ -93,7 +93,7 @@ public class HumanWizard extends AdvancedMageSoldier
 	protected void setupSpells(){
 		int lvl = attributes.getLevel();
 		buffSpell = new SpeedShot( this, null , -(400+lvl*20) );
-		getAQ().setFriendlyAttack( new BuffAttack(getMM(),this , buffSpell ) ) ;
+		getAQ().setFriendlyAttack( new BuffAttack(getMM(), this , buffSpell ) ) ;
 
 
 		FireBall fireBall = new FireBall(getAQ().getDamage());

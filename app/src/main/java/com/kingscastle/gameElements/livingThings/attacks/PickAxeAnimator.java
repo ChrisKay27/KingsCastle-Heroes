@@ -112,7 +112,7 @@ public class PickAxeAnimator extends AttackAnimator
 	//	@Override
 	//	public void doAttack()
 	//	{
-	//		ownersAttack.checkHit( attackingInDirectionUnitVector );
+	//		ownersAttack.checkHit( attackingInDirectionHumanoidVector );
 	//	}
 
 

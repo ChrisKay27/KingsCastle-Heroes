@@ -169,7 +169,7 @@ public class FirePunch extends ProjectileSpell {
 	public void loadAnimation()	{
 		if( getAnim() == null )
 			if( getVelocity() != null )
-				loadAnimation( getVelocity().getUnitVector() );
+				loadAnimation( getVelocity().getHumanoidVector() );
 	}
 
 
