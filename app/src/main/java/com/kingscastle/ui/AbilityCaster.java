@@ -29,7 +29,7 @@ public class AbilityCaster implements TouchEventAnalyzer
 
     @Override
     public boolean analyzeTouchEvent(TouchEvent e) {
-        Log.d(TAG, "analyzeTouchEvent pendingAbility=" + pendingAbility + " " + e);
+        //Log.d(TAG, "analyzeTouchEvent pendingAbility=" + pendingAbility + " " + e);
         if( pendingAbility == null )
             return false;
 

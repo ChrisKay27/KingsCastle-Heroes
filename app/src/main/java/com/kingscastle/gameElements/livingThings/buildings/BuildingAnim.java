@@ -119,10 +119,10 @@ public class BuildingAnim extends Anim
 		if( building.isSelected() )
 			g.drawCircle(v, building.aq.getAttackRange()*1.2f);
 
-		if( building.lq.getLevel() > 1 ) {
-            if( lvl != building.lq.getLevel() ){
-                romanNumeralLvl = RomanNumerals.getRomanNumberals(building.lq.getLevel());
-                lvl = building.lq.getLevel();
+		if( building.attributes.getLevel() > 1 ) {
+            if( lvl != building.attributes.getLevel() ){
+                romanNumeralLvl = RomanNumerals.getRomanNumberals(building.attributes.getLevel());
+                lvl = building.attributes.getLevel();
             }
             g.drawString( romanNumeralLvl, v.x + Rpg.tenDp, v.y - Rpg.tenDp, yellowPaint);
         }

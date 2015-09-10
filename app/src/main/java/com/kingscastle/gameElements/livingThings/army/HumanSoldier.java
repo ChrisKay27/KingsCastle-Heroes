@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
-import com.kingscastle.heroes.R;
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.ImageFormatInfo;
 import com.kingscastle.gameElements.livingThings.Attributes;
@@ -15,6 +14,7 @@ import com.kingscastle.gameElements.livingThings.SoldierTypes.MediumMeleeSoldier
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameUtils.Age;
 import com.kingscastle.gameUtils.vector;
+import com.kingscastle.heroes.R;
 import com.kingscastle.teams.Teams;
 
 
@@ -23,7 +23,7 @@ public class HumanSoldier extends MediumMeleeSoldier
 
 	private static final String TAG = "Soldier";
 
-	private static Image[] redImages , blueImages , greenImages , orangeImages , whiteImages ;
+	private static Image[] redImages = Assets.loadImages(R.drawable.soldier_red,3,4,0,0,1,1) , blueImages = Assets.loadImages(R.drawable.soldier_blue,3,4,0,0,1,1) , greenImages , orangeImages , whiteImages ;
 	private static ImageFormatInfo imageFormatInfo;
 
 
@@ -40,10 +40,6 @@ public class HumanSoldier extends MediumMeleeSoldier
 
 	static{
 		float dp = Rpg.getDp();
-		imageFormatInfo = new ImageFormatInfo( 0 , 0 ,
-				1 , 1 , 4 , 2 );
-		imageFormatInfo.setRedId( R.drawable.soldier_red );
-		imageFormatInfo.setBlueId( R.drawable.soldier_blue );
 
 		staticAttackerQualities= new AttackerQualities();
 
@@ -55,8 +51,8 @@ public class HumanSoldier extends MediumMeleeSoldier
 
 		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresBLvl(4); STATIC_ATTRIBUTES.setRequiresAge(Age.BRONZE); STATIC_ATTRIBUTES.setRequiresTcLvl(6);
 		STATIC_ATTRIBUTES.setLevel( 1 );
-		STATIC_ATTRIBUTES.setFullHealth( 120 );
-		STATIC_ATTRIBUTES.setHealth( 120 ); STATIC_ATTRIBUTES.setdHealthAge( 0 ); STATIC_ATTRIBUTES.setdHealthLvl( 10 );
+		STATIC_ATTRIBUTES.setFullHealth( 40 );
+		STATIC_ATTRIBUTES.setHealth( 40 ); STATIC_ATTRIBUTES.setdHealthAge( 0 ); STATIC_ATTRIBUTES.setdHealthLvl( 10 );
 		STATIC_ATTRIBUTES.setFullMana( 0 );
 		STATIC_ATTRIBUTES.setMana( 0 );
 		STATIC_ATTRIBUTES.setHpRegenAmount( 1 );
@@ -91,60 +87,23 @@ public class HumanSoldier extends MediumMeleeSoldier
 	@Override
 	public Image[] getImages()
 	{
-		loadImages();
 
-		Teams teamName = getTeamName();
-		if( teamName == null )
-		{
-			teamName = Teams.BLUE;
-		}
-
-		switch( teamName )
-		{
+		switch( getTeamName() ){
 		default:
 		case RED:
 			return redImages;
-
 		case GREEN:
 			return greenImages;
-
 		case BLUE:
 			return blueImages;
-
 		case ORANGE:
 			return orangeImages;
-
 		case WHITE:
 			return whiteImages;
-
-		}
-
-	}
-
-	@Override
-	public void loadImages()
-	{
-		if( redImages == null )
-		{
-			redImages = Assets.loadImages(imageFormatInfo.getRedId(), 0, 0, 1, 1);
-		}
-		if( orangeImages == null )
-		{
-			orangeImages = Assets.loadImages( imageFormatInfo.getOrangeId()  , 0 , 0 , 1 , 1 );
-		}
-		if( blueImages == null )
-		{
-			blueImages = Assets.loadImages( imageFormatInfo.getBlueId()  , 0 , 0 , 1 , 1 );
-		}
-		if( greenImages == null )
-		{
-			greenImages = Assets.loadImages( imageFormatInfo.getGreenId()  , 0 , 0 , 1 , 1 );
-		}
-		if( whiteImages == null )
-		{
-			whiteImages = Assets.loadImages( imageFormatInfo.getWhiteId()  , 0 , 0 , 1 , 1 );
 		}
 	}
+
+
 
 
 

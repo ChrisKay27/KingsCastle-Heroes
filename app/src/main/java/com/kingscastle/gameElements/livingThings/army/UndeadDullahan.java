@@ -74,7 +74,7 @@ public class UndeadDullahan extends MediumMage
 
 
 	{
-		setAQ(new AttackerQualities(staticAttackerQualities , lq.getBonuses() ));
+		setAQ(new AttackerQualities(staticAttackerQualities , attributes.getBonuses() ));
 
 
 	}

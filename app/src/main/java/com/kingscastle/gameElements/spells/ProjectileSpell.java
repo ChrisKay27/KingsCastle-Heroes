@@ -79,7 +79,7 @@ public abstract class ProjectileSpell extends Spell {
 			Attributes lq = getCaster().getLQ();
 
 			int damage = (int) (( getDamage() + (int) ( Math.random()*10 ) ) * lq.getBonuses().getDamageBonus() );
-			//Log.e(getClass().getSimpleName() , "baseDamage= " +baseDamage+ " damage=" + damage + " lq.getBonuses().getDamageBonus()=" + lq.getBonuses().getDamageBonus());
+			//Log.e(getClass().getSimpleName() , "baseDamage= " +baseDamage+ " damage=" + damage + " attributes.getBonuses().getDamageBonus()=" + attributes.getBonuses().getDamageBonus());
 			return damage;
 		}
 

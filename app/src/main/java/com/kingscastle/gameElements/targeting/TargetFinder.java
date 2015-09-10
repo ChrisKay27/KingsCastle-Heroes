@@ -91,7 +91,7 @@ public class TargetFinder
 			LivingThing soldierTarget = null;
 			if( lookAtSoldiers )
 			{
-				ArmyManager.CollisionPartitions cp = t.getAm().getCollisionPartitions();
+				ArmyManager.CollisionPartitions cp = t.getArmyManager().getCollisionPartitions();
 				if( cp == null )
 					continue;
 

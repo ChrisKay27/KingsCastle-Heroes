@@ -174,7 +174,7 @@ public class InfoDisplay {
 
 				{// Level
 					CTextView2 lvl = (CTextView2) tmpView.findViewById(R.id.textViewInfoLvl);
-					UIUtil.setText(lvl.getText() + " " + st.lq.getLevel() , lvl );
+					UIUtil.setText(lvl.getText() + " " + st.attributes.getLevel() , lvl );
 				}
 
 
@@ -194,8 +194,8 @@ public class InfoDisplay {
 //						int pfhp = 0;
 //						@Override
 //						public void run() {
-//							int hp = st.lq.getHealth();
-//							int fhp = st.lq.getFullHealth();
+//							int hp = st.attributes.getHealth();
+//							int fhp = st.attributes.getFullHealth();
 //
 //							if( hp != php || fhp != pfhp ){
 //								hpValue.setText( "  " + hp + "/" + fhp );
@@ -219,11 +219,11 @@ public class InfoDisplay {
 //					//					UIUtil.setUpForBacking(2, armors);
 //					//					armor.setTextColor( Palette.lightGray );
 //
-//					UIUtil.setText(armor.getText() + " " + st.lq.getArmor() + "% " + a.getString(R.string.reduction) , armor );
+//					UIUtil.setText(armor.getText() + " " + st.attributes.getArmor() + "% " + a.getString(R.string.reduction) , armor );
 //					//v.requestLayout();
 //
 //
-//					final String healString = a.getString(R.string.heal_amount , st.lq.getHealAmount() );
+//					final String healString = a.getString(R.string.heal_amount , st.attributes.getHealAmount() );
 //
 //					CTextView2 heal = (CTextView2) tmpView.findViewById(R.id.textViewInfoDps);
 //					//					CTextView2 heal2 = (CTextView2) tmpView.findViewById(R.id.textViewInfoDps2);
@@ -245,7 +245,7 @@ public class InfoDisplay {
 //					//					UIUtil.setUpForBacking(2, armors);
 //					//					armor.setTextColor( Palette.lightGray );
 //
-//					UIUtil.setText(armor.getText() + " " + st.lq.getArmor() + "% " + a.getString(R.string.reduction) , armor );
+//					UIUtil.setText(armor.getText() + " " + st.attributes.getArmor() + "% " + a.getString(R.string.reduction) , armor );
 //
 //
 					//CTextView2 dmg = (CTextView2) tmpView.findViewById(R.id.textViewInfoDps);

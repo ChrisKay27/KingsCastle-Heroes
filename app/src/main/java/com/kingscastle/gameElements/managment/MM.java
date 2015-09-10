@@ -157,7 +157,7 @@ public class MM
 				{
 					Humanoid lt = (Humanoid) ge;
 					////Log.d( TAG , "Adding " + ge + " on team " + t.getTeamName() + " to AM ");
-					if( t.getAm().add( lt ) ){
+					if( t.getArmyManager().add( lt ) ){
 						t.onUnitCreated( lt );
 						return true;
 					}

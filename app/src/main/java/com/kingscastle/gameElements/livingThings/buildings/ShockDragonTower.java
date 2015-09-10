@@ -113,7 +113,7 @@ public class ShockDragonTower extends AttackingBuilding
 	@Override
 	public void upgrade(){
 		super.upgrade();
-		adjustAnimForLevel(lq.getLevel());
+		adjustAnimForLevel(attributes.getLevel());
 		setupAttack();
 	}
 
@@ -170,7 +170,7 @@ public class ShockDragonTower extends AttackingBuilding
 	@Override
 	public Image getImage() {
 		loadImages();
-		int lvl = lq.getLevel();
+		int lvl = attributes.getLevel();
 
 //		if( lvl < 7 )
 //			return watchTowerImage;

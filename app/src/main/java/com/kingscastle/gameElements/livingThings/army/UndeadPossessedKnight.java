@@ -75,7 +75,7 @@ public class UndeadPossessedKnight extends UpperMageSoldier
 
 
 	{
-		setAQ(new AttackerQualities(staticAttackerQualities, lq.getBonuses()));
+		setAQ(new AttackerQualities(staticAttackerQualities, attributes.getBonuses()));
 		setGoldDropped(10);
 	}
 

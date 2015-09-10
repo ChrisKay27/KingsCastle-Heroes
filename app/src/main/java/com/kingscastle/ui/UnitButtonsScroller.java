@@ -83,7 +83,7 @@ public class UnitButtonsScroller
 
 		//		if( Settings.yourBaseMode && lt instanceof Unit && !(lt instanceof Worker)){
 		//
-		//			buttons.add( AddToArmyButton.getInstance( game , (Unit) lt ,  team.getArmy() , team.getAm() ));
+		//			buttons.add( AddToArmyButton.getInstance( game , (Unit) lt ,  team.getArmy() , team.getArmyManager() ));
 		//		}
 
 

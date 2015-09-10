@@ -442,7 +442,7 @@ public class Inter extends Point
 		for( Team t : teams )
 		{
 			Teams teamName = t.getTeamName();
-			CollisionPartitions cp = t.getAm().getCollisionPartitions();
+			CollisionPartitions cp = t.getArmyManager().getCollisionPartitions();
 			if( cp == null ) {
 				continue;
 			}

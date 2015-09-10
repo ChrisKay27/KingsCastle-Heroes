@@ -79,7 +79,7 @@ public class UndeadPossessed extends AdvancedMageSoldier
 
 
 	{
-		setAQ(new AttackerQualities(staticAttackerQualities , lq.getBonuses() ));
+		setAQ(new AttackerQualities(staticAttackerQualities , attributes.getBonuses() ));
 		setGoldDropped(12);
 	}
 
@@ -111,14 +111,14 @@ public class UndeadPossessed extends AdvancedMageSoldier
 		getAQ().addAttack( fireBallAttack ) ;
 
 //		Icicle icicle = new Icicle();
-//		icicle.setDamage(getAQ().getDamage()-lq.getLevel());
+//		icicle.setDamage(getAQ().getDamage()-attributes.getLevel());
 //		icicle.setCaster(this);
 //		SpellAttack icicleAttack = new SpellAttack(getMM(), this , icicle  );
 //		getAQ().addAttack( icicleAttack ) ;
 //
 //
 //		LightningBolts bolt = new LightningBolts();
-//		bolt.setDamage(getAQ().getDamage()+lq.getLevel());
+//		bolt.setDamage(getAQ().getDamage()+attributes.getLevel());
 //		bolt.setCaster(this);
 //		SpellAttack lBoltAttack = new SpellAttack(getMM(), this , bolt  );
 //		getAQ().addAttack( lBoltAttack ) ;

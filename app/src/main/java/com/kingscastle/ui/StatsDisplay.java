@@ -45,7 +45,7 @@ public class StatsDisplay extends View
     public static void showStatsDisplay( @NonNull final LivingThing selectedThing ){
 
         String name = selectedThing.getName();
-        Attributes lq = selectedThing.lq;
+        Attributes lq = selectedThing.attributes;
         AttackerQualities aq = selectedThing.getAQ();
 
         String msg = "";
@@ -70,7 +70,7 @@ public class StatsDisplay extends View
 
         }
 
-       // final Cost upgradeCost = getUpgradeCost( selectedThing.getCosts() , lq.getLevel() +1 );
+       // final Cost upgradeCost = getUpgradeCost( selectedThing.getCosts() , attributes.getLevel() +1 );
 
         /*AlertDialog.Builder builder = new AlertDialog.Builder(game, AlertDialog.THEME_HOLO_DARK);
 

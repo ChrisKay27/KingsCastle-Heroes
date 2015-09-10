@@ -117,8 +117,8 @@ public class Console {
 			tdg.getLevel().setNightTime(Boolean.parseBoolean(inputs[1]));
 		}
 		else if( input.startsWith("killall") ){
-			for( LivingThing lt : tdg.getLevel().getMM().getTeam(Teams.RED).getAm().getCloneArmy())
-				lt.lq.setHealth(-100);
+			for( LivingThing lt : tdg.getLevel().getMM().getTeam(Teams.RED).getArmyManager().getCloneArmy())
+				lt.attributes.setHealth(-100);
 		}
 		//else if( input.startsWith("restock") )
 		//	restock();
@@ -261,7 +261,7 @@ public class Console {
 			if( u != null ){
 				u.setNearDistSquared(u.getAQ().getFocusRangeSquared()*4);
 				u.upgradeToLevel(lvl);
-				t.getAm().add( u );
+				t.getArmyManager().add( u );
 			}
 			else{
 				b = Building.getFromString(inputs[1], teams, loc);

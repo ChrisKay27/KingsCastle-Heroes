@@ -239,10 +239,10 @@ public class MovingTechnique
 		//andHere.set(velocity).normalize().times(Rpg.eightDp).add(position);
 		separationForce.set( 0 , 0 );
 
-		//THIS SHOULD BE IN HERE FOR ANYTHING BUT TOWER DEFENCE!
+
 		LivingThing target = inter.checkForSeparation( params.getMM() ,position , separationForce , temp , team , driver.getTarget() );
 
-		separationForce.times(1);
+		separationForce.times(10);
 
 		if( target != null && !(target instanceof Building) && driver.getTarget() == null )
 			driver.setTarget( target );

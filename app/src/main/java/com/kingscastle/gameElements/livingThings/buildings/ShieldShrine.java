@@ -149,7 +149,7 @@ public class ShieldShrine extends Shrine
 		}
 		if( healer == healingTarget2 )
 		{
-			return healingTarget2.lq.getHealth() == healingTarget2.lq.getFullHealth();
+			return healingTarget2.attributes.getHealth() == healingTarget2.attributes.getFullHealth();
 		}
 		if ( super.isOutOfRangeOrDead ( healer, healingTarget2 ))
 		{
@@ -157,7 +157,7 @@ public class ShieldShrine extends Shrine
 		}
 		else
 		{
-			if( healingTarget2.lq.getHealth() == healingTarget2.lq.getFullHealth())
+			if( healingTarget2.attributes.getHealth() == healingTarget2.attributes.getFullHealth())
 			{
 				return true;
 			}

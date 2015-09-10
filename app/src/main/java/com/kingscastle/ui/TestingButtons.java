@@ -42,7 +42,7 @@ public class TestingButtons
 		//					//
 		//					//							b.setSelected( true );
 		//					//						}
-		//					//						for( LivingThing lt : team.getAm().getArmy() )
+		//					//						for( LivingThing lt : team.getArmyManager().getArmy() )
 		//					//						{
 		//					//							lt.setSelectedColor( Color.YELLOW );
 		//					//							lt.setSelected( true );
@@ -104,7 +104,7 @@ public class TestingButtons
 		//					//							b.setSelectedColor( Color.YELLOW );
 		//					//							b.setSelected( false );
 		//					//						}
-		//					//						for( LivingThing lt : team.getAm().getArmy() )
+		//					//						for( LivingThing lt : team.getArmyManager().getArmy() )
 		//					//						{
 		//					//							lt.setSelectedColor( Color.YELLOW );
 		//					//							lt.setSelected( false );

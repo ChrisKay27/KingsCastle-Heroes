@@ -116,7 +116,7 @@ public class WatchTower extends AttackingBuilding
 	@Override
 	public void upgrade(){
 		super.upgrade();
-		adjustAnimForLevel( lq.getLevel());
+		adjustAnimForLevel( attributes.getLevel());
 	}
 
 	@Override
@@ -185,7 +185,7 @@ public class WatchTower extends AttackingBuilding
 	@Override
 	public Image getImage() {
 		loadImages();
-		int lvl = lq.getLevel();
+		int lvl = attributes.getLevel();
 
 //		if( lvl < 7 )
 //			return watchTowerImage;

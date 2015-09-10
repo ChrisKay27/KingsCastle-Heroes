@@ -15,7 +15,6 @@ public class EnemyAtLocationChecker
 
 	/**
 	 * 
-	 * @param mapRelCoord
 	 * @param teamOfInterest Team to either ignore or look on based on onThatTeam paramater.
 	 * @param onThatTeam If true it looks only on that team, used for finding players to heal on your own team. If false only looks at every other team.
 	 * @return null if nothing is found.
@@ -59,7 +58,7 @@ public class EnemyAtLocationChecker
 		//				continue;
 		//			}
 		//
-		//			for ( LivingThing lt : team.getAm().getArmy() )
+		//			for ( LivingThing lt : team.getArmyManager().getArmy() )
 		//			{
 		//				if( lt.area.contains( mapRelCoord.getIntX() ,mapRelCoord.getIntY() ))
 		//				{

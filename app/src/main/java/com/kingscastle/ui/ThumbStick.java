@@ -3,7 +3,6 @@ package com.kingscastle.ui;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.util.Log;
 
 import com.kingscastle.framework.Graphics;
 import com.kingscastle.framework.Image;
@@ -55,7 +54,7 @@ public class ThumbStick implements TouchEventAnalyzer {
         float x = e.x;
         float y = e.y;
 
-        Log.d(TAG, e.toString());
+        //Log.d(TAG, e.toString());
 
         if( e.pointer != pointerID && pointerID != -1 ) {
             //Log.d(TAG, "Wrong pointer");

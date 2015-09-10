@@ -114,7 +114,7 @@ public abstract class Building extends LivingThing
 		loadImages();
 		loadAnimation(mm);
 
-		adjustAnimForLevel(lq.getLevel());
+		adjustAnimForLevel(attributes.getLevel());
 
 		final Team t = mm.getTeam( team );
 		if( t != null ){
@@ -233,7 +233,7 @@ public abstract class Building extends LivingThing
     @NonNull
     public Cost getLvlUpCost() {
 		Cost lvlUpCost = new Cost(getCosts());
-		lvlUpCost.times(lq.getLevel() + 0.2f);
+		lvlUpCost.times(attributes.getLevel() + 0.2f);
 		return lvlUpCost;
 	}
 

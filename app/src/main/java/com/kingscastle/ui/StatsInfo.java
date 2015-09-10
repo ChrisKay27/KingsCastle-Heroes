@@ -143,9 +143,9 @@ class StatsInfo
 			InfoMessage.getInstance().setMessage( null , 0 );
 			int damage = selectedUnit.getAQ() != null ? selectedUnit.getAQ().getDamage() : 0;
 
-			String speed = String.format( "%.2f" , ( selectedUnit.lq.getSpeed() / Rpg.getDp() ) );
+			String speed = String.format( "%.2f" , ( selectedUnit.attributes.getSpeed() / Rpg.getDp() ) );
 			String msg = "Type: " + getSoldierType( selectedUnit ) + "Atk: "+ damage + getOptionalInfo( selectedUnit );
-			String msg2 = "MaxHp: " + selectedUnit.lq.getFullHealth() + "  Speed: " + speed + getOptionalInfo2( selectedUnit );
+			String msg2 = "MaxHp: " + selectedUnit.attributes.getFullHealth() + "  Speed: " + speed + getOptionalInfo2( selectedUnit );
 
             statsLabel1.setMsg( msg );
 			statsLabel2.setMsg( msg2 );

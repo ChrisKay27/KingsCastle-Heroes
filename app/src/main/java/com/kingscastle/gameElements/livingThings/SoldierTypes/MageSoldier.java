@@ -63,7 +63,7 @@ public abstract class MageSoldier extends Unit{
 	@Override
 	public boolean act()
 	{
-		if ( lq.getHealth() <= 0 )
+		if ( attributes.getHealth() <= 0 )
 			die();
 		else
 		{

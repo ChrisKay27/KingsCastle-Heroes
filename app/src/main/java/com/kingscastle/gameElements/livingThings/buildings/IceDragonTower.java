@@ -133,7 +133,7 @@ public class IceDragonTower extends AttackingBuilding
 //				}
 //			}
 //
-//			if (targets.size() < lq.getLevel())
+//			if (targets.size() < attributes.getLevel())
 //				findATarget();
 //		}
 //		return isDead();
@@ -143,7 +143,7 @@ public class IceDragonTower extends AttackingBuilding
 //	@Override
 //	public void setTarget(LivingThing lt){
 //		synchronized(targets){
-//			if (targets.size() <= lq.getLevel())
+//			if (targets.size() <= attributes.getLevel())
 //				targets.add(lt);
 //		}
 //	}
@@ -152,7 +152,7 @@ public class IceDragonTower extends AttackingBuilding
 	@Override
 	public void upgrade(){
 		super.upgrade();
-		adjustAnimForLevel(lq.getLevel());
+		adjustAnimForLevel(attributes.getLevel());
 		setupAttack();
 
 	}
@@ -228,7 +228,7 @@ public class IceDragonTower extends AttackingBuilding
 	@Override
 	public Image getImage() {
 		loadImages();
-		int lvl = lq.getLevel();
+		int lvl = attributes.getLevel();
 
 //		if( lvl < 7 )
 //			return watchTowerImage;

@@ -79,7 +79,7 @@ public class BlueAngel extends AdvancedMageSoldier
 
 
 	{
-		setAQ(new AttackerQualities(staticAttackerQualities , lq.getBonuses() ));
+		setAQ(new AttackerQualities(staticAttackerQualities , attributes.getBonuses() ));
 
 	}
 

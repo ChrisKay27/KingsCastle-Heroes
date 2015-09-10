@@ -105,7 +105,7 @@ public class ShouldDrawAnimCalcer
 
 
 		Humanoid lt ;
-		List<Humanoid> soldiers = humanTeam.getAm().getArmy();
+		List<Humanoid> soldiers = humanTeam.getArmyManager().getArmy();
 		vector tempLoc;
 
 		for( int i = soldiers.size() - 1 ; i > -1 ; --i )
@@ -118,7 +118,7 @@ public class ShouldDrawAnimCalcer
 
 			tempLoc = lt.loc;
 
-			if( tempLoc == null || lt.lq == null )
+			if( tempLoc == null || lt.attributes == null )
 			{
 				////Log.d( TAG , " lt == null || lt.loc == null " );
 				continue;

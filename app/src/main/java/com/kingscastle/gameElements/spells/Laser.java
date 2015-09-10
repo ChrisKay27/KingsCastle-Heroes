@@ -54,7 +54,7 @@ public class Laser extends InstantSpell
 	{
 		if( getCaster() != null )
 		{
-			return getCaster().lq.getLevel()*7;
+			return getCaster().attributes.getLevel()*7;
 		}
 		return 7;
 	}

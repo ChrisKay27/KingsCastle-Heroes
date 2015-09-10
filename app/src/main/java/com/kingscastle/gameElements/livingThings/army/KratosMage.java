@@ -138,7 +138,7 @@ public class KratosMage extends MageSoldier
 						return TargetFinder.CondRespon.FALSE;
 
 					if( target == KratosMage.this) {
-						if (KratosMage.this.lq.getHealthPercent() < 0.8f )
+						if (KratosMage.this.attributes.getHealthPercent() < 0.8f )
 							return TargetFinder.CondRespon.TRUE;
 						else
 							return TargetFinder.CondRespon.FALSE;

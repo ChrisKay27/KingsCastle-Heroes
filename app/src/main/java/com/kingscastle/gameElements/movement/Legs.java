@@ -441,10 +441,10 @@ public class Legs
 		if( legs.getDriver().getTeamName() == Teams.BLUE )
 			return;
 
-		float prevSpeed = legs.driver.lq.getSpeed();
+		float prevSpeed = legs.driver.attributes.getSpeed();
 
 		try{
-			legs.driver.lq.setSpeed(1f);
+			legs.driver.attributes.setSpeed(1f);
 
 			if( params.getInDirection() == null)
 				params.setInDirection( new vector( - 10 +  rand.nextInt( 20 ) , - 10 +  rand.nextInt( 20 ) ));
@@ -458,7 +458,7 @@ public class Legs
 			dPadMove( legs , params.getInDirection() , params , technique );
 		}
 		finally{
-			legs.driver.lq.setSpeed( prevSpeed );
+			legs.driver.attributes.setSpeed( prevSpeed );
 		}
 
 	}
@@ -518,8 +518,8 @@ public class Legs
 
 	private static void doYourThing( @NonNull Legs legs , @NonNull MovingTechnique technique , @NonNull MovementTechniqueParams params )
 	{
-		params.setSpeed( legs.driver.lq.getSpeed() );
-		params.setForce( legs.driver.lq.getForce() );
+		params.setSpeed( legs.driver.attributes.getSpeed() );
+		params.setForce( legs.driver.attributes.getForce() );
 		technique.act( params );
 		legs.lastMoved = GameTime.getTime();
 		legs.walking = true;

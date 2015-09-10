@@ -114,7 +114,7 @@ public class BuildingOptions
 			else {
 				//Log.d(TAG, selB + " is not leveling up");
 //				LevelUpButton lub = new LevelUpButton(a,mm,selB,selB,null,team);
-//				if(level instanceof HeroesLevel && ((HeroesLevel)level).highestLevelTowersAllowed() <= selB.lq.getLevel()){
+//				if(level instanceof HeroesLevel && ((HeroesLevel)level).highestLevelTowersAllowed() <= selB.attributes.getLevel()){
 //					lub.setEnabled(false);
 //					lub.addLockOverlay();
 //				}

@@ -58,13 +58,13 @@ public class HumanWizard extends AdvancedMageSoldier
 		staticAttackerQualities.setStaysAtDistanceSquared(10000 * dp * dp);
 		staticAttackerQualities.setFocusRangeSquared(20000 * dp * dp);
 		staticAttackerQualities.setAttackRangeSquared(20000 * dp * dp);
-		staticAttackerQualities.setDamage(100);  staticAttackerQualities.setdDamageAge(0); staticAttackerQualities.setdDamageLvl(15);
+		staticAttackerQualities.setDamage(30);  staticAttackerQualities.setdDamageAge(0); staticAttackerQualities.setdDamageLvl(15);
 		staticAttackerQualities.setROF(500); staticAttackerQualities.setdROFLvl(-20);
 
 		STATIC_ATTRIBUTES = new Attributes(); STATIC_ATTRIBUTES.setRequiresCLvl( 11 ); STATIC_ATTRIBUTES.setRequiresAge(Age.STEEL); STATIC_ATTRIBUTES.setRequiresTcLvl(16);
 		STATIC_ATTRIBUTES.setLevel(1);
-		STATIC_ATTRIBUTES.setFullHealth(3000);
-		STATIC_ATTRIBUTES.setHealth(3000); STATIC_ATTRIBUTES.setdHealthAge(0); STATIC_ATTRIBUTES.setdHealthLvl(50);
+		STATIC_ATTRIBUTES.setFullHealth(150);
+		STATIC_ATTRIBUTES.setHealth(150); STATIC_ATTRIBUTES.setdHealthAge(0); STATIC_ATTRIBUTES.setdHealthLvl(10);
 		STATIC_ATTRIBUTES.setFullMana(200);
 		STATIC_ATTRIBUTES.setMana(200);
 		STATIC_ATTRIBUTES.setHpRegenAmount(1); STATIC_ATTRIBUTES.setdRegenRateLvl( -30 );
@@ -91,7 +91,7 @@ public class HumanWizard extends AdvancedMageSoldier
 
 
 	protected void setupSpells(){
-		int lvl = lq.getLevel();
+		int lvl = attributes.getLevel();
 		buffSpell = new SpeedShot( this, null , -(400+lvl*20) );
 		getAQ().setFriendlyAttack( new BuffAttack(getMM(),this , buffSpell ) ) ;
 

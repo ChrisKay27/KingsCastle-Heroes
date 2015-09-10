@@ -43,7 +43,7 @@ public class LevelUpTechnology extends Technology {
 		team = p.getTeam();
 		this.mm = mm;
 		teamName = team.getTeamName();
-		setNewLvl(lt.lq.getLevel()+1);
+		setNewLvl(lt.attributes.getLevel()+1);
 
 //	FIXME: Everything builds instantly in tower defence mode
 //
@@ -132,9 +132,9 @@ public class LevelUpTechnology extends Technology {
 			ltClass = lt.getClass().getSimpleName();
 
 			if( lt instanceof Building ) //If building is leveling itself up no point showing its name
-				lvlAdvancingTo = "Level " + (lt.lq.getLevel()+1) ;
+				lvlAdvancingTo = "Level " + (lt.attributes.getLevel()+1) ;
 			else
-				lvlAdvancingTo = lt.getName() + " Level " + (lt.lq.getLevel()+1) ;
+				lvlAdvancingTo = lt.getName() + " Level " + (lt.attributes.getLevel()+1) ;
 
 			teamName = lt.getTeamName();
 		}

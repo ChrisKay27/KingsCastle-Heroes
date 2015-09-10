@@ -14,19 +14,15 @@ import com.kingscastle.gameElements.Tree;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.LivingThingListenerAdapter;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
-import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
 import com.kingscastle.gameElements.livingThings.abilities.DamageBuff;
 import com.kingscastle.gameElements.livingThings.abilities.Haste;
+import com.kingscastle.gameElements.livingThings.army.HumanSoldier;
 import com.kingscastle.gameElements.livingThings.army.HumanWizard;
-import com.kingscastle.gameElements.livingThings.army.KratosLightArm;
-import com.kingscastle.gameElements.livingThings.army.KratosMedArm;
-import com.kingscastle.gameElements.livingThings.army.ZombieMedium;
-import com.kingscastle.gameElements.livingThings.army.ZombieStrong;
-import com.kingscastle.gameElements.livingThings.army.ZombieWeak;
 import com.kingscastle.gameUtils.Difficulty;
 import com.kingscastle.gameUtils.vector;
 import com.kingscastle.heroes.PlayerAchievements;
 import com.kingscastle.level.Heroes.BuffPickup;
+import com.kingscastle.level.Heroes.ForestSpawns;
 import com.kingscastle.level.Heroes.Pickup;
 import com.kingscastle.level.Heroes.TripleAttackPickup;
 import com.kingscastle.teams.HumanPlayer;
@@ -36,6 +32,7 @@ import com.kingscastle.teams.races.HumanRace;
 import com.kingscastle.teams.races.UndeadRace;
 import com.kingscastle.util.ManagerListener;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -85,7 +82,7 @@ public abstract class HeroesLevel extends Level{
         hero.addLTL(new LivingThingListenerAdapter(){
             @Override
             public void onLevelUp(LivingThing lt) {
-                if( lt.lq.getLevel() == 2 )
+                if( lt.attributes.getLevel() == 2 )
                     lt.addAbility(new DamageBuff(lt, lt));
                 mm.getUI().refreshSelectedUI();
             }
@@ -100,16 +97,17 @@ public abstract class HeroesLevel extends Level{
         final LivingThingListenerAdapter odl = new LivingThingListenerAdapter() {
             @Override
             public void onDeath(final LivingThing lt) {
-                hero.doOnYourThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        hero.addExp(lt.lq.getExpGiven());
-                    }
+                if( lt.getLastHurter() == hero )
+                    hero.doOnYourThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            hero.addExp(lt.attributes.getExpGiven());
+                        }
                 });
             }
         };
 
-        mm.getTeam(Teams.RED).getAm().addListener(new ManagerListener<Humanoid>() {
+        mm.getTeam(Teams.RED).getArmyManager().addListener(new ManagerListener<Humanoid>() {
             @Override
             public boolean onAdded(Humanoid h) {
                 h.addLTL(odl);
@@ -136,27 +134,26 @@ public abstract class HeroesLevel extends Level{
 
 
         if( nextSpawn < GameTime.getTime() ){
-            nextSpawn = GameTime.getTime() + 3000;
+            nextSpawn = GameTime.getTime() + 1000;
 
-            Unit spawn;
-            double rand = Math.random();
-            if( rand < 0.2 )
-                spawn = new ZombieWeak(new vector(getLevelWidthInPx()*Math.random(), getLevelHeightInPx()*Math.random()), Teams.RED);
-            else if( rand < 0.4 )
-                spawn = new ZombieMedium(new vector(getLevelWidthInPx()*Math.random(), getLevelHeightInPx()*Math.random()), Teams.RED);
-            else if( rand < 0.6 )
-                spawn = new ZombieStrong(new vector(getLevelWidthInPx()*Math.random(), getLevelHeightInPx()*Math.random()), Teams.RED);
-            else if( rand < 0.8 )
-                spawn = new KratosMedArm(new vector(getLevelWidthInPx()*Math.random(), getLevelHeightInPx()*Math.random()), Teams.RED);
-            else
-                spawn = new KratosLightArm(new vector(getLevelWidthInPx()*Math.random(), getLevelHeightInPx()*Math.random()), Teams.RED);
-            mm.add(spawn);
-            spawn.aq.setFocusRangeSquared(10000*10000*Rpg.getDpSquared());
+            try{
+                Humanoid spawn = ForestSpawns.getSpawnClass(hero.attributes.getLevel()).getConstructor(vector.class, Teams.class).newInstance(getRandomLocOnMap(), Teams.RED);
+                mm.add(spawn);
+                spawn.aq.setFocusRangeSquared(Float.MAX_VALUE);
+            } catch (InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+
+            if( Math.random() < 0.8 ) {
+                Humanoid ally = new HumanSoldier(getRandomLocOnMap(), Teams.BLUE);
+                mm.add(ally);
+                ally.aq.setFocusRangeSquared(Float.MAX_VALUE);
+            }
         }
 
-        if( Math.random() < 0.003){
+        if( Math.random() < 0.005){
             vector pickupLoc = new vector(getLevelWidthInPx() * Math.random(), getLevelHeightInPx() * Math.random());
-            if( Math.random() < 0.5 ) {
+            if( Math.random() < 0.3 ) {
                 BuffPickup bp = new BuffPickup(pickupLoc, new Haste(null, null));
                 pickups.add(bp);
                 mm.getEm().add(bp.getAnim());
@@ -180,6 +177,14 @@ public abstract class HeroesLevel extends Level{
                 p.onOver();
             }
         }
+    }
+
+    private vector getRandomLocOnMap() {
+        vector loc = new vector(getLevelWidthInPx()*Math.random(), getLevelHeightInPx()*Math.random());
+        while(!mm.getCD().checkPlaceable(loc))
+            loc.set(getLevelWidthInPx()*Math.random(), getLevelHeightInPx()*Math.random());
+
+        return loc;
     }
 
 
@@ -273,7 +278,9 @@ public abstract class HeroesLevel extends Level{
         return playersScore;
     }
 
-
+    public Humanoid getHero() {
+        return hero;
+    }
 
 
     //*******************************   Abstract Methods   ***************************************//
@@ -289,15 +296,15 @@ public abstract class HeroesLevel extends Level{
 
     //************************  Listener Methods And Interfaces   ********************************//
 
-    //Round Over Listener
-    protected final ArrayList<RoundOverListener> rols = new ArrayList<>();
-
-
-    public interface RoundOverListener{
-        void onRoundOver(int roundJustFinished);
-    }
-
-    public void addROL(RoundOverListener gol)		   		{	synchronized( rols ){	rols.add( gol );			}  	}
-    public boolean removeROL(RoundOverListener gol)		{	synchronized( rols ){	return rols.remove( gol );		}	}
+//    //Round Over Listener
+//    protected final ArrayList<RoundOverListener> rols = new ArrayList<>();
+//
+//
+//    public interface RoundOverListener{
+//        void onRoundOver(int roundJustFinished);
+//    }
+//
+//    public void addROL(RoundOverListener gol)		   		{	synchronized( rols ){	rols.add( gol );			}  	}
+//    public boolean removeROL(RoundOverListener gol)		{	synchronized( rols ){	return rols.remove( gol );		}	}
 
 }

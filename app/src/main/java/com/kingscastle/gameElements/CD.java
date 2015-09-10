@@ -62,7 +62,7 @@ public class CD
 				continue;
 
 
-			CollisionPartitions cp = team.getAm().getCollisionPartitions();
+			CollisionPartitions cp = team.getArmyManager().getCollisionPartitions();
 
 			LivingThing[] army = cp.getPartition(x, y);
 			int size = cp.getSizeForPartition(x, y);
@@ -156,7 +156,7 @@ public class CD
 			if ( !onThisTeam && team.getTeamName() == ignoreThisTeam )
 				continue;
 
-			CollisionPartitions cp = team.getAm().getCollisionPartitions();
+			CollisionPartitions cp = team.getArmyManager().getCollisionPartitions();
 
 
 			LivingThing[] army = cp.getPartition(x, y);
@@ -269,7 +269,7 @@ public class CD
 				continue;
 
 
-			CollisionPartitions cp = team.getAm().getCollisionPartitions();
+			CollisionPartitions cp = team.getArmyManager().getCollisionPartitions();
 
 			LivingThing[] army = cp.getPartition(x, y);
 			int size = cp.getSizeForPartition(x, y);
@@ -340,7 +340,7 @@ public class CD
 
 		for ( Team team :  mm.getTM().getTeams() )
 		{
-			CollisionPartitions cp = team.getAm().getCollisionPartitions();
+			CollisionPartitions cp = team.getArmyManager().getCollisionPartitions();
 
 			LivingThing[] army = cp.getPartition(x, y);
 			int size = cp.getSizeForPartition(x, y);
@@ -413,7 +413,7 @@ public class CD
 		{
 			if( !ignoreUnits )
 			{
-				CollisionPartitions cp = team.getAm().getCollisionPartitions();
+				CollisionPartitions cp = team.getArmyManager().getCollisionPartitions();
 
 				LivingThing[] army = cp.getPartition(x, y);
 				int size = cp.getSizeForPartition(x, y);
@@ -522,7 +522,7 @@ public class CD
 			if( ignoreUnits )
 				continue;
 
-			CollisionPartitions cp = team.getAm().getCollisionPartitions();
+			CollisionPartitions cp = team.getArmyManager().getCollisionPartitions();
 
 			LivingThing[] army = cp.getPartition       (x, y);
 			int size           = cp.getSizeForPartition(x, y);

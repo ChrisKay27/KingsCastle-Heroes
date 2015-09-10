@@ -35,6 +35,8 @@ import com.kingscastle.framework.implementation.AndroidFileIO;
 import com.kingscastle.framework.implementation.AndroidGraphics;
 import com.kingscastle.framework.implementation.AndroidInput;
 import com.kingscastle.framework.implementation.GameMusic;
+import com.kingscastle.gameElements.livingThings.LivingThing;
+import com.kingscastle.gameElements.livingThings.LivingThingListenerAdapter;
 import com.kingscastle.gameElements.livingThings.buildings.Building;
 import com.kingscastle.gameUtils.Difficulty;
 import com.kingscastle.heroes.GameActivity;
@@ -42,16 +44,14 @@ import com.kingscastle.heroes.GameOverActivity;
 import com.kingscastle.heroes.R;
 import com.kingscastle.level.HeroesForestLevel;
 import com.kingscastle.level.HeroesLevel;
-import com.kingscastle.level.HeroesLevel.RoundOverListener;
 import com.kingscastle.level.Level.GameState;
 import com.kingscastle.level.Levels;
-import com.kingscastle.level.PR;
 import com.kingscastle.level.TowerDefenceLevelSaverLoader;
-import com.kingscastle.teams.HumanPlayer;
 import com.kingscastle.teams.Player;
 import com.kingscastle.teams.Team;
 import com.kingscastle.teams.Teams;
 import com.kingscastle.ui.BuildingBuilder;
+import com.kingscastle.ui.CTextView2;
 import com.kingscastle.ui.GameScreen;
 import com.kingscastle.ui.UI;
 import com.kingscastle.ui.ViewAnimatorHelper;
@@ -65,7 +65,7 @@ import java.io.ObjectInputStream;
 /**
  * Main game class
  */
-public class Game implements View.OnClickListener, RoundOverListener, BuildingBuilder.OnPendingBuildingSet, HeroesLevel.OnGameEndListener {
+public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuildingSet, HeroesLevel.OnGameEndListener {
 
     private static final String TAG = "TowerDefenceGame";
     public static final String FILENAME = "savedGameFile";
@@ -114,7 +114,7 @@ public class Game implements View.OnClickListener, RoundOverListener, BuildingBu
 
 
 
-    public Game(@NonNull GameActivity gameActivity, AndroidFastRenderView surface, String levelClassName, Difficulty difficulty){
+    public Game(@NonNull final GameActivity gameActivity, AndroidFastRenderView surface, String levelClassName, Difficulty difficulty){
         Log.d(TAG, "new Game()");
         this.gameActivity = gameActivity;
 
@@ -192,14 +192,17 @@ public class Game implements View.OnClickListener, RoundOverListener, BuildingBu
             }
         }
 
-        HeroesLevel tdl = level;
-
-        tdl.addROL(this);
-        tdl.addPWL(this);
+        level.addPWL(this);
         level.getMM().getTeam(Teams.BLUE).addBdl(new Team.OnBuildingDestroyedListener() {
             @Override
             public void onBuildingDestroyed(@NonNull Building b) {
                 if (b.isSelected()) ui.clearSelected();
+            }
+        });
+        level.getHero().addLTL(new LivingThingListenerAdapter(){
+            @Override
+            public void onLevelUp(LivingThing lt) {
+                ((CTextView2)(gameActivity.findViewById(R.id.level_textView))).setText("Level: " + lt.attributes.getLevel());
             }
         });
     }
@@ -234,33 +237,33 @@ public class Game implements View.OnClickListener, RoundOverListener, BuildingBu
 
         ui.bb.addPBSL(this);
 
-        final TextView goldDisplay = (TextView) gameActivity.findViewById(R.id.gold_textView);
-        goldDisplay.setText("Gold: " + level.getHumanPlayer().getPR().getGold());
-        level.getHumanPlayer().getPR().addRVCL(new PR.OnResourceValuesChangedListener() {
-            int lastVal = -82457834;
-            @Override
-            public void onGoldValueChanged(int newGoldValue) {
-                if (newGoldValue != lastVal) {
-                    setText(goldDisplay, "Gold: " + newGoldValue);
-                    lastVal = newGoldValue;
-                }
-            }
-        });
+//        final TextView goldDisplay = (TextView) gameActivity.findViewById(R.id.gold_textView);
+//        goldDisplay.setText("Gold: " + level.getHumanPlayer().getPR().getGold());
+//        level.getHumanPlayer().getPR().addRVCL(new PR.OnResourceValuesChangedListener() {
+//            int lastVal = -82457834;
+//            @Override
+//            public void onGoldValueChanged(int newGoldValue) {
+//                if (newGoldValue != lastVal) {
+//                    setText(goldDisplay, "Gold: " + newGoldValue);
+//                    lastVal = newGoldValue;
+//                }
+//            }
+//        });
 
-        final TextView livesDisplay = (TextView) gameActivity.findViewById(R.id.lives_textView);
-        livesDisplay.setText("Lives: " + level.getHumanPlayer().getLives());
-        level.getHumanPlayer().addLVCL(new HumanPlayer.onLivesValueChangedListener() {
-            int lastVal = -25475782;
-            @Override
-            public void onLivesValueChanged(int newLivesValue) {
-                if (newLivesValue != lastVal) {
-                    setText(livesDisplay, "Lives: " + newLivesValue);
-                    lastVal = newLivesValue;
-                }
-            }
-        });
+//        final TextView livesDisplay = (TextView) gameActivity.findViewById(R.id.level_textView);
+//        livesDisplay.setText("Lives: " + level.getHumanPlayer().getLives());
+//        level.getHumanPlayer().addLVCL(new HumanPlayer.onLivesValueChangedListener() {
+//            int lastVal = -25475782;
+//            @Override
+//            public void onLivesValueChanged(int newLivesValue) {
+//                if (newLivesValue != lastVal) {
+//                    setText(livesDisplay, "Lives: " + newLivesValue);
+//                    lastVal = newLivesValue;
+//                }
+//            }
+//        });
 
-        final TextView roundDisplay = (TextView) gameActivity.findViewById(R.id.round_textview);
+        //final TextView roundDisplay = (TextView) gameActivity.findViewById(R.id.round_textview);
         //roundDisplay.setText("Round: " + level.getRound().getRoundNum());
         setupConsoleInput(gameActivity);
     }
@@ -319,7 +322,7 @@ public class Game implements View.OnClickListener, RoundOverListener, BuildingBu
 //        gt.addSucl(new GameThread.OnLevelUpdateCompleteListener() {
 //            @Override
 //            public boolean onScreenUpdateComplete() {
-//                ArmyManager am = level.getMM().getTeam(Teams.RED).getAm();
+//                ArmyManager am = level.getMM().getTeam(Teams.RED).getArmyManager();
 //                for (final LivingThing lt : am.getArmy()) {
 //                    PathFinderParams pfp = new PathFinderParams();
 //                    pfp.grid = level.getGrid();
@@ -518,42 +521,6 @@ public class Game implements View.OnClickListener, RoundOverListener, BuildingBu
 
     private boolean gameIsOver = false;
 
-    @Override
-    public void onRoundOver(final int roundNum) {
-        Log.v(TAG, "On Round Over");
-        if( gameIsOver )
-            return;
-
-        level.getHumanPlayer().getPR().add((int) ((roundNum*20)/level.getDifficulty().multiplier),0,0);
-
-        uiHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                TextView v = (TextView) gameActivity.findViewById(R.id.round_over);
-                ViewAnimatorHelper.grow(v, 500, null);
-                final TextView roundOverTV = ((TextView) gameActivity.findViewById(R.id.round_textview));
-                ViewAnimatorHelper.shinkAway(roundOverTV, 300, new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        roundOverTV.setText("Round: " + (roundNum + 1));
-                        ViewAnimatorHelper.grow(roundOverTV, 300, null);
-                    }
-                });
-
-//                TextView goldEarned = (TextView) gameActivity.findViewById(R.id.gold_earned);
-//                ViewAnimatorHelper.grow(goldEarned, 500, null);
-
-            }
-        });
-        uiHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                View v = gameActivity.findViewById(R.id.round_over);
-                v.setVisibility(View.INVISIBLE);
-            }
-        }, 3000);
-
-    }
 
     @Override
     public void onPlayerWon() {

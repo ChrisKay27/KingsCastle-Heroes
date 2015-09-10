@@ -144,8 +144,8 @@ public class SelectedUI
                 //			if( selected instanceof LivingThing )
                 //			{
                 //				LivingThing selLt = (LivingThing) selected;
-                //				LivingQualities lq = selLt.lq;
-                //				selectedsHealthView.setText( HP + lq.getHealth() + "/" + lq.getFullHealth() + " hp");
+                //				LivingQualities attributes = selLt.attributes;
+                //				selectedsHealthView.setText( HP + attributes.getHealth() + "/" + attributes.getFullHealth() + " hp");
                 //			}
                 //			else if( selected instanceof Workable )
                 //			{

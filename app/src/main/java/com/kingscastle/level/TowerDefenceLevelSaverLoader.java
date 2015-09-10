@@ -70,7 +70,7 @@ public class TowerDefenceLevelSaverLoader {
         }
 
         {
-            ArmyManager am = mm.getTeam(Teams.RED).getAm();
+            ArmyManager am = mm.getTeam(Teams.RED).getArmyManager();
 
             ArrayList<HashMap<String,Object>> armyInfo = (ArrayList<HashMap<String,Object>>) ois.readObject();
 
@@ -82,7 +82,7 @@ public class TowerDefenceLevelSaverLoader {
 //                int startEndLocPairIndex = (Integer) attr.get(AbstractRound.START_END_LOC_INDEX);
 //                //Log.v(TAG, "Loaded " + lt);
 //                lt.getExtras().put(AbstractRound.START_END_LOC_INDEX,startEndLocPairIndex);
-//                lt.lq.setHealth((Integer) attr.get(HEALTH));
+//                lt.attributes.setHealth((Integer) attr.get(HEALTH));
                 am.add(lt);
                 lt.upgradeToLevel((int) attr.get(LVL));
             }
@@ -134,7 +134,7 @@ public class TowerDefenceLevelSaverLoader {
         }
 
         {
-            ArmyManager am = mm.getTeam(Teams.RED).getAm();
+            ArmyManager am = mm.getTeam(Teams.RED).getArmyManager();
             List<Humanoid> army = am.getArmy();
             //Log.v(TAG, "Saving " +army.size() + " monsters.");
             ArrayList<Map<String,Object>> armyInfo = new ArrayList<>();

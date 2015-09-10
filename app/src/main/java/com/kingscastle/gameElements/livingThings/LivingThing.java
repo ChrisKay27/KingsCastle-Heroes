@@ -51,7 +51,7 @@ public abstract class LivingThing extends GameElement
     protected Teams team;
 
 
-    @NonNull public final Attributes lq;
+    @NonNull public final Attributes attributes;
     public AttackerQualities aq = new AttackerQualities();
 
     protected final Arms arms = new Arms( this );
@@ -99,16 +99,16 @@ public abstract class LivingThing extends GameElement
 
 	protected LivingThing(Teams team){
 		this.team = team;
-		lq = getNewLivingQualities();
+		attributes = getNewLivingQualities();
 	}
 
 	protected LivingThing(){
-		lq = getNewLivingQualities();
+		attributes = getNewLivingQualities();
 	}
 
 	//	private final void loadLQAndLegs()
 	//	{
-	//		//		if( lq == null )
+	//		//		if( attributes == null )
 	//		//			setLQ( getNewLivingQualities() );
 	//
 	//		loadLegs();
@@ -118,7 +118,7 @@ public abstract class LivingThing extends GameElement
 	@Override
 	public boolean act()
 	{
-		if ( lq.getHealth() <= 0 )
+		if ( attributes.getHealth() <= 0 )
 			die();
 		else
 		{
@@ -188,10 +188,10 @@ public abstract class LivingThing extends GameElement
 		loadAnimation(mm);
 		upgrade();
 
-        int expGiven = (int) (lq.getFullHealth()/5 + lq.getHealAmount() + lq.getSpeed()*5);
+        int expGiven = (int) (attributes.getFullHealth()/5 + attributes.getHealAmount() + attributes.getSpeed()*5);
         if( getAQ() != null )
             expGiven += getAQ().getDamage()/2;
-        lq.setExpGiven(expGiven);
+        attributes.setExpGiven(expGiven);
 
 
 		if( aliveAnim != null )
@@ -266,12 +266,12 @@ public abstract class LivingThing extends GameElement
 
 
 	public synchronized void upgradeToLevel( int lvl ){
-		while( lq.getLevel() < lvl )
+		while( attributes.getLevel() < lvl )
 			upgradeLevel();
 	}
 
 	public synchronized void upgradeLevel(){
-		lq.setLevel(lq.getLevel() + 1);
+		attributes.setLevel(attributes.getLevel() + 1);
 		SpecialEffects.onCreatureLvledUp(loc.x, loc.y);
         upgrade();
 
@@ -288,7 +288,7 @@ public abstract class LivingThing extends GameElement
 
 		Attributes slq = getStaticLQ();
 
-		int lvl = lq.getLevel()-1;
+		int lvl = attributes.getLevel()-1;
 
 
 		if( aq != null && saq != null ){
@@ -300,24 +300,24 @@ public abstract class LivingThing extends GameElement
 
 
 
-		float healthPerc = lq.getHealthPercent();
+		float healthPerc = attributes.getHealthPercent();
 
-		lq.setFullHealth(slq.getFullHealth() + lq.getdHealthLvl() * lvl);
-		lq.setHealth((int) (healthPerc * lq.getFullHealth()));
+		attributes.setFullHealth(slq.getFullHealth() + attributes.getdHealthLvl() * lvl);
+		attributes.setHealth((int) (healthPerc * attributes.getFullHealth()));
 
 
-		lq.setRegenRate(slq.getRegenRate() + lq.getdRegenRateLvl() * lvl);
+		attributes.setRegenRate(slq.getRegenRate() + attributes.getdRegenRateLvl() * lvl);
 
-		lq.setArmor(slq.getArmor() + lq.getdArmorLvl() * lvl);
+		attributes.setArmor(slq.getArmor() + attributes.getdArmorLvl() * lvl);
 
-		lq.setHealAmount(slq.getHealAmount() + lq.getdHealLvl() * lvl);
+		attributes.setHealAmount(slq.getHealAmount() + attributes.getdHealLvl() * lvl);
 
-        lq.setSpeed(slq.getSpeed() + lq.getdSpeedLevel()*lvl);
+        attributes.setSpeed(slq.getSpeed() + attributes.getdSpeedLevel()*lvl);
 	}
 
 
 	public boolean canLevelUp() {
-		return lq.getLevel() < lq.getMaxLevel();
+		return attributes.getLevel() < attributes.getMaxLevel();
 
 		/* @FIXME Not used in Tower Defense
 		Team t = MM.get().getTeam(team);
@@ -407,20 +407,20 @@ public abstract class LivingThing extends GameElement
 	{
 		if ( nextRegen < GameTime.getTime())
 		{
-			if (lq.getHealth() < lq.getFullHealth())
-				takeHealing( lq.getHpRegenAmount() , false );
+			if (attributes.getHealth() < attributes.getFullHealth())
+				takeHealing( attributes.getHpRegenAmount() , false );
 
 			//			if (livingQualities.getHealth() > livingQualities.getFullHealth())
 			//			{
 			//				livingQualities.setHealth( livingQualities.getFullHealth() );
 			//			}
-			if ( lq.getMana() < lq.getFullMana() )
-				lq.addMana( lq.getMpRegenAmount() );
+			if ( attributes.getMana() < attributes.getFullMana() )
+				attributes.addMana( attributes.getMpRegenAmount() );
 
-			if ( lq.getMana() > lq.getFullMana() )
-				lq.setMana( lq.getFullMana() );
+			if ( attributes.getMana() > attributes.getFullMana() )
+				attributes.setMana( attributes.getFullMana() );
 
-			nextRegen = GameTime.getTime() + (getTarget() == null && team != Teams.RED ? lq.getRegenRate()/5 : lq.getRegenRate()) ;
+			nextRegen = GameTime.getTime() + (getTarget() == null && team != Teams.RED ? attributes.getRegenRate()/5 : attributes.getRegenRate()) ;
 		}
 	}
 
@@ -454,13 +454,13 @@ public abstract class LivingThing extends GameElement
 		switch( damageType ){
 			case Exploding:
 				break;
-			case Normal: dam2 -= Math.min( dam2/2 , dam2*lq.getArmor()/100 );
+			case Normal: dam2 -= Math.min( dam2/2 , dam2* attributes.getArmor()/100 );
 				break;
-			case Burning: dam2 -= lq.getFireResistancePerc()*dam2;
+			case Burning: dam2 -= attributes.getFireResistancePerc()*dam2;
 				break;
-			case Ice: dam2 -= lq.getIceResistancePerc()*dam2;
+			case Ice: dam2 -= attributes.getIceResistancePerc()*dam2;
 				break;
-			case Lightning: dam2 -= lq.getLightningResistancePerc()*dam2;
+			case Lightning: dam2 -= attributes.getLightningResistancePerc()*dam2;
 				break;
 		}
 
@@ -848,7 +848,7 @@ public abstract class LivingThing extends GameElement
 
 
 	public Bonuses getBonuses(){
-		return lq.getBonuses();
+		return attributes.getBonuses();
 	}
 
 
@@ -895,7 +895,7 @@ public abstract class LivingThing extends GameElement
 	@NonNull
     public Attributes getLQ()
 	{
-		return lq;
+		return attributes;
 	}
 	public AttackerQualities getAQ() {
 		return aq;
@@ -1013,9 +1013,9 @@ public abstract class LivingThing extends GameElement
 
 
     public void addExp(int exp){
-        lq.addExp(exp);
+        attributes.addExp(exp);
         SpecialEffects.onExperienceGained(loc.getIntX(), loc.getIntY() , exp);
-        if(LevelUpChecker.getLevelForExp(lq.getExp()) > lq.getLevel() ){
+        if(LevelUpChecker.getLevelForExp(attributes.getExp()) > attributes.getLevel() ){
             upgradeLevel();
         }
     }

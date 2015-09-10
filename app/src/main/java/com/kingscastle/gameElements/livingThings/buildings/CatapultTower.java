@@ -191,7 +191,7 @@ public class CatapultTower extends AttackingBuilding
 	@Override
 	public void upgrade(){
 		super.upgrade();
-		adjustAnimForLevel(lq.getLevel());
+		adjustAnimForLevel(attributes.getLevel());
 	}
 
 
@@ -257,7 +257,7 @@ public class CatapultTower extends AttackingBuilding
 	@Override
 	public Image getImage() {
 		loadImages();
-		int lvl = lq.getLevel();
+		int lvl = attributes.getLevel();
 
 //		if( lvl < 7 )
 //			return watchTowerImage;

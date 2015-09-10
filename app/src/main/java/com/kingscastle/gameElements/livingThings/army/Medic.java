@@ -99,7 +99,7 @@ public class Medic extends BasicHealer
 	protected void upgrade(){
 		super.upgrade();
 
-		int lvl = lq.getLevel();
+		int lvl = attributes.getLevel();
 
 		HealingSpell hs = new HealingSpell(this,null);
 		hs.setHealAmount( getLQ().getHealAmount() + getLQ().getdHealLvl()*lvl );
@@ -113,7 +113,7 @@ public class Medic extends BasicHealer
 		hs.setCaster( this );
 		//getAQ().setCurrentAttack( new HealingAttack( this , hs ) );
 
-		buffMessage = "Heals: ~"+lq.getHealAmount()+"hp";
+		buffMessage = "Heals: ~"+ attributes.getHealAmount()+"hp";
 	}
 
 

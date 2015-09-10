@@ -89,7 +89,7 @@ public class HumanTeam extends Team
 		getPlayer().saveYourSelf(b);
 
 
-		getAm().saveYourSelf( b );
+		getArmyManager().saveYourSelf( b );
 		getBm().saveYourSelf( b );
 
 		//t.getPm().saveYourSelf( bw );

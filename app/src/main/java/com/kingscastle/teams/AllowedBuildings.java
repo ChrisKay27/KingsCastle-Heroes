@@ -85,8 +85,8 @@ public class AllowedBuildings
 		Collections.sort(allowedBuildings, new Comparator<Building>(){
 			@Override
 			public int compare(@NonNull Building lhs, @NonNull Building rhs) {
-				int l = lhs.lq.getRequiresTcLvl();
-				int r = rhs.lq.getRequiresTcLvl();
+				int l = lhs.attributes.getRequiresTcLvl();
+				int r = rhs.attributes.getRequiresTcLvl();
 
 				if( l < r )
 					return -1;

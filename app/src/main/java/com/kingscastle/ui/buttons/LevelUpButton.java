@@ -199,7 +199,7 @@ public class LevelUpButton extends SButton
 					String message;
 					if( lt != null )
 						message = "Do you want to level up " + (lt instanceof Building ? "this " + lt.getName() : "all " + lt.getName() + "s")
-						+ "\nto level "+ (lt.lq.getLevel()+1) +" for " + lvlUpCost.toResString() + "?";
+						+ "\nto level "+ (lt.attributes.getLevel()+1) +" for " + lvlUpCost.toResString() + "?";
 					else
 						message = "Do you want to level up these for " + lvlUpCost.toResString() + "?";
 

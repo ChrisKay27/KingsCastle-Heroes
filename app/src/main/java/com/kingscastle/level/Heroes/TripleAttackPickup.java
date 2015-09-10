@@ -5,6 +5,7 @@ import android.util.Log;
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.CycloneAnim;
 import com.kingscastle.framework.GameTime;
+import com.kingscastle.gameElements.livingThings.SoldierTypes.MageSoldier;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.Unit;
 import com.kingscastle.gameElements.livingThings.attacks.AttackerQualities;
 import com.kingscastle.gameElements.livingThings.attacks.SpellAttack;
@@ -67,7 +68,10 @@ public class TripleAttackPickup extends Pickup {
 
     @Override
     public boolean canPickup(@NotNull Unit byThisPlayer) {
-        AttackerQualities aq = byThisPlayer.getAQ();
-        return aq.getCurrentAttack() instanceof SpellAttack && !(aq.getCurrentAttack() instanceof TripleShotSpellAttack);
+        if( byThisPlayer instanceof MageSoldier) {
+            AttackerQualities aq = byThisPlayer.getAQ();
+            return aq.getCurrentAttack() instanceof SpellAttack && !(aq.getCurrentAttack() instanceof TripleShotSpellAttack);
+        }
+        return false;
     }
 }

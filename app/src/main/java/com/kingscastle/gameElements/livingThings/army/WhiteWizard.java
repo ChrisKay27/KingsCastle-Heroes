@@ -98,7 +98,7 @@ public class WhiteWizard extends MediumMage
 
 
 	protected void setupSpells(){
-		int lvl = lq.getLevel();
+		int lvl = attributes.getLevel();
 
 		FireBall fireBall = new FireBall();
 		fireBall.setDamage(getAQ().getDamage());

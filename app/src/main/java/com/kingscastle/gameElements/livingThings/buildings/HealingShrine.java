@@ -124,7 +124,7 @@ public class HealingShrine extends Shrine
                 @Override
 				public CondRespon postRangeCheckCondition( @NonNull LivingThing target )
 				{
-					if( target.lq.getHealth() == target.lq.getFullHealth() )
+					if( target.attributes.getHealth() == target.attributes.getFullHealth() )
 						return CondRespon.FALSE;
 
 					if( hs.canCastOn(target))
@@ -181,7 +181,7 @@ public class HealingShrine extends Shrine
 		}
 		if( healer == healingTarget2 )
 		{
-			return healingTarget2.lq.getHealth() == healingTarget2.lq.getFullHealth();
+			return healingTarget2.attributes.getHealth() == healingTarget2.attributes.getFullHealth();
 		}
 		if ( super.isOutOfRangeOrDead ( healer, healingTarget2 ))
 		{
@@ -189,7 +189,7 @@ public class HealingShrine extends Shrine
 		}
 		else
 		{
-			if( healingTarget2.lq.getHealth() == healingTarget2.lq.getFullHealth())
+			if( healingTarget2.attributes.getHealth() == healingTarget2.attributes.getFullHealth())
 			{
 				return true;
 			}

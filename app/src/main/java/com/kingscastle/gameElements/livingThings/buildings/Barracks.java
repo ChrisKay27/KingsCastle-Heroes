@@ -139,7 +139,7 @@ public class Barracks extends Building
 				//we add to soldiers in this loop so we cant keep calling soldiers.size() or we wont create enough
 				int numSoldiers = soldiers.size();
 				for( int i = 0 ; i < 3-numSoldiers; i++){
-					Class<? extends Unit> c = soldersForLvls.get(lq.getLevel()-1);
+					Class<? extends Unit> c = soldersForLvls.get(attributes.getLevel()-1);
 					Object[] args = {getMM().getGridUtil().getWalkableLocNextToThis(v,getArea()),team};
 					Unit u=null;
 					try {
@@ -199,7 +199,7 @@ public class Barracks extends Building
 	@Override
 	public void upgrade(){
 		super.upgrade();
-		adjustAnimForLevel(lq.getLevel());
+		adjustAnimForLevel(attributes.getLevel());
 		killSoldiers = true;
 		lastCheckedSoldiers = 0;
 	}
@@ -253,7 +253,7 @@ public class Barracks extends Building
 	@Override
 	public Image getImage() {
 		loadImages();
-		int lvl = lq.getLevel();
+		int lvl = attributes.getLevel();
 
 //		if( lvl < 7 )
 //			return watchTowerImage;

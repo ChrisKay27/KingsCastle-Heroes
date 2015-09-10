@@ -124,7 +124,7 @@ public abstract class Healer extends MageSoldier
 		if( healer == null || healingTarget2 == null )
 			return true;
 
-		Attributes lq = healingTarget2.lq;
+		Attributes lq = healingTarget2.attributes;
 		if( healer == healingTarget2 )
 			return lq.getHealth() == lq.getFullHealth();
 
@@ -157,7 +157,7 @@ public abstract class Healer extends MageSoldier
                 @Override
 				public CondRespon postRangeCheckCondition( @NonNull LivingThing target )
 				{
-					Attributes lq = target.lq;
+					Attributes lq = target.attributes;
 
 					if( lq.getHealth() == lq.getFullHealth() )
 						return CondRespon.FALSE;

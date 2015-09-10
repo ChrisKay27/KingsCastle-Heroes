@@ -113,7 +113,7 @@ public class Team implements OnBuildingMovedListener
 
 	protected MM mm;
 
-	private ArmyManager am;
+	private ArmyManager armyManager;
 	private BuildingManager bm;
 	private SpellManager sm;
 	private ProjectileManager pm;
@@ -228,7 +228,7 @@ public class Team implements OnBuildingMovedListener
 
 	public void act()
 	{
-		am.act();
+		armyManager.act();
 		abm.act();
 		bm.act();
 		pm.act();
@@ -281,7 +281,7 @@ public class Team implements OnBuildingMovedListener
 		player.pauseThread();
 		//////Log.d( TAG , "t.getBm().pauseBuildQueues()" );
 		bm.pause();
-		am.pause();
+		armyManager.pause();
 	}
 
 
@@ -294,8 +294,8 @@ public class Team implements OnBuildingMovedListener
 	public void finalInit()
 	{
 		////Log.d( TAG , team + "'s finalInit()");
-		am.finalInit(mm);
-		//////Log.d( TAG , "am.finalInit() done");
+		armyManager.finalInit(mm);
+		//////Log.d( TAG , "armyManager.finalInit() done");
 		bm.finalInit(mm);
 		//////Log.d( TAG , "bm.finalInit() done");
 	}
@@ -346,7 +346,7 @@ public class Team implements OnBuildingMovedListener
 		getPlayer().saveYourSelf( b );
 
 
-		getAm().saveYourSelf( b );
+		getArmyManager().saveYourSelf( b );
 		getBm().saveYourSelf( b );
 
 		//t.getPm().saveYourSelf( bw );
@@ -508,7 +508,7 @@ public class Team implements OnBuildingMovedListener
 	}
 	public void createManagers(){
 		if( mm == null ) throw new IllegalStateException("mm not set, Managers require the mm");
-		am = new ArmyManager( mm );
+		armyManager = new ArmyManager( mm );
 
 		bm = new BuildingManager( mm );
 
@@ -517,11 +517,11 @@ public class Team implements OnBuildingMovedListener
 		abm = new AbilityManager( mm );
 	}
 
-	public ArmyManager getAm() {
-		return am;
+	public ArmyManager getArmyManager() {
+		return armyManager;
 	}
-	public void setAm(ArmyManager am) {
-		this.am = am;
+	public void setArmyManager(ArmyManager armyManager) {
+		this.armyManager = armyManager;
 	}
 	public BuildingManager getBm()
 	{

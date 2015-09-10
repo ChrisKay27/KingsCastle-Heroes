@@ -88,7 +88,7 @@ public class Priestess extends AdvancedHealer
 	}
 
 	protected void setupSpells(){
-		int lvl = lq.getLevel();
+		int lvl = attributes.getLevel();
 
 		HealingSpell hs = new HealingSpell(this,null);
 		hs.setHealAmount( getLQ().getHealAmount() + getLQ().getdHealLvl()*lvl );

@@ -99,7 +99,7 @@ public class UndeadDemogorgon extends AdvancedHealer
 	@Override
 	protected void setupSpells(){
 		HealingSpell hs = new HealingSpell(this,null);
-		hs.setHealAmount( lq.getHealAmount() );
+		hs.setHealAmount( attributes.getHealAmount() );
 		hs.setShowEvilAnimation( true );
 		hs.setCaster( this );
 //		HealingAttack ha = new HealingAttack( this , hs );

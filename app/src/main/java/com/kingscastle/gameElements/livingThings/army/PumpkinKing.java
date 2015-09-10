@@ -147,7 +147,7 @@ public class PumpkinKing extends AdvancedMageSoldier
 			if( glow != null )
 				glow.setOver(true);
 			if( buildingToDestroy != null ) {
-				buildingToDestroy.lq.setHealth(-100);
+				buildingToDestroy.attributes.setHealth(-100);
 				getMM().getEm().add(new EruptionAnim(buildingToDestroy.loc));
 				getMM().getEm().add(new ExplosionAnim(buildingToDestroy.loc));
 				getMM().getEm().add(new RapidImpact(buildingToDestroy.loc));
