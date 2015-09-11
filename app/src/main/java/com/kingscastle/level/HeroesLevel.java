@@ -95,6 +95,11 @@ public abstract class HeroesLevel extends Level{
                     lt.addAbility(new DamageBuff(lt, lt));
                 mm.getUI().refreshSelectedUI();
             }
+
+            @Override
+            public void onDeath(LivingThing lt) {
+                tdg.onPlayerLost();
+            }
         });
 
 
@@ -147,14 +152,14 @@ public abstract class HeroesLevel extends Level{
             nextSpawn = GameTime.getTime() + 1000;
 
             try{
-                Humanoid spawn = forestSpawns.getSpawnClass(hero.attributes.getLevel()).getConstructor(vector.class, Teams.class).newInstance(getRandomLocOnMap(), Teams.RED);
+                Humanoid spawn = forestSpawns.getSpawnClass(hero.attributes.getLevel()).getConstructor(vector.class, Teams.class).newInstance(getRandomLocOnMapAndNotOnScreen(), Teams.RED);
                 mm.add(spawn);
 
 
                 //Spawn a boss if the level is right
                 Class<? extends Humanoid> bossClass = forestSpawns.getBossSpawnClass(hero.attributes.getLevel());
                 if( bossClass != null ) {
-                    Humanoid boss = bossClass.getConstructor(vector.class, Teams.class).newInstance(getRandomLocOnMap(), Teams.RED);
+                    Humanoid boss = bossClass.getConstructor(vector.class, Teams.class).newInstance(getRandomLocOnMapAndNotOnScreen(), Teams.RED);
                     mm.add(boss);
                     bossisNotAlive = false;
                     boss.addLTL(new LivingThingListenerAdapter(){
@@ -171,7 +176,7 @@ public abstract class HeroesLevel extends Level{
 
             if( Math.random() < 0.8 ) {
                 try {
-                    Humanoid ally = forestSpawns.getAllyClass(hero.attributes.getLevel()).getConstructor(vector.class, Teams.class).newInstance(getRandomLocOnMap(),Teams.BLUE);
+                    Humanoid ally = forestSpawns.getAllyClass(hero.attributes.getLevel()).getConstructor(vector.class, Teams.class).newInstance(getRandomLocOnMapAndNotOnScreen(),Teams.BLUE);
                     mm.add(ally);
                     ally.aq.setFocusRangeSquared(ALLIED_FOCUS_RANGE_SQUARED);
                 } catch (Exception e) {
@@ -221,6 +226,16 @@ public abstract class HeroesLevel extends Level{
                 p.onOver();
             }
         }
+    }
+
+    private vector getRandomLocOnMapAndNotOnScreen() {
+        vector loc = new vector(getLevelWidthInPx()*Math.random(), getLevelHeightInPx()*Math.random());
+        RectF screenArea = mm.getUI().getOnScreenArea();
+        while(!mm.getCD().checkPlaceable(loc) || screenArea.contains(loc.x, loc.y))
+            loc.set(getLevelWidthInPx() * Math.random(), getLevelHeightInPx() * Math.random());
+
+
+        return loc;
     }
 
     private vector getRandomLocOnMap() {

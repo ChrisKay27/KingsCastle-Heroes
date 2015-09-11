@@ -17,6 +17,11 @@ public class FireDOT extends DOTBuff {
 
     private static final String TAG = FireDOT.class.getSimpleName();
 
+
+    public FireDOT(@NotNull LivingThing caster, @NotNull LivingThing target) {
+        super(caster, target, 10);
+    }
+
     public FireDOT(@NotNull LivingThing caster, @NotNull LivingThing target, int damage) {
         super(caster, target, damage);
     }
