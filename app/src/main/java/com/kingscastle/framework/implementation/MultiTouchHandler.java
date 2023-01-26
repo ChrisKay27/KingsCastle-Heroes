@@ -1,7 +1,7 @@
 package com.kingscastle.framework.implementation;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
+
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -20,16 +20,16 @@ public class MultiTouchHandler implements TouchHandler {
 	private final int[] touchX = new int[MAX_TOUCHPOINTS];
 	private final int[] touchY = new int[MAX_TOUCHPOINTS];
 	private final int[] id = new int[MAX_TOUCHPOINTS];
-	@NonNull
+	
     private final Pool<TouchEvent> touchEventPool;
 	private final List<TouchEvent> touchEvents = new ArrayList<>();
 	private final List<TouchEvent> touchEventsBuffer = new ArrayList<>();
 	private final float scaleX;
 	private final float scaleY;
 
-	public MultiTouchHandler(Activity activity, @NonNull View view, float scaleX, float scaleY) {
+	public MultiTouchHandler(Activity activity,  View view, float scaleX, float scaleY) {
 		PoolObjectFactory<TouchEvent> factory = new PoolObjectFactory<TouchEvent>() {
-			@NonNull
+			
             @Override
 			public TouchEvent createObject() {
 				return new TouchEvent();
@@ -96,7 +96,7 @@ public class MultiTouchHandler implements TouchHandler {
 	}
 
 	@Override
-	public boolean onTouch(View v, @NonNull MotionEvent event) {
+	public boolean onTouch(View v,  MotionEvent event) {
        // Log.d(TAG, "onTouch " + event);
 		//		if (Game.AUTO_HIDE) {
 		//			if( event.getY() < Rpg.thirtyDp ){
@@ -203,7 +203,7 @@ public class MultiTouchHandler implements TouchHandler {
 		}
 	}
 
-	@NonNull
+	
     @Override
 	public List<TouchEvent> getTouchEvents() {
 		synchronized (this) {

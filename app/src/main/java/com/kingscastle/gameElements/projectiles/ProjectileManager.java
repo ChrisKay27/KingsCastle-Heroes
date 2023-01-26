@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.projectiles;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.teams.Teams;
@@ -88,7 +88,7 @@ public class ProjectileManager
 
 
 
-	public void saveYourSelf(@NonNull BufferedWriter b) throws IOException
+	public void saveYourSelf( BufferedWriter b) throws IOException
 	{
 		String s;
 

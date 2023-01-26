@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.targeting;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.gameElements.GameElement;
 import com.kingscastle.gameUtils.vector;
@@ -13,7 +13,7 @@ public class TargetingGrid
 {
 
 	private final float gridTileSize;
-	@NonNull
+	
     private final GameElement[][] gridTiles;
 
 
@@ -28,7 +28,7 @@ public class TargetingGrid
 	}
 
 
-	@NonNull
+	
     public GameElement[][] getGridTiles(){
 		return gridTiles;
 	}
@@ -48,7 +48,7 @@ public class TargetingGrid
 		return 0;
 	}
 
-	public boolean isWalkable(@NonNull vector v) {
+	public boolean isWalkable( vector v) {
 		int i = (int) (v.x/gridTileSize);
 		int j = (int) (v.y/gridTileSize);
 

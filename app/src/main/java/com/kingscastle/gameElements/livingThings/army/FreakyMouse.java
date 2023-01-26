@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -27,12 +27,12 @@ public class FreakyMouse extends AdvancedMeleeSoldier {
 	private static ImageFormatInfo imageFormatInfo;
 	private static Image[] redImages , blueImages , greenImages , orangeImages , whiteImages ;
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -75,7 +75,7 @@ public class FreakyMouse extends AdvancedMeleeSoldier {
 	}
 
 
-	public FreakyMouse(@NonNull vector loc, Teams team){
+	public FreakyMouse( vector loc, Teams team){
 		super(team);
 		setLoc(loc);
 
@@ -91,7 +91,7 @@ public class FreakyMouse extends AdvancedMeleeSoldier {
 
 
 	@Override
-	public void finalInit( @NonNull MM mm )
+	public void finalInit(  MM mm )
 
 	{
 		super.finalInit( mm );
@@ -188,7 +188,7 @@ public class FreakyMouse extends AdvancedMeleeSoldier {
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@Nullable
+
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -211,7 +211,7 @@ public class FreakyMouse extends AdvancedMeleeSoldier {
 		return Rpg.getNormalPerceivedArea();
 	}
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -300,12 +300,12 @@ public class FreakyMouse extends AdvancedMeleeSoldier {
 	}
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;

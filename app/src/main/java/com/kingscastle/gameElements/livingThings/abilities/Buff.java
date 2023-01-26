@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -21,7 +21,7 @@ public abstract class Buff implements Ability
 
 	private boolean dead;
 	private LivingThing caster;
-	@NonNull
+
     private final LivingThing target;
 
 	private Anim anim;
@@ -73,7 +73,7 @@ public abstract class Buff implements Ability
 
 
 	@Override
-	public final boolean cast( @NonNull MM mm )
+	public final boolean cast(  MM mm )
 	{
 		//Log.d( TAG , "Trying to cast a :" + this );
         if( canCastOn(target) ){
@@ -110,12 +110,12 @@ public abstract class Buff implements Ability
 	}
 
 
-    public boolean canCastOn(@NonNull LivingThing potentialTarget){
+    public boolean canCastOn( LivingThing potentialTarget){
         return isStackable() || !potentialTarget.getActiveAbilities().containsInstanceOf(this);
     }
 
 
-	protected void addAnimationToManager( @NonNull MM mm, @NonNull Anim anim2)	{
+	protected void addAnimationToManager(  MM mm,  Anim anim2)	{
         mm.getEm().add( anim2 , false );
 	}
 
@@ -140,7 +140,7 @@ public abstract class Buff implements Ability
 
 
 	@Override
-	public boolean cast(@NotNull @NonNull MM mm, @NotNull LivingThing target)	{
+	public boolean cast(@NotNull  MM mm, @NotNull LivingThing target)	{
 		return false;
 	}
 
@@ -175,10 +175,10 @@ public abstract class Buff implements Ability
 
 
     @Override
-    public void setTarget(@NonNull @NotNull LivingThing target) {
+    public void setTarget( @NotNull LivingThing target) {
 
     }
-    @NonNull
+
     @Override
 	public LivingThing getTarget() {
 		return target;
@@ -235,14 +235,14 @@ public abstract class Buff implements Ability
 		return caster;
 	}
 	@Override
-	public void setCaster(@NonNull LivingThing caster) {
+	public void setCaster( LivingThing caster) {
 		this.caster = caster;
 	}
 
 
 
 	@Override
-	public void saveYourSelf(@NonNull BufferedWriter b) {
+	public void saveYourSelf( BufferedWriter b) {
 
 	}
 

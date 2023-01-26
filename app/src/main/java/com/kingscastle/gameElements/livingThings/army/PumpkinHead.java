@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -27,15 +27,15 @@ public class PumpkinHead extends MeleeSoldier {
 	private static Image[] images = Assets.loadImages( R.drawable.pumkinhead  , 0 , 0 , 1 , 1 );
 
 
-	@NonNull
+
     private static final AttackerQualities staticAttackerQualities;
 
 
-	@NonNull
+
     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -72,7 +72,7 @@ public class PumpkinHead extends MeleeSoldier {
 		setGoldDropped(10);
 	}
 
-	public PumpkinHead(@NonNull vector loc, Teams team){
+	public PumpkinHead( vector loc, Teams team){
 		super(team);
 		setLoc(loc);
 		setTeam(team);
@@ -142,7 +142,7 @@ public class PumpkinHead extends MeleeSoldier {
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@Nullable
+
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -167,7 +167,7 @@ public class PumpkinHead extends MeleeSoldier {
 	@Override
 	public void setStaticPerceivedArea(RectF staticPercArea) {
 	}
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities() {
 		return new Attributes(STATIC_ATTRIBUTES);
@@ -186,12 +186,12 @@ public class PumpkinHead extends MeleeSoldier {
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;

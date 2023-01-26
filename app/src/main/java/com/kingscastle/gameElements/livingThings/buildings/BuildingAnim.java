@@ -7,8 +7,8 @@ import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.Palette;
@@ -31,7 +31,7 @@ public class BuildingAnim extends Anim
 //	private static Image glow2x2 = Assets.loadImage(R.drawable.glow_2x2);
 //	private static Image glow1x1 = Assets.loadImage(R.drawable.glow_1x1);
 
-	@NonNull
+
     private static Paint glowPaint = new Paint();static{
 		glowPaint.setXfermode(new PorterDuffXfermode(Mode.DST_OVER));
 	}
@@ -41,7 +41,7 @@ public class BuildingAnim extends Anim
 	}
 
 
-	@NonNull
+
     private final Building building;
 	private long buildingDiedAt;
 
@@ -49,14 +49,14 @@ public class BuildingAnim extends Anim
 	private ArrayList<Anim> addedDamageEffects;
 
 	private static ArrayList<vector> normalDamageOffsets;
-	@Nullable
+	
     private ArrayList<vector> damageOffsets;
 	private int maxDamagedAnimations = 6;
 
-	@NonNull
+
     private final ColorMatrix cm;
 
-	public BuildingAnim( @NonNull Building b )
+	public BuildingAnim(  Building b )
 	{
 		super( b.getImage() );
 		building = b ;
@@ -109,7 +109,7 @@ public class BuildingAnim extends Anim
     private String romanNumeralLvl = "";
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v )
+	public void paint(  Graphics g ,  vector v )
 	{
 
 		//g.drawImage(ground, v.x-ground.getWidthDiv2() , v.y-ground.getHeightDiv2());
@@ -144,7 +144,7 @@ public class BuildingAnim extends Anim
 
 
 
-	private void loadDamageOffsets( @NonNull Building b )
+	private void loadDamageOffsets(  Building b )
 	{
 		ArrayList<vector> offsets = b.getDamageOffsets();
 		if( offsets == null && damageOffsets == null )
@@ -226,7 +226,7 @@ public class BuildingAnim extends Anim
 
 
 
-	public void addDamagedEffect( int i, @NonNull MM mm )
+	public void addDamagedEffect( int i,  MM mm )
 	{
 		addARandomDamageEffect( mm );
 
@@ -242,7 +242,7 @@ public class BuildingAnim extends Anim
 	}
 
 
-	synchronized void addARandomDamageEffect( @NonNull MM mm )
+	synchronized void addARandomDamageEffect(  MM mm )
 	{
 		if( addedDamageEffects == null )
 			addedDamageEffects = new ArrayList<Anim>();
@@ -280,7 +280,7 @@ public class BuildingAnim extends Anim
 	}
 
 
-	@Nullable
+	
     vector getARandomDamageOffset()
 	{
 		if( damageOffsets == null )

@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -17,7 +17,7 @@ public class UndeadStorageDepot extends StorageDepot
 
 	private static final Image image = Assets.loadImage( R.drawable.undead_storage_depot);
 
-	@Nullable
+	
     private final Image iconImage = null;//Assets.loadImage(R.drawable.undead_storage_depot_icon);
 
 
@@ -41,7 +41,7 @@ public class UndeadStorageDepot extends StorageDepot
 	}
 
 
-	@Nullable
+	
     @Override
 	public Image getIconImage(){
 		return iconImage;
@@ -49,14 +49,14 @@ public class UndeadStorageDepot extends StorageDepot
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
 
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return NAME;

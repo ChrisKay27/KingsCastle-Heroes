@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -18,7 +18,7 @@ public class SpeedShotAnim extends Anim
 
 
 
-	public SpeedShotAnim( @NonNull vector loc )
+	public SpeedShotAnim(  vector loc )
 	{
         super(loc);
 		setImages( staticImages );

@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.movement.pathing;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.gameUtils.vector;
@@ -13,7 +13,7 @@ public class Path {
 
 	private ArrayList<vector> formationPositions;
 	private ArrayList<vector> path;
-	@Nullable
+
     private vector myFormationPosition;
 	private int indexOfNextNode = 1;
 	private final Int nextFormationPosition;
@@ -26,7 +26,7 @@ public class Path {
 		nextFormationPosition = new Int(0);
 	}
 
-	public Path( @NonNull Path anotherPath )
+	public Path(  Path anotherPath )
 	{
 		path = anotherPath.getPath();
 		formationPositions = anotherPath.getFormationPositions();
@@ -46,7 +46,7 @@ public class Path {
 		return path.size();
 	}
 
-	@Nullable
+
     public vector getNext()
 	{
 
@@ -63,7 +63,7 @@ public class Path {
 	}
 
 
-	@Nullable
+
     public vector get( int index )
 	{
 		if( index >= path.size() )
@@ -78,13 +78,13 @@ public class Path {
 
 
 
-	@Nullable
+
     public vector getMyFormationPosition()
 	{
 		return myFormationPosition;
 	}
 
-	@Nullable
+
     public vector findMyFormationPosition()
 	{
 		if( myFormationPosition == null )
@@ -94,7 +94,7 @@ public class Path {
 		return myFormationPosition;
 	}
 
-	@Nullable
+
     vector getNextFormationPosition()
 	{
 		ArrayList<vector> formPos = formationPositions;

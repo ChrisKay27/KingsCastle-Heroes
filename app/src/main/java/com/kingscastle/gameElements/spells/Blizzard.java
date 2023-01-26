@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.spells;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Input.TouchEvent;
@@ -53,7 +53,7 @@ public class Blizzard extends InstantSpell
 
 
 	@Override
-	public boolean analyseTouchEvent( @NotNull @NonNull TouchEvent event )
+	public boolean analyseTouchEvent( @NotNull  TouchEvent event )
 	{
 		getMM().getCc().getCoordsScreenToMap( event.x ,  event.y , loc );
 		cast(getMM());
@@ -62,7 +62,7 @@ public class Blizzard extends InstantSpell
 
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 		SpellCreationParams params;
@@ -88,7 +88,7 @@ public class Blizzard extends InstantSpell
 
 
 	@Override
-	public boolean cast(@NotNull @NonNull MM mm, @NotNull LivingThing target) {
+	public boolean cast(@NotNull  MM mm, @NotNull LivingThing target) {
 		return false;
 	}
 
@@ -100,7 +100,7 @@ public class Blizzard extends InstantSpell
 
 
 	@Override
-	public int calculateManaCost( @NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost( @NotNull  LivingThing aWizard)
 	{
 		if(aWizard != null )
 		{
@@ -118,7 +118,7 @@ public class Blizzard extends InstantSpell
 	}
 
 
-	@NonNull
+
     @Override
 	public String getName()
 	{
@@ -158,7 +158,7 @@ public class Blizzard extends InstantSpell
 
 
 
-	@NonNull
+
     @Override
 	public Spell newInstance() {
 		return new Blizzard();
@@ -166,7 +166,7 @@ public class Blizzard extends InstantSpell
 
 
 
-	@Nullable
+
     @Override
 	public RectF getPerceivedArea()
 	{
@@ -185,7 +185,7 @@ public class Blizzard extends InstantSpell
 	}
 
 
-	@NonNull
+
     @Override
 	public Ability.Abilities getAbility()
 	{

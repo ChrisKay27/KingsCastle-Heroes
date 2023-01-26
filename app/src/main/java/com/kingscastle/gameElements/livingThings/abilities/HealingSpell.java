@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.BlackSummonSmokeAnim;
@@ -27,7 +27,7 @@ public class HealingSpell extends InstantAbility{
 
 	private int healAmount;
 
-	public HealingSpell(@NonNull LivingThing caster, @NonNull LivingThing target) {
+	public HealingSpell( LivingThing caster,  LivingThing target) {
 		super(caster,target);
 	}
 
@@ -84,7 +84,7 @@ public class HealingSpell extends InstantAbility{
 
 
 	@Override
-	public int calculateManaCost( @NotNull @NonNull LivingThing aWizard )
+	public int calculateManaCost( @NotNull  LivingThing aWizard )
 	{
 		return 5 + aWizard.getLQ().getLevel()*2;
 	}
@@ -110,19 +110,19 @@ public class HealingSpell extends InstantAbility{
 
 
 	private static final String name = "Healing Spell";
-	@NonNull
+
     @Override
 	public String toString()
 	{
 		return name;
 	}
-	@NonNull
+
     public String getName()	{
 		return name;
 	}
 
 
-	@NonNull
+
     @Override
 	public Ability newInstance(@NotNull LivingThing target)	{
 		return new HealingSpell(getCaster(),target);
@@ -130,7 +130,7 @@ public class HealingSpell extends InstantAbility{
 
 
 	@Override
-	public void saveYourSelf(@NonNull BufferedWriter b) throws IOException {
+	public void saveYourSelf( BufferedWriter b) throws IOException {
 	}
 
 
@@ -167,7 +167,7 @@ public class HealingSpell extends InstantAbility{
 
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.HEALINGSPELL ; 			}
 

@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.projectiles;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.GameTime;
@@ -30,10 +30,10 @@ public abstract class Projectile extends GameElement
 	private static int damageBonus = 0;
 	protected final vector endPosIfBelow = new vector( Float.MIN_VALUE , Float.MIN_VALUE );
 	protected final vector endPosIfAbove = new vector( Float.MAX_VALUE , Float.MAX_VALUE );
-	@Nullable
+
     protected Teams team;
 	protected vector velocity;
-	@Nullable
+
     protected LivingThing shooter;
 	protected Anim projAnim;
 	private vector startLoc;
@@ -48,7 +48,7 @@ public abstract class Projectile extends GameElement
 
 	Projectile()	{}
 
-	Projectile(@Nullable LivingThing shooter)
+	Projectile( LivingThing shooter)
 	{
 		this.shooter = shooter;
 
@@ -56,8 +56,8 @@ public abstract class Projectile extends GameElement
 			team = shooter.getTeamName();
 	}
 
-	public static Projectile getProjectileByString(@NonNull String name, Teams team2,
-			@NonNull vector loc, vector velocity)
+	public static Projectile getProjectileByString( String name, Teams team2,
+			 vector loc, vector velocity)
 	{
 		Projectile p;
 		if(name.equals("Arrow"))
@@ -194,7 +194,7 @@ public abstract class Projectile extends GameElement
 
 
 
-	@Nullable
+
     LivingThing getShooter() {
 		return shooter;
 	}
@@ -308,7 +308,7 @@ public abstract class Projectile extends GameElement
 		team=team2;
 	}
 
-	public void saveYourSelf(@NonNull BufferedWriter b) throws IOException
+	public void saveYourSelf( BufferedWriter b) throws IOException
 	{
 		try
 		{
@@ -347,7 +347,7 @@ public abstract class Projectile extends GameElement
 	}
 
 	@Override
-	public boolean create( @NonNull MM mm )
+	public boolean create(  MM mm )
 	{
 		boolean superCreate = super.create(mm);
 		if( superCreate )
@@ -357,7 +357,7 @@ public abstract class Projectile extends GameElement
 	}
 
 	@Override
-	public void saveYourself(@NonNull BufferedWriter b) throws IOException
+	public void saveYourself( BufferedWriter b) throws IOException
 	{
 		String s = "<" + getName() + " team=\""+getTeamName()+"\" x=\""+loc.getIntX()+
 				"\" y=\""+loc.getIntY()+"\" velocityX=\""+getVelocity().getIntX()+
@@ -376,7 +376,7 @@ public abstract class Projectile extends GameElement
 		this.image = image;
 	}
 
-	@Nullable
+
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -414,7 +414,7 @@ public abstract class Projectile extends GameElement
 
 	}
 
-	@Nullable
+
     @Override
 	public ImageFormatInfo getImageFormatInfo() {
 		return null;
@@ -422,15 +422,15 @@ public abstract class Projectile extends GameElement
 
 	protected abstract Image getDeadImage();
 
-	@Nullable
+
     public abstract List<Image> getDeadImages();
 
 	public abstract Projectile newInstance();
 
-	@NonNull
+
     public abstract Projectile newInstance(@NotNull LivingThing shooter ,@NotNull vector predictedLocation ,@NotNull LivingThing target);
 
-	@Nullable
+
     public abstract Projectile newInstance(@NotNull LivingThing shooter , @NotNull vector unitVectorInDirection );
 
 	public abstract float getStaticRangeSquared();
@@ -444,7 +444,7 @@ public abstract class Projectile extends GameElement
 
 	public static class ProjectileAnim extends Anim
 	{
-		@Nullable
+
         private Projectile proj;
 		private long projDiedAt;
 		private Image image;
@@ -482,7 +482,7 @@ public abstract class Projectile extends GameElement
 			//			}
 		}
 
-		public void changeToDeadProj(Direction dir, @Nullable LivingThing hit)
+		public void changeToDeadProj(Direction dir,  LivingThing hit)
 		{
 			if( hit != null )
 				setLoc(hit.loc);

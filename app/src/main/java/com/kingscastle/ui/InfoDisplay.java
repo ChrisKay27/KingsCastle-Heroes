@@ -6,8 +6,8 @@ import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.app.Activity;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -64,15 +64,15 @@ public class InfoDisplay {
 	private final UI ui;
 
 
-	@Nullable
+
     private LivingThing selectedThing;
-	@Nullable
+
     private Team team;
 	private View statsDisplay;
 
 	public CTextView2 hp , res;
 
-	@NonNull
+
     private List<Runnable> updaters = new ArrayList<>();
 
 	private boolean infoDisplayIsOpen = false;
@@ -91,7 +91,7 @@ public class InfoDisplay {
 		showInfoDisplay( st , team_ , null );
 	}
 
-	public void showInfoDisplay( @Nullable final LivingThing st, final Team team_ , final OnClickListener closeListener ){
+	public void showInfoDisplay(  final LivingThing st, final Team team_ , final OnClickListener closeListener ){
 		selectedThing = st;
 		team = team_;
 		if( st == null || team == null )
@@ -327,7 +327,7 @@ public class InfoDisplay {
 
 	private static final String Building = "Building";
 
-	protected static String getInfoMessage(@NonNull Activity a , LivingThing st) {
+	protected static String getInfoMessage( Activity a , LivingThing st) {
 
 		if( st instanceof Building ){
 			Building b = (Building) st;
@@ -455,7 +455,7 @@ public class InfoDisplay {
 	}
 
 
-	@Nullable
+
     private final Runnable hide = new Runnable(){
 		@Override
 		public void run() {

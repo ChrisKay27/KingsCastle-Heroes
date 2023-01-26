@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.army.ArmyManager.CollisionPartitions;
@@ -38,14 +38,14 @@ public class CD
 
 
 
-	@Nullable
-    public ArrayList<GameElement> checkCollision( Teams ignoreThisTeam , Teams onlyOnThisTeam , @NonNull RectF r , ArrayList<GameElement> intoThisList ){
+	
+    public ArrayList<GameElement> checkCollision( Teams ignoreThisTeam , Teams onlyOnThisTeam ,  RectF r , ArrayList<GameElement> intoThisList ){
 		return checkCollision( ignoreThisTeam ,  onlyOnThisTeam ,  false ,  r , intoThisList );
 	}
 
 
-	@Nullable
-    public ArrayList<GameElement> checkCollision( Teams ignoreThisTeam , @Nullable Teams onlyOnThisTeam , boolean ignoreGes , @NonNull RectF r , @Nullable ArrayList<GameElement> intoThisList )
+	
+    public ArrayList<GameElement> checkCollision( Teams ignoreThisTeam ,  Teams onlyOnThisTeam , boolean ignoreGes ,  RectF r ,  ArrayList<GameElement> intoThisList )
 	{
 		float x = r.centerX();
 		float y = r.centerY();
@@ -135,7 +135,7 @@ public class CD
 	}
 
 	@NotNull
-	public ArrayList<LivingThing> checkMultiHit(@NotNull Teams ignoreThisTeam, @NonNull RectF r)
+	public ArrayList<LivingThing> checkMultiHit(@NotNull Teams ignoreThisTeam,  RectF r)
 	{
 		return checkMultiHit ( ignoreThisTeam , r , false );
 	}
@@ -205,18 +205,18 @@ public class CD
 		return intoThisList;
 	}
 
-	@Nullable
+	
 	public LivingThing checkSingleHit(@NotNull Teams notOnThisTeam ,@NotNull RectF r ){
 		return checkSingleHit( notOnThisTeam , r , false );
 	}
 
-	@Nullable
+	
 	public LivingThing checkSingleHit(@NotNull Teams notOnThisTeam ,@NotNull RectF r , boolean onThisTeam )
 	{
 		return checkSingleHit(notOnThisTeam,r,onThisTeam,true);
 	}
 
-	@Nullable
+	
 	public LivingThing checkSingleHit(@NotNull Teams notOnThisTeam ,@NotNull RectF r , boolean onThisTeam , boolean lookAtBuildings )
 	{
 		float x = r.centerX();
@@ -312,8 +312,8 @@ public class CD
 	}
 
 
-	@Nullable
-	public GameElement checkPlaceableOrTarget( @NonNull vector v )
+	
+	public GameElement checkPlaceableOrTarget(  vector v )
 	{
 		Level level = mm.getLevel();
 
@@ -394,15 +394,15 @@ public class CD
 	}
 
 
-	@Nullable
-    public GameElement checkPlaceable( @NonNull RectF rectF )
+	
+    public GameElement checkPlaceable(  RectF rectF )
 	{
 		return checkPlaceable( rectF , false );
 	}
 
 
-	@Nullable
-    public GameElement checkPlaceable( @NonNull RectF rectF , boolean ignoreHumanoids )
+	
+    public GameElement checkPlaceable(  RectF rectF , boolean ignoreHumanoids )
 	{
 
 		float x = rectF.centerX();
@@ -465,13 +465,13 @@ public class CD
 
 
 
-	public boolean checkPlaceable2( @NonNull RectF area , boolean ignoreHumanoids ){
+	public boolean checkPlaceable2(  RectF area , boolean ignoreHumanoids ){
 		return checkPlaceable2( area , ignoreHumanoids , true );
 	}
 
 
 
-	public boolean checkPlaceable2( @NonNull RectF area , boolean ignoreHumanoids , boolean checkBuildings )
+	public boolean checkPlaceable2(  RectF area , boolean ignoreHumanoids , boolean checkBuildings )
 	{
 		boolean[][] tiles = grid.getGridTiles();
 		float gridSize = grid.getGridSize();
@@ -546,7 +546,7 @@ public class CD
 
 
 
-	public boolean checkPlaceable( @Nullable vector here )
+	public boolean checkPlaceable(  vector here )
 	{
 		if( here == null || grid == null )
 			return false;
@@ -574,7 +574,7 @@ public class CD
 	}
 
 
-	public boolean checkHitWall( @NonNull Line l )
+	public boolean checkHitWall(  Line l )
 	{
 		Grid grid = mm.getLevel().getGrid();
 		boolean[][] tiles = grid.getGridTiles();
@@ -691,8 +691,8 @@ public class CD
 	 * @param l
 	 * @return
 	 */
-	@Nullable
-    public GameElement getLineCollision( @NonNull Line l )
+	
+    public GameElement getLineCollision(  Line l )
 	{
 
 
@@ -780,7 +780,7 @@ public class CD
 	 * @param l
 	 * @return
 	 */
-	@NonNull
+	
     public ArrayList<GameElement> getLineCollisions( Line l )
 	{
 		ArrayList<GameElement> hitThings = new ArrayList<GameElement>();

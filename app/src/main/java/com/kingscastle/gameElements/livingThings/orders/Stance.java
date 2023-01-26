@@ -1,20 +1,20 @@
 package com.kingscastle.gameElements.livingThings.orders;
 
-import android.support.annotation.NonNull;
+
 
 public enum Stance
 {
 
 	FREE  , HOLD_POSITION , GUARD_LOCATION , PLAYING_THE_OBJECTIVE;
 
-	@NonNull
+
     public Stance getNext()
 	{
 		return getNext( this );
 	}
 
-	@NonNull
-    private static Stance getNext(@NonNull Stance current)
+
+    private static Stance getNext( Stance current)
 	{
 		switch( current )
 		{

@@ -1,8 +1,8 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Graphics;
 import com.kingscastle.gameUtils.vector;
@@ -10,12 +10,12 @@ import com.kingscastle.gameUtils.vector;
 public class LoopingSmoke extends Anim
 {
 
-	@NonNull
+
     private final SmokeAnim smoke1;
-	@Nullable
+
     private SmokeAnim smoke2;
 
-	public LoopingSmoke( @NonNull vector loc )
+	public LoopingSmoke(  vector loc )
 	{
 		super( loc );
 		smoke1 = new SmokeAnim( loc );
@@ -25,7 +25,7 @@ public class LoopingSmoke extends Anim
 	}
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v )
+	public void paint(  Graphics g ,  vector v )
 	{
 		if( smoke1 != null )
 		{
@@ -63,7 +63,7 @@ public class LoopingSmoke extends Anim
 	}
 
 
-	@NonNull
+
     @Override
 	public String toString()
 	{

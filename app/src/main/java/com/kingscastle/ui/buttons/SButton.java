@@ -5,7 +5,7 @@ import android.content.Context;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
+
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -56,10 +56,10 @@ public class SButton extends FrameLayout {
 		this.a = a;
 		setBackgroundDrawable(buttonBaseDrawable);
 	}
-	public SButton(@NonNull Context context, AttributeSet attrs) {
+	public SButton( Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
-	public SButton(@NonNull Context context, AttributeSet attrs, int defStyle) {
+	public SButton( Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
 

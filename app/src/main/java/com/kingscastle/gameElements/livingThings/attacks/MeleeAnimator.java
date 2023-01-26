@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -51,15 +51,15 @@ public class MeleeAnimator extends AttackAnimator
 	protected static ArrayList<Sound> longSwordSounds,sabreSounds,maceSounds;
 	//private final int nextSound = 0;
 	//private final Attack ownersAttack;
-	@NonNull
+
     private final MeleeTypes meleeType;
-	@NonNull
+
     private static final vector EOffset;
-	@NonNull
+
     private static final vector WOffset;
-	@NonNull
+
     private static final vector SOffset;
-	@NonNull
+
     private static final vector NOffset ;
 
 

@@ -1,7 +1,7 @@
 package com.kingscastle.teams;
 
 
-import android.support.annotation.Nullable;
+
 
 import com.kingscastle.Game;
 import com.kingscastle.framework.GameTime;
@@ -10,7 +10,7 @@ class TeamThread implements Runnable
 {
 
 	private static final String TAG = "TeamThread";
-	@Nullable
+	
     private Thread teamThread = null;
 	private final Game tdg;
 	private final Team team;

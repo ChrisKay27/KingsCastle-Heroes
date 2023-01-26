@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.SpecialEffects;
 import com.kingscastle.effects.animations.Anim;
@@ -17,13 +17,13 @@ import com.kingscastle.gameUtils.vector;
 
 public class Bow extends Attack{
 
-	@NonNull
+	
     private final BowAnimator bowAnim;
 	private Projectile arrow = new Arrow();
 	private Projectile nextArrow;
 
 
-	public Bow( @NonNull MM mm , @NonNull Humanoid owner2 , Projectile arrow )
+	public Bow(  MM mm ,  Humanoid owner2 , Projectile arrow )
 	{
 		super(mm , owner2);
 		this.arrow=arrow;
@@ -32,7 +32,7 @@ public class Bow extends Attack{
 	}
 
 
-	public Bow( @NonNull MM mm , @NonNull Humanoid owner2 , Projectile arrow , BowTypes bowType )
+	public Bow(  MM mm ,  Humanoid owner2 , Projectile arrow , BowTypes bowType )
 	{
 		super(mm , owner2);
 		this.arrow=arrow;
@@ -76,7 +76,7 @@ public class Bow extends Attack{
 		bowAnim.setOver(true);
 	}
 
-	@NonNull
+	
     @Override
 	public Anim getAnimator()
 	{
@@ -107,7 +107,7 @@ public class Bow extends Attack{
 	}
 
 
-	@Nullable
+	
     private Projectile getNewArrow()
 	{
 		vector attackingInDirectionHumanoidVector = bowAnim.getAttackingInDirectionHumanoidVector();

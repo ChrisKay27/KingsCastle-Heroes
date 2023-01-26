@@ -21,7 +21,7 @@ import android.graphics.Canvas;
 import android.graphics.Picture;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
+
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,38 +32,38 @@ public class PictureLayout extends ViewGroup {
     public PictureLayout(Context context) {
         super(context);
     }
-    public PictureLayout(@NonNull Context context, AttributeSet attrs) {
+    public PictureLayout( Context context, AttributeSet attrs) {
         super(context, attrs);
     }
     @Override
-    public void addView(@NonNull View child) {
+    public void addView( View child) {
         if (getChildCount() > 1) {
             throw new IllegalStateException("PictureLayout can host only one direct child");
         }
         super.addView(child);
     }
     @Override
-    public void addView(@NonNull View child, int index) {
+    public void addView( View child, int index) {
         if (getChildCount() > 1) {
             throw new IllegalStateException("PictureLayout can host only one direct child");
         }
         super.addView(child, index);
     }
     @Override
-    public void addView(@NonNull View child, LayoutParams params) {
+    public void addView( View child, LayoutParams params) {
         if (getChildCount() > 1) {
             throw new IllegalStateException("PictureLayout can host only one direct child");
         }
         super.addView(child, params);
     }
     @Override
-    public void addView(@NonNull View child, int index, LayoutParams params) {
+    public void addView( View child, int index, LayoutParams params) {
         if (getChildCount() > 1) {
             throw new IllegalStateException("PictureLayout can host only one direct child");
         }
         super.addView(child, index, params);
     }
-    @NonNull
+
     @Override
     protected LayoutParams generateDefaultLayoutParams() {
         return new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
@@ -89,7 +89,7 @@ public class PictureLayout extends ViewGroup {
         setMeasuredDimension(resolveSize(maxWidth, widthMeasureSpec),
                 resolveSize(maxHeight, heightMeasureSpec));
     }
-    private void drawPict(@NonNull Canvas canvas, int x, int y, int w, int h,
+    private void drawPict( Canvas canvas, int x, int y, int w, int h,
                           float sx, float sy) {
         canvas.save();
         canvas.translate(x, y);
@@ -100,7 +100,7 @@ public class PictureLayout extends ViewGroup {
         canvas.restore();
     }
     @Override
-    protected void dispatchDraw(@NonNull Canvas canvas) {
+    protected void dispatchDraw( Canvas canvas) {
         super.dispatchDraw(mPicture.beginRecording(getWidth(), getHeight()));
         mPicture.endRecording();
         int x = getWidth()/2;
@@ -115,7 +115,7 @@ public class PictureLayout extends ViewGroup {
         }
     }
     @Override
-    public ViewParent invalidateChildInParent(int[] location, @NonNull Rect dirty) {
+    public ViewParent invalidateChildInParent(int[] location,  Rect dirty) {
         location[0] = getLeft();
         location[1] = getTop();
         dirty.set(0, 0, getWidth(), getHeight());

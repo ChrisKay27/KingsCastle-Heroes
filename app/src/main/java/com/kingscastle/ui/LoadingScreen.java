@@ -5,7 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.app.Activity;
-import android.support.annotation.NonNull;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -27,8 +27,8 @@ public class LoadingScreen {
 	/**
 	 * Only call from UI thread
 	 */
-	@NonNull
-    public static ProgressBar show( @NonNull final Activity a ){
+
+    public static ProgressBar show(  final Activity a ){
 
 		final View v = loadingScreen;
 		if( v != null ){
@@ -94,7 +94,7 @@ public class LoadingScreen {
 
 
 
-	@NonNull
+
     private static Runnable hide = new Runnable(){
 		@Override
 		public void run() {
@@ -106,7 +106,7 @@ public class LoadingScreen {
 					ValueAnimator animation = ValueAnimator.ofFloat( 1f , 0f );
 					animation.addUpdateListener(new AnimatorUpdateListener() {
 						@Override
-						public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+						public void onAnimationUpdate( ValueAnimator animation) {
 							v.setAlpha( (Float) animation.getAnimatedValue() );
 						}
 					});

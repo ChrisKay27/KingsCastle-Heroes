@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 
-import android.support.annotation.Nullable;
+
 
 import com.kingscastle.gameElements.livingThings.LivingThing;
 
@@ -16,7 +16,7 @@ public class BuildableSoldiers
 	
 	
 	
-	public BuildableSoldiers(@Nullable LivingThing... units)
+	public BuildableSoldiers( LivingThing... units)
 	{
 		if( units == null || units.length == 0 ){
         }

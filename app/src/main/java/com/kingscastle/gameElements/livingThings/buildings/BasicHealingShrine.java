@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -40,17 +40,17 @@ public class BasicHealingShrine extends Shrine
 
 	private static RectF staticPerceivedArea = Rpg.oneByOneArea; // this is only the offset from the mapLocation.
 
-	@NonNull
+
     private static final AttackerQualities staticAttackerQualities;
-	@NonNull
+
     private static final Attributes STATIC_ATTRIBUTES;
 
 	private static final Cost costs = new Cost( 1000 , 0 , 0 , 0 );
 
-	@NonNull
+
     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
+
     @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
@@ -88,7 +88,7 @@ public class BasicHealingShrine extends Shrine
 	}
 
 
-	@Nullable
+
     private final HealingSpell hs;
 
 	{
@@ -108,7 +108,7 @@ public class BasicHealingShrine extends Shrine
 
 	}
 
-	public BasicHealingShrine( @NonNull vector v, Teams t )
+	public BasicHealingShrine(  vector v, Teams t )
 	{
 		this();
 		setTeam(t);
@@ -124,9 +124,9 @@ public class BasicHealingShrine extends Shrine
 		{
 			params = new TargetingParams()
 			{
-				@NonNull
+
                 @Override
-				public CondRespon postRangeCheckCondition( @NonNull LivingThing target )
+				public CondRespon postRangeCheckCondition(  LivingThing target )
 				{
 					if( target.attributes.getHealth() == target.attributes.getFullHealth() )
 						return CondRespon.FALSE;
@@ -174,8 +174,8 @@ public class BasicHealingShrine extends Shrine
 		//return isOutOfRangeOrDeadORFullHealth( thing1 , thingA );
 	}
 
-	private boolean isOutOfRangeOrDeadORFullHealth( @Nullable LivingThing healer ,
-			@Nullable LivingThing healingTarget2 )
+	private boolean isOutOfRangeOrDeadORFullHealth(  LivingThing healer ,
+			 LivingThing healingTarget2 )
 	{
 
 		if( healer == null || healingTarget2 == null )
@@ -204,7 +204,7 @@ public class BasicHealingShrine extends Shrine
 
 
 	@Override
-	protected void addAnimationToEm(@NonNull Anim a, boolean sorted, @NonNull EffectsManager em)
+	protected void addAnimationToEm( Anim a, boolean sorted,  EffectsManager em)
 	{
 		em.add( a , true);
 		backing.setSize(Backing.TINY);
@@ -264,20 +264,20 @@ public class BasicHealingShrine extends Shrine
 	//	}
 
 
-	@NonNull
+
     @Override
 	public Cost getCosts(){
 		return costs;
 	}
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return NAME;
 	}
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities() {
 		return new Attributes(STATIC_ATTRIBUTES);

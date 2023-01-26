@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -16,7 +16,7 @@ public class FireHitAnim extends Anim {
 
 	private final int staticTfb = 10;
 
-	public FireHitAnim(@NonNull vector loc) {
+	public FireHitAnim( vector loc) {
 		super(loc);
 		setTbf(staticTfb);
 		setImages(staticImages);

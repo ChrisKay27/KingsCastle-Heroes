@@ -1,7 +1,7 @@
 package com.kingscastle.level;
 
 import android.app.ActivityManager;
-import android.support.annotation.Nullable;
+
 import android.util.Log;
 
 import com.kingscastle.framework.GameTime;
@@ -13,7 +13,7 @@ public class LevelThread implements Runnable {
 
 	private static final String TAG = "GameThread";
 
-	@Nullable
+
     private Thread thread = null;
 
 	private Level level;

@@ -18,7 +18,7 @@ package com.kingscastle.full;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -30,7 +30,7 @@ public class GraphicsActivity extends Activity {
         super.onCreate(savedInstanceState);
     }
     @Override
-    public void setContentView(@NonNull View view) {
+    public void setContentView( View view) {
         if (TEST_PICTURE) {
             ViewGroup vg = new PictureLayout(this);
             vg.addView(view);

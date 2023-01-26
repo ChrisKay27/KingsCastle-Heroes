@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.Assets;
@@ -36,12 +36,12 @@ public class KratosMage extends MageSoldier
 	private static ImageFormatInfo imageFormatInfo;
 
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -82,7 +82,7 @@ public class KratosMage extends MageSoldier
 	}
 
 
-	public KratosMage(@NonNull vector loc, Teams team)
+	public KratosMage( vector loc, Teams team)
 	{
 		super(team);
 		setLoc( loc );
@@ -130,9 +130,9 @@ public class KratosMage extends MageSoldier
 
 			friendlyParams = new TargetingParams()
 			{
-				@NonNull
+
                 @Override
-				public TargetFinder.CondRespon postRangeCheckCondition( @NonNull LivingThing target )
+				public TargetFinder.CondRespon postRangeCheckCondition(  LivingThing target )
 				{
 					if( !buffSpell.canCastOn(target) )
 						return TargetFinder.CondRespon.FALSE;
@@ -250,7 +250,7 @@ public class KratosMage extends MageSoldier
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -269,13 +269,13 @@ public class KratosMage extends MageSoldier
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return NAME;

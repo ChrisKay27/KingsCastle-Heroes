@@ -1,8 +1,8 @@
 package com.kingscastle.level;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.managment.MM;
@@ -33,7 +33,7 @@ public class GridUtil
 
 
 
-	public static void setProperlyOnGrid( @NonNull vector v , float gridSize )
+	public static void setProperlyOnGrid(  vector v , float gridSize )
 	{
 		v.x = v.x - v.x%gridSize;
 		v.y = v.y - v.y%gridSize;
@@ -41,7 +41,7 @@ public class GridUtil
 
 
 
-	public void setProperlyOnGrid( @NonNull RectF rect , float gridSize )
+	public void setProperlyOnGrid(  RectF rect , float gridSize )
 	{
 		float left = rect.left;
 		float top = rect.top;
@@ -63,20 +63,20 @@ public class GridUtil
 
 
 
-	public static void getLocFromArea( @NonNull RectF rect , @NonNull RectF percArea , @NonNull vector loc )
+	public static void getLocFromArea(  RectF rect ,  RectF percArea ,  vector loc )
 	{
 		loc.set( rect.left - percArea.left , rect.top - percArea.top );
 	}
 
 
 
-	public boolean isPlaceable( @NonNull RectF area ) {
+	public boolean isPlaceable(  RectF area ) {
 		return isPlaceable( area , false );
 	}
 
 
 
-	private boolean isPlaceable( @NonNull RectF area, boolean ignoreHumanoids )
+	private boolean isPlaceable(  RectF area, boolean ignoreHumanoids )
 	{
 		if( area.left < 0 || area.top < 0 || area.bottom >= mapHeight || area.right >= mapWidth )
 			return false;
@@ -88,8 +88,8 @@ public class GridUtil
 
 
 
-	@NonNull
-    public ArrayList<vector> getAllWalkableLocNextToThis( @NonNull RectF area )
+
+    public ArrayList<vector> getAllWalkableLocNextToThis(  RectF area )
 	{
 		boolean[][] gridTiles = grid.getGridTiles();
 		final float gridSize = grid.getGridSize();
@@ -139,8 +139,8 @@ public class GridUtil
 
 
 
-	@Nullable
-    public vector getNearestWalkableLocNextToThis( @NonNull RectF area , @NonNull vector toThis ){
+
+    public vector getNearestWalkableLocNextToThis(  RectF area ,  vector toThis ){
 		ArrayList<vector> locs = getAllWalkableLocNextToThis(area);
 		if( locs.isEmpty() ) return null;
 
@@ -152,8 +152,8 @@ public class GridUtil
      * @return a walkable location around the area which is closest to the comingFrom location or null
      * if there isn't one right next to the area.
      */
-	@Nullable
-    public vector getWalkableLocNextToThis( @NonNull vector comingFrom , @NonNull RectF area )
+
+    public vector getWalkableLocNextToThis(  vector comingFrom ,  RectF area )
 	{
 		boolean[][] gridTiles = grid.getGridTiles();
 		final float gridSize = grid.getGridSize();
@@ -325,7 +325,7 @@ public class GridUtil
 		return v;
 	}
 
-    @NonNull
+
     private vector zeroVector = new vector();
 
     /**
@@ -333,8 +333,8 @@ public class GridUtil
      * If not we loop 50 times randomizing the vector starting at the center of the area
      * @return a vector that may not actually be walkable
      */
-    @Nullable
-    public vector getAWalkableLocNear( @NonNull RectF area ){
+
+    public vector getAWalkableLocNear(  RectF area ){
         vector loc = getNearestWalkableLocNextToThis(area, zeroVector);
         if( loc != null ) return loc;
 
@@ -351,7 +351,7 @@ public class GridUtil
     }
 
 
-	public static boolean isWalkable(@NonNull vector nearDp, @NonNull Grid grid) {
+	public static boolean isWalkable( vector nearDp,  Grid grid) {
 
 		int i = (int) (nearDp.x/grid.getGridSize());
 		int j = (int) (nearDp.y/grid.getGridSize());

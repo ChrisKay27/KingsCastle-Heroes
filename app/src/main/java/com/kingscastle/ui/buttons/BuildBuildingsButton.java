@@ -2,7 +2,7 @@ package com.kingscastle.ui.buttons;
 
 import android.app.Activity;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -40,7 +40,7 @@ public class BuildBuildingsButton extends SButton
 
 	}
 
-	@NonNull
+
     public static BuildBuildingsButton getInstance( Activity a , final BuildingBuilder bb )
 	{
 		BuildBuildingsButton singularity = new BuildBuildingsButton( a , bb );
@@ -50,7 +50,7 @@ public class BuildBuildingsButton extends SButton
 
 
 
-	@NonNull
+
     @Override
 	public BuildBuildingsButton clone(){
 		BuildBuildingsButton bbb = new BuildBuildingsButton( a , bb );

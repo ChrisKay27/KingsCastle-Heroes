@@ -1,8 +1,8 @@
 package com.kingscastle.ui;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Input.TouchEvent;
 import com.kingscastle.framework.Rpg;
@@ -29,7 +29,7 @@ class UISpellCreator
 	 * @param event
 	 * @return If null then the spell creating was successful.
 	 */
-	public static String createSpell( @Nullable LivingThing personCastingSpell , @NonNull SpellManager sm , @Nullable TouchEvent event )
+	public static String createSpell(  LivingThing personCastingSpell ,  SpellManager sm ,  TouchEvent event )
 	{
 		if( sm.getPendingSpell() == null || personCastingSpell == null || event == null )
 		{
@@ -78,7 +78,7 @@ class UISpellCreator
 
 	}
 
-	public static String abilityButtonPushed(@NonNull LivingThing thingSelected , @NonNull SpellManager sm , @NonNull AbilityButton ab)
+	public static String abilityButtonPushed( LivingThing thingSelected ,  SpellManager sm ,  AbilityButton ab)
 	{
 		Ability a = ab.getAbility();
 

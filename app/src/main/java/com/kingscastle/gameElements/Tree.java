@@ -6,8 +6,8 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.Assets;
@@ -31,7 +31,7 @@ public class Tree extends GameElement {
 	private int borderColor = Color.YELLOW;
 
 
-	@NonNull
+
     private static List<Image> images = new ArrayList<>();
 	static{
 		images.add(Assets.loadImage(R.drawable.spruce_tree));
@@ -44,7 +44,7 @@ public class Tree extends GameElement {
 
 	//private static RT resourceType;// = RT.WOOD;
 
-	@NonNull
+
     private static RectF staticPerceivedArea = new RectF(Rpg.guardTowerArea);
 	private Anim anim;
 	private Image img = images.get((int)(Math.random()*images.size()));
@@ -56,7 +56,7 @@ public class Tree extends GameElement {
 
 	public Tree(){
 	}
-	public Tree(@NonNull vector loc){
+	public Tree( vector loc){
 		super.loc.set(loc);
 	}
 
@@ -83,7 +83,7 @@ public class Tree extends GameElement {
 			anim = new Anim( getImage() ){
 				private boolean incAlpha = true;
 				private float sat = 1;
-				@NonNull
+
                 private final ColorMatrix cm;
 				{
 					cm = new ColorMatrix();
@@ -147,13 +147,13 @@ public class Tree extends GameElement {
 
 
 
-	@Nullable
+
     @Override
 	public ImageFormatInfo getImageFormatInfo() {
 		return null;
 	}
 
-	@Nullable
+
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -175,7 +175,7 @@ public class Tree extends GameElement {
 
 
 	@Override
-	public void saveYourself( @NonNull BufferedWriter bw ) throws IOException
+	public void saveYourself(  BufferedWriter bw ) throws IOException
 	{
 		String temp;
 		temp = "<" + getClass().getSimpleName() + " x=\"" + (int) (loc.x) + "\" y=\"" + (int) (loc.y) + "\" rr=\"" + 0 + "\" >";
@@ -198,7 +198,7 @@ public class Tree extends GameElement {
 
 
 
-	@NonNull
+
     @Override
 	public RectF getStaticPerceivedArea() {
 		return staticPerceivedArea;

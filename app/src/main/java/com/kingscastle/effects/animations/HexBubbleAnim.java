@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 import android.graphics.Color;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -22,14 +22,14 @@ public class HexBubbleAnim extends Anim {
 		onlyShowIfOnScreen = true;
 	}
 
-	public HexBubbleAnim(@NonNull vector loc)	{
+	public HexBubbleAnim( vector loc)	{
         super(loc);
         setImages(getImages(Color.BLUE ) );
 		setTbf(staticTfb);
 		offs.add( Rpg.getDp() , Rpg.getDp() );
 	}
 
-	public HexBubbleAnim(@NonNull vector loc , int color )	{
+	public HexBubbleAnim( vector loc , int color )	{
         super(loc);
         setImages(getImages( color ));
 

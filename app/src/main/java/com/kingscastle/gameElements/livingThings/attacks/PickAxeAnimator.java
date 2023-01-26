@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -26,13 +26,13 @@ public class PickAxeAnimator extends AttackAnimator
 
 	private static List<Sound> pickAxeSounds;
 
-	@NonNull
+
     private static final vector EOffset;
-    @NonNull
+
     private static final vector WOffset;
-    @NonNull
+
     private static final vector SOffset;
-    @NonNull
+
     private static final vector NOffset;
 
 
@@ -58,7 +58,7 @@ public class PickAxeAnimator extends AttackAnimator
 	}
 
 
-	public PickAxeAnimator(@NonNull Humanoid owner, MeleeAttack ownersAttack)	{
+	public PickAxeAnimator( Humanoid owner, MeleeAttack ownersAttack)	{
 		super(owner,3);
 		//this.ownersAttack=ownersAttack;
 		loadImages();

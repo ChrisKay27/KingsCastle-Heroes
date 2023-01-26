@@ -3,7 +3,7 @@ package com.kingscastle.ui;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 import android.widget.Toast;
 
 import com.kingscastle.framework.GameTime;
@@ -19,7 +19,7 @@ import com.kingscastle.level.GridUtil;
 public class Mover {
 
 
-	@NonNull
+
     private static final ColorMatrixColorFilter cmcf;
 	static{
 		ColorMatrix cm = new ColorMatrix();
@@ -28,15 +28,15 @@ public class Mover {
 	}
 
 
-	@NonNull
+
     private final vector origLoc;
-	@NonNull
+
     private final RectF origArea;
 	private final RectF largerArea = new RectF();
 
 	private final GridUtil gUtil;
 	private final vector tcLoc;
-	@NonNull
+
     private final Moveable m;
 
 
@@ -53,21 +53,21 @@ public class Mover {
 	private int pointer = -1;
 
 	public interface Moveable{
-		@NonNull
+
         RectF getArea();
-		@NonNull
+
         vector getLoc();
 		void setSelected(boolean b);
 		void updateArea();
 		void setColorFilter(ColorMatrixColorFilter cmcf);
-		@NonNull
+
         RectF getPerceivedArea();
 		void onMovedSuccessfully();
 		boolean checkPlaceable();
 	}
 
 
-	public Mover( CD cd , CoordConverter cc , GridUtil gUtil , @NonNull Moveable m , vector tcLoc , float maxDistFromTc ){
+	public Mover( CD cd , CoordConverter cc , GridUtil gUtil ,  Moveable m , vector tcLoc , float maxDistFromTc ){
 		this.tcLoc = tcLoc;
 		this.maxDistFromTc = maxDistFromTc;
 		this.cd = cd;
@@ -81,7 +81,7 @@ public class Mover {
 
 
 
-	public synchronized boolean analyzeTouchEvent( @NonNull TouchEvent e ){
+	public synchronized boolean analyzeTouchEvent(  TouchEvent e ){
 
 
 		if( pointer != -1 )

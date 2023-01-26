@@ -3,8 +3,8 @@ package com.kingscastle.gameElements.livingThings.army;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.LightEffect2;
@@ -40,12 +40,12 @@ public class SkeletonKing extends AdvancedMageSoldier
 	private static Image[] redImages = Assets.loadImages(R.drawable.skeleton_king,0,0,1,1), blueImages , greenImages , orangeImages , whiteImages ;
 
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+	
+    private static final AttackerQualities staticAttackerQualities; 
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+	
+    private static final Attributes STATIC_ATTRIBUTES; 
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -82,7 +82,7 @@ public class SkeletonKing extends AdvancedMageSoldier
 		STATIC_ATTRIBUTES.setSpeed(0.7f * dp);
 	}
 
-	@NonNull
+	
     private List<SummonAttack> summonAtks = new ArrayList<>();
 	private long checkSummonsAt = GameTime.getTime() + 5000;
 
@@ -93,7 +93,7 @@ public class SkeletonKing extends AdvancedMageSoldier
 
 
 
-	public SkeletonKing(@NonNull vector loc, Teams team){
+	public SkeletonKing( vector loc, Teams team){
 		super(team);
 		setLoc(loc);
 		setTeam(team);
@@ -118,7 +118,7 @@ public class SkeletonKing extends AdvancedMageSoldier
 	}
 
 	@Override
-	public boolean create(@NonNull MM mm) {
+	public boolean create( MM mm) {
 		boolean superCreate =  super.create(mm);
 		getAnim().setScale(1.5f);
 		final LightEffect2 le = new LightEffect2(loc);
@@ -186,7 +186,7 @@ public class SkeletonKing extends AdvancedMageSoldier
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@Nullable
+	
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -203,7 +203,7 @@ public class SkeletonKing extends AdvancedMageSoldier
 		return Rpg.getNormalPerceivedArea();
 	}
 
-	@NonNull
+	
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -229,12 +229,12 @@ public class SkeletonKing extends AdvancedMageSoldier
 	public Anim getDyingAnimation(){
 		return Assets.deadSkeletonAnim;
 	}
-	@NonNull
+	
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+	
     @Override
 	public String getName() {
 		return NAME;

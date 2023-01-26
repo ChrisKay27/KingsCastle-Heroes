@@ -3,8 +3,8 @@ package com.kingscastle.gameElements.livingThings.army;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -44,9 +44,9 @@ public class Elder extends AdvancedMageSoldier
 	private static ImageFormatInfo imageFormatInfo;
 	private static Image[] redImages , blueImages , greenImages , orangeImages , whiteImages ;
 
-	@NonNull
+	
     private static final AttackerQualities staticAttackerQualities;
-	@NonNull
+	
     private static final Attributes STATIC_ATTRIBUTES;
 
 	private static Cost cost = new Cost( 2500 , 2500 , 2000 , 3 );
@@ -90,7 +90,7 @@ public class Elder extends AdvancedMageSoldier
 		setCostsLives(10);
 	}
 
-	public Elder(@NonNull vector loc, Teams team){
+	public Elder( vector loc, Teams team){
 		super(team);
 		setLoc(loc);
 	}
@@ -186,7 +186,7 @@ public class Elder extends AdvancedMageSoldier
 	}
 
 	@Override
-	public boolean create(@NonNull MM mm) {
+	public boolean create( MM mm) {
 		boolean superCreate =  super.create(mm);
 		getAnim().setScale(1.5f);
 		final LightEffect2 le = new LightEffect2(loc);
@@ -274,7 +274,7 @@ public class Elder extends AdvancedMageSoldier
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@Nullable
+
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -297,7 +297,7 @@ public class Elder extends AdvancedMageSoldier
 		return Rpg.getNormalPerceivedArea();
 	}
 
-	@NonNull
+	
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -389,23 +389,23 @@ public class Elder extends AdvancedMageSoldier
 	public Anim getDyingAnimation(){
 		return Assets.deadSkeletonAnim;
 	}
-	@NonNull
+	
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+	
     @Override
 	public String getName() {
 		return NAME;
 	}
 
-	@NonNull
+	
     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 
 
-	@NonNull
+	
     @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 }

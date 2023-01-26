@@ -11,8 +11,8 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Graphics;
 import com.kingscastle.framework.Image;
@@ -32,7 +32,7 @@ public class AndroidGraphics implements Graphics
 	private AssetManager assets;
 	private Bitmap frameBuffer;
 	private Canvas canvas;
-	@NonNull
+
     private final Paint paint;
 	private Resources rm;
 	private final Rect srcRect = new Rect();
@@ -288,7 +288,7 @@ public class AndroidGraphics implements Graphics
 
 
 	@Override
-	public void drawRectBorder( @NonNull Rect r , int color , float borderWidth )
+	public void drawRectBorder(  Rect r , int color , float borderWidth )
 	{
 		paint.setColor( color );
 		paint.setStrokeWidth( borderWidth );
@@ -333,7 +333,7 @@ public class AndroidGraphics implements Graphics
 
 
 	@Override
-	public void drawRect( @NotNull Rect r , @Nullable vector offset , int color )
+	public void drawRect( @NotNull Rect r ,  vector offset , int color )
 	{
 
 		paint.setColor(color);
@@ -347,7 +347,7 @@ public class AndroidGraphics implements Graphics
 	}
 
 	@Override
-	public void drawRect( @NonNull RectF r , @NonNull vector offset , @NonNull Paint paint )
+	public void drawRect(  RectF r ,  vector offset ,  Paint paint )
 	{
 		float x = offset.x;
 		float y = offset.y;
@@ -355,7 +355,7 @@ public class AndroidGraphics implements Graphics
 	}
 
 	@Override
-	public void drawRect( @NonNull Rect r , @NonNull vector offset , @NonNull Paint paint )
+	public void drawRect(  Rect r ,  vector offset ,  Paint paint )
 	{
 		float x = offset.x;
 		float y = offset.y;
@@ -363,7 +363,7 @@ public class AndroidGraphics implements Graphics
 	}
 
 	@Override
-	public void drawRect( float x, float y, float width, float height , @Nullable Paint paint)
+	public void drawRect( float x, float y, float width, float height ,  Paint paint)
 	{
 		Paint p = paint;
 		if( paint == null )
@@ -374,7 +374,7 @@ public class AndroidGraphics implements Graphics
 
 
 	@Override
-	public void drawRect( @NotNull RectF rectF , @Nullable Paint paint )
+	public void drawRect( @NotNull RectF rectF ,  Paint paint )
 	{
 
 		Paint p = paint;
@@ -387,7 +387,7 @@ public class AndroidGraphics implements Graphics
 
 
 	@Override
-	public void drawRect(@NotNull Rect rect, @Nullable Paint paint)
+	public void drawRect(@NotNull Rect rect,  Paint paint)
 	{
 
 		Paint p = paint;
@@ -400,7 +400,7 @@ public class AndroidGraphics implements Graphics
 
 
 	@Override
-	public void drawRect(@NonNull Rect miniMapArea, int color )
+	public void drawRect( Rect miniMapArea, int color )
 	{
 		paint.setColor( color );
 		paint.setStyle( Style.FILL );
@@ -427,7 +427,7 @@ public class AndroidGraphics implements Graphics
 
 
 	@Override
-	public void drawString( @NotNull String text, float x, float y, @Nullable Paint paint )
+	public void drawString( @NotNull String text, float x, float y,  Paint paint )
 	{
 		Paint p = paint;
 		if( paint == null )
@@ -438,7 +438,7 @@ public class AndroidGraphics implements Graphics
 
 
 	@Override
-	public void drawString( @NotNull String text , float x , float y , @Nullable vector offset , @Nullable Paint paint )
+	public void drawString( @NotNull String text , float x , float y ,  vector offset ,  Paint paint )
 	{
 		Paint p = paint;
 		if( paint == null )
@@ -521,7 +521,7 @@ public class AndroidGraphics implements Graphics
 	}
 
 	@Override
-	public void drawImage(@NotNull Image image, @NotNull Rect src, @NotNull Rect dst, @Nullable Paint paint) {
+	public void drawImage(@NotNull Image image, @NotNull Rect src, @NotNull Rect dst,  Paint paint) {
 
         if( paint == null )
 			paint = this.paint;
@@ -573,7 +573,7 @@ public class AndroidGraphics implements Graphics
 
 
 	@Override
-	public void drawImage( @NotNull Image image , float x , float y , @Nullable vector offset )
+	public void drawImage( @NotNull Image image , float x , float y ,  vector offset )
 	{
 		if( offset == null )
 			drawImage(image , (int) x , (int) y );
@@ -583,7 +583,7 @@ public class AndroidGraphics implements Graphics
 
 
 	@Override
-	public void drawImage( @NotNull Image image , float x , float y , @Nullable vector offset , Paint paint )
+	public void drawImage( @NotNull Image image , float x , float y ,  vector offset , Paint paint )
 	{
 		Paint p = paint;
 		if ( p == null )
@@ -595,7 +595,7 @@ public class AndroidGraphics implements Graphics
 
 
 	@Override
-	public void drawImage(@NonNull Image img, float dstCenterX, float dstCenterY, float dst_width, float dst_height) {
+	public void drawImage( Image img, float dstCenterX, float dstCenterY, float dst_width, float dst_height) {
 		dstRect.set((int) (dstCenterX-dst_width/2) ,(int)(dstCenterY-dst_height/2),(int)(dstCenterX+dst_width/2),(int)(dstCenterY+dst_height/2));
 		drawImage(img, img.getSrcRect(), dstRect);
 	}
@@ -695,7 +695,7 @@ public class AndroidGraphics implements Graphics
 
 
 	@Override
-	public void drawPaint(@NonNull Paint p) {
+	public void drawPaint( Paint p) {
 		canvas.drawPaint(p);
 	}
 
@@ -710,7 +710,7 @@ public class AndroidGraphics implements Graphics
 
 
 	@Override
-	public void clipRect(@NonNull Rect area)
+	public void clipRect( Rect area)
 	{
 		if( canvas != null )
 		{

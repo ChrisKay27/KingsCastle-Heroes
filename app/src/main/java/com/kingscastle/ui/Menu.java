@@ -3,8 +3,8 @@ package com.kingscastle.ui;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.framework.SoundController;
@@ -14,14 +14,14 @@ public class Menu {
 
 	private static final String TAG = "Menu";
 
-	@Nullable
+
     private static MenuBuilder mBuilder = new MenuBuilder();
-	@Nullable
+
     private static WindowBuilder menuView;
 
 	public static class MenuBuilder{
 
-		@Nullable
+
         public WindowBuilder showMenu(final SoundController sc){
 //			final KingsCastle kc = Rpg.getGame();
 //
@@ -234,7 +234,7 @@ public class Menu {
 	}
 
 
-	public static void setMenuBuilder(@Nullable MenuBuilder mBuilder_ ){
+	public static void setMenuBuilder( MenuBuilder mBuilder_ ){
 		if( mBuilder_ != null )
 			mBuilder = mBuilder_;
 	}
@@ -260,7 +260,7 @@ public class Menu {
 
 
 
-	@NonNull
+
     private static Runnable hide = new Runnable(){
 		@Override
 		public void run() {

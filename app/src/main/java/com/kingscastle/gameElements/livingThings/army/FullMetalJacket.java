@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -24,12 +24,12 @@ public class FullMetalJacket extends MeleeSoldier {
 	private static Image[] images = Assets.loadImages( R.drawable.full_metal_jacket  , 0 , 0 , 1 , 1 );
 
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -65,7 +65,7 @@ public class FullMetalJacket extends MeleeSoldier {
 		setAQ(new AttackerQualities(staticAttackerQualities, getLQ().getBonuses()));
 	}
 
-	public FullMetalJacket(@NonNull vector loc, Teams team){
+	public FullMetalJacket( vector loc, Teams team){
 		super(team);
 		setLoc(loc);
 		setTeam(team);
@@ -119,7 +119,7 @@ public class FullMetalJacket extends MeleeSoldier {
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@Nullable
+	
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -144,7 +144,7 @@ public class FullMetalJacket extends MeleeSoldier {
 	@Override
 	public void setStaticPerceivedArea(RectF staticPercArea) {
 	}
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities() {
 		return new Attributes(STATIC_ATTRIBUTES);
@@ -164,12 +164,12 @@ public class FullMetalJacket extends MeleeSoldier {
 
 	private static final String TAG = FullMetalJacket.class.getSimpleName();
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;

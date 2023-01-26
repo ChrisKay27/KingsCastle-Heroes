@@ -3,7 +3,7 @@ package com.kingscastle.ui;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Rpg;
 
@@ -29,7 +29,7 @@ public class Palette
 	}
 
 
-	@NonNull
+	
     public static Paint getPaint( Align align , int color , float size )
 	{
 		boolean sameColor = false;
@@ -64,7 +64,7 @@ public class Palette
 	}
 
 
-	@NonNull
+	
     public static Paint getPaint( Align align , int color )
 	{
 		return getPaint ( align , color , Rpg.getTextSize() );
@@ -72,7 +72,7 @@ public class Palette
 
 
 
-	@NonNull
+	
     public static Paint getPaint( int color , float textSize )
 	{
 		return getPaint ( Align.CENTER , color , textSize );
@@ -84,8 +84,8 @@ public class Palette
 
 
 
-	@NonNull
-    public static Paint getPaint( @NonNull PaletteParams params )
+	
+    public static Paint getPaint(  PaletteParams params )
 	{
 		Paint p = getPaint ( params.getTextAlign() , params.getColor() , params.getTextSize() );
 		params.deconstruct();
@@ -93,7 +93,7 @@ public class Palette
 	}
 
 
-	public static void adjustTextSizeSmallest( @NonNull Paint paint , float smallestHeightOfText )
+	public static void adjustTextSizeSmallest(  Paint paint , float smallestHeightOfText )
 	{
 
 		if( smallestHeightOfText < 10 )
@@ -111,7 +111,7 @@ public class Palette
 	}
 
 
-	public static void adjustSizeLargest( @NonNull Paint paint , float largestTextHeight)
+	public static void adjustSizeLargest(  Paint paint , float largestTextHeight)
 	{
 
 		while( paint.getFontSpacing() > largestTextHeight )
@@ -122,7 +122,7 @@ public class Palette
 	}
 
 
-	public static void adjustTextLength( @NonNull Paint paint , String line , int width )
+	public static void adjustTextLength(  Paint paint , String line , int width )
 	{
 		if( paint.measureText( line ) > width )
 

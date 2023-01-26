@@ -1,6 +1,6 @@
 package com.kingscastle.teams;
 
-import android.support.annotation.NonNull;
+
 
 /**
  * Created by chris_000 on 7/4/2015.
@@ -11,7 +11,7 @@ public enum RT
 
     private String name;
 
-    public static RT getFromString( @NonNull String t )
+    public static RT getFromString(  String t )
     {
         if( t.equals( GOLD.toString() ) )
             return GOLD;

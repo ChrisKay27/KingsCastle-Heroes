@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Graphics;
@@ -15,12 +15,12 @@ import java.util.List;
 public class RecoveryEffect extends Anim
 {
 
-	@NonNull
+	
     private static final List<Image> staticImages = Assets.loadAnimationImages(R.drawable.recovery_effect_large, 5, 6);
 	private final int staticTfb = 50;
 
 
-	public RecoveryEffect( @NonNull vector loc )	{
+	public RecoveryEffect(  vector loc )	{
         super(loc);
 		setImages( staticImages );
 		setTbf( staticTfb );
@@ -33,7 +33,7 @@ public class RecoveryEffect extends Anim
 	}
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v )
+	public void paint(  Graphics g ,  vector v )
 	{
 		vTemp.set( v );
 		vTemp.add( offs );

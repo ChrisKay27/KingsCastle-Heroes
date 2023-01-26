@@ -3,7 +3,7 @@ package com.kingscastle.framework.implementation;
 
 import android.graphics.Bitmap;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Graphics.ImageFormat;
 import com.kingscastle.framework.Image;
@@ -16,7 +16,7 @@ public class AndroidImage implements Image {
 	private Rect srcRect;
 	private Rect dstRect;
 
-	public AndroidImage( @NonNull Bitmap bitmap , ImageFormat format)
+	public AndroidImage(  Bitmap bitmap , ImageFormat format)
 	{
 		this.bitmap = bitmap;
 		this.format = format;

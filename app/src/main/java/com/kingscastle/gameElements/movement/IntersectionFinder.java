@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.movement;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.livingThings.LivingThing;
@@ -20,8 +20,8 @@ class IntersectionFinder
 	private static final float whiskerLength = Rpg.twentyDp + Rpg.fiveDp;
 	private static final float unitsNormalsLength = Rpg.sixTeenDp;
 
-	@Nullable
-    public Inter checkForIntersection( vector loc , @NonNull vector unitVectorInDir , LivingThing driver )
+
+    public Inter checkForIntersection( vector loc ,  vector unitVectorInDir , LivingThing driver )
 	{
 		//		if( driver.getTeamName() == Teams.BLUE )
 		//		{

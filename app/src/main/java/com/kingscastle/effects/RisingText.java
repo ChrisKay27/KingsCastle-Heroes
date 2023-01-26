@@ -7,7 +7,7 @@ import android.graphics.Paint.Align;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Image;
@@ -20,9 +20,9 @@ import com.kingscastle.gameUtils.vector;
 
 public class RisingText extends GameElement
 {
-	@NonNull
+	
     private static final Paint redCenter;
-	@NonNull
+	
     private static final Paint greenCenter;
 	private static final float dp;
 
@@ -77,7 +77,7 @@ public class RisingText extends GameElement
 	public RisingText() {
 	}
 
-	RisingText(String t, @NonNull LivingThing on)
+	RisingText(String t,  LivingThing on)
 	{
 		setText( t );
 		setLoc( new vector( on.loc ) );

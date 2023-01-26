@@ -4,8 +4,8 @@ package com.kingscastle.ui;
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,11 +33,11 @@ public class RushBuilding {
 	static ImageButton hurryButton;
 	static TextView msg;
 
-	@Nullable
+	
     private Building selectedBuilding;
-	@Nullable
+	
     private Building buildingToRushBuild;
-	@Nullable
+	
     private ArrayList<? extends GameElement> buildingsToRushBuild;
 
 
@@ -61,7 +61,7 @@ public class RushBuilding {
 	 * Call only from UI thread
 	 * @param ge
 	 */
-	public void showFinishNowButtonIfNeeded( @Nullable GameElement ge ){
+	public void showFinishNowButtonIfNeeded(  GameElement ge ){
 		if( true )
 			return;
 
@@ -125,7 +125,7 @@ public class RushBuilding {
 	}
 
 
-	public void showFinishNowButtonIfNeededTSafe( @Nullable GameElement ge ) {
+	public void showFinishNowButtonIfNeededTSafe(  GameElement ge ) {
 		//Log.d( "RefreshUITrace" , "showFinishNowButtonIfNeededTSafe("+ge+")");
 		if( ge == null ) return;
 
@@ -138,7 +138,7 @@ public class RushBuilding {
 	 * Call only from UI thread
 	 * @param ges
 	 */
-	public void showFinishNowButtonIfNeeded( @Nullable ArrayList<? extends GameElement> ges ){
+	public void showFinishNowButtonIfNeeded(  ArrayList<? extends GameElement> ges ){
 		Log.d( TAG , "showFinishNowButtonIfNeeded("+ges+")");
 		selectedBuilding = null;
 		buildingToRushBuild = null;
@@ -166,7 +166,7 @@ public class RushBuilding {
 			ValueAnimator animation = ValueAnimator.ofFloat( FINISH_NOW_TRANSLATION_Y_OFFSCREEN , 0f );
 			animation.addUpdateListener(new AnimatorUpdateListener() {
 				@Override
-				public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+				public void onAnimationUpdate( ValueAnimator animation) {
 					finish.setTranslationY((Float) animation.getAnimatedValue());
 				}
 			});
@@ -182,7 +182,7 @@ public class RushBuilding {
 			ValueAnimator animation = ValueAnimator.ofFloat( 0f , FINISH_NOW_TRANSLATION_Y_OFFSCREEN );
 			animation.addUpdateListener(new AnimatorUpdateListener() {
 				@Override
-				public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+				public void onAnimationUpdate( ValueAnimator animation) {
 					finish.setTranslationY((Float) animation.getAnimatedValue());
 				}
 			});
@@ -231,7 +231,7 @@ public class RushBuilding {
 
 
 
-	public void setHurryButtonAndSetup(@NonNull final ImageButton finish) {
+	public void setHurryButtonAndSetup( final ImageButton finish) {
 
 		RushBuilding.hurryButton = finish;
 		finish.setOnClickListener(hurryButtonListener);
@@ -297,7 +297,7 @@ public class RushBuilding {
 
 
 
-	@Nullable
+	
     private final OnClickListener sureButtonList = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -311,7 +311,7 @@ public class RushBuilding {
 		}
 	};
 
-	@Nullable
+	
     private final OnClickListener noButtonList = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -323,7 +323,7 @@ public class RushBuilding {
 		}
 	};
 
-	@Nullable
+	
     private final OnClickListener hurryButtonListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -378,7 +378,7 @@ public class RushBuilding {
 
 
 	private class ShowFinishNowRunnable implements Runnable{
-		@Nullable
+		
         private GameElement ge;
 		@Override
 		public synchronized void run() {

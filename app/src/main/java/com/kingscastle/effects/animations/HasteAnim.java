@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -16,7 +16,7 @@ public class HasteAnim extends Anim {
 	private final int staticTfb=50;
 
 
-	public HasteAnim(@NonNull vector loc){
+	public HasteAnim( vector loc){
         super(loc);
 		setImages( staticImages );
 		setTbf(staticTfb);

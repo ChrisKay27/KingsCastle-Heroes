@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -27,12 +27,12 @@ public class HumanArcher extends MediumRangedSoldier
 	private static Image[] staticImages , redImages , blueImages , greenImages , orangeImages , whiteImages ;
 	private static ImageFormatInfo imageFormatInfo;
 
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ()   { return STATIC_ATTRIBUTES; }
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 
@@ -70,7 +70,7 @@ public class HumanArcher extends MediumRangedSoldier
 		setAQ( new AttackerQualities(staticAttackerQualities,getLQ().getBonuses()) );
 	}
 
-	public HumanArcher(@NonNull vector loc, Teams team){
+	public HumanArcher( vector loc, Teams team){
 		super(team);
 		setLoc(loc);
 		setTeam(team);
@@ -216,7 +216,7 @@ public class HumanArcher extends MediumRangedSoldier
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -236,12 +236,12 @@ public class HumanArcher extends MediumRangedSoldier
 	}
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;

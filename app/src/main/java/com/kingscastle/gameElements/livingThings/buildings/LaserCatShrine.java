@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.effects.EffectsManager;
@@ -30,21 +30,21 @@ public class LaserCatShrine extends Shrine
 
 	private static final Image image     = Assets.loadImage(R.drawable.cat_statue);
 	private static final Image deadImage = Assets.loadImage( R.drawable.small_rubble );
-	@Nullable
+
     private static final Image iconImage = null;//Assets.loadImage( R.drawable.cat_statue_icon );
 
 	private static RectF staticPerceivedArea = Rpg.oneByOneArea; // this is only the offset from the mapLocation.
 
-	@NonNull
+	
     private static final AttackerQualities staticAttackerQualities;
-	@NonNull
+	
     private static final Attributes STATIC_ATTRIBUTES;
 
 	private static final Cost costs = new Cost( 500 , 0 , 500 , 0 );
-	@NonNull
+	
     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
+	
     @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
@@ -103,7 +103,7 @@ public class LaserCatShrine extends Shrine
 		super(name);
 	}
 
-	public LaserCatShrine( @NonNull vector v , Teams t )
+	public LaserCatShrine(  vector v , Teams t )
 	{
 		this();
 		setTeam(t);
@@ -125,7 +125,7 @@ public class LaserCatShrine extends Shrine
 	}
 
 	@Override
-	protected void addAnimationToEm(@NonNull Anim a, boolean sorted, @NonNull EffectsManager em)
+	protected void addAnimationToEm( Anim a, boolean sorted,  EffectsManager em)
 	{
 		em.add( a , true);
 		backing.setSize(Backing.TINY);
@@ -143,7 +143,7 @@ public class LaserCatShrine extends Shrine
 	public Image getDeadImage() {
 		return deadImage;
 	}
-	@Nullable
+
     @Override
 	public Image getIconImage() {
 		return iconImage;
@@ -179,20 +179,20 @@ public class LaserCatShrine extends Shrine
 
 
 
-	@NonNull
+	
     @Override
 	public Cost getCosts(){
 		return costs;
 	}
 
-	@NonNull
+	
     @Override
 	public String getName() {
 		return TAG;
 	}
 
 
-	@NonNull
+	
     @Override
 	public Attributes getNewLivingQualities() {
 		return new Attributes(STATIC_ATTRIBUTES);

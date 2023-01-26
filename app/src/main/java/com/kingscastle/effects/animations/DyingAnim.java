@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.GameTime;
@@ -18,7 +18,7 @@ public class DyingAnim extends Anim {
 	private final int staticTfb = 150;
 
 
-	public DyingAnim(@NonNull vector loc) {
+	public DyingAnim( vector loc) {
         super( loc );
 		setTbf(staticTfb);
 		setAliveTime( 30000 );

@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.Assets;
@@ -33,12 +33,12 @@ public class VampLord extends MageSoldier
 	private static ImageFormatInfo imageFormatInfo;
 
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -73,7 +73,7 @@ public class VampLord extends MageSoldier
 		STATIC_ATTRIBUTES.setSpeed( .5f * dp );
 	}
 
-	@NonNull
+
     private List<SummonAttack> summonAtks = new ArrayList<>();
 	private long checkSummonsAt;
 
@@ -83,7 +83,7 @@ public class VampLord extends MageSoldier
 	}
 
 
-	public VampLord(@NonNull vector loc, Teams team)
+	public VampLord( vector loc, Teams team)
 	{
 		super(team);
 		setLoc( loc );
@@ -200,7 +200,7 @@ public class VampLord extends MageSoldier
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -219,13 +219,13 @@ public class VampLord extends MageSoldier
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return NAME;

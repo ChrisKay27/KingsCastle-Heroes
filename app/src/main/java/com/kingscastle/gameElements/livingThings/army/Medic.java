@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -35,12 +35,12 @@ public class Medic extends BasicHealer
 	private static Image[] redImages , blueImages , greenImages , orangeImages , whiteImages ;
 
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -49,11 +49,15 @@ public class Medic extends BasicHealer
 
 	static
 	{
+
 		float dp = Rpg.getDp();
 		imageFormatInfo = new ImageFormatInfo( 0 , 0 ,
 				0 , 0 , 1 , 1 );
 		imageFormatInfo.setRedId( R.drawable.early_healer_red );
 		imageFormatInfo.setWhiteId( R.drawable.early_healer_white );
+		imageFormatInfo.setBlueId( R.drawable.early_healer_white );
+
+
 
 		staticAttackerQualities= new AttackerQualities();
 
@@ -83,7 +87,7 @@ public class Medic extends BasicHealer
 	}
 
 
-	public Medic( @NonNull vector loc , Teams team )
+	public Medic(  vector loc , Teams team )
 	{
 		super(team);
 		setLoc(loc);
@@ -161,18 +165,18 @@ public class Medic extends BasicHealer
 		{
 			redImages = Assets.loadImages(imageFormatInfo.getRedId(), 4, 4, 0, 0, 1, 1);
 		}
-		if( orangeImages == null )
-		{
-			orangeImages = Assets.loadImages( imageFormatInfo.getOrangeId() , 4 , 4 , 0 , 0 , 1 , 1 );
-		}
+//		if( orangeImages == null )
+//		{
+//			orangeImages = Assets.loadImages( imageFormatInfo.getOrangeId() , 4 , 4 , 0 , 0 , 1 , 1 );
+//		}
 		if( blueImages == null )
 		{
 			blueImages = Assets.loadImages( imageFormatInfo.getBlueId() , 4 , 4 , 0 , 0 , 1 , 1 );
 		}
-		if( greenImages == null )
-		{
-			greenImages = Assets.loadImages( imageFormatInfo.getGreenId() , 4 , 4 , 0 , 0 , 1 , 1 );
-		}
+//		if( greenImages == null )
+//		{
+//			greenImages = Assets.loadImages( imageFormatInfo.getGreenId() , 4 , 4 , 0 , 0 , 1 , 1 );
+//		}
 		if( whiteImages == null )
 		{
 			whiteImages = Assets.loadImages( imageFormatInfo.getWhiteId() , 4 , 4 , 0 , 0 , 1 , 1 );
@@ -212,7 +216,7 @@ public class Medic extends BasicHealer
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@Nullable
+
     @Override
 	public Image[] getStaticImages()
 	{
@@ -234,7 +238,7 @@ public class Medic extends BasicHealer
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -252,7 +256,7 @@ public class Medic extends BasicHealer
 
 
 	@Override
-	public void loadAnimation( @NotNull @NonNull MM mm )
+	public void loadAnimation( @NotNull  MM mm )
 	{
 		if ( aliveAnim == null )
 		{
@@ -315,12 +319,12 @@ public class Medic extends BasicHealer
 		Medic.whiteImages = whiteImages;
 	}
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;

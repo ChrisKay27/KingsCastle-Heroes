@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Graphics;
@@ -18,7 +18,7 @@ public class Fire1Anim extends Anim
 	private final int staticTfb = 50;
 	private final int imageNum = 0;
 
-	public Fire1Anim( @NonNull vector loc )
+	public Fire1Anim(  vector loc )
 	{
         super(loc);
 		setImages( staticImages );
@@ -55,7 +55,7 @@ public class Fire1Anim extends Anim
 
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v )
+	public void paint(  Graphics g ,  vector v )
 	{
 		super.paint(g, v);
 
@@ -66,7 +66,7 @@ public class Fire1Anim extends Anim
 	}
 
 
-	@NonNull
+
     @Override
 	public String toString()
 	{

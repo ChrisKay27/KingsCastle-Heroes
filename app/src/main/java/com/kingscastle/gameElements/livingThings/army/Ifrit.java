@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -30,12 +30,12 @@ public class Ifrit extends MeleeSoldier {
 	private static Image[] images = Assets.loadImages( R.drawable.ifrit, 4 , 4 , 0 , 0 , 1 , 1 );
 
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -70,7 +70,7 @@ public class Ifrit extends MeleeSoldier {
 		setAQ(new AttackerQualities(staticAttackerQualities, getLQ().getBonuses()));
 	}
 
-	public Ifrit(@NonNull vector loc, Teams team){
+	public Ifrit( vector loc, Teams team){
 		super(team);
 		setLoc(loc);
 
@@ -83,7 +83,7 @@ public class Ifrit extends MeleeSoldier {
 
 
 	@Override
-	public void finalInit( @NonNull MM mm )
+	public void finalInit(  MM mm )
 
 	{
 		super.finalInit(mm);
@@ -95,7 +95,7 @@ public class Ifrit extends MeleeSoldier {
 	}
 
 	@Override
-	public void loadAnimation( @NotNull @NonNull MM mm )
+	public void loadAnimation( @NotNull  MM mm )
 	{
 		if ( aliveAnim == null )
 		{
@@ -143,7 +143,7 @@ public class Ifrit extends MeleeSoldier {
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@Nullable
+
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -168,7 +168,7 @@ public class Ifrit extends MeleeSoldier {
 	@Override
 	public void setStaticPerceivedArea(RectF staticPercArea) {
 	}
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities() {
 		return new Attributes(STATIC_ATTRIBUTES);
@@ -188,12 +188,12 @@ public class Ifrit extends MeleeSoldier {
 
 	private static final String TAG = "Knight";
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;

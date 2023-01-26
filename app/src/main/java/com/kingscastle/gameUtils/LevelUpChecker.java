@@ -16,4 +16,9 @@ public class LevelUpChecker {
         return 20;
     }
 
+    public static double getLevelPercent(int exp){
+        int level = getLevelForExp(exp);
+        return ((double)exp) / exps[level];
+    }
+
 }

@@ -3,8 +3,8 @@
  */
 package com.kingscastle.gameElements.managment;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.Log;
 
 import com.kingscastle.Game;
@@ -42,7 +42,7 @@ public class GemManager
 		gemPkg.size = gameElementsSize;
 	}
 
-	@NonNull
+
     ArrayList<GameElement> needsToBeAdded = new ArrayList<GameElement>( 100 );
 
 
@@ -119,7 +119,7 @@ public class GemManager
 	}
 
 
-	public boolean add( @Nullable GameElement ge )
+	public boolean add(  GameElement ge )
 	{
 		if( ge == null )
 		{
@@ -233,7 +233,7 @@ public class GemManager
 
 
 
-	public void saveYourself( @NonNull BufferedWriter b ) throws IOException
+	public void saveYourself(  BufferedWriter b ) throws IOException
 	{
 		//////Log.d( TAG , "Saving gems");
 		String s="<GEM>" ;

@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.movement.pathing;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.Log;
 
 import com.kingscastle.Game;
@@ -35,7 +35,7 @@ public class PathFinder
 	 * @return
 	 * @throws TimeOutException
 	 */
-	@Nullable
+
     public static Path heyINeedAPath( Grid grid , vector fromHere , vector toHere , int numberOfTilesAllowedToSearchThrough ) throws TimeOutException
 	{
 		////Log.d( TAG , "heyINeedAPath( "+ fromHere + " , " + toHere + " )");
@@ -46,8 +46,8 @@ public class PathFinder
 
 
 
-	@NonNull
-    public static Path reverse( @NonNull Path pathToReverse )
+	
+    public static Path reverse(  Path pathToReverse )
 	{
 
 		ArrayList<vector> reversedPath = new ArrayList<vector>();
@@ -63,7 +63,7 @@ public class PathFinder
 
 
 
-	public static void cleanUpPath( @Nullable Path path )
+	public static void cleanUpPath(  Path path )
 	{
 
 		if( path == null || path.size() == 0 || path.getPath() == null || path.getPath().isEmpty() )
@@ -127,7 +127,7 @@ public class PathFinder
 
 
 
-	public static int findFarthestNodeWalkable( @NonNull CD cd , vector loc , @NonNull Path newPath )
+	public static int findFarthestNodeWalkable(  CD cd , vector loc ,  Path newPath )
 	{
 		Line l = new Line( loc , null );
 		int i = 0;
@@ -145,7 +145,7 @@ public class PathFinder
 		return i > 0 ? i-1 : 0;
 	}
 
-	public static void findPath(@NonNull PathFinderParams pfp) {
+	public static void findPath( PathFinderParams pfp) {
 		findPath( pfp.grid , pfp.fromHere , pfp.toHere , pfp.pathFoundListener , pfp.mapWidthInPx,pfp.mapHeightInPx);
 	}
 
@@ -155,7 +155,7 @@ public class PathFinder
 	 * @param toHere
 	 * @param pathFoundListener
 	 */
-	public static void findPath( @NonNull final Grid grid , @Nullable final vector fromHere , @Nullable final vector toHere , @Nullable final PathFoundListener pathFoundListener , final int mapWidthInPx,final int mapHeightInPx)
+	public static void findPath(  final Grid grid ,  final vector fromHere ,  final vector toHere ,  final PathFoundListener pathFoundListener , final int mapWidthInPx,final int mapHeightInPx)
 	{
 		if( fromHere == null || toHere == null || pathFoundListener == null )
 			throw new IllegalArgumentException("fromHere == null || toHere == null || pathFoundListener == null");
@@ -210,7 +210,7 @@ public class PathFinder
 
 
 
-	public static Path getPathBetweenPoints( @NonNull Grid grid , @NonNull vector fromHere , @NonNull vector toHere ,int mapWidthInPx ,int mapHeightInPx) throws TimeOutException
+	public static Path getPathBetweenPoints(  Grid grid ,  vector fromHere ,  vector toHere ,int mapWidthInPx ,int mapHeightInPx) throws TimeOutException
 	{
 		if( ensureStartAndEndLocsAreWalkable( grid, fromHere , toHere ) )
 		{
@@ -230,7 +230,7 @@ public class PathFinder
 
 
 
-	public static Path tryToGetClearPathBetweenPoints( @NonNull CD cd , vector fromHere , vector toHere )
+	public static Path tryToGetClearPathBetweenPoints(  CD cd , vector fromHere , vector toHere )
 	{
 		ArrayList<GameElement> hitThings = cd.getLineCollisions( new Line( fromHere , toHere ) );
 
@@ -262,7 +262,7 @@ public class PathFinder
 
 
 
-	private static void testBounds(@NonNull vector fromHere, @NonNull vector toHere, int mapWidthInPx, int mapHeightInPx)
+	private static void testBounds( vector fromHere,  vector toHere, int mapWidthInPx, int mapHeightInPx)
 	{
 		if( fromHere.x < 0 || fromHere.y < 0 || fromHere.x >= mapWidthInPx || fromHere.y >= mapHeightInPx ||
 				toHere.x < 0 || toHere.y < 0 || toHere.x >= mapWidthInPx || toHere.y >= mapHeightInPx )
@@ -272,7 +272,7 @@ public class PathFinder
 	}
 
 
-	private static boolean ensureStartAndEndLocsAreWalkable( @NonNull Grid grid , @NonNull vector start , @NonNull vector end)
+	private static boolean ensureStartAndEndLocsAreWalkable(  Grid grid ,  vector start ,  vector end)
 	{
 		boolean[][] gridTiles = grid.getGridTiles();
 		final float gridSize = grid.getGridSize();
@@ -304,8 +304,8 @@ public class PathFinder
 
 
 
-	@NonNull
-    protected static vector adjustFromHere( @NonNull Grid grid , @NonNull vector fromHere )
+	
+    protected static vector adjustFromHere(  Grid grid ,  vector fromHere )
 	{
 		boolean[][] gridTiles = grid.getGridTiles();
 
@@ -342,8 +342,8 @@ public class PathFinder
 
 
 
-	public static void findPathTo(@NonNull vector loc, @NonNull RectF area, @NonNull GridUtil gUtil,
-			@NonNull PathFoundListener pathFoundListener , int mapWidthInPx, int mapHeightInPx ) {
+	public static void findPathTo( vector loc,  RectF area,  GridUtil gUtil,
+			 PathFoundListener pathFoundListener , int mapWidthInPx, int mapHeightInPx ) {
 		vector jobLocTemp = null;
 		vector mLocTemp = null;
 		try

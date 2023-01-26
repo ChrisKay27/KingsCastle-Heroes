@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.SoldierTypes;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.gameElements.livingThings.LivingThing;
@@ -23,9 +23,9 @@ import org.jetbrains.annotations.NotNull;
 public abstract class MageSoldier extends Humanoid{
 	protected static final String TAG = "MageSoldier";
 
-	@Nullable
+
     private LivingThing friendlyTarget;
-	@Nullable
+
     protected Buff buffSpell;
 
 	private long lastLookedForFriendlyTarget;
@@ -42,7 +42,7 @@ public abstract class MageSoldier extends Humanoid{
 
 
 	@Override
-	public boolean create(@NonNull MM mm) {
+	public boolean create( MM mm) {
 		boolean superCreate =  super.create(mm);
 		setupSpells();
 		return superCreate;
@@ -172,7 +172,7 @@ public abstract class MageSoldier extends Humanoid{
 	protected TargetingParams friendlyParams;
 
 
-	@Nullable
+
     LivingThing findAFriendlyTarget()
 	{
 
@@ -213,9 +213,9 @@ public abstract class MageSoldier extends Humanoid{
 			{
 				//Vector mLoc = new Vector();
 				//Vector tLoc = new Vector();
-				@NonNull
+
                 @Override
-				public CondRespon postRangeCheckCondition( @NonNull LivingThing target )
+				public CondRespon postRangeCheckCondition(  LivingThing target )
 				{
 
 					if( !buffSpell.canCastOn(target))
@@ -253,7 +253,7 @@ public abstract class MageSoldier extends Humanoid{
 
 
 
-	@Nullable
+
     private TargetingParams enemyParams;
 
 	void findATarget(boolean friendly)
@@ -289,13 +289,13 @@ public abstract class MageSoldier extends Humanoid{
 			final float myAttackRangeSquared = getAQ().getAttackRangeSquared();
 			enemyParams = new TargetingParams()
 			{
-//				@NonNull
+//
 //                vector mLoc = new vector();
-//				@NonNull
+//
 //                vector tLoc = new vector();
-				@NonNull
+
                 @Override
-				public CondRespon postRangeCheckCondition( @NonNull LivingThing target )
+				public CondRespon postRangeCheckCondition(  LivingThing target )
 				{
 					if( target.getAttacker() != null )
 						return TargetFinder.CondRespon.FALSE;
@@ -349,14 +349,14 @@ public abstract class MageSoldier extends Humanoid{
 	}
 
 	@Override
-	public void setTarget(@Nullable LivingThing nTarget) {
+	public void setTarget( LivingThing nTarget) {
 		if( nTarget != null && nTarget.getTeamName() == getTeamName() )
 			friendlyTarget = nTarget;
 		else
 			super.setTarget(nTarget);
 	}
 
-	boolean shouldIForgetAboutThisTarget(@Nullable LivingThing target)
+	boolean shouldIForgetAboutThisTarget( LivingThing target)
 	{
 		if( target == null )
 			return false;
@@ -378,7 +378,7 @@ public abstract class MageSoldier extends Humanoid{
 	}
 
 
-	@NonNull
+
     protected String buffMessage = "";
 	public String getAbilityMessage() {
 		return buffMessage;
@@ -414,16 +414,16 @@ public abstract class MageSoldier extends Humanoid{
 		return armsActed;
 	}
 
-    public void setFriendlyTarget(@Nullable LivingThing friendlyTarget) {
+    public void setFriendlyTarget( LivingThing friendlyTarget) {
 		this.friendlyTarget = friendlyTarget;
 	}
-	@Nullable
+
     public LivingThing getFriendlyTarget() {
 		return friendlyTarget;
 	}
 
 
-	public void setFriendlyAttack(@Nullable Attack atk){
+	public void setFriendlyAttack( Attack atk){
 		getAQ().setFriendlyAttack(atk);
 		if( atk instanceof BuffAttack)
 			buffSpell = ((BuffAttack)atk).getSpell();

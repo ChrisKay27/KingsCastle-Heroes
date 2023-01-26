@@ -10,14 +10,15 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ZoomControls;
@@ -35,6 +36,7 @@ import com.kingscastle.framework.implementation.AndroidFileIO;
 import com.kingscastle.framework.implementation.AndroidGraphics;
 import com.kingscastle.framework.implementation.AndroidInput;
 import com.kingscastle.framework.implementation.GameMusic;
+import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.LivingThingListenerAdapter;
 import com.kingscastle.gameElements.livingThings.buildings.Building;
@@ -79,6 +81,8 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
     private boolean over;
 
 
+
+
     public enum ScreenSize {
         Small , Normal , Large , XLarge
     }
@@ -92,7 +96,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
     private Input input;
     private AndroidFileIO fileIO;
 
-    @Nullable
+    
     private Screen screen;
 
     private final HeroesLevel level;
@@ -114,7 +118,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
 
 
 
-    public Game(@NonNull final GameActivity gameActivity, AndroidFastRenderView surface, String levelClassName, Difficulty difficulty){
+    public Game( final GameActivity gameActivity, AndroidFastRenderView surface, String levelClassName, Difficulty difficulty){
         Log.d(TAG, "new Game()");
         this.gameActivity = gameActivity;
 
@@ -198,7 +202,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
         level.addPWL(this);
         level.getMM().getTeam(Teams.BLUE).addBdl(new Team.OnBuildingDestroyedListener() {
             @Override
-            public void onBuildingDestroyed(@NonNull Building b) {
+            public void onBuildingDestroyed( Building b) {
                 if (b.isSelected()) ui.clearSelected();
             }
         });
@@ -222,7 +226,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
      * clicks the continue game button. This is used to set the use the new renderview created by the new Activity instance.
      * This method also adds listeners connecting the game to the new views so they can be updated when the game's states change.
      */
-    public void onCreate(@NonNull GameActivity gameActivity, AndroidFastRenderView surface) {
+    public void onCreate( GameActivity gameActivity, AndroidFastRenderView surface) {
         Log.d(TAG, "onCreate()");
         state = GameState.Created;
         this.gameActivity = gameActivity;
@@ -241,7 +245,13 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
         //gameActivity.findViewById(R.id.cancel_button).setOnClickListener(this);
         gameActivity.findViewById(R.id.pause_button).setOnClickListener(this);
         gameActivity.findViewById(R.id.start_button).setOnClickListener(this);
+        gameActivity.findViewById(R.id.buy_soldiers).setOnClickListener(this);
+        gameActivity.findViewById(R.id.buy_wizards).setOnClickListener(this);
+        gameActivity.findViewById(R.id.buy_healers).setOnClickListener(this);
 
+        ProgressBar progbar = gameActivity.findViewById(R.id.progressBar);
+        progbar.setMax(100);
+        //progbar.setMin(0);
 
         ui.bb.addPBSL(this);
 
@@ -276,7 +286,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
         setupConsoleInput(gameActivity);
     }
 
-    public void onStart(@NonNull final GameActivity gameActivity)
+    public void onStart( final GameActivity gameActivity)
     {
         Log.d(TAG, "onStart()");
         state = GameState.Started;
@@ -290,7 +300,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
         level.onStart();
     }
 
-    public void onResume(@NonNull final GameActivity gameActivity)
+    public void onResume( final GameActivity gameActivity)
     {
         Log.d(TAG,"onResume()");
 
@@ -305,8 +315,12 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
         level.onResume();
         renderView.onResume(Game.this);
 
-        Zoomer.setup(gameActivity, (ZoomControls) gameActivity.findViewById(R.id.zoomControls), renderView);
+        //Zoomer.setup(gameActivity, (ZoomControls) gameActivity.findViewById(R.id.zoomControls), renderView);
+        level.getHumanPlayer().getTeam().getPR().addRVCL(newGoldValue -> {
+            TextView scoreTextView = gameActivity.findViewById(R.id.gold_textview);
 
+            scoreTextView.setText( "Gold: "+ newGoldValue);
+        });
 
         int lvlWidthPx = level.getLevelWidthInPx();
         int lvlHeightPx = level.getLevelHeightInPx();
@@ -416,7 +430,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
               //  level.onPause();
                 getActivity().deleteFile(FILENAME);
                 Intent i = new Intent(getActivity(), GameOverActivity.class);
-                //i.putExtra("RoundNum", level.getRound().getRoundNum());
+                i.putExtra("RoundNum", level.getHero().getLQ().getLevel());
                 getActivity().finish();
                 getActivity().startActivity(i);
                 Log.v(TAG, "Starting game over activity!");
@@ -427,7 +441,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
 
 
     @Override
-    public void onClick(@NonNull View v) {
+    public void onClick( View v) {
         switch(v.getId()){
             case R.id.build_button:{
                 v.setVisibility(View.INVISIBLE);
@@ -479,6 +493,33 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
                 hideGameStartingText();
                 break;
             }
+            case R.id.buy_soldiers:{
+                Player player = getPlayer();
+                Cost cost = new Cost(20);
+
+                if( player.canAfford(cost) && player.spendCosts(cost))
+                    level.spawnSoldiers(10);
+
+                break;
+            }
+            case R.id.buy_wizards:{
+                Player player = getPlayer();
+                Cost cost = new Cost(50);
+
+                if( player.canAfford(cost) && player.spendCosts(cost))
+                    level.spawnWizards(10);
+
+                break;
+            }
+            case R.id.buy_healers:{
+                Player player = getPlayer();
+                Cost cost = new Cost(80);
+
+                if( player.canAfford(cost) && player.spendCosts(cost))
+                    level.spawnHealers(10);
+
+                break;
+            }
         }
     }
 
@@ -489,7 +530,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
         ValueAnimator a = ValueAnimator.ofFloat(0f,gameStartingText.getHeight());
         a.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+            public void onAnimationUpdate( ValueAnimator animation) {
                 gameStartingText.setTranslationY(gameStartingText.getTranslationY() + (Float) animation.getAnimatedValue());
             }
         });
@@ -520,7 +561,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
 
 
     @Override
-    public void onPendingBuildingSet(@Nullable Building b) {
+    public void onPendingBuildingSet( Building b) {
         if( b != null ){
             gameActivity.findViewById(R.id.build_now_button).setVisibility(View.VISIBLE);
             ui.bb.clearScrollerButtons(getActivity(), (ScrollView) gameActivity.findViewById(R.id.towers_scroll_view), (LinearLayout) gameActivity.findViewById(R.id.building_buttons));
@@ -590,7 +631,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
      * Only shows console in testing version. Sets up a listener on the edit text to be used to debug
      * The console commands are setup in the Console class.
      */
-    private void setupConsoleInput(@NonNull GameActivity gameActivity) {
+    private void setupConsoleInput( GameActivity gameActivity) {
 
         //Only used in testing version
         final EditText text = (EditText) gameActivity.findViewById(R.id.console_edittext);
@@ -619,7 +660,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
     }
 
 
-    public void setText(@NonNull final TextView tv , final String txt){
+    public void setText( final TextView tv , final String txt){
         if( uiHandler != null )
             uiHandler.post(new Runnable() {
                 @Override
@@ -650,7 +691,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
         return GameMusic.getAudio();
     }
 
-    public void setScreen( @Nullable Screen screen )
+    public void setScreen(  Screen screen )
     {
 
         if( this.screen != null )
@@ -702,11 +743,11 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
 
 
 
-    @Nullable
+    
     protected Screen getScreen() {
         return screen;
     }
-    @Nullable
+    
     public Screen getCurrentScreen() {
         return getScreen();
     }
@@ -759,7 +800,7 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
 
 
 
-    @NonNull
+    
     private ScreenSize determineScreenSize( float dpWidth , float dpHeight )
     {
         if( dpWidth >= 960 || dpHeight >= 720 )        {
@@ -782,5 +823,12 @@ public class Game implements View.OnClickListener, BuildingBuilder.OnPendingBuil
             dp = gameActivity.getResources().getDimension( R.dimen.onedp );
 
         return dp;
+    }
+
+    public void updateExpBar(double levelPercent) {
+        gameActivity.runOnUiThread(()->{
+            ProgressBar progbar = gameActivity.findViewById(R.id.progressBar);
+            progbar.setProgress((int) (levelPercent*100));
+        });
     }
 }

@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.Log;
 
 import com.kingscastle.framework.GameTime;
@@ -52,21 +52,21 @@ public class ArmyManager {
     private long refreshPartitionsAt;
 
 
-    private final LivingThing[] NW1 = new LivingThing[450];
-    private final LivingThing[] NE1 = new LivingThing[450];
-    private final LivingThing[] SW1 = new LivingThing[450];
-    private final LivingThing[] SE1 = new LivingThing[450];
+    private final LivingThing[] NW1 = new LivingThing[10000];
+    private final LivingThing[] NE1 = new LivingThing[10000];
+    private final LivingThing[] SW1 = new LivingThing[10000];
+    private final LivingThing[] SE1 = new LivingThing[10000];
 
-    private final LivingThing[] NW2 = new LivingThing[450];
-    private final LivingThing[] NE2 = new LivingThing[450];
-    private final LivingThing[] SW2 = new LivingThing[450];
-    private final LivingThing[] SE2 = new LivingThing[450];
+    private final LivingThing[] NW2 = new LivingThing[10000];
+    private final LivingThing[] NE2 = new LivingThing[10000];
+    private final LivingThing[] SW2 = new LivingThing[10000];
+    private final LivingThing[] SE2 = new LivingThing[10000];
 
-    @NonNull
+
     private final MM mm;
 
 
-    public ArmyManager(@NonNull MM mm) {
+    public ArmyManager( MM mm) {
         this.mm = mm;
     }
 
@@ -253,37 +253,34 @@ public class ArmyManager {
      * @throws WtfException if the lt is already in the army
      */
 
-    public boolean add(@NotNull final Humanoid lt, @Nullable final ManagerListener<Humanoid> onAddedListener) {
+    public boolean add(@NotNull final Humanoid lt,  final ManagerListener<Humanoid> onAddedListener) {
         synchronized(runnables) {
-            runnables.add(new Runnable() {
-                @Override
-                public void run() {
-                    if (army.contains(lt))
-                        throw new WtfException(lt + " is already inside the army list!");
+            runnables.add(() -> {
+                if (army.contains(lt))
+                    throw new WtfException(lt + " is already inside the army list!");
 
 
-                    if (lt.create(mm)) {
-                        if( !lt.hasBeenCreatedProperly() )
-                            throw new Error("You must call super.create(mm) all subclasses of game element.");
+                if (lt.create(mm)) {
+                    if( !lt.hasBeenCreatedProperly() )
+                        throw new Error("You must call super.create(mm) all subclasses of game element.");
 
-                        //long dt = System.nanoTime();
-                        synchronized (army) {
-                            //Log.d(TAG , "Add() Acquired army.monitorLock in " +(System.nanoTime()-dt) );
-                            army.add(lt);
-                            refreshPartitionsAt = 0;
-                        }
-
-                        synchronized (listeners) {
-                            Iterator<ManagerListener<Humanoid>> i = listeners.listIterator();
-                            while(i.hasNext()) {
-                                if (i.next().onAdded(lt))
-                                    i.remove();
-                            }
-                        }
-
-                        if( onAddedListener != null )
-                            onAddedListener.onAdded(lt);
+                    //long dt = System.nanoTime();
+                    synchronized (army) {
+                        //Log.d(TAG , "Add() Acquired army.monitorLock in " +(System.nanoTime()-dt) );
+                        army.add(lt);
+                        refreshPartitionsAt = 0;
                     }
+
+                    synchronized (listeners) {
+                        Iterator<ManagerListener<Humanoid>> i = listeners.listIterator();
+                        while(i.hasNext()) {
+                            if (i.next().onAdded(lt))
+                                i.remove();
+                        }
+                    }
+
+                    if( onAddedListener != null )
+                        onAddedListener.onAdded(lt);
                 }
             });
         }
@@ -355,7 +352,7 @@ public class ArmyManager {
     }
 
 
-    public void finalInit(@NonNull MM mm) {
+    public void finalInit( MM mm) {
         for (LivingThing lt : army)
             lt.create(mm);
     }

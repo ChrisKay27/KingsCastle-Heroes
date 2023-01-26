@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Graphics;
 import com.kingscastle.framework.Image;
@@ -17,7 +17,7 @@ public class AbsoluteZeroAnim extends Anim
 	private final int staticTfb = 50;
 
 
-    public AbsoluteZeroAnim( @NonNull vector loc ){
+    public AbsoluteZeroAnim(  vector loc ){
         super(loc);
 		setImages( staticImages );
 
@@ -30,7 +30,7 @@ public class AbsoluteZeroAnim extends Anim
 
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v ){
+	public void paint(  Graphics g ,  vector v ){
 		Image image = getImage();
 		if( image != null )
 			g.drawImage( image , v.x - image.getWidthDiv2() , v.y - image.getHeightDiv2() , getPaint() );

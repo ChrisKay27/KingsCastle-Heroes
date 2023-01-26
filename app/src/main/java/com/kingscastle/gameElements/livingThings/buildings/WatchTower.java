@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -34,19 +34,19 @@ public class WatchTower extends AttackingBuilding
 
 	private static final Cost cost = new Cost( 40 , 0 , 0 , 0 );
 
-	@NonNull
+
     private static final AttackerQualities staticAttackerQualities;
-	@NonNull
+
     private static final Attributes STATIC_ATTRIBUTES;
 	private static ArrayList<vector> staticDamageOffsets;
 
 
 
 
-	@NonNull
+
     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
+
     @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
@@ -105,7 +105,7 @@ public class WatchTower extends AttackingBuilding
 		loadPerceivedArea();
 	}
 
-	public WatchTower(@NonNull vector v, Teams t)
+	public WatchTower( vector v, Teams t)
 	{
 		super( name , t );
 		setLoc(v);
@@ -126,7 +126,7 @@ public class WatchTower extends AttackingBuilding
 
 
 	@Override
-	protected void addAnimationToEm(@NonNull Anim a, boolean sorted, @NonNull EffectsManager em)
+	protected void addAnimationToEm( Anim a, boolean sorted,  EffectsManager em)
 	{
 		backing.setSize(Backing.TINY);
 		super.addAnimationToEm(a, sorted, em);
@@ -254,14 +254,14 @@ public class WatchTower extends AttackingBuilding
 
 
 
-	@NonNull
+
     @Override
 	public String toString()
 	{
 		return TAG;
 	}
 
-	@NonNull
+
     @Override
 	public String getName()
 	{
@@ -281,7 +281,7 @@ public class WatchTower extends AttackingBuilding
 
 
 
-	@NonNull
+
     @Override
 	public Cost getCosts() {
 		return cost;
@@ -290,7 +290,7 @@ public class WatchTower extends AttackingBuilding
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{

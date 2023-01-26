@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.TargetingParams;
@@ -12,7 +12,7 @@ import com.kingscastle.teams.Teams;
 
 public abstract class AttackingBuilding extends Building
 {
-	@Nullable
+
     private LivingThing target;
 	private vector atkInDirVector;
 
@@ -22,7 +22,7 @@ public abstract class AttackingBuilding extends Building
 	}
 
 	@Override
-	public boolean create(@NonNull MM mm) {
+	public boolean create( MM mm) {
 		boolean superCreate = super.create(mm);
 		setupAttack();
 		return superCreate;
@@ -65,7 +65,7 @@ public abstract class AttackingBuilding extends Building
 	}
 
 	@Override
-	public void setTarget(@Nullable LivingThing nTarget) {
+	public void setTarget( LivingThing nTarget) {
 
 		target = nTarget;
 
@@ -75,7 +75,7 @@ public abstract class AttackingBuilding extends Building
 		}
 	}
 
-	@Nullable
+
 	@Override
 	public LivingThing getTarget() {
 		return target;

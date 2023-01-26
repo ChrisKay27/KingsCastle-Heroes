@@ -2,8 +2,8 @@ package com.kingscastle.gameUtils;
 
 import android.graphics.Point;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.framework.Rpg.Direction;
@@ -45,13 +45,13 @@ public class vector implements Serializable
 		this.x=x;
 		this.y=y;
 	}
-	public vector(@NonNull vector from, @NonNull vector to)
+	public vector( vector from,  vector to)
 	{
 		this(to.x-from.x,to.y-from.y);
 	}
 
 
-	public vector(@Nullable Point p)
+	public vector( Point p)
 	{
 		if( p != null )
 		{
@@ -60,7 +60,7 @@ public class vector implements Serializable
 		}
 	}
 
-	public vector(@Nullable vector p)
+	public vector( vector p)
 	{
 		if( p!=null )
 		{
@@ -70,7 +70,7 @@ public class vector implements Serializable
 	}
 
 
-	@NonNull
+
     public vector getInstance()
 	{
 		return new vector();
@@ -83,7 +83,7 @@ public class vector implements Serializable
 	}
 
 
-	@NonNull
+
     public vector clear()
 	{
 		x = 0;
@@ -126,21 +126,21 @@ public class vector implements Serializable
 		this.set((float) x,(float)y);
 	}
 
-	@NonNull
+
     public vector set(float x,float y)
 	{
 		this.x=x;this.y=y;
 		return this;
 	}
-	@NonNull
+
     public vector set(double x, double y)
 	{
 		this.x=(float) x;   this.y=(float) y;
 		return this;
 	}
 
-	@NonNull
-    public vector set(@NonNull vector v)
+
+    public vector set( vector v)
 	{
 		x=v.x;
 		y=v.y;
@@ -155,15 +155,15 @@ public class vector implements Serializable
 	{
 		this.y=y;
 	}
-	@NonNull
-    public vector minus( @NonNull vector p )
+
+    public vector minus(  vector p )
 	{
 		x -= p.x;
 		y -= p.y;
 		return this;
 	}
 
-	@NonNull
+
     public vector minus( float x2 , float y2 )
 	{
 		x -= x2;
@@ -171,7 +171,7 @@ public class vector implements Serializable
 		return this;
 	}
 
-	@NonNull
+
     public vector times(float d)
 	{
 		x*=d;
@@ -179,37 +179,37 @@ public class vector implements Serializable
 		return this;
 	}
 
-	@NonNull
+
     public vector times(int d){
 		return this.times((float) d);
 	}
 
-	@NonNull
-    public vector add(@Nullable vector p){
+
+    public vector add( vector p){
 		if(p!=null){
 			x+=p.x;y+=p.y;}
 		return this;
 	}
 
-	@NonNull
+
     public vector add(double d, double e) {
 		add((float) d, (float) e);
 		return this;
 	}
 
-	@NonNull
+
     public vector translate(float x,float y){
 		this.x+=x;this.y+=y;
 		return this;
 	}
 
-	@NonNull
+
     public vector translate(int x,int y){
 		this.x+=x;this.y+=y;
 		return this;
 	}
 
-	float dot(@NonNull vector b){
+	float dot( vector b){
 		return vector.dot(this, b);
 	}
 
@@ -228,7 +228,7 @@ public class vector implements Serializable
 		return x*x + y*y;
 	}
 
-	public float comp( @NonNull vector inDir )
+	public float comp(  vector inDir )
 	{
 		float mag = magnitude();
 		if( mag == 0 )
@@ -240,8 +240,8 @@ public class vector implements Serializable
 	}
 
 
-	@NonNull
-    public vector proj( @NonNull vector b )
+
+    public vector proj(  vector b )
 	{
 		return vector.proj(this, b);
 	}
@@ -277,7 +277,7 @@ public class vector implements Serializable
 	 * A new Vector is returned and the current vector is not mutated. The returned Vector has a magnitude of speed.
 	 * @return A new vector is returned.
 	 */
-	@NonNull
+
     public vector truncate(float speed)
 	{
 		return getHumanoidVector().times(speed);
@@ -288,7 +288,7 @@ public class vector implements Serializable
 	 * @param normalVector A vector which MUST have only a x or a y value.
 	 * @return The same vector but with the component in the same direction as the normalVector set to
 	 */
-	@NonNull
+
     public vector removeComponentInDir( @NotNull vector normalVector )
 	{
 		if( normalVector.x != 0 )
@@ -302,7 +302,7 @@ public class vector implements Serializable
 		return this;
 	}
 
-	private static float dot(@NonNull vector a, @NonNull vector b)
+	private static float dot( vector a,  vector b)
 	{
 		return 	a.x*b.x + a.y*b.y;
 	}
@@ -312,8 +312,8 @@ public class vector implements Serializable
 	 * @param a vector 'a' which is projecting onto vector 'b'
 	 * @param b vector 'b' which is being projected onto
 	 */
-	@NonNull
-    private static vector proj(@NonNull vector a, @NonNull vector b)
+
+    private static vector proj( vector a,  vector b)
 	{
 		float mag = b.magnitude();
 		if( mag == 0 )
@@ -325,8 +325,8 @@ public class vector implements Serializable
 
 
 
-	@Nullable
-    public static vector vectorBetween( @Nullable vector from , @Nullable vector to )
+
+    public static vector vectorBetween(  vector from ,  vector to )
 	{
 
 		if( from == null || to == null )
@@ -350,13 +350,13 @@ public class vector implements Serializable
 	/**
 	 * returns a new Vector object which is a vector in the direction of v but with a magnitute of 1. The vector v is not mutated.
 	 */
-	@NonNull
+
     public vector getHumanoidVector(){
 		return vector.getHumanoidVector(this);
 	}
 
-	@NonNull
-    public static vector getHumanoidVector( @NonNull vector from , @NonNull vector to )
+
+    public static vector getHumanoidVector(  vector from ,  vector to )
 	{
 		return new vector(to.x-from.x,to.y-from.y).turnIntoHumanoidVector();
 	}
@@ -369,8 +369,8 @@ public class vector implements Serializable
 	 * returns a new Vector object which is a vector in the direction of v but with a magnitute of 1. The vector v is not mutated.
 	 * @param v Vector used to create a unit vector in the same direction as v.
 	 */
-	@NonNull
-    private static vector getHumanoidVector(@NonNull vector v)
+
+    private static vector getHumanoidVector( vector v)
 	{
 		return getHumanoidVectorSqrt(v);
 	}
@@ -408,8 +408,8 @@ public class vector implements Serializable
 	 * returns a new Vector object which is a vector in the direction of v but with a magnitute of 1. The vector v is not mutated.
 	 * @param v Vector used to create a unit vector in the same direction as v.
 	 */
-	@NonNull
-    private static vector getHumanoidVectorSqrt(@NonNull vector v)
+
+    private static vector getHumanoidVectorSqrt( vector v)
 	{
 		float mag = sqrt( v.x*v.x + v.y*v.y );
 		if( mag == 0)
@@ -419,13 +419,13 @@ public class vector implements Serializable
 		return new vector( v.x/mag , v.y/mag );
 	}
 
-	@NonNull
+
     public vector normalize()
 	{
 		return turnIntoHumanoidVector();
 	}
 
-	@NonNull
+
     public vector turnIntoHumanoidVector( )
 	{
 		float mag = sqrt( x*x + y*y );
@@ -441,8 +441,8 @@ public class vector implements Serializable
 
 
 
-	@NonNull
-    public static Rpg.Direction getDirection4(@NonNull vector unitVector)
+
+    public static Rpg.Direction getDirection4( vector unitVector)
 	{
 		if( unitVector.x >= 0f )
 		{
@@ -490,8 +490,8 @@ public class vector implements Serializable
 	}
 
 
-	@NonNull
-    public static Direction getDirection8( @NonNull vector unitVector )
+
+    public static Direction getDirection8(  vector unitVector )
 	{
 		if( unitVector.x >= 0 )
 		{
@@ -551,16 +551,16 @@ public class vector implements Serializable
 
 
 
-	@NonNull
+
     @Override
 	public Object clone(){
 		return new vector(x,y);
 	}
-	@NonNull
+
     public Point toPoint(){
 		return new Point((int)x,(int)y);
 	}
-	@NonNull
+
     @Override
 	public String toString(){
 		return "Vector [x=" + x + ",y=" + y + "]";
@@ -568,7 +568,7 @@ public class vector implements Serializable
 	}
 
 
-	@NonNull
+
     public vector add(float i, float j)
 	{
 		x+=i;
@@ -580,8 +580,8 @@ public class vector implements Serializable
 
 
 
-	@NonNull
-    public static vector getAverage( @NonNull ArrayList<vector> vectors )
+
+    public static vector getAverage(  ArrayList<vector> vectors )
 	{
 
 		if( vectors.size() == 0 )
@@ -609,7 +609,7 @@ public class vector implements Serializable
 	/**
 	 * creates a new vector +- i around both the x and y coordinates
 	 */
-	@NonNull
+
     public vector randomize( float randomness )
 	{
 //		double xOffs = Math.random();
@@ -636,7 +636,7 @@ public class vector implements Serializable
 		return this;
 	}
 
-	public void randomize( float randomness , @NonNull Random rand , boolean zeroToRandomness )
+	public void randomize( float randomness ,  Random rand , boolean zeroToRandomness )
 	{
 		if( rand.nextBoolean() )
 		{
@@ -646,7 +646,7 @@ public class vector implements Serializable
 	}
 
 
-	void randomize(float randomness, @NonNull Random rand)
+	void randomize(float randomness,  Random rand)
 	{
 
 		if( rand.nextBoolean() )
@@ -667,7 +667,7 @@ public class vector implements Serializable
 	}
 
 
-	public boolean equals( @NonNull vector v )
+	public boolean equals(  vector v )
 	{
 		if( Math.abs( x - v.x ) > 0.1 || Math.abs( y -  v.y ) > 0.1 )
 		{
@@ -711,7 +711,7 @@ public class vector implements Serializable
 		return (float) y;
 	}
 
-	@Nullable
+
     public vector rotate( int deg )
 	{
 		if(deg == 90)
@@ -746,12 +746,12 @@ public class vector implements Serializable
 		}
 		return null;
 	}
-	@NonNull
+
     public vector flipAboutY() {
 		x=-x;
 		return this;
 	}
-	@NonNull
+
     public vector flipAboutX() {
 		y=-y;
 		return this;
@@ -765,7 +765,7 @@ public class vector implements Serializable
 
 	private transient vector tl , bl , tr , br , rectCenter , intersectsAt ;
 
-	public float distanceSquared( @NonNull RectF r )
+	public float distanceSquared(  RectF r )
 	{
 		if( intersectsAt == null )
 		{

@@ -1,17 +1,17 @@
 package com.kingscastle.framework.implementation;
 
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Image;
 import com.kingscastle.gameUtils.vector;
 
 
 class ScrollingBackground {
-	@Nullable
+	
     private Image image;
-	@Nullable
+	
     private vector centeredOn;
 	private final int screenWidth;
     private final int screenWidthDiv2;
@@ -26,7 +26,7 @@ class ScrollingBackground {
 	private long lastSlidImage = System.currentTimeMillis();
 	private int rightMinusWidth,rightMinusWidthDiv2,bottomMinusHeight,bottomMinusHeightDiv2;
 	
-	public ScrollingBackground(Image img, @Nullable vector centeredOn,int screenWidth,int screenHeight)
+	public ScrollingBackground(Image img,  vector centeredOn,int screenWidth,int screenHeight)
 	{
 		image=img;this.centeredOn=centeredOn;this.screenWidth=screenWidth;this.screenHeight=screenHeight;
 		screenWidthDiv2=screenWidth/2;screenHeightDiv2=screenHeight/2;
@@ -113,12 +113,12 @@ class ScrollingBackground {
 			autoScrolling=false;
 		}		
 	}
-	@NonNull
+
     public vector getCoordinatesMapToScreen(float x, float y) {
 		return new vector((x - centeredOn.getX() + screenWidthDiv2), (y - centeredOn.getY() + screenHeightDiv2));
 	}
 
-	@NonNull
+
     public vector getCoordinatesScreenToMap(float x, float y) {
 		return new vector(x - (screenWidthDiv2)
 				+ centeredOn.getX(), (y - screenHeightDiv2)
@@ -158,17 +158,17 @@ class ScrollingBackground {
 		this.slideEvery = sliderEvery;
 	}
 	
-	@Nullable
+	
     public Image getImage() {
 		return image;
 	}
-	public void setImage(@Nullable Image image) {
+	public void setImage( Image image) {
 		if(image!=null){
 			rightMinusWidth=image.getWidth()-screenWidth;bottomMinusHeight=image.getHeight()-screenHeight;
 		}
 		this.image = image;
 	}
-	@Nullable
+	
     public vector getCenteredOn() {
 		if(lastSlidImage+slideEvery< System.currentTimeMillis()){
 			if(scrolledByX==0&&scrolledByY==0)
@@ -206,7 +206,7 @@ class ScrollingBackground {
 		}
 		return centeredOn;
 	} 
-	public void setCenteredOn(@Nullable vector centeredOn) {
+	public void setCenteredOn( vector centeredOn) {
 		if(centeredOn==null) return;
 		this.centeredOn.set(centeredOn);
 		adjustCenteredOn();

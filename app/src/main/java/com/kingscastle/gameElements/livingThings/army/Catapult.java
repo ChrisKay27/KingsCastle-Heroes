@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.GameTime;
@@ -40,7 +40,7 @@ public class Catapult extends AdvancedRangedSoldier
 	public static Image[] southImages;
 	public static Image[] westImages ;
 
-	@NonNull
+
     public static final Image[] movingImages;
 	public static final long animsFramePeriod = 20;
 
@@ -48,12 +48,12 @@ public class Catapult extends AdvancedRangedSoldier
 
 	//private static final int imageId = R.drawable.catapult;
 
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                   @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 
@@ -123,7 +123,7 @@ public class Catapult extends AdvancedRangedSoldier
 	}
 
 
-	public Catapult( @NonNull vector loc, Teams team ){
+	public Catapult(  vector loc, Teams team ){
 		super(team);
 		setLoc(loc);
 		setTeam(team);
@@ -156,7 +156,7 @@ public class Catapult extends AdvancedRangedSoldier
 	}
 
 	@Override
-	public void loadAnimation( @NotNull @NonNull MM mm )
+	public void loadAnimation( @NotNull  MM mm )
 	{
 		if ( aliveAnim == null )
 		{
@@ -197,7 +197,7 @@ public class Catapult extends AdvancedRangedSoldier
 					}
 				}
 
-				private Image[] getImagesForDir( @NonNull Direction lookDir )
+				private Image[] getImagesForDir(  Direction lookDir )
 				{
 
 					switch( lookDir )
@@ -244,7 +244,7 @@ public class Catapult extends AdvancedRangedSoldier
 
 
 	@Override
-	public void finalInit( @NonNull MM mm )
+	public void finalInit(  MM mm )
 	{
 		super.finalInit( mm );
 
@@ -264,7 +264,7 @@ public class Catapult extends AdvancedRangedSoldier
 				}
 			}
 			@Override
-			public boolean attack( @NonNull LivingThing target )
+			public boolean attack(  LivingThing target )
 			{
 				doAttackAt = GameTime.getTime() + animsFramePeriod*8;
 				this.target = target;
@@ -285,7 +285,7 @@ public class Catapult extends AdvancedRangedSoldier
 
 
 
-	@NonNull
+
     @Override
 	public Image[] getImages()
 	{
@@ -303,7 +303,7 @@ public class Catapult extends AdvancedRangedSoldier
 	 * DO NOT LOAD THE IMAGES HERE, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@NonNull
+
     @Override
 	public Image[] getStaticImages() {
 		return movingImages;
@@ -345,7 +345,7 @@ public class Catapult extends AdvancedRangedSoldier
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -363,12 +363,12 @@ public class Catapult extends AdvancedRangedSoldier
 		Catapult.cost = cost;
 	}
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return NAME;

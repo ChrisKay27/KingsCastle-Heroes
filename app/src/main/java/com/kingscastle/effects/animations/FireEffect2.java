@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Graphics;
@@ -14,11 +14,11 @@ import java.util.List;
 
 public class FireEffect2 extends Anim {
 
-	@NonNull
+
     private static final List<Image> staticImages = Assets.loadAnimationImages(R.drawable.fire_effect_002, 5, 6);
 	private final int staticTfb=40;
 
-	public FireEffect2(@NonNull vector loc){
+	public FireEffect2( vector loc){
         super( loc );
         setImages(staticImages);
 		setTbf(staticTfb);
@@ -26,7 +26,7 @@ public class FireEffect2 extends Anim {
 	}
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v )
+	public void paint(  Graphics g ,  vector v )
 	{
 		Image image = getImage();
 		if( image != null )

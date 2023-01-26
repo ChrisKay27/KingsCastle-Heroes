@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.Game;
@@ -29,10 +29,10 @@ public class StorageDepot extends Building
 
 	private static final Cost costs = new Cost( 100 , 0 , 100 , 0 );
 
-	@NonNull
+
     private static final Attributes STATIC_ATTRIBUTES;
 
-	@NonNull
+
     @Override
 	protected Attributes getStaticLQ() {
 		return STATIC_ATTRIBUTES;
@@ -121,7 +121,7 @@ public class StorageDepot extends Building
 		return deadImage;
 	}
 
-	@NonNull
+
     @Override
 	public Cost getCosts() {
 		return costs;
@@ -166,7 +166,7 @@ public class StorageDepot extends Building
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{

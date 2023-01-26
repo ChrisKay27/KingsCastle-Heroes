@@ -5,7 +5,7 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.Game;
@@ -209,7 +209,7 @@ public abstract class Rpg
 		{
 			return dir;
 		}
-		@NonNull
+
         public Direction opposite()
 		{
 			switch(this){
@@ -224,7 +224,7 @@ public abstract class Rpg
 			}
 			return E;
 		}
-		@NonNull
+
         public Direction CW90(){
 			switch(this){
 			case E:return S;
@@ -238,15 +238,15 @@ public abstract class Rpg
 			}
 			return E;
 		}
-		@NonNull
+
         public Direction CCW90() {
 			return this.CW90();
 		}
-		@NonNull
+
         public Direction CW180() {
 			return this.CW90().CW90();
 		}
-		@NonNull
+
         public Direction flipAboutNSAxis(){
 			switch(this){
 			case E:return W;
@@ -378,10 +378,10 @@ public abstract class Rpg
 
 
 
-	public static void applyDTFont( @NonNull Paint p ){
+	public static void applyDTFont(  Paint p ){
 		p.setTypeface( getDemonicTale() );
 	}
-	public static void applyCooperBlackFont( @NonNull Paint p ){
+	public static void applyCooperBlackFont(  Paint p ){
 		p.setTypeface( getCooperBlack() );
 	}
 

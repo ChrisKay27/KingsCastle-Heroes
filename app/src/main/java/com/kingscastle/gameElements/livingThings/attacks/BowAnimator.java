@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -49,11 +49,11 @@ public class BowAnimator extends AttackAnimator
 
 	private Projectile nextArrow;
 
-	@NonNull
+
     private final ProjectileParams nextArrowParams;
 
 
-	public BowAnimator(Humanoid owner, @NonNull BowTypes bowType)
+	public BowAnimator(Humanoid owner,  BowTypes bowType)
 	{
 		super(owner,9);
 		loadImages( bowType );
@@ -137,7 +137,7 @@ public class BowAnimator extends AttackAnimator
 
 
 
-	private void loadImages( @NonNull BowTypes bowType )
+	private void loadImages(  BowTypes bowType )
 	{
 
 		switch(bowType)

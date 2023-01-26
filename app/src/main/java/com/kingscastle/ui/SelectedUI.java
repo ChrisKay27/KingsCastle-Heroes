@@ -8,8 +8,8 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -59,7 +59,7 @@ public class SelectedUI
 	public RelativeLayout selectedUIView;
 
 
-	@Nullable
+
     private String buttonsId;
 
 
@@ -77,14 +77,14 @@ public class SelectedUI
 	private final RectF cancelArea = new RectF();
 
 
-	@NonNull
+
     private final UI ui;
-	@NonNull
+
     private final MM mm;
 
-	@NonNull
+
     final RushBuilding rusher;
-	@NonNull
+
     final InfoDisplay infDisplay;
 
     private boolean showTitle = false;
@@ -200,7 +200,7 @@ public class SelectedUI
 
 
 
-	public synchronized void setSelected( @Nullable final GameElement selGe  )	{
+	public synchronized void setSelected(  final GameElement selGe  )	{
         if( disabled ) return;
 //		if( selGe != null )
 //			setSelectedThings( null );
@@ -258,7 +258,7 @@ public class SelectedUI
 		}
 	}
 
-    private void openSelectedUIView(@Nullable final GameElement selHumanoid , @Nullable final List<? extends GameElement> selecteds ) {
+    private void openSelectedUIView( final GameElement selHumanoid ,  final List<? extends GameElement> selecteds ) {
 
         if( selHumanoid == null && (selecteds == null || selecteds.isEmpty() )) return;
 
@@ -382,7 +382,7 @@ public class SelectedUI
                     ValueAnimator animation = ValueAnimator.ofFloat(0f, 1f);
                     animation.addUpdateListener(new AnimatorUpdateListener() {
                         @Override
-                        public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+                        public void onAnimationUpdate( ValueAnimator animation) {
                             selTitle.setAlpha((Float) animation.getAnimatedValue());
                             selTitle2.setAlpha((Float) animation.getAnimatedValue());
                             selTitle3.setAlpha((Float) animation.getAnimatedValue());
@@ -424,7 +424,7 @@ public class SelectedUI
                             ValueAnimator animation = ValueAnimator.ofFloat( 75*Rpg.getDp() , 0f );
                             animation.addUpdateListener(new AnimatorUpdateListener() {
                                 @Override
-                                public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+                                public void onAnimationUpdate( ValueAnimator animation) {
                                     info.setY(origY + (Float) animation.getAnimatedValue());
                                 }
                             });
@@ -435,7 +435,7 @@ public class SelectedUI
                             ValueAnimator alphaAnimation = ValueAnimator.ofFloat( 0f , 1f );
                             alphaAnimation.addUpdateListener(new AnimatorUpdateListener() {
                                 @Override
-                                public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+                                public void onAnimationUpdate( ValueAnimator animation) {
                                     info.setAlpha((Float) animation.getAnimatedValue());
                                 }
                             });
@@ -448,7 +448,7 @@ public class SelectedUI
                             ValueAnimator animation = ValueAnimator.ofFloat( 75*Rpg.getDp() , 0f );
                             animation.addUpdateListener(new AnimatorUpdateListener() {
                                 @Override
-                                public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+                                public void onAnimationUpdate( ValueAnimator animation) {
                                     closeSelDisplay.setY(origY + (Float) animation.getAnimatedValue());
                                 }
                             });
@@ -458,7 +458,7 @@ public class SelectedUI
                             ValueAnimator alphaAnimation = ValueAnimator.ofFloat( 0f , 1f );
                             alphaAnimation.addUpdateListener(new AnimatorUpdateListener() {
                                 @Override
-                                public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+                                public void onAnimationUpdate( ValueAnimator animation) {
                                     closeSelDisplay.setAlpha((Float) animation.getAnimatedValue());
                                 }
                             });
@@ -552,8 +552,8 @@ public class SelectedUI
 	/**
 	 * Overrideable
 	 */
-	@NonNull
-    protected Mover createMover(vector tcLoc , int tcLevel , @NonNull Moveable m, CD cd, CoordConverter cc, GridUtil gUtil) {
+
+    protected Mover createMover(vector tcLoc , int tcLevel ,  Moveable m, CD cd, CoordConverter cc, GridUtil gUtil) {
 		return new Mover( cd , cc , gUtil , m , tcLoc , Float.MAX_VALUE  );
 	}
 
@@ -716,14 +716,14 @@ public class SelectedUI
 
 
 
-	protected void setText(String text, @NonNull TextView... tvs) {
+	protected void setText(String text,  TextView... tvs) {
 		for( int i = 0 ; i < tvs.length ; ++i )
 			tvs[i].setText(text);
 	}
 
 
 
-	protected boolean areBuildings(@Nullable ArrayList<? extends GameElement> selecteds) {
+	protected boolean areBuildings( ArrayList<? extends GameElement> selecteds) {
 		if( selecteds == null || selecteds.isEmpty() )
 			return false;
 		else
@@ -731,7 +731,7 @@ public class SelectedUI
 	}
 
 
-	@Nullable
+
     private final OnClickListener openInfoView = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -758,7 +758,7 @@ public class SelectedUI
 
 	private boolean busy = false;
 
-	public void displayTheseInRightScroller( @Nullable final List<? extends SButton> arrayList, @Nullable final String buttonsId) {
+	public void displayTheseInRightScroller(  final List<? extends SButton> arrayList,  final String buttonsId) {
 		if( arrayList == null || buttonsId == null ){
 			//Log.e( TAG , "displayTheseInRightScroller( "+arrayList+" , buttonsId=" + buttonsId );
 			return;
@@ -788,7 +788,7 @@ public class SelectedUI
 						ValueAnimator animation = ValueAnimator.ofFloat(0f, 75 * Rpg.getDp());
 						animation.addUpdateListener(new AnimatorUpdateListener() {
 							@Override
-							public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+							public void onAnimationUpdate( ValueAnimator animation) {
 								////Log.d( TAG , "sl.getX()= " + scrollerLayout.getX() + " sl.getY()= " + scrollerLayout.getY() );
 
 								scrollerLayout.setTranslationX((Float) animation.getAnimatedValue());
@@ -874,7 +874,7 @@ public class SelectedUI
 					ValueAnimator animation = ValueAnimator.ofFloat(0f, 75 * Rpg.getDp());
 					animation.addUpdateListener(new AnimatorUpdateListener() {
 						@Override
-						public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+						public void onAnimationUpdate( ValueAnimator animation) {
 							////Log.d( TAG , "sl.getX()= " + scrollerLayout.getX() + " sl.getY()= " + scrollerLayout.getY() );
 							scrollerLayout.setX((Float) animation.getAnimatedValue());
 						}
@@ -892,7 +892,7 @@ public class SelectedUI
 		});
 	}
 
-	public void hideMyScrollerButtons( @NonNull String tag2) {
+	public void hideMyScrollerButtons(  String tag2) {
 		if( tag2.equals(buttonsId) )
 			clearScrollerButtons();
 	}
@@ -902,7 +902,7 @@ public class SelectedUI
 
 
 
-	@Nullable
+
     public String getButtonsId() {
 		return buttonsId;
 	}
@@ -930,7 +930,7 @@ public class SelectedUI
 				ValueAnimator animation2 = ValueAnimator.ofFloat(build.getHeight(), 0f);
 				animation2.addUpdateListener(new AnimatorUpdateListener() {
 					@Override
-					public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+					public void onAnimationUpdate( ValueAnimator animation) {
 						build.setTranslationY((Float) animation.getAnimatedValue());
 					}
 				});
@@ -985,7 +985,7 @@ public class SelectedUI
 					ValueAnimator animation2 = ValueAnimator.ofFloat(cancel.getHeight(), 0f);
 					animation2.addUpdateListener(new AnimatorUpdateListener() {
 						@Override
-						public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+						public void onAnimationUpdate( ValueAnimator animation) {
 							cancel.setTranslationY((Float) animation.getAnimatedValue());
 						}
 					});
@@ -1009,7 +1009,7 @@ public class SelectedUI
 					ValueAnimator animation = ValueAnimator.ofFloat(0f, cancelArea.height() + 15 * Rpg.getDp());
 					animation.addUpdateListener(new AnimatorUpdateListener() {
 						@Override
-						public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+						public void onAnimationUpdate( ValueAnimator animation) {
 							cancel.setTranslationY((Float) animation.getAnimatedValue());
 						}
 					});
@@ -1034,7 +1034,7 @@ public class SelectedUI
 
 
 
-	@NonNull
+
     public InfoDisplay getInfDisplay() {
 		return infDisplay;
 	}
@@ -1071,7 +1071,7 @@ public class SelectedUI
 
 
 
-	@Nullable
+
     private final Runnable hide = new Runnable(){
 		@Override
 		public void run() {
@@ -1088,7 +1088,7 @@ public class SelectedUI
 //						ValueAnimator animation = ValueAnimator.ofFloat( 0f ,infoButtonArea.height()+Rpg.tenDp   );
 //						animation.addUpdateListener(new AnimatorUpdateListener() {
 //							@Override
-//							public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+//							public void onAnimationUpdate( ValueAnimator animation) {
 //								info.setTranslationY( (Float) animation.getAnimatedValue() );
 //							}
 //						});
@@ -1107,7 +1107,7 @@ public class SelectedUI
 						ValueAnimator animation = ValueAnimator.ofFloat( 0f ,infoButtonArea.height()+Rpg.tenDp   );
 						animation.addUpdateListener(new AnimatorUpdateListener() {
 							@Override
-							public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+							public void onAnimationUpdate( ValueAnimator animation) {
 								finish.setTranslationY((Float) animation.getAnimatedValue());
 							}
 						});
@@ -1125,7 +1125,7 @@ public class SelectedUI
 						ValueAnimator animation = ValueAnimator.ofFloat( 0f , infoButtonArea.height() +Rpg.tenDp  );
 						animation.addUpdateListener(new AnimatorUpdateListener() {
 							@Override
-							public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+							public void onAnimationUpdate( ValueAnimator animation) {
 								closeSelDisplay.setTranslationY( (Float) animation.getAnimatedValue());
 							}
 						});
@@ -1152,7 +1152,7 @@ public class SelectedUI
 //						ValueAnimator animation = ValueAnimator.ofFloat( infoButtonArea.height() +Rpg.tenDp , 0f );
 //						animation.addUpdateListener(new AnimatorUpdateListener() {
 //							@Override
-//							public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+//							public void onAnimationUpdate( ValueAnimator animation) {
 //								buildButton.setTranslationY( (Float) animation.getAnimatedValue());
 //							}
 //						});
@@ -1183,7 +1183,7 @@ public class SelectedUI
 		}
 	}
 
-	@Nullable
+
     private final Runnable disappear = new Runnable(){
 		@Override
 		public void run() {
@@ -1199,7 +1199,7 @@ public class SelectedUI
 						ValueAnimator animation = ValueAnimator.ofFloat( 0f ,infoButtonArea.height()+Rpg.tenDp   );
 						animation.addUpdateListener(new AnimatorUpdateListener() {
 							@Override
-							public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+							public void onAnimationUpdate( ValueAnimator animation) {
 								info.setY(origY + (Float) animation.getAnimatedValue());
 							}
 						});
@@ -1218,7 +1218,7 @@ public class SelectedUI
 						ValueAnimator animation = ValueAnimator.ofFloat( 0f ,infoButtonArea.height()+Rpg.tenDp   );
 						animation.addUpdateListener(new AnimatorUpdateListener() {
 							@Override
-							public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+							public void onAnimationUpdate( ValueAnimator animation) {
 								finish.setY(origY + (Float) animation.getAnimatedValue());
 							}
 						});
@@ -1237,7 +1237,7 @@ public class SelectedUI
 						ValueAnimator animation = ValueAnimator.ofFloat( 0f ,infoButtonArea.height() +Rpg.tenDp  );
 						animation.addUpdateListener(new AnimatorUpdateListener() {
 							@Override
-							public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+							public void onAnimationUpdate( ValueAnimator animation) {
 								closeSelDisplay.setY(origY + (Float) animation.getAnimatedValue());
 							}
 						});

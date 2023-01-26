@@ -18,7 +18,7 @@ public class SoldierController implements TouchEventAnalyzer, Paintable {
     private final UI ui;
     private final AbilityCaster ac;
     private final ThumbStick leftThumbStick;
-
+    private final ThumbStick rightThumbStick;
 
 
     public SoldierController(final UI ui, AbilityCaster ac) {
@@ -32,7 +32,7 @@ public class SoldierController implements TouchEventAnalyzer, Paintable {
           touch listener on the surface view to not receive touch events
          */
         final vector boundsOffs = new vector();
-        final int thumbStickWidth = (int) (150 * dp), thumbsStickHeight = (int) (150 * dp);
+        final int thumbStickWidth = (int) (250 * dp), thumbsStickHeight = (int) (250 * dp);
 
         final Rect bounds = new Rect(0, ui.getScreenHeight() - thumbStickWidth, thumbsStickHeight, ui.getScreenHeight());
         Zoomer.addZlcl(new Zoomer.onZoomLevelChangedListener() {
@@ -63,7 +63,26 @@ public class SoldierController implements TouchEventAnalyzer, Paintable {
             }
         });
 
+        final vector boundsOffs2 = new vector();
+        final Rect bounds2 = new Rect(ui.getScreenWidth()-thumbStickWidth, ui.getScreenHeight() - thumbsStickHeight, ui.getScreenWidth(), ui.getScreenHeight());
+        rightThumbStick = new ThumbStick(bounds2, boundsOffs2);
+        rightThumbStick.setTsl( new ThumbStick.ThumbStickListener() {
+            @Override
+            public void thumbStickPositionChanged(vector position) {
+                Humanoid u = ui.getSelectedHumanoid();
+                //Log.d( TAG , "left thumbStickPositionChanged: " + position);
+                //ui.selectedThings.getSelectedHumanoid().moveInDirection(position);
 
+                //            ui.getCoordsMapToScreen(u.loc, temp);
+//            temp.x = e.x - temp.x;
+//            temp.y = e.y - temp.y;
+                u.attackOnceInDirection(position);
+            }
+            @Override
+            public void thumbLeftThumbStick() {
+                ui.selectedThings.getSelectedHumanoid().stopMovingInDirection();
+            }
+        });
     }
 
     private final vector temp = new vector();
@@ -84,10 +103,14 @@ public class SoldierController implements TouchEventAnalyzer, Paintable {
             if( usedUpTouchEvent )
                 return true;
 
-            ui.getCoordsMapToScreen(u.loc, temp);
-            temp.x = e.x - temp.x;
-            temp.y = e.y - temp.y;
-            u.attackOnceInDirection(temp);
+            usedUpTouchEvent = rightThumbStick.analyzeTouchEvent(e);
+            if( usedUpTouchEvent )
+                return true;
+
+//            ui.getCoordsMapToScreen(u.loc, temp);
+//            temp.x = e.x - temp.x;
+//            temp.y = e.y - temp.y;
+//            u.attackOnceInDirection(temp);
 
             return true;
         }
@@ -98,6 +121,7 @@ public class SoldierController implements TouchEventAnalyzer, Paintable {
     @Override
     public void paint(Graphics g) {
         leftThumbStick.paint(g);
+        rightThumbStick.paint(g);
     }
 
 

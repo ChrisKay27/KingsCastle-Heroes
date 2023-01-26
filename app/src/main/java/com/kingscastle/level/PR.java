@@ -1,7 +1,7 @@
 package com.kingscastle.level;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.teams.RT;
@@ -17,7 +17,7 @@ public class PR
 	private int maxGold = Integer.MAX_VALUE, maxFood= Integer.MAX_VALUE, maxWood= Integer.MAX_VALUE, popMax = Integer.MAX_VALUE ;
 	private int gold , food , wood , md = 100 , popCurr;
 
-	@NonNull
+
     private String popString = "";
 
 	public PR(){}
@@ -30,7 +30,7 @@ public class PR
 		gold=g;food=f;wood=w;md = m;
 	}
 
-	public PR(@Nullable PR pr) {
+	public PR( PR pr) {
 		if( pr == null ){
 			//Log.e(TAG ,  "PR(pr) && pr == null ");
 			return;
@@ -43,7 +43,7 @@ public class PR
 		updatePopCostString();
 	}
 
-	public synchronized void set(@Nullable PR pr) {
+	public synchronized void set( PR pr) {
 		if( pr == null ){
 			//Log.e(TAG ,  "set(pr) && pr == null ");
 			return;
@@ -134,7 +134,7 @@ public class PR
 		updatePopCostString();
 	}
 
-	public synchronized boolean canAfford(@Nullable Cost cost)
+	public synchronized boolean canAfford( Cost cost)
 	{
 		if( cost == null )
 			return true;
@@ -160,7 +160,7 @@ public class PR
 		return true;
 	}
 
-	public synchronized boolean canAfford(@Nullable RT type, int res) {
+	public synchronized boolean canAfford( RT type, int res) {
 		if( type == null )
 			return false;
 
@@ -170,12 +170,12 @@ public class PR
 		default:		  return false;
 		}
 	}
-	public boolean canAffordIgnorePop(@Nullable Cost cost) {
+	public boolean canAffordIgnorePop( Cost cost) {
 		if( cost == null ) return true;
 
 		return wood >= cost.getWoodCost() && food >= cost.getFoodCost() && gold >= cost.getGoldCost() && md >= cost.getMagicDustCost();
 	}
-	public synchronized void refund( @Nullable Cost costs )
+	public synchronized void refund(  Cost costs )
 	{
 		if( costs == null ){
 			//Log.e(TAG ,  "refund(Cost costs) && costs == null ");
@@ -186,7 +186,7 @@ public class PR
 	}
 
 
-	public synchronized boolean spend( @Nullable Cost costs )
+	public synchronized boolean spend( Cost costs )
 	{
 		if( costs == null ){
 			throw new IllegalArgumentException("Costs cannot be null");
@@ -213,7 +213,7 @@ public class PR
 
 
 
-	public synchronized void saveYourSelf( @NonNull BufferedWriter b ) throws IOException
+	public synchronized void saveYourSelf(  BufferedWriter b ) throws IOException
 	{
 		String s = "<PersonalResources gold=\"" + gold + "\" food=\"" + food + "\" wood=\"" + wood + "\" magicEssenses=\"" + md +
 				"\" popCurrent =\"" + popCurr + "\" popMax =\"" + popMax + "\" />";
@@ -229,7 +229,7 @@ public class PR
 	{
 		add( RT.GOLD , gold );
 	}
-	public synchronized void add( @Nullable RT resourceType , int amount )
+	public synchronized void add(  RT resourceType , int amount )
 	{
 		if( amount < 1 || resourceType == null )
 			return;
@@ -252,7 +252,7 @@ public class PR
 			break;
 		}
 	}
-	public void add(@NonNull Cost c) {
+	public void add( Cost c) {
 		add( RT.GOLD , c.getGoldCost() );
 	}
 
@@ -287,7 +287,7 @@ public class PR
 		popString = popCurr + "/" + popMax;
 	}
 
-	@NonNull
+
     public synchronized String getPopulationAvailable()
 	{
 		return popString;
@@ -297,7 +297,7 @@ public class PR
 	 * adds gold,food and wood.
 	 * @param pr
 	 */
-	public synchronized void add(@Nullable PR pr) {
+	public synchronized void add( PR pr) {
 		if( pr == null ){
 			//Log.e(TAG ,  "add(PR pr) && pr == null ");
 			return;
@@ -334,7 +334,7 @@ public class PR
 
 
 
-	public synchronized boolean spend(@Nullable RT type, int res) {
+	public synchronized boolean spend( RT type, int res) {
 		if( res < 1 || type == null )
 			return false;
 
@@ -356,7 +356,7 @@ public class PR
 	}
 
 
-	public synchronized boolean isFullOn(@Nullable RT type) {
+	public synchronized boolean isFullOn( RT type) {
 		if( type == null )
 			return true;
 
@@ -373,11 +373,11 @@ public class PR
 
 
 
-	@NonNull
+
     public String toResString(){
 		return "Gold " + gold + "/" + maxGold + ", Food " + food + "/" + maxFood + ", Wood " + wood + "/" + maxWood;
 	}
-	@NonNull
+
     @Override
 	public String toString(){
 		return "Gold " + gold + "/" + maxGold + ", Food " + food + "/" + maxFood + ", Wood " + wood + "/" + maxWood + ", Magic Dusts " + md + ", Pop " + popCurr + "/" + popMax;

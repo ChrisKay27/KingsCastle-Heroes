@@ -1,6 +1,6 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -32,7 +32,7 @@ public class FireDOT extends DOTBuff {
 
 
     @Override
-    public void refresh(@NonNull EffectsManager em) {
+    public void refresh( EffectsManager em) {
         super.refresh(em);
         em.add(new TorchLightAnim(getTarget().loc));
     }
@@ -49,14 +49,14 @@ public class FireDOT extends DOTBuff {
         mm.getEm().add(anim2);
     }
 
-    @NonNull
+
     @Override
     public Ability newInstance(@NotNull LivingThing target)    {
         return new FireDOT(getCaster(),target,getDamage());
     }
 
 
-    @NonNull
+
     @Override
     public String toString() {
         return TAG;

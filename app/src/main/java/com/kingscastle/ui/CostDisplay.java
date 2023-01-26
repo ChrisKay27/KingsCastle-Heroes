@@ -2,8 +2,8 @@ package com.kingscastle.ui;
 
 
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Graphics;
 import com.kingscastle.framework.Settings;
@@ -16,7 +16,7 @@ public class CostDisplay
 
 	private static Paint whiteRight , yellowRight , redRight , greyRight , brownRight , purpleRight , orangeRight;
 
-	@Nullable
+
     private Cost costToDisplay;
 	private String namePlusCosts;
 
@@ -41,7 +41,7 @@ public class CostDisplay
 
 
 
-	public void paint( @NonNull Graphics g )
+	public void paint(  Graphics g )
 	{
 		if ( costToDisplay == null )
 			return;
@@ -54,7 +54,7 @@ public class CostDisplay
 	private static final String gold = "Gold:" , food = "Food:"  , wood = "Wood:"  , metal = "Metal:" ,  magicEssenses = "MagicEssense:" , pop = "Pop:";
 
 
-	private void drawCosts( @NonNull Graphics g , @NonNull Cost costToDisplay )
+	private void drawCosts(  Graphics g ,  Cost costToDisplay )
 	{
 
 		float y = yOffs;
@@ -139,13 +139,13 @@ public class CostDisplay
 	}
 
 
-	@Nullable
+
     public Cost getCostToDisplay() {
 		return costToDisplay;
 	}
 
 
-	public void setCostToDisplay( @Nullable Cost costToDisplay )
+	public void setCostToDisplay(  Cost costToDisplay )
 	{
 		if( !Settings.mapEditingMode )
 		{

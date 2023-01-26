@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -27,12 +27,12 @@ public class HumanScout extends BasicRangedSoldier
 	private static Image[] staticImages , redImages , blueImages , greenImages , orangeImages , whiteImages ;
 	private static ImageFormatInfo imageFormatInfo;
 
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+	
+    private static final Attributes STATIC_ATTRIBUTES; 
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+	
+    private static final AttackerQualities staticAttackerQualities; 
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	private static Cost cost = new Cost( 50 , 50 , 50 , 1 );
@@ -73,7 +73,7 @@ public class HumanScout extends BasicRangedSoldier
 		setAQ( new AttackerQualities( staticAttackerQualities,getLQ().getBonuses() ) );
 	}
 
-	public HumanScout( @NonNull vector loc, Teams team )
+	public HumanScout(  vector loc, Teams team )
 
 	{super(team);
 	setLoc(loc);
@@ -211,7 +211,7 @@ public class HumanScout extends BasicRangedSoldier
 
 
 
-	@NonNull
+	
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -229,12 +229,12 @@ public class HumanScout extends BasicRangedSoldier
 		HumanScout.cost = cost;
 	}
 
-	@NonNull
+	
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+	
     @Override
 	public String getName() {
 		return TAG;

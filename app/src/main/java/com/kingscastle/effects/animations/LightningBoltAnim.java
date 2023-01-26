@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -15,7 +15,7 @@ public class LightningBoltAnim extends Anim {
 	private static final List<Image> staticImages = Assets.loadAnimationImages(R.drawable.lightning_bolt, 5, 4);
 	private final int staticTfb=50;
 
-	public LightningBoltAnim(@NonNull vector loc){
+	public LightningBoltAnim( vector loc){
         super(loc);
 
         setImages(staticImages);

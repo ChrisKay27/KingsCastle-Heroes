@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.effects.EffectsManager;
@@ -40,20 +40,20 @@ public class StoneTower extends AttackingBuilding
 	private static final Cost cost = new Cost ( 1000 , 0 , 500 , 0 );
 
 
-	@NonNull
+
     private static final AttackerQualities staticAttackerQualities;
-	@NonNull
+
     private static final Attributes STATIC_ATTRIBUTES;
 
 	private static ArrayList<vector> staticDamageOffsets;
 
-	@NonNull
+
     @Override
 	protected AttackerQualities getStaticAQ() {
 		return staticAttackerQualities;
 	}
 
-	@NonNull
+
     @Override
 	protected Attributes getStaticLQ() {
 		return STATIC_ATTRIBUTES;
@@ -104,7 +104,7 @@ public class StoneTower extends AttackingBuilding
 		super( name , null );
 	}
 
-	public StoneTower( @NonNull vector v , Teams t )
+	public StoneTower(  vector v , Teams t )
 	{
 		super( name , t );
 		setTeam( t );
@@ -117,7 +117,7 @@ public class StoneTower extends AttackingBuilding
 
 	}
 	@Override
-	public boolean create(@NonNull MM mm) {
+	public boolean create( MM mm) {
 		getAQ().setCurrentAttack( new ProjectileAttack( mm , this , new Arrow() ) ) ;
 		return super.create(mm);
 	}
@@ -134,7 +134,7 @@ public class StoneTower extends AttackingBuilding
 	}
 
 	@Override
-	protected void addAnimationToEm(@NonNull Anim a, boolean sorted, @NonNull EffectsManager em)
+	protected void addAnimationToEm( Anim a, boolean sorted,  EffectsManager em)
 	{
 		em.add( a , true);
 		backing.setSize(Backing.SMALL);
@@ -235,7 +235,7 @@ public class StoneTower extends AttackingBuilding
 
 
 
-	@NonNull
+
     @Override
 	public Cost getCosts() {
 		return cost;
@@ -243,7 +243,7 @@ public class StoneTower extends AttackingBuilding
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -262,12 +262,12 @@ public class StoneTower extends AttackingBuilding
 		StoneTower.iconImage = iconImage;
 	}
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;

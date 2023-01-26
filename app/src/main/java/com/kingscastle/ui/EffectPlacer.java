@@ -1,7 +1,7 @@
 package com.kingscastle.ui;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -18,7 +18,7 @@ public class EffectPlacer implements TouchEventAnalyzer{
 
     private final EffectsManager em;
     private final CoordConverter cc;
-    @Nullable
+    
     private Anim animToPlace;
 
     public EffectPlacer(EffectsManager em, CoordConverter cc){
@@ -28,7 +28,7 @@ public class EffectPlacer implements TouchEventAnalyzer{
 
 
     @Override
-    public boolean analyzeTouchEvent(@NonNull TouchEvent e) {
+    public boolean analyzeTouchEvent( TouchEvent e) {
         Anim a = animToPlace;
         if( a == null || e.type == TouchEvent.TOUCH_UP )
             return false;

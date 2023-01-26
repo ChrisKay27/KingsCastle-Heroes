@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.GameTime;
@@ -27,14 +27,14 @@ public class FreezeAnim extends Anim {
 
 	private final int staticTfb = 100;
 
-    public FreezeAnim( @NonNull vector loc ){
+    public FreezeAnim(  vector loc ){
         super(loc);
         setImages(staticImages.get((int) (Math.random() * staticImages.size())));
         setTbf(staticTfb);
         setAliveTime( 2000 );
     }
 
-	public FreezeAnim( @NonNull vector loc , int aliveTime )	{
+	public FreezeAnim(  vector loc , int aliveTime )	{
         super(loc);
         ////Log.d( TAG , "FreezeAnim constructed, staticImages.size() = " + staticImages.size() );
 
@@ -76,8 +76,8 @@ public class FreezeAnim extends Anim {
 		return getImages().get( currentImageIndex );
 	}
 
-	@NonNull
-    public FreezeAnim newInstance(@NonNull vector v, int aliveTime){
+
+    public FreezeAnim newInstance( vector v, int aliveTime){
 		return new FreezeAnim(v,aliveTime);
 	}
 

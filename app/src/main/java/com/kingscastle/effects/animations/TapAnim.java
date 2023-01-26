@@ -1,6 +1,6 @@
 package com.kingscastle.effects.animations;
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.framework.Assets;
@@ -17,7 +17,7 @@ public class TapAnim extends Anim {
     private static final String TAG = TapAnim.class.getSimpleName();
     private static final Image tapImage = Assets.loadImage(R.drawable.tap);
 
-    public TapAnim(@NonNull vector loc) {
+    public TapAnim( vector loc) {
         super( loc );
         setAliveTime(10000);
         setLooping(true);
@@ -29,7 +29,7 @@ public class TapAnim extends Anim {
 
 
     @Override
-    public void paint( @NonNull Graphics g , @NonNull vector v ) {
+    public void paint(  Graphics g ,  vector v ) {
         g.drawImage(tapImage, v.x - tapImage.getWidthDiv2(), v.y-tapImage.getHeightDiv2(), getPaint());
         //g.drawString(tapHere,v.x-Rpg.tenDp,v.y,paint);
     }

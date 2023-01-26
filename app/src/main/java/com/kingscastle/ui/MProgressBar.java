@@ -3,19 +3,19 @@ package com.kingscastle.ui;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
-import android.support.annotation.NonNull;
+
 import android.util.AttributeSet;
 import android.widget.ProgressBar;
 
 public class MProgressBar extends ProgressBar{
 
-	public MProgressBar(@NonNull Context context) {
+	public MProgressBar( Context context) {
 		super(context);
 	}
-	public MProgressBar(@NonNull Context context, AttributeSet attrs) {
+	public MProgressBar( Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
-	public MProgressBar(@NonNull Context context, AttributeSet attrs, int defStyle) {
+	public MProgressBar( Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
 

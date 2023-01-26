@@ -2,8 +2,8 @@ package com.kingscastle.gameElements.spells;
 
 import android.graphics.Color;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.EffectsManager.Position;
 import com.kingscastle.effects.animations.LightningBoltAnim;
@@ -39,7 +39,7 @@ public class LightningBolts extends ProjectileSpell {
 
 	}
 
-	public LightningBolts(@NonNull LightningBolts lbs) {
+	public LightningBolts( LightningBolts lbs) {
 		setDamage(lbs.getDamage());
 	}
 
@@ -49,13 +49,13 @@ public class LightningBolts extends ProjectileSpell {
 	}
 
 
-	@NonNull
+	
     @Override
 	public Abilities getAbility()				 {				return Abilities.LIGHTNINGBOLTS ; 			}
 
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 		//Log.d(TAG, "cast("+mm+")");
@@ -89,7 +89,7 @@ public class LightningBolts extends ProjectileSpell {
 
 
 	@Override
-	public int calculateManaCost(@NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost(@NotNull  LivingThing aWizard)
 	{
 		//		if( aWizard != null )
 		//		{
@@ -98,7 +98,7 @@ public class LightningBolts extends ProjectileSpell {
 		return 0;
 	}
 
-	@Nullable
+
     @Override
 	public Ability newInstance(@NotNull LivingThing target) {
 		return null;
@@ -140,12 +140,12 @@ public class LightningBolts extends ProjectileSpell {
 
 
 
-	@NonNull
+	
     @Override
 	public String toString() {
 		return "Lightning Bolts";
 	}
-	@NonNull
+	
     @Override
 	public String getName() {
 		return "LightningBolts";
@@ -170,7 +170,7 @@ public class LightningBolts extends ProjectileSpell {
 
 
 
-	@NonNull
+	
     @Override
 	public Spell newInstance() {
 		return new LightningBolts(this);

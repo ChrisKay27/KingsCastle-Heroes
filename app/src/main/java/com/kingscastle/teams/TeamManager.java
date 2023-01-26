@@ -1,8 +1,8 @@
 package com.kingscastle.teams;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Settings;
 import com.kingscastle.framework.WtfException;
@@ -28,19 +28,19 @@ public class TeamManager
 	private final ReentrantLock gameRunningLock = new ReentrantLock();
 
 
-	@Nullable
+
     private final ArrayList<Team> teams = new ArrayList<>();
 
 	private boolean loseOnNoTc = true;
 
-	@NonNull
+
     private final MM mm;
 
-	public TeamManager( @NonNull MM mm) {
+	public TeamManager(  MM mm) {
 		this.mm = mm;
 	}
 
-	public void add( @Nullable Team t )
+	public void add(  Team t )
 	{
 		if( t == null )
 			return;
@@ -52,7 +52,7 @@ public class TeamManager
 		teams.add(t);
 	}
 
-	public void remove( @Nullable Team t )
+	public void remove(  Team t )
 	{
 		if( t == null )
 			return;
@@ -74,7 +74,7 @@ public class TeamManager
 	}
 
 
-	@Nullable
+
     public ArrayList<Team> getTeams()
 	{
 		return teams;
@@ -110,7 +110,7 @@ public class TeamManager
 
 
 
-	public void onBuildingDestroyed(@Nullable Building b) {
+	public void onBuildingDestroyed( Building b) {
 		//Log.v( TAG , "onBuildingDestroyed(" + b + ")");
 		if( b == null || b.getTeamName() == null )
 		{
@@ -126,7 +126,7 @@ public class TeamManager
 		}
 	}
 
-	public void onHumanoidDestroyed( @Nullable LivingThing lt )
+	public void onHumanoidDestroyed(  LivingThing lt )
 	{
 		if( lt == null || lt.getTeamName() == null )
 		{
@@ -140,7 +140,7 @@ public class TeamManager
 
 	}
 
-	public void onHumanoidCreated( @Nullable LivingThing lt )
+	public void onHumanoidCreated(  LivingThing lt )
 	{
 		if( lt == null || lt.getTeamName() == null )
 		{
@@ -179,7 +179,7 @@ public class TeamManager
 
 
 
-	@Nullable
+
     public Player getPlayer(Teams teamName) {
 		for( Team t : teams )
 			if( t.getTeamName() == teamName )
@@ -189,7 +189,7 @@ public class TeamManager
 	}
 
 
-	@Nullable
+
     public BuildingManager getBM(Teams team) {
 		Team t = getTeam( team );
 		if( t == null )
@@ -237,7 +237,7 @@ public class TeamManager
 
 
 
-	public void saveYourSelf( @NonNull BufferedWriter b ) throws IOException
+	public void saveYourSelf(  BufferedWriter b ) throws IOException
 	{
 		synchronized( gameRunningLock ){
 			if( gameRunning )

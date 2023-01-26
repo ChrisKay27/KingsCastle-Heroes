@@ -1,7 +1,7 @@
 package com.kingscastle.ui;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Input.TouchEvent;
 import com.kingscastle.framework.Rpg;
@@ -34,7 +34,7 @@ public class TapChecker implements TouchEventAnalyzer{
     private final RectF tapArea = new RectF();
 
     @Override
-    public boolean analyzeTouchEvent(@NonNull TouchEvent e) {
+    public boolean analyzeTouchEvent( TouchEvent e) {
         if( e.type != TouchEvent.TOUCH_UP )
             return false;
 

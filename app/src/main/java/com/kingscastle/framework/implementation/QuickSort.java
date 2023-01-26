@@ -1,7 +1,7 @@
 package com.kingscastle.framework.implementation;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.Anim;
 
@@ -102,8 +102,8 @@ public class QuickSort
 	}
 
 
-	@NonNull
-    public static List<Anim> sort(@NonNull List<Anim> anims) {
+
+    public static List<Anim> sort( List<Anim> anims) {
 		Anim[] sorted;
 		synchronized(anims) {
 			sorted = new Anim[anims.size()];

@@ -1,8 +1,8 @@
 package com.kingscastle.teams;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.managment.MM;
@@ -22,11 +22,11 @@ public class Player
 
 	private Teams teamName;
 
-	@Nullable
+
     private Team team;
 
 
-	public boolean spendCosts( @Nullable Cost costs )
+	public boolean spendCosts(  Cost costs )
 	{
 		if( costs == null )
 			throw new IllegalArgumentException("Costs cannot be null");
@@ -38,7 +38,7 @@ public class Player
 
 
 
-	public void refundCosts(@Nullable Cost costs)
+	public void refundCosts( Cost costs)
 	{
 		if( costs == null )
 			return;
@@ -49,7 +49,7 @@ public class Player
 	}
 
 
-	public boolean canAfford( @Nullable Cost cost )
+	public boolean canAfford(  Cost cost )
 	{
 		if( cost == null )
 			return true;
@@ -61,7 +61,7 @@ public class Player
 
 
 
-	@NonNull
+
     public PR getPR()
 	{
 		return team.getPR();
@@ -72,7 +72,7 @@ public class Player
 
 
 
-	public void saveYourSelf( @Nullable BufferedWriter b ) throws IOException
+	public void saveYourSelf(  BufferedWriter b ) throws IOException
 	{
 		if( b == null )
 			return;
@@ -146,12 +146,12 @@ public class Player
 		this.teamName = teamName;
 	}
 
-	public void setTeam(@Nullable Team team) {
+	public void setTeam( Team team) {
 		this.team = team;
 		if( team != null )
 			teamName = team.getTeamName();
 	}
-	@Nullable
+
     public Team getTeam()
 	{
 		return team;
@@ -164,7 +164,7 @@ public class Player
 
 
 
-	@NonNull
+
     public Race getRace(){
 		return team.race;
 	}
@@ -182,7 +182,9 @@ public class Player
 	public void startThread() {
 	}
 
-
+	public int getGold() {
+		return getPR().getGold();
+	}
 
 
 //	public AvailableSpells getAs() {

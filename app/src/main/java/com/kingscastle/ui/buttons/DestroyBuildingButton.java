@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.view.View;
 
 import com.kingscastle.framework.Assets;
@@ -23,13 +23,13 @@ public class DestroyBuildingButton extends SButton
 {
 	private static Image buttonIcon = Assets.loadImage(R.drawable.sell);
 
-	@NonNull
+
     private final MM mm;
 	private Building buildingSelected;
 	private final Team team;
 
 
-	private DestroyBuildingButton(Activity a , @NonNull final MM mm, Team team_ ){
+	private DestroyBuildingButton(Activity a ,  final MM mm, Team team_ ){
 		super(a);
 		this.mm = mm;
 		team = team_;
@@ -74,8 +74,8 @@ public class DestroyBuildingButton extends SButton
 		});
 	}
 
-	@NonNull
-    public static DestroyBuildingButton getInstance( Activity a , Building b , @NonNull MM mm, Team team )
+
+    public static DestroyBuildingButton getInstance( Activity a , Building b ,  MM mm, Team team )
 	{
 		DestroyBuildingButton singleton = new DestroyBuildingButton( a , mm, team );
 
@@ -141,7 +141,7 @@ public class DestroyBuildingButton extends SButton
 
 	}
 
-	@Nullable
+	
     @Override
 	public DestroyBuildingButton clone(){
 		DestroyBuildingButton dbb = new DestroyBuildingButton(a ,mm, team);
@@ -153,7 +153,7 @@ public class DestroyBuildingButton extends SButton
 
 
 	@Override
-	public boolean equals(@Nullable Object o) {
+	public boolean equals( Object o) {
 		if(o == null)
 			return false;
 		if(o == this)

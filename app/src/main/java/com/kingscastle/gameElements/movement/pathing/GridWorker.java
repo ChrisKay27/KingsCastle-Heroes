@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.movement.pathing;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class GridWorker
 
 
 
-	public static boolean workTheQueue( @NonNull Grid grid )
+	public static boolean workTheQueue(  Grid grid )
 	{
 		////Log.d( TAG , "Working da Queue" );
 
@@ -67,7 +67,7 @@ public class GridWorker
 
 
 
-	private static boolean workThisQueue( @NonNull Grid grid , @NonNull ArrayList<RectF> areas , boolean walkable )
+	private static boolean workThisQueue(  Grid grid ,  ArrayList<RectF> areas , boolean walkable )
 	{
 		if( areas.size() == 0 )
 			return false;
@@ -125,7 +125,7 @@ public class GridWorker
 
 
 
-	public static synchronized void addToGridNow( @NonNull RectF area , boolean walkable , @NonNull Grid grid )
+	public static synchronized void addToGridNow(  RectF area , boolean walkable ,  Grid grid )
 	{
 
 		float gridSize = grid.getGridSize();
@@ -157,7 +157,7 @@ public class GridWorker
 	 * @param grid
 	 * @return
 	 */
-	public synchronized static boolean checkAndAddToGrid( @NonNull RectF area , boolean walkable , @NonNull Grid grid )
+	public synchronized static boolean checkAndAddToGrid(  RectF area , boolean walkable ,  Grid grid )
 	{
 		if( area.width()*area.height() == 0 ){
 			Log.e( TAG , "Area of area == 0, skipping adding" );

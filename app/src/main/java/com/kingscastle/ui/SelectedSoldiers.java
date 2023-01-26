@@ -1,7 +1,7 @@
 package com.kingscastle.ui;
 
 import android.graphics.Color;
-import android.support.annotation.Nullable;
+
 import android.util.Log;
 
 import com.kingscastle.gameElements.GameElement;
@@ -20,15 +20,15 @@ public class SelectedSoldiers {
 
     private static final String TAG = SelectedSoldiers.class.getSimpleName();
 
-    @Nullable
+    
     private Building selectedBuilding;
-	@Nullable
+	
     private Humanoid selectedHumanoid;
-	@Nullable
+	
     private GameElement selectedThing;
-    @Nullable
+    
     private List<GameElement> selectedGameElements;
-	@Nullable
+	
     private List<Humanoid> selectedHumanoids;
 
 
@@ -178,7 +178,7 @@ public class SelectedSoldiers {
 
 
 
-    public synchronized void setUnSelected(@Nullable Humanoid u) {
+    public synchronized void setUnSelected( Humanoid u) {
         if( u != null ) {
             if (selectedHumanoid == u) {
                 selectedHumanoid = null;
@@ -195,7 +195,7 @@ public class SelectedSoldiers {
         }
     }
 
-    public synchronized void setUnSelected(@Nullable Building b) {
+    public synchronized void setUnSelected( Building b) {
         if (selectedBuilding == b && b != null) {
             selectedBuilding = null;
             b.setSelected(false);
@@ -243,17 +243,17 @@ public class SelectedSoldiers {
 
 
 
-	@Nullable
+	
     public Building getSelectedBuilding() {
 		return selectedBuilding;
 	}
 
-	@Nullable
+	
     public GameElement getSelectedThing() {
 		return selectedThing;
 	}
 
-    @Nullable
+    
     public Humanoid getSelectedHumanoid() {
         if (selectedHumanoid != null)
             selectedHumanoid.setSelected(true);
@@ -261,7 +261,7 @@ public class SelectedSoldiers {
         return selectedHumanoid;
     }
 
-    @Nullable
+    
     public List<Humanoid> getSelectedHumanoids() {
 		return selectedHumanoids;
 	}

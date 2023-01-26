@@ -2,7 +2,7 @@ package com.kingscastle.effects;
 
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.livingThings.LivingThing;
@@ -14,7 +14,7 @@ public class HealingText extends RisingText
 	//private static final String TAG = "HealingText";
 	private static Paint greenPaint;
 
-	public HealingText( String t, @NonNull LivingThing on )
+	public HealingText( String t,  LivingThing on )
 	{
 		super( t, on );
 		// ////Log.v(TAG, "Healing Text Contructor");

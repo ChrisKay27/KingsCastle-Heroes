@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.SoldierTypes;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.gameElements.livingThings.Attributes;
@@ -17,7 +17,7 @@ import com.kingscastle.teams.Teams;
 public abstract class Healer extends MageSoldier
 {
 
-	@Nullable
+	
     private LivingThing healingTarget;
 
 
@@ -118,8 +118,8 @@ public abstract class Healer extends MageSoldier
 	}
 
 
-	private boolean isOutOfRangeOrDeadORFullHealth( @Nullable Healer healer ,
-			@Nullable LivingThing healingTarget2 )
+	private boolean isOutOfRangeOrDeadORFullHealth(  Healer healer ,
+			 LivingThing healingTarget2 )
 	{
 		if( healer == null || healingTarget2 == null )
 			return true;
@@ -148,14 +148,14 @@ public abstract class Healer extends MageSoldier
 		{
 			params = new TargetingParams()
 			{
-				@NonNull
+				
                 vector mLoc = new vector();
-				@NonNull
+				
                 vector tLoc = new vector();
 
-				@NonNull
+				
                 @Override
-				public CondRespon postRangeCheckCondition( @NonNull LivingThing target )
+				public CondRespon postRangeCheckCondition(  LivingThing target )
 				{
 					Attributes lq = target.attributes;
 
@@ -210,14 +210,14 @@ public abstract class Healer extends MageSoldier
 
 
 	@Override
-	public void setTarget(@Nullable LivingThing nTarget) {
+	public void setTarget( LivingThing nTarget) {
 		if( nTarget != null && nTarget.getTeamName() == getTeamName() )
 			setHealingTarget(nTarget);
 		else if( canAttack() )
 			super.setTarget(nTarget);
 	}
 
-	@Nullable
+	
     public LivingThing getHealingTarget() {
 		return healingTarget;
 	}

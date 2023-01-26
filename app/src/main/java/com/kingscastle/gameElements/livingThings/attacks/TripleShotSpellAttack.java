@@ -1,6 +1,6 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.gameElements.GameElement;
 import com.kingscastle.gameElements.livingThings.LivingThing;
@@ -31,7 +31,7 @@ public class TripleShotSpellAttack extends SpellAttack {
 
     private final vector tempHumanoidVector = new vector();
     @Override
-    public void attackFromHumanoidVector(@NonNull vector unitVector) {
+    public void attackFromHumanoidVector( vector unitVector) {
         SpellCreationParams params = getSpellCreationParams(atkToTriple);
         tempHumanoidVector.set(unitVector);
         params.setHumanoidVectorInDirection(tempHumanoidVector);

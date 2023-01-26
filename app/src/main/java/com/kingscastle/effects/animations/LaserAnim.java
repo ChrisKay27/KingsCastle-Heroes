@@ -2,7 +2,7 @@ package com.kingscastle.effects.animations;
 
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -21,7 +21,7 @@ public class LaserAnim extends Anim
 	private final vector to;
 	private vector temp = new vector();
 
-	public LaserAnim( @NonNull vector from , vector to )
+	public LaserAnim(  vector from , vector to )
 	{
 		setImages( staticImages );
 		this.to = to;
@@ -36,7 +36,7 @@ public class LaserAnim extends Anim
 
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v , @NonNull CoordConverter cc )
+	public void paint(  Graphics g ,  vector v ,  CoordConverter cc )
 	{
 		temp = cc.getCoordsMapToScreen( to , temp );
 

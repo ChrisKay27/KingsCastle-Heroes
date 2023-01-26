@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
@@ -29,12 +29,12 @@ public class Saruman extends MediumMeleeSoldier
 	//private static ImageFormatInfo imageFormatInfo;
 
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -63,7 +63,7 @@ public class Saruman extends MediumMeleeSoldier
 	}
 
 
-	public Saruman( @NonNull vector loc , Teams team )
+	public Saruman(  vector loc , Teams team )
 	{
 		super(team);
 		setLoc( loc );
@@ -79,11 +79,11 @@ public class Saruman extends MediumMeleeSoldier
 	}
 
 	@Override
-	public void loadAnimation( @NotNull @NonNull MM mm )
+	public void loadAnimation( @NotNull  MM mm )
 	{
 	}
 
-	@Nullable
+
     @Override
 	public Image[] getImages()
 	{
@@ -107,7 +107,7 @@ public class Saruman extends MediumMeleeSoldier
 
 	}
 
-	@Nullable
+
     @Override
 	public ImageFormatInfo getImageFormatInfo()
 	{
@@ -145,7 +145,7 @@ public class Saruman extends MediumMeleeSoldier
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@Nullable
+
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -164,7 +164,7 @@ public class Saruman extends MediumMeleeSoldier
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -182,12 +182,12 @@ public class Saruman extends MediumMeleeSoldier
 		Saruman.cost = cost;
 	}
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return NAME;

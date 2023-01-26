@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Graphics;
@@ -15,12 +15,12 @@ import java.util.List;
 public class BreakRedAnim extends Anim
 {
 
-	@NonNull
+
     private static final List<Image> staticImages = Assets.loadAnimationImages(R.drawable.break_red, 5, 3);
 	private final int staticTfb = 50;
 
 
-	public BreakRedAnim( @NonNull vector loc )
+	public BreakRedAnim(  vector loc )
 	{
 		setImages( staticImages );
 
@@ -30,7 +30,7 @@ public class BreakRedAnim extends Anim
 	}
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v )
+	public void paint(  Graphics g ,  vector v )
 	{
 		Image image = getImage();
 		if( image != null )

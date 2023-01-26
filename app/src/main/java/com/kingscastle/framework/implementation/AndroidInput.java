@@ -1,7 +1,7 @@
 package com.kingscastle.framework.implementation;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
+
 import android.view.View;
 
 import com.kingscastle.framework.Input;
@@ -9,7 +9,7 @@ import com.kingscastle.framework.Input;
 import java.util.List;
 
 public class AndroidInput implements Input {
-	@NonNull
+
     private final TouchHandler touchHandler;
 
 	public AndroidInput(Activity context, View view, float scaleX, float scaleY) {

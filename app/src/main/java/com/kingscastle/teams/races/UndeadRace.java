@@ -1,8 +1,8 @@
 package com.kingscastle.teams.races;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.SoldierType;
@@ -117,9 +117,9 @@ public class UndeadRace extends Race
 
 
 
-	@Nullable
+	
     @Override
-	public SoldierType getMy( @NonNull GeneralSoldierType soldierType )
+	public SoldierType getMy(  GeneralSoldierType soldierType )
 	{
 		switch( soldierType )
 		{
@@ -172,9 +172,9 @@ public class UndeadRace extends Race
 
 
 
-	@Nullable
+	
     @Override
-	public LivingThing getMyVersionOfA( @NonNull GeneralSoldierType soldierType )
+	public LivingThing getMyVersionOfA(  GeneralSoldierType soldierType )
 	{
 		switch( soldierType )
 		{
@@ -234,9 +234,9 @@ public class UndeadRace extends Race
 
 
 
-	@NonNull
+
     @Override
-	public Buildings getMyRacesBuildingType( @NonNull Buildings building )
+	public Buildings getMyRacesBuildingType(  Buildings building )
 	{
 
 		switch( building )
@@ -325,9 +325,9 @@ public class UndeadRace extends Race
 
 
 
-	@Nullable
+	
     @Override
-	public Building getMyVersionOfA( @NonNull Buildings building )
+	public Building getMyVersionOfA(  Buildings building )
 	{
 		switch( building )
 		{
@@ -392,9 +392,9 @@ public class UndeadRace extends Race
 	}
 
 
-	@Nullable
+	
     @Override
-	public BuildableSoldiers getHumanoidsFor( @NonNull Buildings building , @NonNull Age age )
+	public BuildableSoldiers getHumanoidsFor(  Buildings building ,  Age age )
 	{
 
 		switch( building )
@@ -424,7 +424,7 @@ public class UndeadRace extends Race
 
 
 
-	BuildableSoldiers getChurchHumanoidsFor(@NonNull Age age)
+	BuildableSoldiers getChurchHumanoidsFor( Age age)
 	{
 		switch( age )
 		{
@@ -447,7 +447,7 @@ public class UndeadRace extends Race
 
 
 
-	BuildableSoldiers getTownCenterHumanoidsFor(@NonNull Age age)
+	BuildableSoldiers getTownCenterHumanoidsFor( Age age)
 	{
 		switch( age )
 		{
@@ -470,7 +470,7 @@ public class UndeadRace extends Race
 
 
 
-	BuildableSoldiers getBarracksHumanoidsFor(@NonNull Age age)
+	BuildableSoldiers getBarracksHumanoidsFor( Age age)
 	{
 		switch( age )
 		{
@@ -635,7 +635,7 @@ public class UndeadRace extends Race
 
 
 
-	@NonNull
+
     @Override
 	public Races getRace()
 	{

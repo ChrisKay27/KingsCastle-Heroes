@@ -7,8 +7,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 
 public class ImageDrawable extends Drawable {
@@ -19,20 +19,20 @@ public class ImageDrawable extends Drawable {
 
 	private final Rect src = new Rect();
 	private final RectF dst = new RectF();
-	@Nullable
+
     public final Paint paint;
 
 
 
-	public ImageDrawable( @NonNull Bitmap img , Paint paint ){
+	public ImageDrawable(  Bitmap img , Paint paint ){
 		this( img , 0 , 0 , 1f , 1f , paint );
 	}
 
-	public ImageDrawable( @NonNull Bitmap img , int left , int top , Paint paint ){
+	public ImageDrawable(  Bitmap img , int left , int top , Paint paint ){
 		this( img , left , top , 1f , 1f , paint );
 	}
 
-	public ImageDrawable( @NonNull Bitmap img , int left , int top , float scaleX , float scaleY , @Nullable Paint paint ){
+	public ImageDrawable(  Bitmap img , int left , int top , float scaleX , float scaleY ,  Paint paint ){
 		this.img = img;
 		this.left = left;
 		this.top = top;
@@ -50,7 +50,7 @@ public class ImageDrawable extends Drawable {
 
 
 	@Override
-	public void draw(@NonNull Canvas canvas) {
+	public void draw( Canvas canvas) {
 		if( img != null )
 			canvas.drawBitmap(img, src, dst, paint);
 	}

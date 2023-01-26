@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -23,7 +23,7 @@ public class SmokeAnim extends Anim {
 	}
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return "SmokeType1";

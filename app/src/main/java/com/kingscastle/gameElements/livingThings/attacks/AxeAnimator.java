@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -46,13 +46,13 @@ public class AxeAnimator extends AttackAnimator
 
 	private static List<Sound> axeSounds;
 
-	@NonNull
+
     private static final vector EOffset;
-    @NonNull
+
     private static final vector WOffset;
-    @NonNull
+
     private static final vector SOffset;
-    @NonNull
+
     private static final vector NOffset ;
 
 

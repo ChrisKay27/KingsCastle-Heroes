@@ -2,8 +2,8 @@ package com.kingscastle.teams;
 
 
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public enum Teams implements Serializable
 		this.color = color;
 	}
 
-	@NonNull
+
     private static final ArrayList<Teams> allTeams;
 
 
@@ -47,8 +47,8 @@ public enum Teams implements Serializable
 	}
 
 
-	@Nullable
-    public static Teams getFromString(@Nullable String t)
+	
+    public static Teams getFromString( String t)
 	{
 		if( t == null )
 			return null;
@@ -89,7 +89,7 @@ public enum Teams implements Serializable
 	}
 
 
-	@NonNull
+
     public static ArrayList<Teams> getAllTeams()
 	{
 		ArrayList<Teams> newTeamList = new ArrayList<Teams>();

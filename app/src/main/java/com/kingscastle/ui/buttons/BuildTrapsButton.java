@@ -2,7 +2,7 @@ package com.kingscastle.ui.buttons;
 
 import android.app.Activity;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -40,7 +40,7 @@ public class BuildTrapsButton extends SButton
 
 
 
-	@NonNull
+
     public static BuildTrapsButton getInstance( Activity a , final BuildingBuilder bb )
 	{
 
@@ -48,7 +48,7 @@ public class BuildTrapsButton extends SButton
 	}
 
 
-	@NonNull
+
     @Override
 	public BuildTrapsButton clone(){
 		BuildTrapsButton bbb = new BuildTrapsButton( a , bb );

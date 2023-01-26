@@ -7,9 +7,9 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.Assets;
@@ -29,18 +29,18 @@ import java.util.Map;
  */
 public class GenericGameElement extends GameElement {
 
-    @NonNull
+
     private static Map<Integer,Image> images = new HashMap<>();
     private int borderColor = Color.YELLOW;
 
     private Image img;
 
-    @NonNull
+
     private static RectF staticPerceivedArea = new RectF(Rpg.guardTowerArea);
     private Anim anim;
 
 
-    public GenericGameElement(@NonNull vector loc, @DrawableRes int drawable){
+    public GenericGameElement( vector loc,  int drawable){
         super.loc.set(loc);
         if( !images.containsKey(drawable) )
             images.put(drawable,Assets.loadImage(drawable));
@@ -48,7 +48,7 @@ public class GenericGameElement extends GameElement {
     }
 
     @Override
-    public boolean create( @NonNull MM mm )
+    public boolean create(  MM mm )
     {
         super.create(mm);
         if ( !hasBeenCreated() )
@@ -76,7 +76,7 @@ public class GenericGameElement extends GameElement {
             anim = new Anim( getImage() ){
                 private boolean incAlpha = true;
                 private float sat = 1;
-                @NonNull
+
                 private final ColorMatrix cm;
                 {
                     cm = new ColorMatrix();
@@ -140,13 +140,13 @@ public class GenericGameElement extends GameElement {
 
 
 
-    @Nullable
+    
     @Override
     public ImageFormatInfo getImageFormatInfo() {
         return null;
     }
 
-    @Nullable
+    
     @Override
     public Image[] getStaticImages() {
         return null;
@@ -168,7 +168,7 @@ public class GenericGameElement extends GameElement {
 
 
     @Override
-    public void saveYourself( @NonNull BufferedWriter bw ) throws IOException
+    public void saveYourself(  BufferedWriter bw ) throws IOException
     {
         String temp;
 
@@ -195,7 +195,7 @@ public class GenericGameElement extends GameElement {
 
 
 
-    @NonNull
+
     @Override
     public RectF getStaticPerceivedArea() {
         return staticPerceivedArea;

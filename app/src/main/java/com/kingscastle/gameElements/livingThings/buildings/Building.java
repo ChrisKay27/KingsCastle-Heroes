@@ -4,8 +4,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.Log;
 
 import com.kingscastle.effects.EffectsManager;
@@ -41,20 +41,20 @@ public abstract class Building extends LivingThing
 
 	protected boolean visible;
 
-	@Nullable
+
     private Buildings buildingsName;
 
 	protected boolean constructed = false;
 	private boolean buildByPlayer;
 	protected long waitForIt = 0;
 
-	@Nullable
+
     protected transient BuildingAnim buildingAnim;
 
 
 
 
-	protected Building( @NonNull vector loc , Buildings name, Teams team ){
+	protected Building(  vector loc , Buildings name, Teams team ){
 		super(team);
 		setLoc(loc);
 		this.buildingsName = name;
@@ -83,7 +83,7 @@ public abstract class Building extends LivingThing
 		updateArea();
 	}
 
-	public Building(@NonNull vector v,Teams t)
+	public Building( vector v,Teams t)
 	{
 		setLoc(v);
 		setTeam(t);
@@ -107,7 +107,7 @@ public abstract class Building extends LivingThing
 
 
 	@Override
-	public boolean create( @NonNull MM mm )
+	public boolean create(  MM mm )
 	{
 		boolean superCreate = super.create(mm);
 
@@ -134,7 +134,7 @@ public abstract class Building extends LivingThing
 
 
 
-	public void construct( @NonNull MM mm )	{
+	public void construct(  MM mm )	{
 		//Log.d( TAG , "constructing building " + this + " builtByTeam=" + team );
 
 		Player p = mm.getPlayer( team );
@@ -221,7 +221,7 @@ public abstract class Building extends LivingThing
 	/**
 	 * Here only so this function can be overridden.
 	 */
-	protected void addAnimationToEm(@NonNull Anim a, boolean sorted, @NonNull EffectsManager em)
+	protected void addAnimationToEm( Anim a, boolean sorted,  EffectsManager em)
 	{
 		em.add( a , sorted );
 		em.add( backing , EffectsManager.Position.Behind );
@@ -230,7 +230,7 @@ public abstract class Building extends LivingThing
 
 
 	@Override
-    @NonNull
+
     public Cost getLvlUpCost() {
 		Cost lvlUpCost = new Cost(getCosts());
 		lvlUpCost.times(attributes.getLevel() + 0.2f);
@@ -241,13 +241,13 @@ public abstract class Building extends LivingThing
 
 
 
-	@Nullable
+
     public Image getImage()	{
 		loadImages();
 		return null;
 	}
 
-	@Nullable
+
     public Image getDamagedImage(){
 		return null;
 	}
@@ -401,8 +401,8 @@ public abstract class Building extends LivingThing
 
 
 
-	@NonNull
-    RectF getAreaFromLoc(@NonNull vector v)
+
+    RectF getAreaFromLoc( vector v)
 	{
 		RectF r = new RectF( getPerceivedArea() );
 
@@ -467,8 +467,8 @@ public abstract class Building extends LivingThing
 		return null;
 	}
 
-	@Nullable
-    public static Building getFromString( String name , Teams team, @NonNull vector vector ){
+
+    public static Building getFromString( String name , Teams team,  vector vector ){
 
 		Building b = newInstance( name );
 		b.setLoc( vector );
@@ -499,18 +499,18 @@ public abstract class Building extends LivingThing
 
 
 
-	@Nullable
+
     public Buildings getBuildingsName() {
 		return buildingsName;
 	}
-	protected void setBuildingsName(@Nullable Buildings name)
+	protected void setBuildingsName( Buildings name)
 	{
 		if( name != null )
 			buildingsName = name;
 	}
 
 
-	@Nullable
+
     @Override
 	public Image[] getImages(){
 		return null;
@@ -518,14 +518,14 @@ public abstract class Building extends LivingThing
 
 
 
-	@Nullable
+
     @Override
 	public Anim getDyingAnimation() {
 		return null;
 	}
 
 
-	@Nullable
+
     public ArrayList<vector> getDamageOffsets(){
 		return null;
 	}
@@ -548,7 +548,7 @@ public abstract class Building extends LivingThing
 	}
 
 
-	@Nullable
+
     @Override
 	public ImageFormatInfo getImageFormatInfo() {
 		return null;
@@ -559,7 +559,7 @@ public abstract class Building extends LivingThing
 	/**
 	 * NOT BEING USED, ONLY HERE CAUSE OF BAD INHERITANCE
 	 */
-	@Nullable
+
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -572,13 +572,13 @@ public abstract class Building extends LivingThing
 	}
 
 
-	@Nullable
+
     public Image getIconImage(){
 		return null;
 	}
 
 
-	@Nullable
+
     public BuildingAnim getBuildingAnim(){
 		return buildingAnim;
 	}
@@ -587,7 +587,7 @@ public abstract class Building extends LivingThing
 	 * The dirt backing behind a building
 	 * @return
 	 */
-	@NonNull
+
     public Anim getBacking(){
 		return backing;
 	}
@@ -602,7 +602,7 @@ public abstract class Building extends LivingThing
 
 
 	@Override
-	public void setLoc( @NonNull vector v )
+	public void setLoc(  vector v )
 	{
 		super.setLoc(v);
 		updateArea();

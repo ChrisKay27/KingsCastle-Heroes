@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.spells;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.BlackSummonSmokeAnim;
@@ -29,7 +29,7 @@ import java.util.List;
 public class SummoningPortal extends Spell {
 
     private static final String TAG = SummoningPortal.class.getSimpleName();
-    @Nullable
+
     private final OnCreatureSummonedListener ocsl;
 
     private List<Class<? extends Humanoid>> summons;
@@ -43,11 +43,11 @@ public class SummoningPortal extends Spell {
     private final List<Anim> anims = new ArrayList<>();
 
     public SummoningPortal(@NotNull vector loc, @NotNull LivingThing caster, long summonFreq, long aliveTime,
-                           @Nullable OnCreatureSummonedListener ocsl, @NotNull Class<? extends Humanoid>... summons){
+                            OnCreatureSummonedListener ocsl, @NotNull Class<? extends Humanoid>... summons){
         this(loc, caster,summonFreq,aliveTime, ocsl, Arrays.asList(summons));
     }
     public SummoningPortal(@NotNull vector loc, @NotNull LivingThing caster, long summonFreq, long aliveTime,
-                           @Nullable OnCreatureSummonedListener ocsl,@NotNull List<Class<? extends Humanoid>> summons){
+                            OnCreatureSummonedListener ocsl,@NotNull List<Class<? extends Humanoid>> summons){
         this.ocsl = ocsl;
         setLoc(loc);
         setCaster(caster);
@@ -112,7 +112,7 @@ public class SummoningPortal extends Spell {
     }
 
     @Override
-    public boolean cast(@NonNull MM mm) {
+    public boolean cast( MM mm) {
         loadAnimation();
         dieAt = GameTime.getTime()+aliveTime;
         nextSummonAt = GameTime.getTime()+1000;
@@ -126,7 +126,7 @@ public class SummoningPortal extends Spell {
             a.setOver(true);
     }
 
-    @NonNull
+
     @Override
     public String getName() {
         return TAG;
@@ -140,7 +140,7 @@ public class SummoningPortal extends Spell {
 
 
 
-    @Nullable
+
     @Override
     public Abilities getAbility() {
         return null;
@@ -151,7 +151,7 @@ public class SummoningPortal extends Spell {
         return false;
     }
 
-    @Nullable
+
     @Override
     public Spell newInstance() {
         return new SummoningPortal(loc, getCaster(),summonFreq,aliveTime,ocsl, summons);

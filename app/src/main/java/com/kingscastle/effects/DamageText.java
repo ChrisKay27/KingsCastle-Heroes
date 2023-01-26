@@ -2,7 +2,7 @@ package com.kingscastle.effects;
 
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.livingThings.LivingThing;
@@ -11,7 +11,7 @@ import com.kingscastle.gameElements.livingThings.LivingThing;
 public class DamageText extends RisingText
 {
 
-	@NonNull
+
     private static final Paint redPaint;
 
 	static
@@ -30,7 +30,7 @@ public class DamageText extends RisingText
 
 
 
-	@NonNull
+
     @Override
 	public Paint getPaint()
 	{

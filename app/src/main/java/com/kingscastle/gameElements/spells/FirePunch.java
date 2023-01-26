@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.spells;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.FireBallAnim;
 import com.kingscastle.effects.animations.FireHitAnim;
@@ -29,7 +29,7 @@ public class FirePunch extends ProjectileSpell {
 	private static Image iconImage;
 	private static final float staticSpeed=10* Rpg.getDp();
 	private static final float staticRangeSquared = 40000*Rpg.getDp()*Rpg.getDp(); //200*200 = 40000
-	@NonNull
+
     private static final ArrayList<vector> offsets; // 0=N 1=E 2=S 3=W
 
 	static{
@@ -46,7 +46,7 @@ public class FirePunch extends ProjectileSpell {
 	private final Humanoid hCaster;
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.FIREPUNCH ; 			}
 
@@ -57,7 +57,7 @@ public class FirePunch extends ProjectileSpell {
 
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 
@@ -113,7 +113,7 @@ public class FirePunch extends ProjectileSpell {
 	}
 
 	@Override
-	public int calculateManaCost( @NotNull @NonNull LivingThing aWizard)	{
+	public int calculateManaCost( @NotNull  LivingThing aWizard)	{
 		return 20 + aWizard.getLQ().getLevel() * 3;
 	}
 
@@ -155,7 +155,7 @@ public class FirePunch extends ProjectileSpell {
 
 
 	@Override
-	public void loadAnimation(@NonNull vector unit)
+	public void loadAnimation( vector unit)
 	{
 		if( getAnim() == null )	{
 			dir = vector.getDirection4(unit);
@@ -180,14 +180,14 @@ public class FirePunch extends ProjectileSpell {
 
 
 
-	@NonNull
+
     @Override
 	public String toString()	{
 		return "Fire Punch";
 	}
 
 
-	@NonNull
+
     @Override
 	public String getName()	{
 		return "FirePunch";
@@ -208,7 +208,7 @@ public class FirePunch extends ProjectileSpell {
 
 
 
-	@NonNull
+
     @Override
 	public Spell newInstance(){
 		return new FirePunch(hCaster);

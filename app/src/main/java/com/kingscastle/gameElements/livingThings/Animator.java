@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings;
 
 import android.graphics.Color;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.GameTime;
@@ -55,7 +55,7 @@ public class Animator extends Anim
 	/**
 	 * This class is customized for king castle.
 	 */
-	public Animator( @NonNull Humanoid owner , Image[] images )
+	public Animator(  Humanoid owner , Image[] images )
 	{
 		framePeriod = (int) (420 / owner.getLQ().getSpeed() );
 		this.owner = owner;
@@ -219,7 +219,7 @@ public class Animator extends Anim
 
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v )
+	public void paint(  Graphics g ,  vector v )
 	{
 		if( Settings.showAllAreaBorders )
 			g.drawRectBorder( owner.getPerceivedArea() , v , Color.YELLOW , 1 );

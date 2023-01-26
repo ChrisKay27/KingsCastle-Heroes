@@ -1,6 +1,6 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
-import android.support.annotation.NonNull;
+
 
 import org.jetbrains.annotations.NotNull;
 
@@ -36,7 +36,7 @@ public class ActiveAbilities {
     }
 
 
-    public boolean containsInstanceOf( @NonNull Ability a )	{
+    public boolean containsInstanceOf(  Ability a )	{
         synchronized (activeAbilities){
             for (Ability ab : activeAbilities)
                 if (ab.getClass() == a.getClass())

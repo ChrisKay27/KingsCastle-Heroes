@@ -1,6 +1,6 @@
 package com.kingscastle.gameElements.livingThings;
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.Barrable;
 import com.kingscastle.framework.Rpg;
@@ -69,7 +69,7 @@ public class Attributes {
 		setRangeOfSight(250);
 	}
 
-	public Attributes(@NonNull Attributes lq) {
+	public Attributes( Attributes lq) {
 
 		level = lq.level;
 		maxLevel = lq.maxLevel;
@@ -205,7 +205,7 @@ public class Attributes {
 	}
 
 
-	@NonNull
+
     public Barrable getHealthObj() {
 		return health;
 	}
@@ -291,7 +291,7 @@ public class Attributes {
 		this.goldDropped = goldDropped;
 	}
 
-	@NonNull
+
     public Bonuses getBonuses() {
 		return bonuses;
 	}

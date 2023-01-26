@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.gameElements.livingThings.Bonuses;
 import com.kingscastle.gameUtils.vector;
@@ -23,7 +23,7 @@ public class AttackerQualities
 	private int ROF;
 	private int healAmount;
 
-	@Nullable
+
     private Attack currentAttack;
 
 	private Attack friendlyAttack;
@@ -57,7 +57,7 @@ public class AttackerQualities
 
 
 
-	public AttackerQualities( @NonNull AttackerQualities aq , Bonuses bonuses2 )
+	public AttackerQualities(  AttackerQualities aq , Bonuses bonuses2 )
 	{
 		focusRangeSquared=aq.focusRangeSquared;
 		attackRangeSquared=aq.attackRangeSquared;
@@ -182,7 +182,7 @@ public class AttackerQualities
     /**
 	  * @return one of the attacks
 	  */
-	 @Nullable
+
      public synchronized Attack getCurrentAttack() {
 		 if( cycleThroughAttacks )
 		 {

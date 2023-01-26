@@ -4,8 +4,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.Palette;
 import com.kingscastle.effects.SpecialEffects;
@@ -51,7 +51,7 @@ public abstract class LivingThing extends GameElement
     protected Teams team;
 
 
-    @NonNull public final Attributes attributes;
+	public final Attributes attributes;
     public AttackerQualities aq = new AttackerQualities();
 
     protected final Arms arms = new Arms( this );
@@ -65,23 +65,23 @@ public abstract class LivingThing extends GameElement
 
 	protected Animator aliveAnim;
 	protected Anim dyingAnim;
-	@Nullable protected Bar healthBar;
+	 protected Bar healthBar;
 
 
 
 	protected long startTargetingAgainAt;
-	@Nullable protected TargetingParams targetingParams;
+	 protected TargetingParams targetingParams;
 	protected TargetFinder targetFinder;
 
-	@Nullable protected LivingThing target;
-	@Nullable protected LivingThing attacker;
-	@Nullable protected LivingThing highThreadTarget;
-	@Nullable protected LivingThing lastHurter;
+	 protected LivingThing target;
+	 protected LivingThing attacker;
+	 protected LivingThing highThreadTarget;
+	 protected LivingThing lastHurter;
 
 	protected float targetDistanceSquared;
 
 
-	@NonNull  protected DamageTypes lastDamageType = DamageTypes.Normal;
+	  protected DamageTypes lastDamageType = DamageTypes.Normal;
 
 
 	private final long spawnedAt = GameTime.getTime();
@@ -337,7 +337,7 @@ public abstract class LivingThing extends GameElement
 
 
 
-	@Nullable
+
     protected AttackerQualities getStaticAQ(){
 		return null;
 	}
@@ -427,7 +427,7 @@ public abstract class LivingThing extends GameElement
 
 
 
-	@Nullable
+
     public LivingThing getLastHurter(){
 		return lastHurter;
 	}
@@ -445,7 +445,7 @@ public abstract class LivingThing extends GameElement
 
 	//private final SparksAnim bloodSplatter = new SparksAnim( loc , Color.RED );
 
-	public void takeDamage(int dam, @Nullable LivingThing enemy, @NonNull DamageTypes damageType)	{
+	public void takeDamage(int dam,  LivingThing enemy,  DamageTypes damageType)	{
 		if( isDead() )
 			return;
 
@@ -631,9 +631,9 @@ public abstract class LivingThing extends GameElement
 		if( targetingParams == null )
 		{
 			targetingParams = new TargetingParams(){
-				@NonNull
+
                 @Override
-				public TargetFinder.CondRespon postRangeCheckCondition(@NonNull LivingThing target) {
+				public TargetFinder.CondRespon postRangeCheckCondition( LivingThing target) {
 					if( target.getAttacker() != null )
 						return TargetFinder.CondRespon.FALSE;
 					if( target.getTarget() != null && target.getTarget() != LivingThing.this )
@@ -651,7 +651,7 @@ public abstract class LivingThing extends GameElement
 
 	private boolean ignoreRange = false;
 
-	protected void checkTargetsSituation(@Nullable LivingThing target)
+	protected void checkTargetsSituation( LivingThing target)
 	{
 		if( target == null )
 			return;
@@ -670,7 +670,7 @@ public abstract class LivingThing extends GameElement
 	}
 
 
-	private static boolean isOutOfRangeOrDead(@Nullable LivingThing thing1, @Nullable LivingThing thing_a, boolean ignoreRange)
+	private static boolean isOutOfRangeOrDead( LivingThing thing1,  LivingThing thing_a, boolean ignoreRange)
 	{
 		if( thing1 == null || thing_a == null || thing_a.isDead() )
 			return true;
@@ -696,16 +696,16 @@ public abstract class LivingThing extends GameElement
 	}
 
 
-	public void setAttacker(@Nullable LivingThing attacker) {
+	public void setAttacker( LivingThing attacker) {
 		this.attacker = attacker;
 	}
-	@Nullable
+
     public LivingThing getAttacker() {
 		return attacker;
 	}
 
 
-	public void setTarget(@Nullable LivingThing nTarget) {
+	public void setTarget( LivingThing nTarget) {
 		//Log.d( TAG , "setTarget("+hit+")");
 
 		if( nTarget instanceof Building )
@@ -733,13 +733,13 @@ public abstract class LivingThing extends GameElement
 		}
 	}
 
-	@Nullable
+
 	public LivingThing getTarget() {
 		return target;
 	}
 
 
-	public void setHighThreadTarget( @Nullable LivingThing enemy )
+	public void setHighThreadTarget(  LivingThing enemy )
 	{
 		highThreadTarget = enemy;
 		target = highThreadTarget;
@@ -761,7 +761,7 @@ public abstract class LivingThing extends GameElement
 	public boolean isWalking() {
 		return false;
 	}
-	@Nullable
+
 	public vector getVelocity() {
 		return null;
 	}
@@ -869,7 +869,7 @@ public abstract class LivingThing extends GameElement
 
 
 	/** 	WTF     */
-	@Nullable
+
     public LivingThing newInstance(vector at, Teams teams) {
 		return null;
 	}
@@ -879,7 +879,7 @@ public abstract class LivingThing extends GameElement
 
 
 
-	public boolean isWithinRange( @Nullable LivingThing lt )	{
+	public boolean isWithinRange(  LivingThing lt )	{
 		if(lt != null)
 		{
 			AttackerQualities aq = this.getAQ();
@@ -892,7 +892,7 @@ public abstract class LivingThing extends GameElement
 
 
 
-	@NonNull
+
     public Attributes getLQ()
 	{
 		return attributes;
@@ -907,7 +907,7 @@ public abstract class LivingThing extends GameElement
 
 
 
-	@NonNull
+
     public Arms getArms() {
 		return arms;
 	}
@@ -929,7 +929,7 @@ public abstract class LivingThing extends GameElement
 
 
 
-	@NonNull
+
     public ActiveAbilities getActiveAbilities()
 	{
 		return activeAbilities;
@@ -939,7 +939,7 @@ public abstract class LivingThing extends GameElement
 
 
 
-	@Nullable
+
     public List<Order> getPossibleOrders(){
 		return null;
 	}
@@ -952,12 +952,12 @@ public abstract class LivingThing extends GameElement
 
 
 
-	@Nullable
+
     public Cost getCosts()	{
 		return costs;
 	}
 
-	public void setCosts(@NonNull Cost costs) {
+	public void setCosts( Cost costs) {
 		costs.set(costs);
 	}
 
@@ -981,7 +981,7 @@ public abstract class LivingThing extends GameElement
 
 
 
-	@Nullable
+
     public Cost getLvlUpCost() {
 		return getCosts();
 		//if( getCosts() == null ){
@@ -1005,9 +1005,9 @@ public abstract class LivingThing extends GameElement
 
 
 
-    @Nullable
+
     protected abstract Anim getDyingAnimation();
-    @NonNull
+
     protected abstract Attributes getNewLivingQualities();
 
 

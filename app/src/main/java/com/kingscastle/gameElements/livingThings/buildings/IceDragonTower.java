@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -35,17 +35,17 @@ public class IceDragonTower extends AttackingBuilding
 
 	private static final Cost cost = new Cost( 150 , 0 , 0 , 0 );
 
-	@NonNull
+	
     private static final AttackerQualities staticAttackerQualities;
-	@NonNull
+	
     private static final Attributes STATIC_ATTRIBUTES;
 	private static ArrayList<vector> staticDamageOffsets;
 
 
-	@NonNull
+	
     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
+	
     @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
@@ -102,7 +102,7 @@ public class IceDragonTower extends AttackingBuilding
 		loadPerceivedArea();
 	}
 
-	public IceDragonTower(@NonNull vector v, Teams t)
+	public IceDragonTower( vector v, Teams t)
 	{
 		super( name , t );
 		setLoc(v);
@@ -166,7 +166,7 @@ public class IceDragonTower extends AttackingBuilding
 
 
 	@Override
-	protected void addAnimationToEm(@NonNull Anim a, boolean sorted, @NonNull EffectsManager em)
+	protected void addAnimationToEm( Anim a, boolean sorted,  EffectsManager em)
 	{
 		backing.setSize(Backing.TINY);
 
@@ -297,14 +297,14 @@ public class IceDragonTower extends AttackingBuilding
 
 
 
-	@NonNull
+	
     @Override
 	public String toString()
 	{
 		return TAG;
 	}
 
-	@NonNull
+	
     @Override
 	public String getName()
 	{
@@ -324,7 +324,7 @@ public class IceDragonTower extends AttackingBuilding
 
 
 
-	@NonNull
+	
     @Override
 	public Cost getCosts() {
 		return cost;
@@ -333,7 +333,7 @@ public class IceDragonTower extends AttackingBuilding
 
 
 
-	@NonNull
+	
     @Override
 	public Attributes getNewLivingQualities()
 	{

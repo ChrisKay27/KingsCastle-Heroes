@@ -1,6 +1,6 @@
 package com.kingscastle.level.background;
 
-import android.support.annotation.NonNull;
+
 
 public class TileLayer
 {
@@ -28,7 +28,7 @@ public class TileLayer
 	}
 	
 	
-	@NonNull
+
     @Override
 	public String toString()
 	{

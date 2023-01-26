@@ -2,7 +2,7 @@ package com.kingscastle.ui;
 
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Graphics;
 import com.kingscastle.framework.Rpg;
@@ -20,7 +20,7 @@ class StartUpInfo
 
 
 	private static final String TAP_TO_START = "Tap to act";
-	@NonNull
+
     private static final ArrayList<TextLabel> SCREENLABELS ;
 
 	private static int alpha = 255;
@@ -46,7 +46,7 @@ class StartUpInfo
 
 
 
-	public static void paint( @NonNull Graphics g )
+	public static void paint(  Graphics g )
 	{
 
 		g.drawARGB( alpha , 0 , 0 , 0 );

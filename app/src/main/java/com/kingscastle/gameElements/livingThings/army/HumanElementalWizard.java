@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -31,12 +31,12 @@ public class HumanElementalWizard extends UpperMageSoldier
 	private static Image[] redImages , blueImages , greenImages , orangeImages , whiteImages ;
 
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+	
+    private static final AttackerQualities staticAttackerQualities; 
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+	
+    private static final Attributes STATIC_ATTRIBUTES; 
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -78,7 +78,7 @@ public class HumanElementalWizard extends UpperMageSoldier
 	}
 
 
-	public HumanElementalWizard(@NonNull vector loc, Teams team){
+	public HumanElementalWizard( vector loc, Teams team){
 		super(team);
 		setLoc(loc);
 
@@ -217,7 +217,7 @@ public class HumanElementalWizard extends UpperMageSoldier
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@Nullable
+
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -300,12 +300,12 @@ public class HumanElementalWizard extends UpperMageSoldier
 
 
 
-	@NonNull
+	
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+	
     @Override
 	public String getName() {
 		return TAG;
@@ -315,7 +315,7 @@ public class HumanElementalWizard extends UpperMageSoldier
 
 
 
-	@NonNull
+	
     @Override
 	public Attributes getNewLivingQualities()
 	{

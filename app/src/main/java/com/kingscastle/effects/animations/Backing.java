@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -64,7 +64,7 @@ public class Backing extends Anim {
 	}
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v ){
+	public void paint(  Graphics g ,  vector v ){
 		g.drawImage(image, v.x-image.getWidthDiv2()+offs.x , v.y-image.getHeightDiv2()+offs.y , getPaint() );
 	}
 

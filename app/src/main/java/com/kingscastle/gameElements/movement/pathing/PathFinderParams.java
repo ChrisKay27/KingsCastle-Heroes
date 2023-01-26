@@ -1,6 +1,6 @@
 package com.kingscastle.gameElements.movement.pathing;
 
-import android.support.annotation.Nullable;
+
 
 import com.kingscastle.gameUtils.vector;
 
@@ -13,6 +13,6 @@ public class PathFinderParams {
     public int mapWidthInPx,mapHeightInPx;
     public vector fromHere,toHere;
 
-    @Nullable
+    
     public PathFoundListener pathFoundListener;
 }

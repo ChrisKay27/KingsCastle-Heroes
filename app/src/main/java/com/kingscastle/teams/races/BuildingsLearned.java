@@ -1,6 +1,6 @@
 package com.kingscastle.teams.races;
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.gameElements.livingThings.buildings.Buildings;
 import com.kingscastle.teams.AllowedBuildings;
@@ -8,7 +8,7 @@ import com.kingscastle.teams.AllowedBuildings;
 public class BuildingsLearned
 {
 
-	public static void addBuildingsLearned( @NonNull AllowedBuildings abs, @NonNull Race race, int roundNum)
+	public static void addBuildingsLearned(  AllowedBuildings abs,  Race race, int roundNum)
 	{
 		switch( race.getRace() )
 		{
@@ -40,7 +40,7 @@ public class BuildingsLearned
 
 
 
-	private static void addHumanBuildingsLearned(@NonNull AllowedBuildings abs, Race race, int roundNum)
+	private static void addHumanBuildingsLearned( AllowedBuildings abs, Race race, int roundNum)
 	{
 
 		switch ( roundNum )

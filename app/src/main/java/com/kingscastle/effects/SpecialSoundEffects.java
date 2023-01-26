@@ -1,8 +1,8 @@
 package com.kingscastle.effects;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Audio;
 import com.kingscastle.framework.Rpg;
@@ -30,7 +30,7 @@ class SpecialSoundEffects
 	private static ArrayList<Sound> lightningSpellSounds;
 
 
-	@Nullable
+
     static RectF stillDraw;
 
 
@@ -95,7 +95,7 @@ class SpecialSoundEffects
 		return true;
 	}
 
-	public static boolean playSpellCastSound( @NonNull SpecialEffects.SpellType st , float x , float y )
+	public static boolean playSpellCastSound(  SpecialEffects.SpellType st , float x , float y )
 	{
 		switch( st ){
 		case FIRE:

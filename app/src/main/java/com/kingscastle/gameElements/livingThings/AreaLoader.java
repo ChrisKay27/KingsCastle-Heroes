@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings;
 
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
+
 
 import com.kingscastle.framework.Image;
 
@@ -9,8 +9,8 @@ import com.kingscastle.framework.Image;
 class AreaLoader
 {
 
-	@Nullable
-    public Rect getAreaFromImage( @Nullable Image image , @Nullable Rect intoThis )
+	
+    public Rect getAreaFromImage(  Image image ,  Rect intoThis )
 	{
 		if ( image == null )
 		{

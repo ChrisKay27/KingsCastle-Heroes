@@ -1,6 +1,6 @@
 package com.kingscastle.level.Heroes;
 
-import android.support.annotation.Nullable;
+
 
 import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 import com.kingscastle.gameElements.livingThings.abilities.Buff;
@@ -34,8 +34,11 @@ import com.kingscastle.gameElements.livingThings.army.KratosLightArmSword;
 import com.kingscastle.gameElements.livingThings.army.KratosMage;
 import com.kingscastle.gameElements.livingThings.army.KratosMedArm;
 import com.kingscastle.gameElements.livingThings.army.KratosShielded;
+import com.kingscastle.gameElements.livingThings.army.Medic;
 import com.kingscastle.gameElements.livingThings.army.SkeletonKing;
+import com.kingscastle.gameElements.livingThings.army.VampLord;
 import com.kingscastle.gameElements.livingThings.army.Warrior;
+import com.kingscastle.gameElements.livingThings.army.WhiteWizard;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -56,6 +59,8 @@ public class ForestSpawns {
     private List<Integer> spawnedBossForThisLevelAlready = new ArrayList<>();
 
     private Map<Integer,List<Class<? extends Humanoid>>> allySpawnsForHeroLevel = new HashMap<>();
+    private Map<Integer,List<Class<? extends Humanoid>>> wizardAllySpawnsForHeroLevel = new HashMap<>();
+    private Map<Integer,List<Class<? extends Humanoid>>> healerAllySpawnsForHeroLevel = new HashMap<>();
 
     private List<Class<? extends Buff>> buffPickups = new ArrayList<>();
 
@@ -205,7 +210,6 @@ public class ForestSpawns {
             bossSpawnsForHeroLevel.put(10, Gaia.class);
             bossSpawnsForHeroLevel.put(15, SkeletonKing.class);
             bossSpawnsForHeroLevel.put(20, Elder.class);
-
         }
 
 
@@ -258,6 +262,54 @@ public class ForestSpawns {
             }
         }
 
+        {
+            int heroLevel = 1;
+            {
+                List<Class<? extends Humanoid>> allySpawns = new ArrayList<>();
+                allySpawns.add(WhiteWizard.class);
+                wizardAllySpawnsForHeroLevel.put(heroLevel++, allySpawns);
+                wizardAllySpawnsForHeroLevel.put(heroLevel++, allySpawns);
+            }
+            {
+                List<Class<? extends Humanoid>> allySpawns = new ArrayList<>();
+                allySpawns.add(WhiteWizard.class);
+                allySpawns.add(WhiteWizard.class);
+                wizardAllySpawnsForHeroLevel.put(heroLevel++, allySpawns);
+                wizardAllySpawnsForHeroLevel.put(heroLevel++, allySpawns);
+            }
+            {
+                List<Class<? extends Humanoid>> allySpawns = new ArrayList<>();
+                allySpawns.add(WhiteWizard.class);
+                wizardAllySpawnsForHeroLevel.put(heroLevel++, allySpawns);
+                wizardAllySpawnsForHeroLevel.put(heroLevel++, allySpawns);
+            }
+
+        }
+
+        {
+            int heroLevel = 1;
+            {
+                List<Class<? extends Humanoid>> allySpawns = new ArrayList<>();
+                allySpawns.add(Medic.class);
+                healerAllySpawnsForHeroLevel.put(heroLevel++, allySpawns);
+                healerAllySpawnsForHeroLevel.put(heroLevel++, allySpawns);
+            }
+            {
+                List<Class<? extends Humanoid>> allySpawns = new ArrayList<>();
+                allySpawns.add(Medic.class);
+                allySpawns.add(Medic.class);
+                healerAllySpawnsForHeroLevel.put(heroLevel++, allySpawns);
+                healerAllySpawnsForHeroLevel.put(heroLevel++, allySpawns);
+            }
+            {
+                List<Class<? extends Humanoid>> allySpawns = new ArrayList<>();
+                allySpawns.add(Medic.class);
+                healerAllySpawnsForHeroLevel.put(heroLevel++, allySpawns);
+                healerAllySpawnsForHeroLevel.put(heroLevel++, allySpawns);
+            }
+
+        }
+
 
         buffPickups.addAll(Arrays.asList(
                 DOTBuff.class, HotBuff.class, DamageBuff.class, EverythingBuff.class, Haste.class, HexArmor.class, MagicShield.class,
@@ -270,7 +322,7 @@ public class ForestSpawns {
         return spawns.get((int)(Math.random()*spawns.size()));
     }
 
-    @Nullable
+
     public Class<? extends Humanoid> getBossSpawnClass(int heroLevel) {
         if( spawnedBossForThisLevelAlready.contains(heroLevel))
             return null;
@@ -285,6 +337,17 @@ public class ForestSpawns {
     @NotNull
     public Class<? extends Humanoid> getAllyClass(int heroLevel){
         List<Class<? extends Humanoid>> spawns = allySpawnsForHeroLevel.get(Math.min(heroLevel, allySpawnsForHeroLevel.size() - 1) );
+        return spawns.get((int)(Math.random()*spawns.size()));
+    }
+
+    @NotNull
+    public Class<? extends Humanoid> getWizardAllyClass(int heroLevel){
+        List<Class<? extends Humanoid>> spawns = wizardAllySpawnsForHeroLevel.get(Math.min(heroLevel, wizardAllySpawnsForHeroLevel.size() - 1) );
+        return spawns.get((int)(Math.random()*spawns.size()));
+    }
+
+    public Class<? extends Humanoid> getHealerAllyClass(int heroLevel){
+        List<Class<? extends Humanoid>> spawns = healerAllySpawnsForHeroLevel.get(Math.min(heroLevel, healerAllySpawnsForHeroLevel.size() - 1) );
         return spawns.get((int)(Math.random()*spawns.size()));
     }
 

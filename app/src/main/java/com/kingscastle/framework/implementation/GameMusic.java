@@ -1,7 +1,7 @@
 package com.kingscastle.framework.implementation;
 
 import android.app.Activity;
-import android.support.annotation.Nullable;
+
 import android.util.Log;
 
 import com.kingscastle.framework.Music;
@@ -18,7 +18,7 @@ public class GameMusic {
     private static Music epicManShoutContest , castleCall, medievalShort;
     private static AndroidAudio audio;
 
-    public static void loadMusic(@NotNull final Activity a, @Nullable final OnMusicLoadedListener omll ){
+    public static void loadMusic(@NotNull final Activity a,  final OnMusicLoadedListener omll ){
         if( audio != null ) {
             Log.w( TAG , "Audio already loaded");
             return;

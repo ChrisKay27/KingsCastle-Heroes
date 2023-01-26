@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
+
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -19,22 +19,22 @@ public class CTextView2 extends TextView{
 		setTypeface(Rpg.getCooperBlack());
 	}
 
-	public CTextView2(@NonNull Context context) {
+	public CTextView2( Context context) {
 		super(context);
 	}
-	public CTextView2(@NonNull Context context, AttributeSet attrs) {
+	public CTextView2( Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
-	public CTextView2(@NonNull Context context, AttributeSet attrs, int defStyle) {
+	public CTextView2( Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
 
-	public CTextView2(@NonNull Context context, String text) {
+	public CTextView2( Context context, String text) {
 		super( context );
 		setText(text);
 	}
 	@Override
-	protected void onDraw( @NonNull Canvas c ){
+	protected void onDraw(  Canvas c ){
 		if( getTypeface() != Rpg.getCooperBlack() )
 			setTypeface(Rpg.getCooperBlack());
 		int textColor = getTextColors().getDefaultColor();

@@ -1,7 +1,7 @@
 package com.kingscastle.gameUtils;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.gameElements.Cost;
 
@@ -25,7 +25,7 @@ public enum Age
 	}
 
 
-	@NonNull
+
     public Age nextAge()
 	{
 		switch ( this )
@@ -56,8 +56,8 @@ public enum Age
 	}
 
 
-	@NonNull
-    public static Age getAgeFromString( @Nullable String age )
+
+    public static Age getAgeFromString(  String age )
 	{
 		if( age == null ){
 			//Log.e( "Age" , "getAgeFromString(null)");

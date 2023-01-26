@@ -1,6 +1,6 @@
 package com.kingscastle.gameElements.livingThings;
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.Barrable;
 
@@ -79,7 +79,7 @@ public class Health implements Barrable
 
 
 
-	@NonNull
+
     @Override
 	public String getTimeToCompletion(){
 		return "";

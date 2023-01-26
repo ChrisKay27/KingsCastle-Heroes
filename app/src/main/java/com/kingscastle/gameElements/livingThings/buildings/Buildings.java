@@ -2,7 +2,7 @@ package com.kingscastle.gameElements.livingThings.buildings;
 
 
 
-import android.support.annotation.Nullable;
+
 
 import java.util.ArrayList;
 
@@ -292,8 +292,8 @@ public enum Buildings
 
 
 
-	@Nullable
-    public static Buildings getNameFromString( @Nullable String name )
+	
+    public static Buildings getNameFromString(  String name )
 	{
 		if( name == null )
 			return null;
@@ -442,8 +442,8 @@ public enum Buildings
 
 
 
-	public static boolean isInstanceOf(@Nullable Buildings unknown,
-			@Nullable Buildings humansType )
+	public static boolean isInstanceOf( Buildings unknown,
+			 Buildings humansType )
 	{
 
 		if( unknown == null || humansType == null )
@@ -498,7 +498,7 @@ public enum Buildings
 
 
 
-	public static boolean isInstanceOf( @Nullable Building b , @Nullable Buildings humansType ){
+	public static boolean isInstanceOf(  Building b ,  Buildings humansType ){
 		if( b == null || humansType == null )
 			return false;
 

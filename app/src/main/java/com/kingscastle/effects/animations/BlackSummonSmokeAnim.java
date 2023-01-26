@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -18,7 +18,7 @@ public class BlackSummonSmokeAnim extends Anim {
 
 	private final int staticTfb = 50;
 
-	public BlackSummonSmokeAnim( @NonNull vector loc )	{
+	public BlackSummonSmokeAnim(  vector loc )	{
 
 		getLoc().set( loc.x , loc.y - Rpg.fiveDp );
 		setTbf(staticTfb);

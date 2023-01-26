@@ -7,7 +7,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.media.MediaPlayer.OnVideoSizeChangedListener;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Music;
 
@@ -15,11 +15,11 @@ import java.io.IOException;
 
 public class AndroidMusic implements Music, OnCompletionListener, OnSeekCompleteListener, OnPreparedListener, OnVideoSizeChangedListener
 {
-	@NonNull
+	
     private final MediaPlayer mediaPlayer;
 	private boolean isPrepared = false;
 
-	public AndroidMusic(@NonNull AssetFileDescriptor assetDescriptor)
+	public AndroidMusic( AssetFileDescriptor assetDescriptor)
 	{
 		mediaPlayer = new MediaPlayer();
 		try {

@@ -19,9 +19,9 @@ public class ThumbStick implements TouchEventAnalyzer {
 
     private static final String TAG = "ThumbStick";
 
-    private static Image backgroundImg = Rpg.getGame().getGraphics().newImage(R.drawable.thumb_stick_background, Graphics.ImageFormat.RGB565);
-    private static Image centerImg = Rpg.getGame().getGraphics().newImage(R.drawable.thumb_stick_center, Graphics.ImageFormat.RGB565);
-    private static Image positionImg = Rpg.getGame().getGraphics().newImage(R.drawable.thumb_stick_position, Graphics.ImageFormat.RGB565);
+    private static Image backgroundImg = Rpg.getGame().getGraphics().newImage(R.drawable.thumbstick, Graphics.ImageFormat.RGB565);
+//    private static Image centerImg = Rpg.getGame().getGraphics().newImage(R.drawable.thumb_stick_center, Graphics.ImageFormat.RGB565);
+//    private static Image positionImg = Rpg.getGame().getGraphics().newImage(R.drawable.thumb_stick_position, Graphics.ImageFormat.RGB565);
 
     private final Rect bounds;
     private final vector boundsOffs;
@@ -105,18 +105,18 @@ public class ThumbStick implements TouchEventAnalyzer {
         float xScale = Zoomer.getxScale();
         float yScale = Zoomer.getyScale();
 
-        dstCenterImg.set(0, 0, (int) (centerImg.getWidth() / xScale), (int) (centerImg.getHeight() / yScale));
-        dstCenterImg.offsetTo(-dstCenterImg.width() / 2, -dstCenterImg.height() / 2);
-        dstCenterImg.offset(boundsCenterX(), boundsCenterY());
-
-        dstPositionImg.set(0, 0, (int) (positionImg.getWidth() / xScale), (int) (positionImg.getHeight() / yScale));
-        dstPositionImg.offsetTo(-dstPositionImg.width() / 2, -dstPositionImg.height() / 2);
-        dstPositionImg.offset(boundsCenterX(), boundsCenterY());
+//        dstCenterImg.set(0, 0, (int) (centerImg.getWidth() / xScale), (int) (centerImg.getHeight() / yScale));
+//        dstCenterImg.offsetTo(-dstCenterImg.width() / 2, -dstCenterImg.height() / 2);
+//        dstCenterImg.offset(boundsCenterX(), boundsCenterY());
+//
+//        dstPositionImg.set(0, 0, (int) (positionImg.getWidth() / xScale), (int) (positionImg.getHeight() / yScale));
+//        dstPositionImg.offsetTo(-dstPositionImg.width() / 2, -dstPositionImg.height() / 2);
+//        dstPositionImg.offset(boundsCenterX(), boundsCenterY());
 
 
         g.drawImage(backgroundImg, backgroundImg.getSrcRect(), bounds);
-        g.drawImage(centerImg, centerImg.getSrcRect(), dstCenterImg);
-        g.drawImage(positionImg, positionImg.getSrcRect(), dstPositionImg);
+//        g.drawImage(centerImg, centerImg.getSrcRect(), dstCenterImg);
+//        g.drawImage(positionImg, positionImg.getSrcRect(), dstPositionImg);
 
     }
 

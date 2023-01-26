@@ -2,7 +2,7 @@ package com.kingscastle.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.support.annotation.NonNull;
+
 import android.view.View;
 
 import com.kingscastle.framework.Rpg;
@@ -42,7 +42,7 @@ public class StatsDisplay extends View
 
 
 
-    public static void showStatsDisplay( @NonNull final LivingThing selectedThing ){
+    public static void showStatsDisplay(  final LivingThing selectedThing ){
 
         String name = selectedThing.getName();
         Attributes lq = selectedThing.attributes;
@@ -93,7 +93,7 @@ public class StatsDisplay extends View
 
 
 
-    @NonNull
+
     private static Cost getUpgradeCost( Cost orgCost , int lvl )
     {
         Cost upgradeCost = new Cost( orgCost );

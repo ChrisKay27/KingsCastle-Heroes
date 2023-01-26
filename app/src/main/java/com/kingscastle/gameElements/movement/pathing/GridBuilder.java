@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.movement.pathing;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ class GridBuilder
 
 
 
-	public static boolean buildGrid( @NonNull ArrayList<RectF> rects , @NonNull Grid grid )
+	public static boolean buildGrid(  ArrayList<RectF> rects ,  Grid grid )
 	{
 
 		boolean[][] gridTiles = grid.getGridTiles();

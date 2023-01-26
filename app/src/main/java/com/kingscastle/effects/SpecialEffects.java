@@ -2,8 +2,8 @@ package com.kingscastle.effects;
 
 import android.graphics.Color;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.GroundSmasherLargeAnim;
 import com.kingscastle.effects.animations.PCloudAnim;
@@ -27,7 +27,7 @@ public class SpecialEffects
 		ICE, LIGHTNING, FIRE, HEAL, NONE
 	}
 
-	@Nullable
+
     private static RectF stillDraw;
 
 
@@ -66,7 +66,7 @@ public class SpecialEffects
 	}
 
 
-	public static void createGroundPounder( @NonNull EffectsManager em , float x, float y )
+	public static void createGroundPounder(  EffectsManager em , float x, float y )
 	{
 		GroundSmasherLargeAnim gs = new GroundSmasherLargeAnim(new vector(x,y));
 		em.add(gs);
@@ -75,7 +75,7 @@ public class SpecialEffects
 
 
 
-	public static void setup(@Nullable RectF stillDrawArea, MM mm) {
+	public static void setup( RectF stillDrawArea, MM mm) {
 		if( stillDrawArea == null )
 			throw new IllegalStateException( "rect == null" );
 
@@ -102,13 +102,13 @@ public class SpecialEffects
 
 
 
-	@NonNull
+
     private static final Pool<SparksAnim> bloodSplatterPool;
 
 	static
 	{
 		Pool.PoolObjectFactory<SparksAnim> factory = new Pool.PoolObjectFactory<SparksAnim>() {
-			@NonNull
+
             @Override
 			public SparksAnim createObject() {
 				return new SparksAnim( Color.RED );

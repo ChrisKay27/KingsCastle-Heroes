@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -45,9 +45,9 @@ public class Barracks extends Building
 
 	private static final Cost cost = new Cost( 75 , 0 , 0 , 0 );
 
-	@NonNull
+
     private static final AttackerQualities staticAttackerQualities;
-	@NonNull
+
     private static final Attributes STATIC_ATTRIBUTES;
 	private static ArrayList<vector> staticDamageOffsets;
 
@@ -79,7 +79,7 @@ public class Barracks extends Building
 
 	private long lastCheckedSoldiers;
 
-	@NonNull
+
     private List<Class<? extends Humanoid>> soldersForLvls = new ArrayList<>();
 	{
 		soldersForLvls.add(Warrior.class);
@@ -87,9 +87,9 @@ public class Barracks extends Building
 		soldersForLvls.add(HumanArmoredSoldier.class);
 		soldersForLvls.add(Knight.class);
 	}
-	@NonNull
+
     private vector troopDeployLoc = new vector();
-	@NonNull
+
     protected List<vector> troopDeployLocs = new ArrayList<>();
 	{
 		troopDeployLocs.add(new vector());
@@ -99,11 +99,11 @@ public class Barracks extends Building
 		setAQ(new AttackerQualities(staticAttackerQualities, getLQ().getBonuses()));
 	}
 
-	@NonNull
+
     private List<Humanoid> soldiers = new ArrayList<>();
 	private final vector v = new vector(500,1000000);
 	private boolean killSoldiers;
-	@NonNull
+
     private LivingThingListenerAdapter deathListener = new LivingThingListenerAdapter() {
 		@Override
 		public void onDeath(LivingThing lt) {
@@ -176,7 +176,7 @@ public class Barracks extends Building
 
 
 	@Override
-	public boolean create(@NonNull MM mm) {
+	public boolean create( MM mm) {
 		boolean superCreate = super.create(mm);
 		setDeployLoc(loc.x , loc.y+Rpg.twentyDp);
 		return superCreate;
@@ -189,7 +189,7 @@ public class Barracks extends Building
 		troopDeployLocs.get(2).set(x,y).add(0, Rpg.tenDp);
 	}
 
-	@NonNull
+
     public vector getTroopDeployLoc() {
 		return troopDeployLoc;
 	}
@@ -312,14 +312,14 @@ public class Barracks extends Building
 
 
 
-	@NonNull
+
     @Override
 	public String toString()
 	{
 		return TAG;
 	}
 
-	@NonNull
+
     @Override
 	public String getName()
 	{
@@ -339,7 +339,7 @@ public class Barracks extends Building
 
 
 
-	@NonNull
+
     @Override
 	public Cost getCosts() {
 		return cost;
@@ -348,7 +348,7 @@ public class Barracks extends Building
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -359,10 +359,10 @@ public class Barracks extends Building
 
 
 
-	@NonNull
+
     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
+
     @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 

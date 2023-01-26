@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -36,21 +36,21 @@ public class EvilHealingShrine extends Shrine
 
 	private static final Image image = Assets.loadImage(R.drawable.satanic_podium);
 	private static final Image deadImage = Assets.loadImage( R.drawable.small_rubble );
-	@Nullable
+	
     private static final Image iconImage = null;//Assets.loadImage( R.drawable.satanic_podium_icon );
 
 	private static RectF staticPerceivedArea = Rpg.oneByOneArea; // this is only the offset from the mapLocation.
 
-	@NonNull
+
     private static final AttackerQualities staticAttackerQualities;
-	@NonNull
+
     private static final Attributes STATIC_ATTRIBUTES;
 
 	private static final Cost costs = new Cost( 300 , 0 , 300 , 300 , 0 );
-	@NonNull
+
     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
+
     @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
@@ -88,7 +88,7 @@ public class EvilHealingShrine extends Shrine
 		STATIC_ATTRIBUTES.setdRegenRateLvl(-20);
 
 	}
-	@Nullable
+	
     private final HealingSpell hs;
 	{
 		setAQ( new AttackerQualities( staticAttackerQualities , getLQ().getBonuses() ) );
@@ -103,7 +103,7 @@ public class EvilHealingShrine extends Shrine
 		super(name);
 	}
 
-	public EvilHealingShrine( @NonNull vector v, Teams t )
+	public EvilHealingShrine(  vector v, Teams t )
 	{
 		this();
 		setTeam(t);
@@ -123,9 +123,9 @@ public class EvilHealingShrine extends Shrine
 			final AbilityManager abm = getMM().getTM().getTeam( getTeamName() ).getAbm();
 			params = new TargetingParams()
 			{
-				@NonNull
+
                 @Override
-				public CondRespon postRangeCheckCondition( @NonNull LivingThing target )
+				public CondRespon postRangeCheckCondition(  LivingThing target )
 				{
 					if( target.attributes.getHealth() == target.attributes.getFullHealth() )
 						return CondRespon.FALSE;
@@ -171,8 +171,8 @@ public class EvilHealingShrine extends Shrine
 		//return isOutOfRangeOrDeadORFullHealth( thing1 , thingA );
 	}
 
-	private boolean isOutOfRangeOrDeadORFullHealth( @Nullable LivingThing healer ,
-			@Nullable LivingThing healingTarget2 )
+	private boolean isOutOfRangeOrDeadORFullHealth(  LivingThing healer ,
+			 LivingThing healingTarget2 )
 	{
 
 		if( healer == null || healingTarget2 == null )
@@ -195,7 +195,7 @@ public class EvilHealingShrine extends Shrine
 
 
 	@Override
-	protected void addAnimationToEm(@NonNull Anim a, boolean sorted, @NonNull EffectsManager em)
+	protected void addAnimationToEm( Anim a, boolean sorted,  EffectsManager em)
 	{
 		em.add( a , true);
 		backing.setSize(Backing.TINY);
@@ -214,7 +214,7 @@ public class EvilHealingShrine extends Shrine
 	public Image getDeadImage() {
 		return deadImage;
 	}
-	@Nullable
+	
     @Override
 	public Image getIconImage() {
 		return iconImage;
@@ -256,13 +256,13 @@ public class EvilHealingShrine extends Shrine
 	//	}
 
 
-	@NonNull
+
     @Override
 	public Cost getCosts(){
 		return costs;
 	}
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;
@@ -270,7 +270,7 @@ public class EvilHealingShrine extends Shrine
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities() {
 		return new Attributes(STATIC_ATTRIBUTES);

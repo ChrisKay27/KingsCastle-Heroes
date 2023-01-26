@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.buildings.Building;
@@ -19,24 +19,24 @@ public class LevelUpTechnology extends Technology {
 
 	private MM mm;
 	private Team team;
-	@Nullable
+
     private Teams teamName;
 
 	private Building b;
-	@Nullable
+
     private LivingThing lt;
 	private String lvlAdvancingTo = " "; // Must have this format for loading: NameOfThingLvlingUp Level 26
 	private int buildTime = 10;
-	@Nullable
+
     private String ltClass;
 
 	private int newLvl;
 
-	public LevelUpTechnology( MM mm, @NonNull Player p, Building b , @NonNull LivingThing lt){
+	public LevelUpTechnology( MM mm,  Player p, Building b ,  LivingThing lt){
 		this( mm, p , b , lt , -1 );
 	}
 
-	public LevelUpTechnology( MM mm, @NonNull Player p, Building b , @NonNull LivingThing lt , int buildTime_ )
+	public LevelUpTechnology( MM mm,  Player p, Building b ,  LivingThing lt , int buildTime_ )
 	{
 		this.b = b;
 		setLivingThing(lt);
@@ -107,7 +107,7 @@ public class LevelUpTechnology extends Technology {
 
 
 	@Override
-	public void saveYourself( @NonNull BufferedWriter b ) throws IOException
+	public void saveYourself(  BufferedWriter b ) throws IOException
 	{
 		String s = START_TAG + " n=\"LevelUpTechnology\" lt=\""+ltClass+"\" lv=\""+newLvl+"\" bt=\""+ buildTime +"\">";
 
@@ -119,14 +119,14 @@ public class LevelUpTechnology extends Technology {
 	}
 
 
-	@Nullable
+
     public LivingThing getLivingThing() {
 		return lt;
 	}
 
 
 	@Override
-	public void setLivingThing(@Nullable LivingThing lt) {
+	public void setLivingThing( LivingThing lt) {
 		this.lt = lt;
 		if( lt != null ){
 			ltClass = lt.getClass().getSimpleName();
@@ -141,14 +141,14 @@ public class LevelUpTechnology extends Technology {
 	}
 
 	@Override
-	public void setLTClassName( @Nullable String ltClass ) {
+	public void setLTClassName(  String ltClass ) {
 		this.ltClass = ltClass;
 		if( ltClass != null && !"null".equals(ltClass) )
 			lvlAdvancingTo = ltClass + " Level ";
 		else
 			lvlAdvancingTo = "Level ";
 	}
-	@Nullable
+
     @Override
 	public String getLTClassName() {
 		return ltClass;

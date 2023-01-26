@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.movement;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Rpg;
@@ -40,7 +40,7 @@ public class Legs
     private MovingTechnique technique;
 	//private Avoid avoid;
 	//private DpadMove dpadMove;
-	@NonNull
+
     private final MovementTechniqueParams params;
 
 	private long lastMoved;
@@ -192,7 +192,7 @@ public class Legs
 		return act( loc , null );
 	}
 
-	public boolean act( vector loc , LivingThing target , @NonNull Stance stance )
+	public boolean act( vector loc , LivingThing target ,  Stance stance )
 	{
 		switch( stance )
 		{
@@ -216,7 +216,7 @@ public class Legs
 	}
 
 
-	boolean act(@Nullable vector loc, @Nullable LivingThing target)
+	boolean act( vector loc,  LivingThing target)
 	{
 		boolean legsHaveActed = false;
 
@@ -318,7 +318,7 @@ public class Legs
 
 
 
-	public boolean stayAtLeastAsFarAway( @Nullable GameElement target , float f )
+	public boolean stayAtLeastAsFarAway(  GameElement target , float f )
 	{
 		if( target == null )
 			return false;
@@ -342,7 +342,7 @@ public class Legs
 
 
 
-	public boolean stayAtADistanceFrom( @Nullable GameElement target , int rangeSquared )
+	public boolean stayAtADistanceFrom(  GameElement target , int rangeSquared )
 	{
 		if( target == null )
 			return false;
@@ -370,7 +370,7 @@ public class Legs
 
 
 
-	public boolean stayWithinADistanceof( @Nullable GameElement target , float f )
+	public boolean stayWithinADistanceof(  GameElement target , float f )
 	{
 		if ( target == null)
 			return false;
@@ -436,7 +436,7 @@ public class Legs
 
 
 
-	private static void wander( @NonNull Legs legs, @NonNull MovementTechniqueParams params , @NonNull MovingTechnique technique )
+	private static void wander(  Legs legs,  MovementTechniqueParams params ,  MovingTechnique technique )
 	{
 		if( legs.getDriver().getTeamName() == Teams.BLUE )
 			return;
@@ -469,7 +469,7 @@ public class Legs
 	}
 
 
-	private static void moveTowards(@NonNull Legs legs, vector loc, @NonNull MovementTechniqueParams params, @NonNull MovingTechnique technique){
+	private static void moveTowards( Legs legs, vector loc,  MovementTechniqueParams params,  MovingTechnique technique){
 
 		params.setMovementType(MovementType.SEEK);
 		params.setLocationOfInterest(loc);
@@ -493,14 +493,14 @@ public class Legs
 		//		}
 	}
 
-	void followPath(@NonNull Legs legs, @NonNull MovementTechniqueParams params, @NonNull MovingTechnique technique)
+	void followPath( Legs legs,  MovementTechniqueParams params,  MovingTechnique technique)
 	{
 		params.setMovementType( MovementType.FOLLOW_PATH );
 		doYourThing( legs , technique , params ) ;
 	}
 
 
-	private static void moveAwayFrom(@NonNull Legs legs, vector loc, @NonNull MovementTechniqueParams params, @NonNull MovingTechnique technique)
+	private static void moveAwayFrom( Legs legs, vector loc,  MovementTechniqueParams params,  MovingTechnique technique)
 	{
 		params.setMovementType( MovementType.AVOID );
 		params.setLocationOfInterest( loc );
@@ -508,7 +508,7 @@ public class Legs
 	}
 
 
-	private static void dPadMove(@NonNull Legs legs, vector inDirection, @NonNull MovementTechniqueParams params, @NonNull MovingTechnique technique)
+	private static void dPadMove( Legs legs, vector inDirection,  MovementTechniqueParams params,  MovingTechnique technique)
 	{
 		params.setMovementType( MovementType.DPAD );
 		params.setInDirection( inDirection );
@@ -516,7 +516,7 @@ public class Legs
 	}
 
 
-	private static void doYourThing( @NonNull Legs legs , @NonNull MovingTechnique technique , @NonNull MovementTechniqueParams params )
+	private static void doYourThing(  Legs legs ,  MovingTechnique technique ,  MovementTechniqueParams params )
 	{
 		params.setSpeed( legs.driver.attributes.getSpeed() );
 		params.setForce( legs.driver.attributes.getForce() );
@@ -563,7 +563,7 @@ public class Legs
 	public float getTargetDistSquared() {
 		return targetDistSquared;
 	}
-	@Nullable
+
     public MovingTechnique getMovingTechnique(){
 		return technique;
 	}
@@ -594,7 +594,7 @@ public class Legs
 		return params.getPathToFollow();
 	}
 
-	public void setPathToFollow( @Nullable Path pathToFollow ) {
+	public void setPathToFollow(  Path pathToFollow ) {
 		params.setPathToFollow( pathToFollow );
 		if( pathToFollow != null )
 			params.setMovementType( MovementType.FOLLOW_PATH );

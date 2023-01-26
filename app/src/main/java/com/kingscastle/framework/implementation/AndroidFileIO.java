@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -20,15 +20,15 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class AndroidFileIO{
-	@NonNull
+
     private final Context context;
 	private final AssetManager assets;
-	@NonNull
+
     private final String externalStoragePath;
 
 
 
-	public AndroidFileIO( @NonNull Context context )
+	public AndroidFileIO(  Context context )
 	{
 		this.context = context;
 		this.assets = context.getAssets();
@@ -38,7 +38,7 @@ public class AndroidFileIO{
 
 
 
-	@NonNull
+
     public InputStream readAsset(String file) throws IOException
 	{
 		return assets.open(file);
@@ -46,8 +46,8 @@ public class AndroidFileIO{
 
 
 
-	@Nullable
-    public BufferedReader readFile(@NonNull File dir,String file) throws IOException
+
+    public BufferedReader readFile( File dir,String file) throws IOException
 	{
 		File[] files = dir.listFiles();
 		for( File f: files )
@@ -62,16 +62,16 @@ public class AndroidFileIO{
 	}
 
 
-	@NonNull
-    public BufferedReader readFile( @NonNull File f ) throws FileNotFoundException
+
+    public BufferedReader readFile(  File f ) throws FileNotFoundException
 	{
 		return new BufferedReader( new FileReader( f ) );
 	}
 
 
 
-	@Nullable
-    public InputStream readFileInputStream(@NonNull File dir,String file) throws IOException
+
+    public InputStream readFileInputStream( File dir,String file) throws IOException
 	{
 		File[] files = dir.listFiles();
 		for(File f: files){
@@ -83,14 +83,14 @@ public class AndroidFileIO{
 	}
 
 
-	@NonNull
-    public InputStream readFileInputStream(@NonNull File f) throws FileNotFoundException
+
+    public InputStream readFileInputStream( File f) throws FileNotFoundException
 	{
 		return new BufferedInputStream(new FileInputStream(f));
 	}
 
-	@NonNull
-    public BufferedWriter writeFile( @NonNull File file ) throws IOException
+
+    public BufferedWriter writeFile(  File file ) throws IOException
 	{
 
 		if( !file.exists() )
@@ -102,8 +102,8 @@ public class AndroidFileIO{
 	}
 
 
-	@NonNull
-    public BufferedWriter writeFile(File dir, @NonNull String file) throws IOException
+
+    public BufferedWriter writeFile(File dir,  String file) throws IOException
 	{
 		try{
 			File f = new File(dir,file);

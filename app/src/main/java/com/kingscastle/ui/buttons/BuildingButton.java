@@ -2,8 +2,8 @@ package com.kingscastle.ui.buttons;
 
 import android.app.Activity;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.view.View;
 import android.widget.ImageView;
 
@@ -29,7 +29,7 @@ public class BuildingButton extends SButton
 
 
 	protected final Team team;
-	@Nullable
+	
     private Buildings assocBuilding;
 	private Building building;
 
@@ -40,7 +40,7 @@ public class BuildingButton extends SButton
 		team = t;
 	}
 
-	private BuildingButton( @NonNull Activity a , CD cd, GridUtil gUtil , @NonNull Building b, @NonNull Team t, UI ui, @NonNull final InfoDisplay infDisplay , Selecter selecter_ ,BuildingBuilder bb_ ){
+	private BuildingButton(  Activity a , CD cd, GridUtil gUtil ,  Building b,  Team t, UI ui,  final InfoDisplay infDisplay , Selecter selecter_ ,BuildingBuilder bb_ ){
 		super( a );
 
 		team = t;
@@ -128,8 +128,8 @@ public class BuildingButton extends SButton
 
 
 
-	@NonNull
-    public static BuildingButton getInstance( @NonNull Activity a , @NonNull Building b, @NonNull Team t , UI ui , @NonNull InfoDisplay infDisplay , Selecter selecter_ ,BuildingBuilder bb_ , CD cd, GridUtil gUtil ){
+
+    public static BuildingButton getInstance(  Activity a ,  Building b,  Team t , UI ui ,  InfoDisplay infDisplay , Selecter selecter_ ,BuildingBuilder bb_ , CD cd, GridUtil gUtil ){
 		return new BuildingButton( a , cd, gUtil, b , t ,  ui , infDisplay , selecter_ , bb_ );
 	}
 
@@ -137,13 +137,13 @@ public class BuildingButton extends SButton
 
 
 
-	@Nullable
+	
     public Buildings getAssocBuilding()
 	{
 		return assocBuilding;
 	}
 
-	void setAssocBuilding(@Nullable Buildings assocBuilding)
+	void setAssocBuilding( Buildings assocBuilding)
 	{
 		if( assocBuilding == null )
 			throw new IllegalStateException(" assocBuilding == null ");
@@ -154,7 +154,7 @@ public class BuildingButton extends SButton
 
 
 
-	@NonNull
+
     @Override
 	public String toString()
 	{

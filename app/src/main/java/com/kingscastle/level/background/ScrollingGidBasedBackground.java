@@ -1,8 +1,8 @@
 package com.kingscastle.level.background;
 
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.gameUtils.vector;
 import com.kingscastle.level.background.Background.ScreenWidthProvider;
@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class ScrollingGidBasedBackground
 {
-	@NonNull
+	
     private final GidBackground bg;
 	@NotNull
     private final vector centeredOn;
@@ -30,7 +30,7 @@ public class ScrollingGidBasedBackground
 
 	private final ScreenWidthProvider swp;
 
-	public ScrollingGidBasedBackground(@NonNull GidBackground bg , @Nullable vector centeredOn, ScreenWidthProvider swp , int fullScreenWidth , int fullScreenHeight )
+	public ScrollingGidBasedBackground( GidBackground bg ,  vector centeredOn, ScreenWidthProvider swp , int fullScreenWidth , int fullScreenHeight )
 	{
 		this.bg=bg;
 		this.centeredOn = centeredOn;
@@ -153,7 +153,7 @@ public class ScrollingGidBasedBackground
 	}
 
 
-	@Nullable
+
     public vector getCenteredOn()
 	{
 		if(lastSlidImage + slideEvery<System.currentTimeMillis()){
@@ -258,24 +258,24 @@ public class ScrollingGidBasedBackground
 	//	}
 
 
-	@NonNull
-    public vector getCoordinatesMapToScreen(float x, float y, @NonNull vector intoThisVector)	{
+	
+    public vector getCoordinatesMapToScreen(float x, float y,  vector intoThisVector)	{
 		intoThisVector.set((x - centeredOn.x + fullScreenWidthDiv2), (y - centeredOn.y + fullScreenHeightDiv2));
 		return intoThisVector;
 	}
 
-	@NonNull
+	
     public vector getCoordinatesMapToScreen(float x, float y )	{
 		return this.getCoordinatesMapToScreen( x , y , new vector() );
 	}
 
-	@NonNull
-    public vector getCoordinatesScreenToMap(float x, float y, @NonNull vector intoThisVector )	{
+	
+    public vector getCoordinatesScreenToMap(float x, float y,  vector intoThisVector )	{
 		intoThisVector.set(x - (fullScreenWidthDiv2) + centeredOn.x, (y - fullScreenHeightDiv2) + centeredOn.y);
 		return intoThisVector;
 	}
 
-	@NonNull
+	
     public vector getCoordinatesScreenToMap(float x, float y){
 		return this.getCoordinatesScreenToMap( x , y , new vector() );
 	}
@@ -348,7 +348,7 @@ public class ScrollingGidBasedBackground
 		scrolledByY = dydt;
 	}
 
-	@NonNull
+	
     public Rect getScreenArea()
 	{
 		if( screenAreaHasChanged )

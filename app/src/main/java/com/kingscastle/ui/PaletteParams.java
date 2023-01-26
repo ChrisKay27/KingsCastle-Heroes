@@ -2,7 +2,7 @@ package com.kingscastle.ui;
 
 import android.graphics.Color;
 import android.graphics.Paint.Align;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Rpg;
 
@@ -58,7 +58,7 @@ public class PaletteParams
 	}
 
 	
-	private static void addPaletteParams( @NonNull ArrayList<PaletteParams> paletteParams , int howMany )
+	private static void addPaletteParams(  ArrayList<PaletteParams> paletteParams , int howMany )
 	{
 		int count = 0 ;
 		

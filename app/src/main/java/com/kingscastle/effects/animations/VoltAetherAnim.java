@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -19,7 +19,7 @@ public class VoltAetherAnim extends Anim
 	private final int staticTfb = 50;
 
 
-	public VoltAetherAnim( @NonNull vector loc )	{
+	public VoltAetherAnim(  vector loc )	{
         super( loc );
         setImages(staticImages );
 		setTbf( staticTfb );
@@ -30,7 +30,7 @@ public class VoltAetherAnim extends Anim
 
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v )
+	public void paint(  Graphics g ,  vector v )
 	{
 		Image image = getImage();
 		if( image != null )

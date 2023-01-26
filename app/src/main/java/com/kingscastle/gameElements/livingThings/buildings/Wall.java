@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -28,10 +28,10 @@ public class Wall extends Building
 
 	private static Cost cost = new Cost( 5 , 0 , 0 , 0 );
 
-	@NonNull
+
     private static final Attributes STATIC_ATTRIBUTES;
 
-	@NonNull
+
     @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
@@ -79,7 +79,7 @@ public class Wall extends Building
 
 
 	@Override
-	protected void addAnimationToEm(@NonNull Anim a, boolean sorted, @NonNull EffectsManager em)
+	protected void addAnimationToEm( Anim a, boolean sorted,  EffectsManager em)
 	{
 		em.add( a , true);
 		backing.setSize(Backing.SMALL);
@@ -161,7 +161,7 @@ public class Wall extends Building
 		Wall.cost = cost;
 	}
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -169,13 +169,13 @@ public class Wall extends Building
 	}
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;

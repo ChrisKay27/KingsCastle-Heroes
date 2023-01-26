@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -27,12 +27,12 @@ public class HumanSoldier extends MediumMeleeSoldier
 	private static ImageFormatInfo imageFormatInfo;
 
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+	
+    private static final AttackerQualities staticAttackerQualities; 
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+	
+    private static final Attributes STATIC_ATTRIBUTES; 
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -70,7 +70,7 @@ public class HumanSoldier extends MediumMeleeSoldier
 	}
 
 
-	public HumanSoldier( @NonNull vector loc , Teams team )	{
+	public HumanSoldier(  vector loc , Teams team )	{
 		super(team);
 		setLoc( loc );
 
@@ -148,7 +148,7 @@ public class HumanSoldier extends MediumMeleeSoldier
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@Nullable
+
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -167,7 +167,7 @@ public class HumanSoldier extends MediumMeleeSoldier
 
 
 
-	@NonNull
+	
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -185,12 +185,12 @@ public class HumanSoldier extends MediumMeleeSoldier
 		HumanSoldier.cost = cost;
 	}
 
-	@NonNull
+	
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+	
     @Override
 	public String getName() {
 		return TAG;

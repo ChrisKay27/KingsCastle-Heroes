@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -33,7 +33,7 @@ public class HotBuff extends Buff
 	}
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.HOT_BUFF ; 			}
 
@@ -55,14 +55,14 @@ public class HotBuff extends Buff
 
 
 	@Override
-	public int calculateManaCost(@NotNull @NonNull LivingThing aWizard)	{
+	public int calculateManaCost(@NotNull  LivingThing aWizard)	{
 		return 0;
 	}
 
 
 
 	@Override
-	public void loadAnimation( @NonNull MM mm )	{
+	public void loadAnimation(  MM mm )	{
 		if( getAnim() == null )
 		{
 			setAnim( new AuraAnim( getTarget().loc ));
@@ -72,7 +72,7 @@ public class HotBuff extends Buff
 	}
 
 	@Override
-	protected void addAnimationToManager( @NonNull MM mm , @NonNull Anim anim2)	{
+	protected void addAnimationToManager(  MM mm ,  Anim anim2)	{
 		mm.getEm().add( anim2 , EffectsManager.Position.InFront );
 	}
 
@@ -82,12 +82,12 @@ public class HotBuff extends Buff
     }
 
 
-    @NonNull
+
     @Override
 	public String toString() {
 		return printableString;
 	}
-	@NonNull
+
     public String getName() {
 		return name;
 	}
@@ -95,7 +95,7 @@ public class HotBuff extends Buff
 
 
 
-	@NonNull
+
     @Override
 	public Ability newInstance(@NotNull LivingThing target) {
         HotBuff hb = new HotBuff(getCaster(),target);
@@ -105,7 +105,7 @@ public class HotBuff extends Buff
 
 
 
-	@Nullable
+	
     @Override
 	public Image getIconImage()
 	{

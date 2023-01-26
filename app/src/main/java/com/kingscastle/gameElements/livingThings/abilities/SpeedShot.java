@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.SpeedShotAnim;
@@ -29,7 +29,7 @@ public class SpeedShot extends Buff
 	/**
 	 * @param ROABonus negative value in ms to reduce attack period ex -200 ms
 	 */
-	public SpeedShot(@NonNull LivingThing caster, @NonNull LivingThing target , int ROABonus ){
+	public SpeedShot( LivingThing caster,  LivingThing target , int ROABonus ){
 		super(caster,target);
 		this.ROABonus = ROABonus;
 	}
@@ -54,7 +54,7 @@ public class SpeedShot extends Buff
 
 
 	@Override
-	public int calculateManaCost(@NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost(@NotNull  LivingThing aWizard)
 	{
 		return 0;
 	}
@@ -66,7 +66,7 @@ public class SpeedShot extends Buff
     }
 
     @Override
-	public void loadAnimation( @NonNull MM mm )
+	public void loadAnimation(  MM mm )
 	{
 		if( getAnim() == null )
 		{
@@ -78,24 +78,24 @@ public class SpeedShot extends Buff
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return name;
 	}
-	@NonNull
+
     public String getName() {
 		return name;
 	}
 
 
-	@NonNull
+
     @Override
 	public Ability newInstance(@NotNull LivingThing target)	{
 		return new SpeedShot(getCaster(),target,ROABonus);
 	}
 
-	@Nullable
+
     @Override
 	public Image getIconImage()
 	{
@@ -113,7 +113,7 @@ public class SpeedShot extends Buff
 
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.SPEEDSHOT ; 			}
 

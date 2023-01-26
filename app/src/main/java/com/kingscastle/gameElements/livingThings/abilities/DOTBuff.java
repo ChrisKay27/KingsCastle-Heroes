@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -34,7 +34,7 @@ public class DOTBuff extends Buff
 		this.damage = damage;
 	}
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.DOT_BUFF ; 			}
 
@@ -64,7 +64,7 @@ public class DOTBuff extends Buff
 
 
     @Override
-	public int calculateManaCost(@NotNull @NonNull LivingThing aWizard)	{
+	public int calculateManaCost(@NotNull  LivingThing aWizard)	{
 		return 0;
 	}
 
@@ -74,7 +74,7 @@ public class DOTBuff extends Buff
 	public String toString() {
 		return printableString;
 	}
-	@NonNull
+
     public String getName() {
 		return name;
 	}
@@ -90,7 +90,7 @@ public class DOTBuff extends Buff
 
 
 
-	@Nullable
+	
     @Override
 	public Image getIconImage()	{
 		return null;

@@ -5,8 +5,8 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +49,7 @@ public class UI implements CoordConverter{
 	@NotNull
     private Game tdg;
 	private static UI ui;
-	@NonNull
+	
     private final UIThread uiThread;
 	private final Level level;
 
@@ -77,31 +77,32 @@ public class UI implements CoordConverter{
 
 	private boolean troopSelectorEnabled = true;
 
-	@NonNull
+	
     private final RectF onScreenArea = new RectF();
 
-	@NonNull
+	
     private final RectF stillDrawArea = new RectF();
 
-	@NonNull
+
+	
     public final SelectedUI selUI;
-	@NonNull
+	
     public final BuildingOptions bo;
-	@NonNull
+	
     public final Selecter selecter;
-	@NonNull
+	
     public final BuildingBuilder bb;
-	@NonNull
+	
     public final UIUpdater uiUpdater;
-	@NonNull
+	
     private final TroopDeployLocPlacer tdlp;
-	@NonNull
+	
     private final TowerController towerController;
-	@NonNull
+	
     private final TapChecker tapChecker;
-	@NonNull
+	
     private final EffectPlacer effectPlacer;
-	@NonNull
+	
     final SelectedSoldiers selectedThings;
 
     private final SoldierOrders uOrders;
@@ -113,7 +114,7 @@ public class UI implements CoordConverter{
    // private final ThumbStick leftThumbStick;//, rightThumbStick;
 
 
-	@Nullable
+	
     UIView uiView;
 	BuildingMover bMover;
 	private Mover mover;
@@ -213,7 +214,7 @@ public class UI implements CoordConverter{
 	/**
 	 * Analyze an individual touch event.
 	 */
-	void analyzeTouchEvent(@NonNull TouchEvent event) {
+	void analyzeTouchEvent(TouchEvent event) {
 		GameState state = tdg.getState();
 		//Log.d(TAG, "UI.analyzeTouchEvent() : " + event.x + ", " + event.y);
 
@@ -357,7 +358,7 @@ public class UI implements CoordConverter{
 	/**
 	 * For overriding to make a custom selectedUI
 	 */
-	@NonNull
+	
     protected SelectedUI getNewSelectedUI() {
 		return new SelectedUI( this );
 	}
@@ -366,7 +367,7 @@ public class UI implements CoordConverter{
 	/**
 	 * For overriding to make a custom selectedUI
 	 */
-	@NonNull
+	
     protected BuildingOptions getNewBuildingOptions(SelectedUI selUI2, Level level_) {
 		return new BuildingOptions( Rpg.getGame(), selUI , this , level_ );
 	}
@@ -394,15 +395,15 @@ public class UI implements CoordConverter{
 	}
 
 
-	@NonNull
+	
     @Override
-	public vector getCoordsMapToScreen(@NonNull vector v, @NonNull vector intoThisVector){
+	public vector getCoordsMapToScreen( vector v,  vector intoThisVector){
 		return getCoordsMapToScreen( v.x , v.y , intoThisVector );
 	}
 
-	@NonNull
+	
     @Override
-	public vector getCoordsMapToScreen(float x, float y, @NonNull vector intoThisVector){
+	public vector getCoordsMapToScreen(float x, float y,  vector intoThisVector){
 		intoThisVector.set((x - getCenteredOn().x)* Zoomer.getxScale() + Rpg.getWidthDiv2(), (y - getCenteredOn().y)*Zoomer.getyScale() + Rpg.getHeightDiv2());
 		return intoThisVector;
 	}
@@ -414,9 +415,9 @@ public class UI implements CoordConverter{
 
 
 
-	@NonNull
+	
     @Override
-	public vector getCoordsScreenToMap(float x, float y, @NonNull vector intoThisVector ){
+	public vector getCoordsScreenToMap(float x, float y,  vector intoThisVector ){
 		intoThisVector.set(x - (Rpg.getWidthDiv2()/Zoomer.getxScale()) + getCenteredOn().x, (y - Rpg.getHeightDiv2()/Zoomer.getyScale()) + getCenteredOn().y );
 		return intoThisVector;
 	}
@@ -426,16 +427,16 @@ public class UI implements CoordConverter{
 //		return this.getCoordsScreenToMap( x , y , new Vector() );
 //	}
 
-	@NonNull
+	
     @Override
-	public vector getCoordsScreenToMap(@NonNull vector v, @NonNull vector intoThis) {
+	public vector getCoordsScreenToMap( vector v,  vector intoThis) {
 		return getCoordsScreenToMap(v.x , v.y , intoThis );
 	}
 
 
 
 
-	private void checkPointer(@NonNull TouchEvent event) {
+	private void checkPointer( TouchEvent event) {
 		if (event.pointer == pointerId) {
 			currentX = 0;
 			currentY = 0;
@@ -515,7 +516,7 @@ public class UI implements CoordConverter{
 	 * Safe to call from any thread.
 	 * @param message
 	 */
-	public void warn( @Nullable final String message ) {
+	public void warn(  final String message ) {
 		//Log.d(TAG , "warn("+message+")");
 		if( message == null ){
 			//Log.e( TAG , "warn() -> message == null ");
@@ -615,11 +616,11 @@ public class UI implements CoordConverter{
 		this.level.getBackground().setCenteredOn(centeredOn);
 	}
 
-	@NonNull
+	
     public MM getMM() {
 		return level.getMM();
 	}
-	@NonNull
+	
     public CD getCD() {
 		return level.getMM().getCD();
 	}
@@ -633,7 +634,7 @@ public class UI implements CoordConverter{
 
 
 
-	@NonNull
+	
     public Selecter getSelecter() {
 		return selecter;
 	}
@@ -680,7 +681,7 @@ public class UI implements CoordConverter{
 			uiView.setUIViewVisibility(b);
 	}
 
-	public void setUIView(@Nullable UIView uiView_) {
+	public void setUIView( UIView uiView_) {
 		uiView = uiView_;
 		if( uiView_ != null ){
 			uiView_.setVisibility(uiViewVisibility);
@@ -709,7 +710,7 @@ public class UI implements CoordConverter{
 		bb.paintBeforePendingBuilding(g);
 	}
 
-	public void paintAfterPendingBuilding(@NonNull Graphics g) {
+	public void paintAfterPendingBuilding( Graphics g) {
 		bb.paintAfterPendingBuilding(g);
 	}
 
@@ -824,11 +825,11 @@ public class UI implements CoordConverter{
     }
 
 
-    @NonNull
+    
     public RectF getOnScreenArea() {
 		return onScreenArea;
 	}
-	@NonNull
+	
     public RectF getStillDrawArea() {
 		return stillDrawArea;
 	}
@@ -859,7 +860,7 @@ public class UI implements CoordConverter{
 
 
 
-	public static void removeThis( @Nullable final View v ){
+	public static void removeThis(  final View v ){
 		if( v == null ) return;
 
 		if( Rpg.getGame().uiThreadName.equals(Thread.currentThread().getName()) ){
@@ -880,7 +881,7 @@ public class UI implements CoordConverter{
 	}
 
 
-	@NonNull
+	
     public EffectPlacer getEffectPlacer() {
 		return effectPlacer;
 	}
@@ -889,5 +890,18 @@ public class UI implements CoordConverter{
         return uOrders;
     }
 
+	public void setScore(int gold) {
+
+	}
+
+	public void updateScore() {
+
+	}
+
+	public void updateExpBar(double levelPercent){
+
+		Log.d(TAG, "Updating exp bar with percent: " + levelPercent);
+		Rpg.getGame().updateExpBar(levelPercent);
+	}
 }
 

@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -38,12 +38,12 @@ public class BlueAngel extends AdvancedMageSoldier
 
 
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+	
+    private static final AttackerQualities staticAttackerQualities; 
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+	
+    private static final Attributes STATIC_ATTRIBUTES; 
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -84,7 +84,7 @@ public class BlueAngel extends AdvancedMageSoldier
 	}
 
 
-	public BlueAngel(@NonNull vector loc, Teams team){
+	public BlueAngel( vector loc, Teams team){
 		super(team);
 		setLoc(loc);
 
@@ -231,7 +231,7 @@ public class BlueAngel extends AdvancedMageSoldier
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@Nullable
+	
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -306,12 +306,12 @@ public class BlueAngel extends AdvancedMageSoldier
 	}
 
 
-	@NonNull
+	
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+	
     @Override
 	public String getName() {
 		return NAME;
@@ -319,7 +319,7 @@ public class BlueAngel extends AdvancedMageSoldier
 
 
 
-	@NonNull
+	
     @Override
 	public Attributes getNewLivingQualities()
 	{

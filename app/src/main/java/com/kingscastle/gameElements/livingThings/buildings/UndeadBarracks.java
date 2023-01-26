@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -32,21 +32,21 @@ public class UndeadBarracks extends AttackingBuilding
 
 	private static RectF staticPerceivedArea; // this is only the offset from the mapLocation.
 
-	@NonNull
+
     private static final AttackerQualities staticAttackerQualities;
-	@NonNull
+
     private static final Attributes STATIC_ATTRIBUTES;
 
 	private static final Cost cost = new Cost( 500 , 0 , 500 , 0 );
 
 
 
-	@NonNull
+
     @Override
 	protected AttackerQualities getStaticAQ() {
 		return staticAttackerQualities;
 	}
-	@NonNull
+
     @Override
 	protected Attributes getStaticLQ() {
 		return STATIC_ATTRIBUTES;
@@ -100,7 +100,7 @@ public class UndeadBarracks extends AttackingBuilding
 		setAttributes();
 	}
 
-	public UndeadBarracks( @NonNull vector v, Teams t )
+	public UndeadBarracks(  vector v, Teams t )
 	{
 		super(name, t);
 		setTeam(t);
@@ -109,7 +109,7 @@ public class UndeadBarracks extends AttackingBuilding
 
 
 	@Override
-	public boolean create(@NonNull MM mm) {
+	public boolean create( MM mm) {
 		getAQ().setCurrentAttack(new ProjectileAttack(mm, this, new Arrow())) ;
 		return super.create(mm);
 	}
@@ -148,12 +148,12 @@ public class UndeadBarracks extends AttackingBuilding
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return NAME;
@@ -166,7 +166,7 @@ public class UndeadBarracks extends AttackingBuilding
 
 
 
-	@NonNull
+
     @Override
 	public Cost getCosts() {
 		return cost;
@@ -251,7 +251,7 @@ public class UndeadBarracks extends AttackingBuilding
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{

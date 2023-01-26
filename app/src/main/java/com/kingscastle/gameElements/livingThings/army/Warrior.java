@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -24,9 +24,9 @@ public class Warrior extends BasicMeleeSoldier
 	private static Image[] staticImages = Assets.loadImages(R.drawable.warrior_blue,0,0,1,1);
 	private static ImageFormatInfo imageFormatInfo;
 
-	@NonNull
+
     private static final AttackerQualities staticAttackerQualities;
-    @NonNull
+
     private static final Attributes STATIC_ATTRIBUTES;
 
 	private static Cost cost = new Cost( 50 , 50 , 0 , 1 );
@@ -63,7 +63,7 @@ public class Warrior extends BasicMeleeSoldier
 	}
 
 
-	public Warrior( @NonNull vector loc , Teams team )
+	public Warrior(  vector loc , Teams team )
 	{
 		super(team);
 		setLoc( loc );
@@ -128,7 +128,7 @@ public class Warrior extends BasicMeleeSoldier
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -153,13 +153,13 @@ public class Warrior extends BasicMeleeSoldier
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;
@@ -168,10 +168,10 @@ public class Warrior extends BasicMeleeSoldier
 
 
 
-    @NonNull
+
     @Override
     protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-    @NonNull
+
     @Override
     protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 

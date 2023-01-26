@@ -2,8 +2,8 @@ package com.kingscastle.gameElements.movement;
 
 import android.graphics.Point;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.GameElement;
@@ -34,15 +34,15 @@ public class Inter extends Point
 	private static float halfGridSize;
 
 
-	@Nullable
+	
     private vector intersection;
-	@Nullable
+	
     private vector normal;
-	@Nullable
+	
     private vector force;
 
 	private float distanceFromLineStart;
-	@Nullable
+	
     private LivingThing hit;
 
 	private LivingThing lt;
@@ -92,7 +92,7 @@ public class Inter extends Point
 	}
 
 
-	public boolean checkForCollision2( @NonNull vector loc , @NonNull vector normal )
+	public boolean checkForCollision2(  vector loc ,  vector normal )
 	{
 		normal.set( 0 , 0 );
 
@@ -194,7 +194,7 @@ public class Inter extends Point
 
 
 
-	public boolean checkForCollision( @NonNull MM mm, @NonNull Line l , vector obstAvoidanceForce )
+	public boolean checkForCollision(  MM mm,  Line l , vector obstAvoidanceForce )
 	{
 		//////////////////
 		int gridSize = (int) grid.getGridSize();
@@ -429,8 +429,8 @@ public class Inter extends Point
 	 * Use this method to avoid walking on top of each other.
 	 * @return The thing you collided with.. only one of them tho...
 	 */
-	@Nullable
-    public LivingThing checkForSeparation(@NonNull MM mm, @NonNull vector loc, @NonNull vector force, @NonNull vector temp, Teams team, LivingThing currTarget)
+	
+    public LivingThing checkForSeparation( MM mm,  vector loc,  vector force,  vector temp, Teams team, LivingThing currTarget)
 	{
 		ArrayList<Team> teams = mm.getTM().getTeams();
 
@@ -527,7 +527,7 @@ public class Inter extends Point
 	//		force.add( temp.x/r , temp.y/r );
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return "Intersection at {" + intersection + " normal is " + normal
@@ -538,7 +538,7 @@ public class Inter extends Point
 		return grid;
 	}
 
-	public static void setGrid(@NonNull Grid grid) {
+	public static void setGrid( Grid grid) {
 		Inter.grid = grid;
 		gridTiles = grid.getGridTiles();
 		gridSize = grid.getGridSize();
@@ -550,7 +550,7 @@ public class Inter extends Point
 	}
 
 
-	@Nullable
+	
     public LivingThing getHitLivingThing() {
 		return hit;
 	}
@@ -561,7 +561,7 @@ public class Inter extends Point
 
 
 
-	public static boolean intersects( @NonNull RectF r, @NonNull Line l )
+	public static boolean intersects(  RectF r,  Line l )
 	{
 
 		if( ( l.start.x < r.left && l.end.x < r.left ) ||
@@ -581,7 +581,7 @@ public class Inter extends Point
 
 
 
-	public static boolean intersects( @NonNull RectF r, @NonNull RectF r2 )
+	public static boolean intersects(  RectF r,  RectF r2 )
 	{
 		if ( r.left >= r2.right || r.top >= r2.bottom || r.right <= r2.left
 				|| r.bottom <= r2.top )
@@ -595,7 +595,7 @@ public class Inter extends Point
 	}
 
 
-	@Nullable
+	
     public vector getForce() {
 		return force;
 	}
@@ -604,7 +604,7 @@ public class Inter extends Point
 		this.force = force;
 	}
 
-	@Nullable
+	
     public vector getPoint()
 	{
 		return intersection;
@@ -618,7 +618,7 @@ public class Inter extends Point
 		return distanceFromLineStart;
 	}
 
-	@Nullable
+	
     public vector getNormal() {
 		return normal;
 	}

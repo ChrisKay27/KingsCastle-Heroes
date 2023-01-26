@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.gameElements.livingThings.LivingThing;
@@ -13,9 +13,9 @@ import org.jetbrains.annotations.NotNull;
 
 public abstract class Attack
 {
-	@NonNull
+
     protected final MM mm;
-	@NonNull
+
     protected final LivingThing owner;
 
 
@@ -33,7 +33,7 @@ public abstract class Attack
 	/**
 	 * @return the owner
 	 */
-    @NonNull
+
     LivingThing getOwner()
 	{
 		return owner;
@@ -49,7 +49,7 @@ public abstract class Attack
 
 	}
 
-	@Nullable
+	
     public Anim getAnimator() {
 		return null;
 	}

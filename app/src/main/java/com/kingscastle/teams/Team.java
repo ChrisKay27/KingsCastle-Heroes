@@ -1,8 +1,8 @@
 package com.kingscastle.teams;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.Log;
 
 import com.kingscastle.heroes.R;
@@ -53,7 +53,7 @@ public class Team implements OnBuildingMovedListener
 
 	}
 
-	public void onTechResearchFinished(@NonNull Building b, LevelUpTechnology levelUpTechnology) {
+	public void onTechResearchFinished( Building b, LevelUpTechnology levelUpTechnology) {
 		b.upgradeLevel();
 	}
 
@@ -93,22 +93,22 @@ public class Team implements OnBuildingMovedListener
 
 
 
-	@NonNull
+
     private final TeamThread thread;
 
 	private final Teams team;
-	@NonNull
+
     private final Player player;
 	private boolean humanPlayer;
 
 
-	@NonNull
+
     private final PR pr;
 
 
 	protected AllowedBuildings abs = new AllowedBuildings();
 	//protected AvailableSpells as = new AvailableSpells();
-	@NonNull
+
     protected final Race race;
 
 	protected MM mm;
@@ -144,7 +144,7 @@ public class Team implements OnBuildingMovedListener
 
 
 
-	protected Team( Teams team , @NonNull Player player, @NonNull Race race, GridUtil gUtil )
+	protected Team( Teams team ,  Player player,  Race race, GridUtil gUtil )
 	{
 		this.team = team;
 		this.player = player;
@@ -155,9 +155,9 @@ public class Team implements OnBuildingMovedListener
 		thread = new TeamThread( this , Rpg.getGame() );
 
 		pr = new PR();
-		pr.setGoldAvailable( 800 );
-		pr.setFoodAvailable( 800 );
-		pr.setWoodAvailable( 800 );
+		pr.setGoldAvailable( 1000 );
+		pr.setFoodAvailable( 0 );
+		pr.setWoodAvailable( 0 );
 
 		addBuildingsLearned( abs , race );
 
@@ -165,7 +165,7 @@ public class Team implements OnBuildingMovedListener
 	}
 
 
-	protected void addBuildingsLearned(@NonNull AllowedBuildings abs, @NonNull Race race2){
+	protected void addBuildingsLearned( AllowedBuildings abs,  Race race2){
 		BuildingsLearned.addBuildingsLearned(abs, race2, roundNum);
 	}
 
@@ -176,8 +176,8 @@ public class Team implements OnBuildingMovedListener
 	 * @param p Can be null, will create a AI player.
 	 * @return
 	 */
-	@NonNull
-    public static HumanTeam getNewHumanInstance( @NonNull HumanPlayer p , Race race, GridUtil gUtil )
+
+    public static HumanTeam getNewHumanInstance(  HumanPlayer p , Race race, GridUtil gUtil )
 	{
 		Teams teamName = p.getTeamName();
 
@@ -205,8 +205,8 @@ public class Team implements OnBuildingMovedListener
 	//		return getNewAIInstance(new AIPlayer( teams, difficulty ),race , gUtil );
 	//	}
 
-	@Nullable
-    public static Team getNewInstance(@Nullable Teams teams, @NonNull Race race , GridUtil gUtil ) {
+	
+    public static Team getNewInstance( Teams teams,  Race race , GridUtil gUtil ) {
 
 		if( teams == null )
 			throw new WtfException( "teams == null" );
@@ -246,7 +246,7 @@ public class Team implements OnBuildingMovedListener
 	}
 
 
-	public Cost getAdjustedCosts( @NonNull Buildings buildingsName , Cost defaultCost )
+	public Cost getAdjustedCosts(  Buildings buildingsName , Cost defaultCost )
 	{
 		if( !hasATc )
 		{
@@ -308,7 +308,7 @@ public class Team implements OnBuildingMovedListener
 
 	protected int wps = 0, fps = 0, gps = 0, buildingWorkers = 0;
 
-	public void saveYourself( @NonNull BufferedWriter b ) throws IOException
+	public void saveYourself(  BufferedWriter b ) throws IOException
 	{
 		String s;
 
@@ -359,25 +359,25 @@ public class Team implements OnBuildingMovedListener
 	}
 
 
-	public boolean canAfford(@Nullable Cost cost) {
+	public boolean canAfford( Cost cost) {
 		if( cost == null ) return true;
 		return pr.canAfford(cost);
 	}
-	public boolean canAffordIgnorePop(@Nullable Cost cost) {
+	public boolean canAffordIgnorePop( Cost cost) {
 		if( cost == null ) return true;
 		return pr.canAffordIgnorePop(cost);
 	}
 
 
 
-	public void onHumanoidPurchased( Building fromHere , @Nullable LivingThing lt ){
+	public void onHumanoidPurchased( Building fromHere ,  LivingThing lt ){
 		if( lt == null ){
 			Log.e(TAG, team + "_Team.onHumanoidPurchased(" + lt + ")");
 			return;
 		}
 	}
 
-	public void onHumanoidCreated( @Nullable LivingThing lt ){
+	public void onHumanoidCreated(  LivingThing lt ){
 		if( lt == null ){
 			Log.e( TAG , team+"_Team.onHumanoidCreated("+lt+")");
 			return;
@@ -386,7 +386,7 @@ public class Team implements OnBuildingMovedListener
 	}
 
 
-	public void onHumanoidDestroyed( @Nullable LivingThing lt ){
+	public void onHumanoidDestroyed(  LivingThing lt ){
 		if( lt == null ){
 			Log.e( TAG , team+"_Team.onHumanoidDestroyed("+lt+")");
 			return;
@@ -406,7 +406,7 @@ public class Team implements OnBuildingMovedListener
 
 
 
-	public void onBuildingAddedToMap( @Nullable Building b ){
+	public void onBuildingAddedToMap(  Building b ){
 		if( b == null ){
 			Log.e( TAG , "onBuildingAddedToMap(null)");
 			return;
@@ -422,7 +422,7 @@ public class Team implements OnBuildingMovedListener
 		}
 	}
 
-	public void onBuildingCompleted( @NonNull Building b ){
+	public void onBuildingCompleted(  Building b ){
 
 		vector loc = b.loc;
 		float x = loc.x;
@@ -437,7 +437,7 @@ public class Team implements OnBuildingMovedListener
 
 
 
-	public void sellThisBuilding(@Nullable Building b) {
+	public void sellThisBuilding( Building b) {
 		if( b == null ) return;
 		if( b.getTeamName() != team ) return;
 		if( b.isDead() ) return;
@@ -475,7 +475,7 @@ public class Team implements OnBuildingMovedListener
 
 
 
-	@NonNull
+
     public PR getPR() {
 		return pr;
 	}

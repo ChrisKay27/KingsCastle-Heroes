@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -21,7 +21,7 @@ public class WhiteSparkDissipationAnim extends Anim
 	private final int staticTfb = 10;
 
 
-	public WhiteSparkDissipationAnim(@NonNull vector loc)	{
+	public WhiteSparkDissipationAnim( vector loc)	{
 		super(loc);
 		setTbf(staticTfb);
 		setImages(staticImages);
@@ -32,7 +32,7 @@ public class WhiteSparkDissipationAnim extends Anim
 
 
 	@Override
-	public void paint(@NonNull Graphics g, @NonNull vector v)	{
+	public void paint( Graphics g,  vector v)	{
 		Image image = getImage();
 
 		if( image != null )

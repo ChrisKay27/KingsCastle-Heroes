@@ -1,7 +1,7 @@
 package com.kingscastle.ui.buttons;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.ZoomControls;
@@ -33,7 +33,7 @@ public class Zoomer {
 	 * @param zb Controls displayed on that activities content view
 	 * @param renderView The View used to display the game content
 	 */
-	public static void setup(Activity a, @NonNull ZoomControls zb, @NonNull final AndroidFastRenderView renderView){
+	public static void setup(Activity a,  ZoomControls zb,  final AndroidFastRenderView renderView){
 		Zoomer.zb = zb;
 		Zoomer.renderView = renderView;
 		Zoomer.a = a;
@@ -41,8 +41,8 @@ public class Zoomer {
 		yScale = renderView.getScaleY();
 		Log.d(TAG, "xScale:" + xScale + " yScale:" + yScale );
 		inCount = 0;
-		zb.setIsZoomInEnabled(true);
-		zb.setIsZoomOutEnabled(true);
+//		zb.setIsZoomInEnabled(true);
+//		zb.setIsZoomOutEnabled(true);
 		zb.setOnZoomInClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -101,7 +101,7 @@ public class Zoomer {
 	}
 
 
-	@NonNull
+	
     private static Runnable saveZoomAndZoomOut = new Runnable(){
 		@Override
 		public void run() {
@@ -115,7 +115,7 @@ public class Zoomer {
 		};
 	};
 
-	@NonNull
+	
     private static Runnable restoreZoom = new Runnable(){
 		@Override
 		public void run() {
@@ -137,7 +137,7 @@ public class Zoomer {
 	public static void setScale(float scale) {
 		xScale = scale;
 		yScale = scale;
-		restoreZoom();
+		//restoreZoom();
 	}
 
 	public static void setMinScale(float minScale) {
@@ -172,7 +172,7 @@ public class Zoomer {
 
 
 
-	@NonNull
+	
     private static final List<onZoomLevelChangedListener> zlcls = new ArrayList<>();
 
 	public static boolean addZlcl(onZoomLevelChangedListener object) {

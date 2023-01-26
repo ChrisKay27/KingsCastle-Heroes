@@ -1,7 +1,7 @@
 package com.kingscastle.teams;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.gameElements.livingThings.buildings.Buildings;
 
@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class NumAllowedBuildings {
 
-	@NonNull
+
     private static HashMap<Buildings, int[]> unlockedAtLevels = new HashMap<Buildings, int[]>();
 
 	static{
@@ -82,7 +82,7 @@ public class NumAllowedBuildings {
 	}
 
 
-	public static void addBuildingsAllowed(int tcLevel, @NonNull HashMap<Buildings, Integer> numBuildingsAllowed) {
+	public static void addBuildingsAllowed(int tcLevel,  HashMap<Buildings, Integer> numBuildingsAllowed) {
 
 		if( tcLevel >= 1 ){
 			numBuildingsAllowed.put( Buildings.Barracks , 1 );

@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -33,7 +33,7 @@ public class FireBallAnim extends Anim
 	}
 
 
-	public FireBallAnim(@NonNull vector loc , int dir){
+	public FireBallAnim( vector loc , int dir){
         super(loc);
 		setImages( getImages(dir) );
 		setTbf(staticTfb);

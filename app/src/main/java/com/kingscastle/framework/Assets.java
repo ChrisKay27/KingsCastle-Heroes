@@ -1,8 +1,8 @@
 package com.kingscastle.framework;
 
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.DeadHumanAnim;
@@ -74,7 +74,7 @@ public class Assets
 	}
 
 
-	@Nullable
+	
     public static Image[] loadImages(int id, int xOffs, int yOffs,int numHorzSpriteSets,int numVertSpriteSets )	{
 		return loadImages( id , xOffs , yOffs , numHorzSpriteSets , numVertSpriteSets , true );
 	}
@@ -160,12 +160,12 @@ public class Assets
 	}
 
 
-	@NonNull
+
     public static List<Image> loadAnimationImages( int id , int numOfFrames )	{
 		return loadAnimationImages( id , numOfFrames , true );
 	}
 
-	@NonNull
+
     private static List<Image> loadAnimationImages(int id, int numOfFrames, boolean disposeImageAfter)	{
         List<Image> dyingImages = new ArrayList<>();
 
@@ -215,7 +215,7 @@ public class Assets
 	//	}
 
 
-	@NonNull
+
     public static List<Image> loadAnimationImages( int id , int totalColumns , int totalRows , int fromRow , int totalImages )
 	{
 		Image image = Rpg.getGame().getGraphics().newImage( id , ImageFormat.RGB565 );
@@ -223,14 +223,14 @@ public class Assets
 		return loadAnimationImages( image , totalColumns , totalRows , fromRow , totalImages );
 	}
 
-	@NonNull
-    private static List<Image> loadAnimationImages(@NonNull Image image, int totalColumns, int totalRows, int fromRow, int totalImages)
+
+    private static List<Image> loadAnimationImages( Image image, int totalColumns, int totalRows, int fromRow, int totalImages)
 	{
 		return loadAnimationImages( image , totalColumns , totalRows , fromRow , totalImages , true );
 	}
 
-	@NonNull
-    public static List<Image> loadAnimationImages( @NonNull Image image , int totalColumns , int totalRows , int fromRow , int totalImages, boolean disposeImageAfter )
+
+    public static List<Image> loadAnimationImages(  Image image , int totalColumns , int totalRows , int fromRow , int totalImages, boolean disposeImageAfter )
 	{
         List<Image> images = new ArrayList<>();
 
@@ -260,7 +260,7 @@ public class Assets
 
 
 
-	@NonNull
+
     private static Anim loadHealingAnimation(){
 		return healSparkles = new Anim(null,loadAnimationImages(R.drawable.heal_sparkle,6),150);
 	}
@@ -324,8 +324,8 @@ public class Assets
 
 
 
-	@NonNull
-    public static <T> List<T> convToArrayList(@NonNull T[] array) {
+
+    public static <T> List<T> convToArrayList( T[] array) {
 //
 //        ArrayList<T> aList = new ArrayList<>();
 //		for( T t : array )

@@ -2,7 +2,7 @@ package com.kingscastle.gameElements.spells;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.CycloneLargeAnim;
 import com.kingscastle.framework.GameTime;
@@ -23,10 +23,10 @@ public class EarthQuake extends InstantSpell
 	private static Image iconImage;
 
 
-	@NonNull
+
     private static final ArrayList<vector> offsets1;
 
-	@NonNull
+
     private static final ArrayList<vector> offsets2;
 
 	static{
@@ -75,14 +75,14 @@ public class EarthQuake extends InstantSpell
 
 	public EarthQuake() {
 	}
-	public EarthQuake(@NonNull EarthQuake earthQuake_) {
+	public EarthQuake( EarthQuake earthQuake_) {
 		setDamage(earthQuake_.getDamage());
 	}
 
 
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.EARTHQUAKE ; 			}
 
@@ -96,7 +96,7 @@ public class EarthQuake extends InstantSpell
 
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 
@@ -120,7 +120,7 @@ public class EarthQuake extends InstantSpell
 
 
 
-	@NonNull
+
     @Override
 	public String getName()
 	{
@@ -134,7 +134,7 @@ public class EarthQuake extends InstantSpell
 	}
 
 
-	@NonNull
+
     @Override
 	public Spell newInstance()
 	{
@@ -143,7 +143,7 @@ public class EarthQuake extends InstantSpell
 
 
 
-	@NonNull
+
     @Override
 	public String toString()
 	{
@@ -157,7 +157,7 @@ public class EarthQuake extends InstantSpell
 
 
 
-	private void createQuakes( @NonNull ArrayList<vector> offsets)
+	private void createQuakes(  ArrayList<vector> offsets)
 	{
 
 		ArrayList<SpellCreationParams> params = getQuakeCreationParam(this,offsets);
@@ -176,7 +176,7 @@ public class EarthQuake extends InstantSpell
 
 
 	@Override
-	public int calculateManaCost( @NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost( @NotNull  LivingThing aWizard)
 	{
 		return 10 + aWizard.getLQ().getLevel() * 5 ;
 	}
@@ -200,7 +200,7 @@ public class EarthQuake extends InstantSpell
 
 
 
-	@NonNull
+
     private static vector copyAndRotate(int deg, vector temp2)
 	{
 		vector temp = new vector(temp2);
@@ -210,8 +210,8 @@ public class EarthQuake extends InstantSpell
 
 
 
-	@NonNull
-    private static ArrayList<SpellCreationParams> getQuakeCreationParam( @NonNull EarthQuake MQ ,  @NonNull ArrayList<vector> offsets)
+
+    private static ArrayList<SpellCreationParams> getQuakeCreationParam(  EarthQuake MQ ,   ArrayList<vector> offsets)
 	{
 		ArrayList<SpellCreationParams> params = new ArrayList<SpellCreationParams>();
 

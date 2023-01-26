@@ -10,8 +10,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -35,16 +35,16 @@ public class UIView extends RelativeLayout {
 
 	protected static final String TAG = "UIView";
 
-	@Nullable
+	
     private static UIViewBuilder mUIViewBuilder = new UIViewBuilder();
 
-	public static void setUIViewBuilder(@Nullable UIViewBuilder uiViewBuilder){
+	public static void setUIViewBuilder( UIViewBuilder uiViewBuilder){
 		if( uiViewBuilder != null )
 			mUIViewBuilder = uiViewBuilder;
 	}
 
 	public static class UIViewBuilder{
-		public void showUIView(@NonNull final Activity a , final Level level , @NonNull final UI ui ){
+		public void showUIView( final Activity a , final Level level ,  final UI ui ){
 
 			a.runOnUiThread(new Runnable() {
 				@Override
@@ -185,10 +185,10 @@ public class UIView extends RelativeLayout {
 		}
 	}
 
-	@Nullable
+	
     protected static UIView uiView;
 	//private static InactivityMonitor inactivityMonitor;
-	@Nullable
+	
     protected static RelativeLayout levelLayer;
 
 
@@ -199,17 +199,17 @@ public class UIView extends RelativeLayout {
 
 
 
-	public UIView(@NonNull Context context) {
+	public UIView( Context context) {
 		super(context);
 		init(null, 0);
 	}
 
-	public UIView(@NonNull Context context, AttributeSet attrs) {
+	public UIView( Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(attrs, 0);
 	}
 
-	public UIView(@NonNull Context context, AttributeSet attrs, int defStyle) {
+	public UIView( Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		init(attrs, defStyle);
 	}
@@ -227,7 +227,7 @@ public class UIView extends RelativeLayout {
 	 * Safe to call from outside the UI thread
 	 * @param a
 	 */
-	public static void showUIView( @NonNull final Activity a , final Level level , @NonNull final UI ui ){
+	public static void showUIView(  final Activity a , final Level level ,  final UI ui ){
 		mUIViewBuilder.showUIView(a, level, ui);
 	}
 
@@ -321,7 +321,7 @@ public class UIView extends RelativeLayout {
 
 					animation.addUpdateListener(new AnimatorUpdateListener() {
 						@Override
-						public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+						public void onAnimationUpdate( ValueAnimator animation) {
 							v.setAlpha( (Float) animation.getAnimatedValue());
 						}
 					});
@@ -346,7 +346,7 @@ public class UIView extends RelativeLayout {
 
 	private final static List<Runnable> addToLevelLayer = new ArrayList<>();
 
-	protected static void addContentViewToLevelLayer( @NonNull final View v , final LayoutParams params ){
+	protected static void addContentViewToLevelLayer(  final View v , final LayoutParams params ){
 		RelativeLayout levelLayer = UIView.levelLayer;
 
 		Runnable r = new Runnable(){

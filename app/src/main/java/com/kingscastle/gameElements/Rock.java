@@ -7,8 +7,8 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.Assets;
@@ -28,7 +28,7 @@ public class Rock extends GameElement {
 
 	private int borderColor = Color.YELLOW;
 
-	@NonNull
+
     private static List<Image> images = new ArrayList<>();
 	static{
 		images.add(Assets.loadImage(R.drawable.tall_rock));
@@ -39,7 +39,7 @@ public class Rock extends GameElement {
 	private Image img = images.get((int) (Math.random() * images.size()));
 	//private static RT resourceType;// = RT.WOOD;
 
-	@NonNull
+
     private static RectF staticPerceivedArea = new RectF(Rpg.oneByOneArea);
 	private Anim anim;
 
@@ -48,7 +48,7 @@ public class Rock extends GameElement {
 		return img;
 	}
 
-	public Rock(@NonNull vector loc){
+	public Rock( vector loc){
 		this.loc.set(loc);
 	}
 	public Rock(){
@@ -56,7 +56,7 @@ public class Rock extends GameElement {
 
 
 	@Override
-	public boolean create( @NonNull MM mm )
+	public boolean create(  MM mm )
 	{
 		super.create(mm);
 		if ( !hasBeenCreated() )
@@ -78,7 +78,7 @@ public class Rock extends GameElement {
 			anim = new Anim( getImage() ){
 				private boolean incAlpha = true;
 				private float sat = 1;
-				@NonNull
+
                 private final ColorMatrix cm;
 				{
 					cm = new ColorMatrix();
@@ -143,13 +143,13 @@ public class Rock extends GameElement {
 
 
 
-	@Nullable
+
     @Override
 	public ImageFormatInfo getImageFormatInfo() {
 		return null;
 	}
 
-	@Nullable
+
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -171,7 +171,7 @@ public class Rock extends GameElement {
 
 
 	@Override
-	public void saveYourself( @NonNull BufferedWriter bw ) throws IOException
+	public void saveYourself(  BufferedWriter bw ) throws IOException
 	{
 		String temp;
 		temp = "<" + getClass().getSimpleName() + " x=\"" + (int) (loc.x) + "\" y=\"" + (int) (loc.y) + "\" rr=\"" + 0 + "\" >";
@@ -197,7 +197,7 @@ public class Rock extends GameElement {
 
 
 
-	@NonNull
+
     @Override
 	public RectF getStaticPerceivedArea() {
 		return staticPerceivedArea;

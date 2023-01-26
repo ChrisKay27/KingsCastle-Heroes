@@ -1,7 +1,7 @@
 package com.kingscastle.framework.implementation;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -19,7 +19,7 @@ class P2PSocket
 	private ObjectOutputStream oos;
 
 
-	public P2PSocket( Socket s2 , @NonNull final MessageListener msgListener ) throws UnknownHostException, IOException, ClassNotFoundException, URISyntaxException
+	public P2PSocket( Socket s2 ,  final MessageListener msgListener ) throws UnknownHostException, IOException, ClassNotFoundException, URISyntaxException
 	{
 		s = s2;
 		try
@@ -77,7 +77,7 @@ class P2PSocket
 
 
 
-	public boolean sendMessage( @Nullable String msg )
+	public boolean sendMessage(  String msg )
 	{
 		if( oos == null ) throw new IllegalStateException( "Connection has not been establised." );
 		if( msg == null ) throw new IllegalStateException( "Trying to send null message." );

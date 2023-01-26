@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.heroes.R;
@@ -31,12 +31,12 @@ public class UndeadMarshall extends MediumMeleeSoldier
 	private static ImageFormatInfo imageFormatInfo;
 
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -80,7 +80,7 @@ public class UndeadMarshall extends MediumMeleeSoldier
 	}
 
 
-	public UndeadMarshall( @NonNull vector loc , Teams team )
+	public UndeadMarshall(  vector loc , Teams team )
 	{
 		super(team);
 		setLoc( loc );
@@ -93,7 +93,7 @@ public class UndeadMarshall extends MediumMeleeSoldier
 
 
 	@Override
-	public void finalInit( @NonNull MM mm )
+	public void finalInit(  MM mm )
 	{
 		if( hasFinalInited  )
 		{
@@ -217,7 +217,7 @@ public class UndeadMarshall extends MediumMeleeSoldier
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@Nullable
+	
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -236,7 +236,7 @@ public class UndeadMarshall extends MediumMeleeSoldier
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -254,12 +254,12 @@ public class UndeadMarshall extends MediumMeleeSoldier
 		UndeadMarshall.cost = cost;
 	}
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return NAME;

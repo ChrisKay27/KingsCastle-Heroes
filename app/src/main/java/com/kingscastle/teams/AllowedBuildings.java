@@ -1,7 +1,7 @@
 package com.kingscastle.teams;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.gameElements.livingThings.buildings.Building;
 import com.kingscastle.gameElements.livingThings.buildings.Buildings;
@@ -26,7 +26,7 @@ public class AllowedBuildings
 
 
 
-	@NonNull
+	
     public ArrayList<Building> getAllowedBuildings(){
 		return allowedBuildings;
 	}
@@ -49,7 +49,7 @@ public class AllowedBuildings
 	private void sort(){
 		Collections.sort(allowedBuildings, new Comparator<Building>(){
 			@Override
-			public int compare(@NonNull Building lhs, @NonNull Building rhs) {
+			public int compare( Building lhs,  Building rhs) {
 				int l = lhs.attributes.getRequiresTcLvl();
 				int r = rhs.attributes.getRequiresTcLvl();
 
@@ -64,7 +64,7 @@ public class AllowedBuildings
 	}
 
 
-	public void addBuilding( @NonNull Buildings b )
+	public void addBuilding(  Buildings b )
 	{
 		//Log.d( TAG , "addBuilding() b = " + b );
 		for( Building bu : allowedBuildings )
@@ -104,13 +104,13 @@ public class AllowedBuildings
 
 
 
-	public void allowToBeBuild( @NonNull Buildings b )
+	public void allowToBeBuild(  Buildings b )
 	{
 		addBuilding( b );
 	}
 
 
-	public void replace(@NonNull Building b) {
+	public void replace( Building b) {
 
 		Buildings bldin = b.getBuildingsName();
 
@@ -142,7 +142,7 @@ public class AllowedBuildings
 
 
 
-	public void saveYourSelf( @NonNull BufferedWriter b ) throws IOException
+	public void saveYourSelf(  BufferedWriter b ) throws IOException
 	{
 
 		String s = "<AllowedBuildings>";
@@ -177,7 +177,7 @@ public class AllowedBuildings
         public boolean remove( Object b ){
             throw new UnsupportedOperationException("Do not mess with this list outside the AllowedBuildings class.");
         }
-        @NonNull
+        
         @Override
         public T remove( int i ){
             throw new UnsupportedOperationException("Do not mess with this list outside the AllowedBuildings class.");

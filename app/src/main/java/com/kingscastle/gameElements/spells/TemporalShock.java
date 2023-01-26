@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.spells;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.TemporalShockAnim;
@@ -31,7 +31,7 @@ public class TemporalShock extends InstantSpell{
 
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.TEMPORAL_SHOCK ; 			}
 
@@ -51,7 +51,7 @@ public class TemporalShock extends InstantSpell{
 
 
 	@Override
-	public int calculateManaCost(@NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost(@NotNull  LivingThing aWizard)
 	{
 		return 0;
 		//return 20 + aWizard.getLQ().getLevel() * 3;
@@ -68,14 +68,14 @@ public class TemporalShock extends InstantSpell{
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return toString ;
 	}
 
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;
@@ -88,7 +88,7 @@ public class TemporalShock extends InstantSpell{
 	}
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 		//		area.set(getStaticPerceivedArea());
@@ -109,15 +109,15 @@ public class TemporalShock extends InstantSpell{
 	}
 
 
-	@Nullable
-    GameElement checkSingleHit(@NonNull Teams teams)
+	
+    GameElement checkSingleHit( Teams teams)
 	{
 		return cd.checkSingleHit( teams , area , false );
 	}
 
 
 
-	void hitCreature( @Nullable LivingThing lt)
+	void hitCreature(  LivingThing lt)
 	{
 		if( lt == null )
 			return;
@@ -135,7 +135,7 @@ public class TemporalShock extends InstantSpell{
 	public TemporalShock(){}
 
 
-	@NonNull
+
     @Override
 	public Spell newInstance()
 	{

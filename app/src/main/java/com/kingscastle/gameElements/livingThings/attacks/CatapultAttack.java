@@ -1,6 +1,6 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Rpg;
@@ -21,10 +21,10 @@ public class CatapultAttack extends ProjectileAttack {
 
     private long doAttackAt;
     private LivingThing target;
-    @NonNull
+
     private Direction lookDir = Direction.E;
 
-    public CatapultAttack(@NonNull MM mm, @NonNull LivingThing lt, @NonNull Projectile p) {
+    public CatapultAttack( MM mm,  LivingThing lt,  Projectile p) {
         super(mm, lt, p);
     }
 
@@ -57,7 +57,7 @@ public class CatapultAttack extends ProjectileAttack {
         mm.add(p);
     }
 
-    @NonNull
+
     public Direction getLookDir() {
         return lookDir;
     }

@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.spells;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.Image;
@@ -45,7 +45,7 @@ public abstract class Spell extends GameElement implements Ability
 	public abstract String getName();
 
 	@Override
-	public boolean cast( @NonNull MM mm ){
+	public boolean cast(  MM mm ){
 		cd = mm.getCD();
 		return true;
 	}
@@ -54,27 +54,27 @@ public abstract class Spell extends GameElement implements Ability
 	 * Not used to save spells anymore. Saving spells simply doesn't happen anymore.
 	 */
 	@Override
-	public void saveYourSelf(@NonNull BufferedWriter b) throws IOException{
+	public void saveYourSelf( BufferedWriter b) throws IOException{
 	}
 
 	protected abstract int calculateDamage();
 
 	@Override
-	public int calculateManaCost( @NotNull @NonNull LivingThing possibleCaster ){return 0;}
+	public int calculateManaCost( @NotNull  LivingThing possibleCaster ){return 0;}
 
 	@Override
 	public abstract boolean act();
 
 	@Override
-	public boolean cast(@NotNull @NonNull MM mm, @NotNull LivingThing target)
+	public boolean cast(@NotNull  MM mm, @NotNull LivingThing target)
 	{
 		return false;
 	}
 
 
 
-	@NonNull
-    ArrayList<LivingThing> checkHit(@NonNull Teams teams,  @NonNull GameElement ge)
+	
+    ArrayList<LivingThing> checkHit( Teams teams,   GameElement ge)
 	{
 		hitBucket.clear();
 		return cd.checkMultiHit( teams , ge.area , false , hitBucket);
@@ -82,7 +82,7 @@ public abstract class Spell extends GameElement implements Ability
 
 
 
-	void hitCreatures( @Nullable List<LivingThing> lts)
+	void hitCreatures(  List<LivingThing> lts)
 	{
 		if( lts == null )
 			return;
@@ -113,7 +113,7 @@ public abstract class Spell extends GameElement implements Ability
 
 
 	@Override
-	public void setCaster(@NonNull @NotNull LivingThing caster){
+	public void setCaster( @NotNull LivingThing caster){
 		this.caster = caster;
 		setTeam(caster.getTeamName());
 	}
@@ -160,7 +160,7 @@ public abstract class Spell extends GameElement implements Ability
 		return target;
 	}
 	@Override
-	public void setTarget(@NonNull LivingThing target)
+	public void setTarget( LivingThing target)
 	{
 		this.target = target;
 	}
@@ -204,7 +204,7 @@ public abstract class Spell extends GameElement implements Ability
 		super.setTeamName(teamName);
 	}
 
-	@Nullable
+	
     @Override
 	public RectF getStaticPerceivedArea() {
 		return null;
@@ -219,18 +219,18 @@ public abstract class Spell extends GameElement implements Ability
 	public void uncast() {
 	}
 
-	@Nullable
+	
     @Override
 	public Image getIconImage() {
 		return null;
 	}
 
-	@Nullable
+	
     @Override
 	public ImageFormatInfo getImageFormatInfo() {
 		return null;
 	}
-	@Nullable
+	
     @Override
 	public Image[] getStaticImages() {
 		return null;

@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -38,19 +38,19 @@ public class CatapultTower extends AttackingBuilding
 
 	private static final Cost cost = new Cost( 50 , 0 , 0 , 0 );
 
-	@NonNull
+	
     private static final AttackerQualities staticAttackerQualities;
-	@NonNull
+	
     private static final Attributes STATIC_ATTRIBUTES;
 	private static ArrayList<vector> staticDamageOffsets;
 	private boolean firing;
 	private CatapultAttack catapultAttack;
 
 
-	@NonNull
+	
     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
+	
     @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
@@ -95,7 +95,7 @@ public class CatapultTower extends AttackingBuilding
 		loadPerceivedArea();
 	}
 
-	public CatapultTower(@NonNull vector v, Teams t)
+	public CatapultTower( vector v, Teams t)
 	{
 		super( name , t );
 		setLoc(v);
@@ -103,7 +103,7 @@ public class CatapultTower extends AttackingBuilding
 	}
 
 
-	@NonNull
+	
     private vector targetDirHumanoidVector = new vector();
 
 	@Override
@@ -170,7 +170,7 @@ public class CatapultTower extends AttackingBuilding
 
 			}
 
-			private Image[] getImagesForDir( @NonNull Rpg.Direction lookDir )
+			private Image[] getImagesForDir(  Rpg.Direction lookDir )
 			{
 				switch( lookDir )
 				{
@@ -198,7 +198,7 @@ public class CatapultTower extends AttackingBuilding
 
 
 	@Override
-	protected void addAnimationToEm(@NonNull Anim a, boolean sorted, @NonNull EffectsManager em)
+	protected void addAnimationToEm( Anim a, boolean sorted,  EffectsManager em)
 	{
 		backing.setSize(Backing.TINY);
 		super.addAnimationToEm(a, sorted, em);
@@ -326,14 +326,14 @@ public class CatapultTower extends AttackingBuilding
 
 
 
-	@NonNull
+	
     @Override
 	public String toString()
 	{
 		return TAG;
 	}
 
-	@NonNull
+	
     @Override
 	public String getName()
 	{
@@ -353,7 +353,7 @@ public class CatapultTower extends AttackingBuilding
 
 
 
-	@NonNull
+	
     @Override
 	public Cost getCosts() {
 		return cost;
@@ -362,7 +362,7 @@ public class CatapultTower extends AttackingBuilding
 
 
 
-	@NonNull
+	
     @Override
 	public Attributes getNewLivingQualities()
 	{

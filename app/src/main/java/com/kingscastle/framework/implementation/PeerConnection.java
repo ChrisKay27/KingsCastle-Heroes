@@ -1,7 +1,7 @@
 package com.kingscastle.framework.implementation;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,12 +20,12 @@ public class PeerConnection {
 
     private static final String TAG = "PeerConnection";
 
-    @Nullable
+
     private P2PSocket p2pSocket;
 
     private boolean connectedToPeer = false;
 
-    public boolean findPeer( @NonNull MessageListener msgListener )
+    public boolean findPeer(  MessageListener msgListener )
     {
         Socket s = null;
         Socket s2 = null;
@@ -88,7 +88,7 @@ public class PeerConnection {
 
 
 
-    @NonNull
+
     public static Socket createSocket( String address , int port , InetAddress localHost )
     {
         int mPort = 0; // Let the OS choose a free port for me to use

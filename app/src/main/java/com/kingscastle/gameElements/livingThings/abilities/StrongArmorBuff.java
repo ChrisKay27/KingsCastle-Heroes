@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -31,7 +31,7 @@ public class StrongArmorBuff extends Buff
 		super(caster, target);
 	}
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.ARMOR_BUFF ; 			}
 
@@ -56,7 +56,7 @@ public class StrongArmorBuff extends Buff
 	}
 
 	@Override
-	public int calculateManaCost(@NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost(@NotNull  LivingThing aWizard)
 	{
 		return 0;
 	}
@@ -64,7 +64,7 @@ public class StrongArmorBuff extends Buff
 
 
 	@Override
-	public void loadAnimation( @NonNull MM mm )
+	public void loadAnimation(  MM mm )
 	{
 		if( getAnim() == null )
 		{
@@ -74,7 +74,7 @@ public class StrongArmorBuff extends Buff
 	}
 
 	@Override
-	protected void addAnimationToManager( @NonNull MM mm , @NonNull Anim anim2)
+	protected void addAnimationToManager(  MM mm ,  Anim anim2)
 	{
 		mm.getEm().add( anim2 , EffectsManager.Position.InFront );
 	}
@@ -85,19 +85,19 @@ public class StrongArmorBuff extends Buff
     }
 
 
-    @NonNull
+
     @Override
 	public String toString() {
 		return name;
 	}
-	@NonNull
+
     public String getName() {
 		return name;
 	}
 
 
 
-	@NonNull
+
     @Override
 	public Ability newInstance(@NotNull LivingThing target)	{
 		return new StrongArmorBuff(getCaster(),target);
@@ -105,7 +105,7 @@ public class StrongArmorBuff extends Buff
 
 
 
-	@Nullable
+	
     @Override
 	public Image getIconImage()
 	{

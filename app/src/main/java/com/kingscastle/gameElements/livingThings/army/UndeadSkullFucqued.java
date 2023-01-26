@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -28,12 +28,12 @@ public class UndeadSkullFucqued extends UpperMeleeSoldier
 	private static Image[] redImages , blueImages , greenImages , orangeImages , whiteImages ;
 
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -73,7 +73,7 @@ public class UndeadSkullFucqued extends UpperMeleeSoldier
 	}
 
 
-	public UndeadSkullFucqued(@NonNull vector loc, Teams team){
+	public UndeadSkullFucqued( vector loc, Teams team){
 		super(team);
 		setLoc(loc);
 		setTeam(team);
@@ -167,7 +167,7 @@ public class UndeadSkullFucqued extends UpperMeleeSoldier
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@Nullable
+
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -190,7 +190,7 @@ public class UndeadSkullFucqued extends UpperMeleeSoldier
 		return Rpg.getNormalPerceivedArea();
 	}
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -279,12 +279,12 @@ public class UndeadSkullFucqued extends UpperMeleeSoldier
 	}
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return NAME;

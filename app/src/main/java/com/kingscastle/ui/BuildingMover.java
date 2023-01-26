@@ -3,7 +3,7 @@ package com.kingscastle.ui;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 import android.widget.Toast;
 
 import com.kingscastle.framework.GameTime;
@@ -21,7 +21,7 @@ import com.kingscastle.level.GridUtil;
 public class BuildingMover {
 
 
-	@NonNull
+
     private static final ColorMatrixColorFilter cmcf;
 	static{
 		ColorMatrix cm = new ColorMatrix();
@@ -30,14 +30,14 @@ public class BuildingMover {
 	}
 
 
-	@NonNull
+
     private final vector origLoc;
-	@NonNull
+
     private final RectF origArea;
 	private final RectF largerArea = new RectF();
 
 	private final vector tcLoc;
-	@NonNull
+
     private final Building b;
 	private final BuildingAnim bAnim;
 
@@ -57,7 +57,7 @@ public class BuildingMover {
 
 
 
-	public BuildingMover( CD cd , GridUtil gUtil , CoordConverter cc , @NonNull Building b , vector tcLoc , float maxDistFromTc , OnBuildingMovedListener obml ){
+	public BuildingMover( CD cd , GridUtil gUtil , CoordConverter cc ,  Building b , vector tcLoc , float maxDistFromTc , OnBuildingMovedListener obml ){
 		this.tcLoc = tcLoc;
 		this.maxDistFromTc = maxDistFromTc;
 		this.cd = cd;
@@ -72,7 +72,7 @@ public class BuildingMover {
 
 
 
-	public synchronized boolean analyzeTouchEvent( @NonNull TouchEvent e ){
+	public synchronized boolean analyzeTouchEvent(  TouchEvent e ){
 		if( bAnim == null ){
 			//Log.e( "BuildingMover" , "bAnim == null");
 			return false;

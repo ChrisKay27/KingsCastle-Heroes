@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -29,12 +29,12 @@ public class HumanLongBowMan extends AdvancedRangedSoldier
 	private static Image[] redImages , blueImages , greenImages , orangeImages , whiteImages ;
 	private static ImageFormatInfo imageFormatInfo;
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -74,7 +74,7 @@ public class HumanLongBowMan extends AdvancedRangedSoldier
 	}
 
 
-	public HumanLongBowMan(@NonNull vector loc, Teams team)
+	public HumanLongBowMan( vector loc, Teams team)
 
 	{super(team);
 	setLoc(loc);
@@ -174,7 +174,7 @@ public class HumanLongBowMan extends AdvancedRangedSoldier
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null. This method is used to check if the static images are null so they can be loaded.
 	 * @return the staticImages
 	 */
-	@Nullable
+	
     @Override
 	public Image[] getStaticImages()
 	{
@@ -210,7 +210,7 @@ public class HumanLongBowMan extends AdvancedRangedSoldier
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -238,12 +238,12 @@ public class HumanLongBowMan extends AdvancedRangedSoldier
 	}
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;

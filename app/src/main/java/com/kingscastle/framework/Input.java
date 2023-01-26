@@ -1,6 +1,6 @@
 package com.kingscastle.framework;
 
-import android.support.annotation.NonNull;
+
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public interface Input {
 		public int x, y;
 		public int pointer;
 
-		@NonNull
+
         @Override
 		public String toString()
 		{

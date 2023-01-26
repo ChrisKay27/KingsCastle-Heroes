@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.HasteAnim;
@@ -35,7 +35,7 @@ public class Haste extends Buff{		//System.out.println("");
 
 
 
-    @NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.HASTE ; 			}
 	
@@ -60,7 +60,7 @@ public class Haste extends Buff{		//System.out.println("");
 
 	
 	@Override
-	public void loadAnimation( @NonNull MM mm )	{
+	public void loadAnimation(  MM mm )	{
         Anim anim;
         anim = new HasteAnim(getTarget().loc);
         anim.setAliveTime(aliveTime);
@@ -78,7 +78,7 @@ public class Haste extends Buff{		//System.out.println("");
 	
 
 
-	@NonNull
+
     @Override
 	public Ability newInstance(@NotNull LivingThing target) {
 		return new Haste(getCaster(),target);

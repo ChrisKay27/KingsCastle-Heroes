@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -17,15 +17,15 @@ public class IlluminatedFog extends Anim
 	public static final int SMALL = 0;
 	public static final int LARGE = 1;
 
-	@NonNull
+
     private static final List<Image> smallStaticImages = Assets.loadAnimationImages(R.drawable.illuminated_fog, 5, 4);
-	@NonNull
+
     private static final List<Image> largeStaticImages = Assets.loadAnimationImages( R.drawable.illuminated_fog_large , 5 , 4 );
 	private final int staticTfb = 50;
 
 
 
-	public IlluminatedFog( @NonNull vector loc , int size ) {
+	public IlluminatedFog(  vector loc , int size ) {
         super( loc );
 
 		if( size == LARGE )
@@ -42,7 +42,7 @@ public class IlluminatedFog extends Anim
 
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v ) {
+	public void paint(  Graphics g ,  vector v ) {
 		Image image = getImage();
 		if( image != null )
 			g.drawImage( image , v.x - image.getWidthDiv2() , v.y - image.getHeightDiv2() , getPaint() );

@@ -3,7 +3,7 @@ package com.kingscastle.effects.animations;
 
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Image;
 import com.kingscastle.gameUtils.vector;
@@ -16,7 +16,7 @@ public class WhirlwindAnim extends Anim {
 	private final int staticTfb=50;
 
 
-	public WhirlwindAnim(@NonNull vector loc){
+	public WhirlwindAnim( vector loc){
         super(loc);
 		setImages( staticImages );
 		setTbf(staticTfb);

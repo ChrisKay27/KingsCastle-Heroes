@@ -3,8 +3,8 @@ package com.kingscastle.gameUtils;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.view.View;
 import android.widget.ImageView;
 
@@ -32,7 +32,7 @@ public class BuildQueue implements Barrable, Serializable
 	private static final Paint paint = new Paint();static{
 		paint.setTextSize(Rpg.getTextSize());
 	}
-	@Nullable
+
     private static final Bitmap buildIcon = null;//Assets.loadImage(R.drawable.build_icon).getBitmap();
 
 	private transient final ArrayList<Queueable> theQueued = new ArrayList<Queueable>();
@@ -40,9 +40,9 @@ public class BuildQueue implements Barrable, Serializable
 
 	private long startedBuilding;
 	private float dpdt;
-	@Nullable
+
     public transient Queueable currentlyBuilding;
-	@NonNull
+
     private final Bar progressBar;
 
 	private double percDone;
@@ -58,7 +58,7 @@ public class BuildQueue implements Barrable, Serializable
 	//private final TextView[] tvs = { timer, timer2, timer3 };
 
 	private transient final vector screenRel = new vector();
-	@Nullable
+
     private transient final Runnable buildQueueUpdater;
 
 	private boolean showName = false;
@@ -79,7 +79,7 @@ public class BuildQueue implements Barrable, Serializable
 				this.y=y;
 			}
 			@Override
-			protected void onDraw(@NonNull Canvas canvas) {
+			protected void onDraw( Canvas canvas) {
 				canvas.drawBitmap(buildIcon, x + xOffs , y, paint);
 			}
 		};
@@ -91,7 +91,7 @@ public class BuildQueue implements Barrable, Serializable
 		//UIUtil.setVisibility(View.GONE, tvs);
 	}
 
-	public BuildQueue( @NonNull final vector loc2 )
+	public BuildQueue(  final vector loc2 )
 	{
 		//timer.setTextSize(Rpg.getTextSize());
 		//timer.setMaxLines(2);
@@ -189,7 +189,7 @@ public class BuildQueue implements Barrable, Serializable
 
 
 
-	@Nullable
+
     public Runnable getBuildQueueUpdater() {
 		return buildQueueUpdater;
 	}
@@ -236,7 +236,7 @@ public class BuildQueue implements Barrable, Serializable
 
 
 
-	@Nullable
+
     public Queueable getNext()
 	{
 		synchronized( theQueued ){
@@ -246,7 +246,7 @@ public class BuildQueue implements Barrable, Serializable
 				return theQueued.get( 0 );
 		}
 	}
-	@Nullable
+
     public Queueable removeNext()
 	{
 		synchronized( theQueued ){
@@ -318,7 +318,7 @@ public class BuildQueue implements Barrable, Serializable
 
 
 
-	@Nullable
+
     public synchronized Queueable getCompletedQueueable()
 	{
 		if( paused || currentlyBuilding == null )
@@ -386,7 +386,7 @@ public class BuildQueue implements Barrable, Serializable
 
 
 
-	@NonNull
+
     public Bar getProgressBar(){
 		return progressBar;
 	}
@@ -396,7 +396,7 @@ public class BuildQueue implements Barrable, Serializable
 
 	private static final String SLASH = "/";
 
-	@NonNull
+
     public String getFractionComplete(){
 		return getValue() + SLASH + getMaxValue();
 	}
@@ -423,7 +423,7 @@ public class BuildQueue implements Barrable, Serializable
 
 
 
-	@NonNull
+
     @Override
 	public String getTimeToCompletion(){
 		int ms = getValue();
@@ -437,11 +437,11 @@ public class BuildQueue implements Barrable, Serializable
 	 * You MUST synchronize on this list...
 	 * @return The actual list that is being used by other threads.
 	 */
-	@NonNull
+
     public ArrayList<Queueable> getQueued(){
 		return theQueued;
 	}
-	@NonNull
+
     public ArrayList<Queueable> cloneTheQueued()
 	{
 		synchronized( theQueued ){
@@ -514,7 +514,7 @@ public class BuildQueue implements Barrable, Serializable
 
 
 
-	@Nullable
+
     public Queueable getCurrentlyBuilding() {
 		return currentlyBuilding;
 	}
@@ -570,7 +570,7 @@ public class BuildQueue implements Barrable, Serializable
 	private static final String THEQUEUED = "<tq>";//"<TheQueued>";
 	private static final String ENDTHEQUEUED = "</tq>";//"</TheQueued>";
 
-	public void saveYourself( @NonNull BufferedWriter b ) throws IOException
+	public void saveYourself(  BufferedWriter b ) throws IOException
 	{
 
 		if( currentlyBuilding == null && theQueued.isEmpty() )
@@ -656,7 +656,7 @@ public class BuildQueue implements Barrable, Serializable
 
 
 
-	@NonNull
+
     public CTextView getTimers() {
 
 		return timer;

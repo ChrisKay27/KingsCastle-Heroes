@@ -1,6 +1,6 @@
 package com.kingscastle.gameUtils;
 
-import android.support.annotation.Nullable;
+
 
 import org.jetbrains.annotations.NotNull;
 
@@ -20,7 +20,7 @@ public class VectorUtil {
 	 * @param toThis
 	 * @return null if locs or toThis is null
 	 */
-	@Nullable
+	
     public static vector getClosest( @NotNull Collection<vector> locs , @NotNull vector toThis ){
 		if( locs == null ) return null;
 		if( toThis == null ) return null;

@@ -7,8 +7,8 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.framework.GameTime;
@@ -34,7 +34,7 @@ public class Anim
 	private static final String TAG = Anim.class.getSimpleName();
 
 	private static final int borderColor = Color.YELLOW;
-	@NonNull
+
     private static final Paint defaultPaint;
 	static
 	{
@@ -51,7 +51,7 @@ public class Anim
     private Paint paint = defaultPaint;
     private Image image;
 
-	@Nullable
+	
     private Image temp;
 
 	int currentImageIndex = 0;
@@ -85,7 +85,7 @@ public class Anim
 
 	protected final vector vTemp = new vector();
 
-	@Nullable
+	
     protected RectF area;
 	private EffectsManager.Position reqPos;
 
@@ -212,7 +212,7 @@ public class Anim
 	{
 		image=img;
 	}
-	@Nullable
+	
     public Image getImage()
 	{
 		if( image != null )
@@ -230,12 +230,12 @@ public class Anim
 	protected final Rect dst = new Rect();
 	protected float pScaleX;
 	protected float pScaleY;
-	public void paint( @NonNull Graphics g, @NonNull vector v , CoordConverter cc )
+	public void paint(  Graphics g,  vector v , CoordConverter cc )
 	{
 		paint( g , v );
 	}
 
-	public void paint( @NonNull Graphics g, @NonNull vector v )
+	public void paint(  Graphics g,  vector v )
 	{
 		if( !isVisible() )
 			return;
@@ -372,7 +372,7 @@ public class Anim
 	}
 
 
-	public void add( @Nullable Anim a , boolean infront )
+	public void add(  Anim a , boolean infront )
 	{
 		if( a == null )
 			return;
@@ -456,7 +456,7 @@ public class Anim
 			}
 	}
 
-	@NonNull
+
     public static Paint getDefaultpaint() {
 		return defaultPaint;
 	}
@@ -478,7 +478,7 @@ public class Anim
 		return isUIElement;
 	}
 
-	public void saveYourSelf(@NonNull BufferedWriter b) throws IOException
+	public void saveYourSelf( BufferedWriter b) throws IOException
 	{
 		if(name != null)
 		{
@@ -506,7 +506,7 @@ public class Anim
 
 	private static final AnimationComparator sorter = new AnimationComparator();
 
-	public void sortThis( @NonNull ArrayList<Anim> things )
+	public void sortThis(  ArrayList<Anim> things )
 	{
 		Collections.sort(things , sorter);
 	}
@@ -515,7 +515,7 @@ public class Anim
 	{
 
 		@Override
-		public int compare( @Nullable Anim ge1 , @Nullable Anim ge2 )
+		public int compare(  Anim ge1 ,  Anim ge2 )
 		{
 			if( ge1 == null )
 			{
@@ -554,21 +554,21 @@ public class Anim
 
 
 
-	@NonNull
+
     public Anim setOffs( float i , float j )
 	{
 		offs.set( i , j );
 		return this;
 	}
 
-	public Anim setOffs(@Nullable vector vector) {
+	public Anim setOffs( vector vector) {
 		if(vector == null)
 			offs.set(0,0);
 		else
 			offs.set(vector);
 		return this;
 	}
-	@Nullable
+	
     public vector getOffs() {
 		return offs;
 	}
@@ -594,7 +594,7 @@ public class Anim
 	 * This allows animations to follow around other objects without having to worry about moving the animation.
 	 * @param loc2
 	 */
-	public void setLoc( @Nullable vector loc2 )
+	public void setLoc(  vector loc2 )
 	{
         locToCopy = loc2;
 		if( loc2 != null )
@@ -660,7 +660,7 @@ public class Anim
 	/**
 	 * Sets both scaleX and scaleY to scale
 	 */
-	@NonNull
+
     public Anim setScale(float scale) {
 		this.scaleX = scale;
 		this.scaleY = scale;
@@ -692,7 +692,7 @@ public class Anim
 		return a;
 	}
 
-	@Nullable
+	
 	public EffectsManager.Position getRequiredPosition(){
 		return reqPos;
 	}

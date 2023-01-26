@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.Palette;
 import com.kingscastle.framework.Graphics;
@@ -19,9 +19,9 @@ public class Bar extends Anim
 	private static final int MS_PER_HR = 60*60*1000;
 	private static final int MS_PER_DAY = 60*60*24*1000;
 	private static final int MS_PER_MIN = 60*1000;
-	@NonNull
+
     private static final Paint dstOverPaint;
-	@NonNull
+
     private static final Paint redPaint;
 
 	static
@@ -71,7 +71,7 @@ public class Bar extends Anim
 
 
 	@Override
-	public void paint( @NonNull Graphics g , vector v )
+	public void paint(  Graphics g , vector v )
 	{
 		if( Settings.showHealthBar == false )
 			if( barrable instanceof Health)

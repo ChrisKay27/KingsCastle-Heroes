@@ -2,8 +2,8 @@ package com.kingscastle.gameElements.projectiles;
 
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.ExplosionAnim;
 import com.kingscastle.framework.Image;
@@ -31,13 +31,13 @@ public class ExplosionArrow extends Arrow
 	private ExplosionArrow()	{}
 
 
-	@NonNull
+
     @Override
 	public String toString()
 	{
 		return NAME;
 	}
-	@NonNull
+
     @Override
 	public String getName()
 	{
@@ -90,7 +90,7 @@ public class ExplosionArrow extends Arrow
 	}
 
 
-	@Nullable
+
     @Override
 	public Image getDeadImage()
 	{
@@ -111,7 +111,7 @@ public class ExplosionArrow extends Arrow
 	//	}
 
 
-	@Nullable
+
     @Override
 	public ArrayList<Image> getDeadImages()
 	{
@@ -119,7 +119,7 @@ public class ExplosionArrow extends Arrow
 	}
 
 
-	@NonNull
+
     @Override
 	public Projectile newInstance()
 	{

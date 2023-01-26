@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Image;
 import com.kingscastle.gameElements.livingThings.LivingThing;
@@ -18,7 +18,7 @@ public class Technology implements Queueable
 {
 	protected Building buildFrom;
 
-	@Nullable
+	
     public Image getIconImage() {
 		return null;
 	}
@@ -40,9 +40,9 @@ public class Technology implements Queueable
 	public String getName() {
 		return name;
 	}
-	@NonNull
+
     protected static String START_TAG = "<Tech";
-	@NonNull
+
     protected static String ENDTAG = "</Tech>";
 	public void saveYourself( BufferedWriter b ) throws IOException
 	{
@@ -51,7 +51,7 @@ public class Technology implements Queueable
 	/**
 	 * @return the team
 	 */
-	@Nullable
+	
     public Teams getTeam() {
 		return null;
 	}
@@ -89,7 +89,7 @@ public class Technology implements Queueable
 	public void setTeamName( Teams team) {
 	}
 
-	@Nullable
+	
     public String getLTClassName() {
 		return null;
 	}
@@ -105,7 +105,7 @@ public class Technology implements Queueable
 		return buildFrom;
 	}
 
-	@Nullable
+	
     @Override
 	public Cost getCosts() {
 		return null;

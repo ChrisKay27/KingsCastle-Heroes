@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.SpecialEffects;
 import com.kingscastle.effects.animations.Anim;
@@ -19,18 +19,18 @@ import com.kingscastle.gameUtils.vector;
 public class MeleeAttack extends Attack
 {
 
-	@NonNull
+
     private final AttackAnimator weapon;
 
 	private static final RectF weaponStrikePercArea = new RectF( -8* Rpg.getDp() , -8*Rpg.getDp() , 8*Rpg.getDp() , 8*Rpg.getDp() );
 
-	@NonNull
+
     private final vector checkHitHere;
 
-	@NonNull
+
     private final RectF inThisArea;
 
-	@Nullable
+	
     private LivingThing possibleVictum;
 
 	private final MeleeTypes weaponType;
@@ -38,7 +38,7 @@ public class MeleeAttack extends Attack
 	private final CD cd;
 
 
-	public MeleeAttack( @NonNull MM mm , @NonNull Humanoid owner , @NonNull MeleeTypes weaponType , CD cd )
+	public MeleeAttack(  MM mm ,  Humanoid owner ,  MeleeTypes weaponType , CD cd )
 	{
 		super( mm, owner );
 		this.weaponType = weaponType;
@@ -62,7 +62,7 @@ public class MeleeAttack extends Attack
 	}
 
 
-	public MeleeAttack( @NonNull MM mm, @NonNull Humanoid owner , CD cd )
+	public MeleeAttack(  MM mm,  Humanoid owner , CD cd )
 	{
 		super(mm, owner);
 
@@ -115,7 +115,7 @@ public class MeleeAttack extends Attack
 
 
 	@Override
-	public void checkHit( @Nullable vector inDirection )
+	public void checkHit(  vector inDirection )
 	{
 		//System.out.println("MeleeAttack: checkHit() starting");
 		if( possibleVictum != null && owner.loc.distanceSquared(possibleVictum.loc) < Rpg.getMeleeAttackRangeSquared() ){
@@ -160,7 +160,7 @@ public class MeleeAttack extends Attack
 
 
 
-	public void checkHit( @Nullable LivingThing target )
+	public void checkHit(  LivingThing target )
 	{
 		if( target == null )
 			return;
@@ -181,7 +181,7 @@ public class MeleeAttack extends Attack
 
 
 
-	@NonNull
+
     @Override
 	public Anim getAnimator()
 	{
@@ -212,7 +212,7 @@ public class MeleeAttack extends Attack
 
 
 
-	private static void playHitSound( @Nullable MeleeTypes weaponType , float x , float y )
+	private static void playHitSound(  MeleeTypes weaponType , float x , float y )
 	{
 		if( weaponType == null )
 			return;
@@ -251,7 +251,7 @@ public class MeleeAttack extends Attack
 
 
 
-	private static void playMissSound( @Nullable MeleeTypes weaponType , float x , float y )
+	private static void playMissSound(  MeleeTypes weaponType , float x , float y )
 	{
 		if( weaponType == null )
 			return;

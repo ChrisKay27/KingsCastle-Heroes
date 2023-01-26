@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.spells;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.GroundSmasherAnim;
 import com.kingscastle.framework.GameTime;
@@ -21,12 +21,12 @@ public class GroundSmasher extends InstantSpell
 		setRefreshEvery(100);
 	}
 
-	public GroundSmasher(@NonNull LivingThing caster) {
+	public GroundSmasher( LivingThing caster) {
 		setCaster(caster);
 	}
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.GROUNDSMASHER ; 			}
 
@@ -47,7 +47,7 @@ public class GroundSmasher extends InstantSpell
 
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 		setLoc(getCaster().loc);
@@ -77,19 +77,19 @@ public class GroundSmasher extends InstantSpell
 
 
 	@Override
-	public int calculateManaCost( @NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost( @NotNull  LivingThing aWizard)
 	{
 		return 30 + aWizard.getLQ().getLevel() * 5 ;
 	}
 
-	@NonNull
+
     @Override
 	public Spell newInstance() {
 		return new GroundSmasher(getCaster());
 	}
 
 
-	@NonNull
+
     @Override
 	public String getName()
 	{
@@ -107,7 +107,7 @@ public class GroundSmasher extends InstantSpell
 
 
 
-	@NonNull
+
     @Override
 	public String toString()
 	{

@@ -7,7 +7,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -54,7 +54,7 @@ public class BuildingBuilder implements TouchEventAnalyzer
 	private CostDisplay costDisplay;
 
 
-	@Nullable
+
 	private Building pb;
 
 	@NotNull
@@ -174,7 +174,7 @@ public class BuildingBuilder implements TouchEventAnalyzer
 
 
 
-	public boolean buildPendingBuilding(@NonNull final Activity activity)
+	public boolean buildPendingBuilding( final Activity activity)
 	{
 		Log.v(TAG, "buildPendingBuilding(), pendingBuilding == " + pb);
 		Building pendingBuilding = this.pb;
@@ -516,7 +516,7 @@ public class BuildingBuilder implements TouchEventAnalyzer
 //	}
 
 
-	@Nullable
+
 	Building getPendingBuilding()
 	{
 		return pb;

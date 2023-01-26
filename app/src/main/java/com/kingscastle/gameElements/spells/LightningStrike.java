@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.spells;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.LightningStrikeAnim;
 import com.kingscastle.framework.Image;
@@ -23,13 +23,13 @@ public class LightningStrike extends InstantSpell{
 
 
 
-    @NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.LIGHTNINGSTRIKE ; 			}
 
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		loadAnimation();
 		mm.getEm().add(getAnim(),true);
@@ -44,7 +44,7 @@ public class LightningStrike extends InstantSpell{
 	}
 
 	@Override
-	public int calculateManaCost( @NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost( @NotNull  LivingThing aWizard)
 	{
 		return 20 + aWizard.getLQ().getLevel() * 3;
 	}
@@ -73,14 +73,14 @@ public class LightningStrike extends InstantSpell{
 
 
 
-    @NonNull
+
     @Override
 	public String toString() {
 		return "Lightning Strike";
 	}
 
 
-    @NonNull
+
     @Override
 	public String getName() {
 		return "LightningStrike";
@@ -100,13 +100,13 @@ public class LightningStrike extends InstantSpell{
 
 
 
-    @NonNull
+
     @Override
 	public Spell newInstance()	{
 		return new LightningStrike();
 	}
 
-	@NonNull
+
     @Override
 	public Ability newInstance(@NotNull LivingThing target) {
 		return new LightningStrike();

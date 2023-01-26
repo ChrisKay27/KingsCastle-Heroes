@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.GameTime;
@@ -35,14 +35,14 @@ public class LargeMapArmyManagerOptimized
 
 
 	private final ArrayList<LivingThing> needsToBeAdded = new ArrayList<LivingThing>( 100 );
-	@Nullable
+
     private       ArrayList<LivingThing> army = new ArrayList<LivingThing>( 100 );
 	private final ArrayList<LivingThing> deadTroops = new ArrayList<LivingThing>( 50 );
 
 
 	private long lastSorted;
 
-	@NonNull
+
     private CollisionPartitions cp = new CollisionPartitions();
 
 	private long refreshPartitionsAt;
@@ -242,7 +242,7 @@ public class LargeMapArmyManagerOptimized
 	}
 
 
-	public boolean add( @Nullable LivingThing u )
+	public boolean add(  LivingThing u )
 	{
 		if( u == null )
 			return false;
@@ -273,7 +273,7 @@ public class LargeMapArmyManagerOptimized
 
 
 
-	public void remove( @Nullable LivingThing lt )
+	public void remove(  LivingThing lt )
 	{
 		if( lt == null )
 			return;
@@ -294,7 +294,7 @@ public class LargeMapArmyManagerOptimized
 		}
 	}
 
-	public void remove( @Nullable ArrayList<LivingThing> removedHumanoids )
+	public void remove(  ArrayList<LivingThing> removedHumanoids )
 	{
 		if( removedHumanoids == null)
 			return;
@@ -330,12 +330,12 @@ public class LargeMapArmyManagerOptimized
 	}
 
 
-	@NonNull
+
     public ArrayList<LivingThing> getNeedsToBeAdded(){
 		return needsToBeAdded;
 	}
 
-	@NonNull
+
     public ArrayList<LivingThing> getCloneArmy() {
 		ArrayList<LivingThing> cloneArmy = new ArrayList<LivingThing>();
 
@@ -347,7 +347,7 @@ public class LargeMapArmyManagerOptimized
 		return cloneArmy;
 	}
 
-	@Nullable
+
     public ArrayList<LivingThing> getArmy()
 	{
 		return army;
@@ -370,7 +370,7 @@ public class LargeMapArmyManagerOptimized
 
 
 
-	@NonNull
+
     public CollisionPartitions getCollisionPartitions()
 	{
 		synchronized( cp )
@@ -399,7 +399,7 @@ public class LargeMapArmyManagerOptimized
 
 
 
-	public void saveYourSelf( @NonNull BufferedWriter b ) throws IOException{
+	public void saveYourSelf(  BufferedWriter b ) throws IOException{
 
 		synchronized( gameRunningLock ){
 			if( gameRunning )

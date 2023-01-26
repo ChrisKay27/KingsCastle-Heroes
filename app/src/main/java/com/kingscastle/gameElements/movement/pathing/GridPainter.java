@@ -4,14 +4,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Graphics;
 
 
 class GridPainter
 {
-	@NonNull
+	
     private static final Paint red;
 	//private static final Vector offs;
 	private static final String TAG = "GridPainter";
@@ -26,7 +26,7 @@ class GridPainter
 
 
 
-	public static void paint( @NonNull Graphics g , @NonNull Rect onThisArea , @NonNull RectF reducedTileArea , @NonNull Grid grid )
+	public static void paint(  Graphics g ,  Rect onThisArea ,  RectF reducedTileArea ,  Grid grid )
 	{
 		//////Log.d( TAG , "paint()" );
 

@@ -1,8 +1,8 @@
 package com.kingscastle.effects;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.Game;
 import com.kingscastle.gameElements.livingThings.LivingThing;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class RisingTextManager
 {
 
-	@Nullable
+
     private ArrayList<RisingText> texts = new ArrayList<RisingText>( 100 );
 	private final ArrayList<RisingText> deadTexts = new ArrayList<RisingText>( 100 );
 	private final ArrayList<RisingText> needsToBeAdded = new ArrayList<RisingText>( 100 );
@@ -39,7 +39,7 @@ public class RisingTextManager
 	}
 
 
-	public void add( @Nullable RisingText txt )
+	public void add(  RisingText txt )
 	{
 		////Log.d("RisingTextManager", "///RisingTextManager.add()///");
 		////Log.d( "RisingTextManager" , "Trying to add RisingText : " + txt );
@@ -125,7 +125,7 @@ public class RisingTextManager
 	}
 
 
-	@NonNull
+
     public ArrayList<RisingText> getTexts()
 	{
 		ArrayList<RisingText> txts = new ArrayList<RisingText>();
@@ -140,7 +140,7 @@ public class RisingTextManager
 	}
 
 
-	public void addGoldText( int amount , @Nullable LivingThing on )
+	public void addGoldText( int amount ,  LivingThing on )
 	{
 		if( amount == 0 || on == null )
 		{
@@ -150,7 +150,7 @@ public class RisingTextManager
 	}
 
 
-	public void addDamageText( int dam , @Nullable LivingThing on )
+	public void addDamageText( int dam ,  LivingThing on )
 	{
 		if( dam == 0 || on == null )
 		{

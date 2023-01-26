@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.SoldierTypes;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.Log;
 
 import com.kingscastle.Game;
@@ -53,7 +53,7 @@ public abstract class Humanoid extends LivingThing {
     private static final float closeEnoughDist = 30*30* Rpg.getDpSquared();
     private static final float closeEnoughDistWithTarget = 60*60* Rpg.getDpSquared();
 
-    @NonNull
+
     private final List<Order> possibleOrders;
 
     {
@@ -189,7 +189,7 @@ public abstract class Humanoid extends LivingThing {
         else if( team == Teams.BLUE && !getMoveInDirectionV().equals(0,0) ){
             legs.act(getMoveInDirectionV(), true);
         }
-        else if( getTarget() != null )
+        else if( getTarget() != null || (this instanceof Healer && ((Healer)this).getHealingTarget() != null))
             legsActWithRespectToTarget();
 
         else if (checkStayHereDistAt < GameTime.getTime()) {
@@ -278,7 +278,7 @@ public abstract class Humanoid extends LivingThing {
     }
 
 
-    private boolean isAt( @NonNull vector loc, @NonNull vector dest )
+    private boolean isAt(  vector loc,  vector dest )
     {
 
         if( checkDestAt < GameTime.getTime() )
@@ -352,9 +352,9 @@ public abstract class Humanoid extends LivingThing {
                 //Vector mLoc = new Vector();
                 //Vector tLoc = new Vector();
 
-                @NonNull
+
                 @Override
-                public TargetFinder.CondRespon postRangeCheckCondition(@NonNull LivingThing target) {
+                public TargetFinder.CondRespon postRangeCheckCondition( LivingThing target) {
 
 
 //					Vector stayHere = getStayHere();
@@ -432,7 +432,7 @@ public abstract class Humanoid extends LivingThing {
 //	}
 
 	@Override
-	public boolean create(@NonNull MM mm) {
+	public boolean create( MM mm) {
 		legs.setMm(mm);
         if( team == Teams.RED )
             stance = Stance.FREE;
@@ -454,14 +454,14 @@ public abstract class Humanoid extends LivingThing {
 
 
 	@Override
-	public void setTarget(@Nullable LivingThing nTarget) {
+	public void setTarget( LivingThing nTarget) {
 		super.setTarget(nTarget);
 		unlockLookDirection();
 	}
 
 
 	@Override
-	public void loadAnimation( @NotNull @NonNull MM mm )
+	public void loadAnimation( @NotNull  MM mm )
 	{
 		Team team = mm.getTM().getTeam( getTeamName() );
 		Races race = Races.HUMAN;
@@ -544,20 +544,20 @@ public abstract class Humanoid extends LivingThing {
 
 	private boolean movingIntoFormation;
 	private boolean inFormation;
-	@Nullable
+
     protected vector destination;
-	@Nullable
+
     private vector stayHere;
-	@Nullable
+
     private vector holdThisPosition;
 
 	protected Rpg.Direction lookDir = Rpg.Direction.S;
-	@Nullable
+
     private vector lookDirLockedInDirection;
 	private boolean lookDirLocked;
 
 
-	public boolean walkTo( @Nullable vector walkTo )
+	public boolean walkTo(  vector walkTo )
 	{
 		if( walkTo == null ) {
 			destination = null;
@@ -590,7 +590,7 @@ public abstract class Humanoid extends LivingThing {
 	}
 
 
-	public boolean walkToAndStayHere( @Nullable vector walkTo )	{
+	public boolean walkToAndStayHere(  vector walkTo )	{
 		if( walkTo == null )
 		{
 			destination = null;
@@ -649,14 +649,14 @@ public abstract class Humanoid extends LivingThing {
 		}
 	}
 
-	@NonNull
+
     public Legs getLegs() {
 		return legs;
 	}
 
-	@Nullable
+
 	public Path getPathToFollow(){		return legs.getPathToFollow();	}
-	public void setPathToFollow( @Nullable Path pathToFollow ){
+	public void setPathToFollow(  Path pathToFollow ){
 		//Log.d(TAG,this+" setting path to " + pathToFollow);
 		//destination = null;
 		//stayHere = null;
@@ -675,30 +675,30 @@ public abstract class Humanoid extends LivingThing {
 
 
 
-	@Nullable
+
 	public vector getDestination(){
 		return destination;
 	}
-	public void setDestination(@Nullable vector bestCerealEver){
+	public void setDestination( vector bestCerealEver){
 		destination = bestCerealEver;
 	}
 
 
-	@Nullable
+
 	public vector getStayHere() {
 		return stayHere;
 	}
-	public void setStayHere( @Nullable vector v ){
+	public void setStayHere(  vector v ){
 		stayHere = v;
 	}
 
 
 
-	@Nullable
+
 	public vector getHoldThisPosition() {
 		return holdThisPosition;
 	}
-	public void setHoldThisPosition( @Nullable vector holdThisPosition ) {
+	public void setHoldThisPosition(  vector holdThisPosition ) {
 		this.holdThisPosition = holdThisPosition;
 	}
 
@@ -728,13 +728,13 @@ public abstract class Humanoid extends LivingThing {
 		if(!isLookDirectionLocked())
 			lookDir = inDirection;
 	}
-	public void setLookDirectionFromHumanoid(@NonNull vector unitVectorInDirection) {
+	public void setLookDirectionFromHumanoid( vector unitVectorInDirection) {
 		if(!isLookDirectionLocked()) {
 			Rpg.Direction d = vector.getDirection4(unitVectorInDirection);
 			setLookDirection(d);
 		}
 	}
-	public void lockLookDirectionFromHumanoidVector(@Nullable vector unitVectorInDirection) {
+	public void lockLookDirectionFromHumanoidVector( vector unitVectorInDirection) {
 		if(unitVectorInDirection!=null) {
 			setLookDirectionFromHumanoid(unitVectorInDirection);
 			lookDirLocked=true;
@@ -757,7 +757,7 @@ public abstract class Humanoid extends LivingThing {
 	{
 		return lookDirLocked;
 	}
-	@Nullable
+
     public vector getLookDirLockedInDirection() {	return lookDirLockedInDirection;	}
 
 
@@ -906,7 +906,7 @@ public abstract class Humanoid extends LivingThing {
     public void setStance(@NotNull Stance stance)  {this.stance = stance;    }
 
 
-    @NonNull
+
     @Override
     public List<Order> getPossibleOrders(){
         return possibleOrders;
@@ -923,9 +923,9 @@ public abstract class Humanoid extends LivingThing {
 
 
 
-    @Nullable
-    public static LivingThing getHumanoidByName(@NonNull String unitName, @NonNull LivingThing createdFrom,
-                                                @NonNull Teams team)    {
+
+    public static LivingThing getHumanoidByName( String unitName,  LivingThing createdFrom,
+                                                 Teams team)    {
 
         vector newLoc = new vector( createdFrom.loc );
         newLoc.translate(

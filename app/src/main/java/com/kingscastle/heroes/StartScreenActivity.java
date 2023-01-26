@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -98,7 +98,7 @@ public class StartScreenActivity extends Activity implements View.OnClickListene
     private long lastClicked;
 
     @Override
-    public void onClick(@NonNull View v) {
+    public void onClick( View v) {
         if( lastClicked + 500 > System.currentTimeMillis() )
             return;
         lastClicked = System.currentTimeMillis();
@@ -140,7 +140,7 @@ public class StartScreenActivity extends Activity implements View.OnClickListene
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @NonNull Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode,  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(TAG,"onActivityResult("+requestCode+","+resultCode+","+data);
 

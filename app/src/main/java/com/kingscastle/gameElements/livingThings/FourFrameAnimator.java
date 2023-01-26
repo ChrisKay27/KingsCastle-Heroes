@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Image;
@@ -12,10 +12,10 @@ import java.util.ArrayList;
 
 public class FourFrameAnimator extends Animator
 {
-	@Nullable
+	
     private final String INFO;
 
-	public FourFrameAnimator ( @NonNull Humanoid owner , Image[] images )
+	public FourFrameAnimator (  Humanoid owner , Image[] images )
 	{
 		//framePeriod = (int) (300 / owner.getLQ().getSpeed());
 		this.owner = owner;
@@ -147,7 +147,7 @@ public class FourFrameAnimator extends Animator
 	}
 
 
-	@Nullable
+	
     @Override
 	public String toString()
 	{

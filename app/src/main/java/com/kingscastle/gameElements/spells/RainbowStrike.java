@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.spells;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.RainbowStrikeAnim;
 import com.kingscastle.framework.Image;
@@ -21,7 +21,7 @@ public class RainbowStrike extends InstantSpell{
 
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.RAINBOWSTRIKE ; 			}
 
@@ -33,7 +33,7 @@ public class RainbowStrike extends InstantSpell{
 
 
 	@Override
-	public int calculateManaCost( @NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost( @NotNull  LivingThing aWizard)
 	{
 		return 20 + aWizard.getLQ().getLevel() * 3;
 	}
@@ -49,14 +49,14 @@ public class RainbowStrike extends InstantSpell{
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return "Rainbow Strike";
 	}
 
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return "RainbowStrike";
@@ -69,7 +69,7 @@ public class RainbowStrike extends InstantSpell{
 	}
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 		loadAnimation();
@@ -89,7 +89,7 @@ public class RainbowStrike extends InstantSpell{
 	public RainbowStrike(){}
 
 
-	@NonNull
+
     @Override
 	public Spell newInstance()
 	{

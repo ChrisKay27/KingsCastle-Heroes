@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -29,7 +29,7 @@ public class HexArmor extends Buff
 		super(caster, target);
 	}
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.HEXARMOR ; 			}
 
@@ -51,7 +51,7 @@ public class HexArmor extends Buff
 
 
 	@Override
-	protected void refresh(  @NonNull EffectsManager em )
+	protected void refresh(   EffectsManager em )
 	{
 		Anim anim = getAnim();
 		if( anim != null )
@@ -68,7 +68,7 @@ public class HexArmor extends Buff
 
 
     @Override
-	public int calculateManaCost(@NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost(@NotNull  LivingThing aWizard)
 	{
 		if(aWizard != null )
 			return 20 + aWizard.getLQ().getLevel() * 5;
@@ -76,20 +76,20 @@ public class HexArmor extends Buff
 		return 25;
 	}
 
-	@NonNull
+
     @Override
 	public Ability newInstance(@NotNull LivingThing target)	{
 		return new HexArmor(getCaster(),target);
 	}
 
 
-	@NonNull
+
     @Override
 	public String toString()
 	{
 		return "Hex Armor";
 	}
-	@NonNull
+
     public String getName()
 	{
 		return "HexArmor";
@@ -100,7 +100,7 @@ public class HexArmor extends Buff
 
 
 	@Override
-	public void loadAnimation(@NonNull @NotNull MM mm )
+	public void loadAnimation( @NotNull MM mm )
 	{
 		Anim anim = getAnim();
 		if( anim == null ){

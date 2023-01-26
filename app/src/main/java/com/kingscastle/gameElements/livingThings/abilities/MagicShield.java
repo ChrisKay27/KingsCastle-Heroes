@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -28,7 +28,7 @@ public class MagicShield extends Buff{
 
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.MAGICSHIELD ; 			}
 
@@ -68,7 +68,7 @@ public class MagicShield extends Buff{
 
 
 	@Override
-	public int calculateManaCost(@NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost(@NotNull  LivingThing aWizard)
 	{
 		if( aWizard != null )
 		{
@@ -80,13 +80,13 @@ public class MagicShield extends Buff{
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return "Magic Shield";
 	}
 
-	@NonNull
+
     public String getName() {
 		return "MagicShield";
 	}
@@ -97,7 +97,7 @@ public class MagicShield extends Buff{
 
 
 	@Override
-	public void loadAnimation( @NonNull MM mm )
+	public void loadAnimation(  MM mm )
 	{
 		if( getAnim() != null )
 		{
@@ -108,7 +108,7 @@ public class MagicShield extends Buff{
 
 
 
-	@NonNull
+
     @Override
 	public Ability newInstance(@NotNull LivingThing target)	{
 		return new MagicShield(getCaster(),target);

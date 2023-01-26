@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.spells;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.ExplosionAnim;
 import com.kingscastle.framework.Image;
@@ -18,11 +18,11 @@ public class Explosion extends InstantSpell{
 	private static Image iconImage;
 
 
-	@NonNull
+	
     private static RectF staticPerceivedArea = new RectF(-Rpg.getDp()*30,-Rpg.getDp()*30,Rpg.getDp()*30,Rpg.getDp()*30);
 
 
-	@NonNull
+	
     @Override
 	public Abilities getAbility()				 {				return Abilities.EXPLOSION ; 			}
 
@@ -46,7 +46,7 @@ public class Explosion extends InstantSpell{
 
 
 	@Override
-	public int calculateManaCost( @NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost( @NotNull  LivingThing aWizard)
 	{
 		if(aWizard != null )
 		{
@@ -59,7 +59,7 @@ public class Explosion extends InstantSpell{
 
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 		hitCreatures( checkHit( getTeamName() ,this ) );
@@ -71,7 +71,7 @@ public class Explosion extends InstantSpell{
 
 
 	@Override
-	public void setLoc( @NonNull vector loc){
+	public void setLoc(  vector loc){
 		loc.translate(0,-10 * Rpg.getDp());
 		super.setLoc(loc);
 	}
@@ -85,7 +85,7 @@ public class Explosion extends InstantSpell{
 
 
 
-	@NonNull
+	
     @Override
 	public RectF getPerceivedArea()
 	{
@@ -107,7 +107,7 @@ public class Explosion extends InstantSpell{
 
 
 
-	@NonNull
+	
     @Override
 	public String getName() {
 		return "Explosion";
@@ -117,7 +117,7 @@ public class Explosion extends InstantSpell{
 
 
 
-	@NonNull
+	
     @Override
 	public Spell newInstance()
 	{

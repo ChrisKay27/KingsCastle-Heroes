@@ -1,7 +1,7 @@
 package com.kingscastle.teams.races;
 
 
-import android.support.annotation.NonNull;
+
 
 public enum GeneralSoldierType
 {
@@ -17,7 +17,7 @@ public enum GeneralSoldierType
 
 
 
-	public static boolean isaHealerOrMage(@NonNull GeneralSoldierType gst)
+	public static boolean isaHealerOrMage( GeneralSoldierType gst)
 	{
 		switch( gst ){
 		case ADVANCED_HEALER:

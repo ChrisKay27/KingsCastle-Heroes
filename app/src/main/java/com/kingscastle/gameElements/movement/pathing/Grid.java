@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.movement.pathing;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.gameUtils.vector;
 
@@ -9,7 +9,7 @@ public class Grid
 {
 
 	private final float gridTileSize;
-	@NonNull
+
     private final boolean[][] gridTiles;
 
 
@@ -28,7 +28,7 @@ public class Grid
 	}
 
 
-	@NonNull
+
     public boolean[][] getGridTiles(){
 		return gridTiles;
 	}
@@ -48,7 +48,7 @@ public class Grid
 		return 0;
 	}
 
-	public boolean isWalkable(@NonNull vector v) {
+	public boolean isWalkable( vector v) {
 		int i = (int) (v.x/gridTileSize);
 		int j = (int) (v.y/gridTileSize);
 

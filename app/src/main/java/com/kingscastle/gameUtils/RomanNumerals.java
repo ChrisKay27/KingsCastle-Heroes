@@ -1,7 +1,7 @@
 package com.kingscastle.gameUtils;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class RomanNumerals {
 
-    @NonNull
+
     private static Map<Integer,String> romans = new HashMap<>();
 
 
@@ -24,7 +24,7 @@ public class RomanNumerals {
     }
 
 
-    @Nullable
+    
     public static String romanNumerals(int Int) {
         LinkedHashMap<String, Integer> roman_numerals = new LinkedHashMap<String, Integer>();
         roman_numerals.put("M", 1000);
@@ -48,8 +48,8 @@ public class RomanNumerals {
         }
         return res;
     }
-    @Nullable
-    public static String repeat(@Nullable String s, int n) {
+    
+    public static String repeat( String s, int n) {
         if(s == null) {
             return null;
         }

@@ -3,7 +3,7 @@ package com.kingscastle.heroes;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,8 +25,9 @@ public class GameOverActivity extends Activity implements View.OnClickListener {
 
         setContentView(com.kingscastle.heroes.R.layout.activity_game_over);
 
+//        if( getIntent() != null && getIntent().getExtras() != null ) {
         int roundNum = getIntent().getExtras().getInt("RoundNum");
-        ((TextView)findViewById(com.kingscastle.heroes.R.id.you_lost)).setText("You lost, but you made it to round "+ roundNum);
+        ((TextView) findViewById(com.kingscastle.heroes.R.id.you_lost)).setText("You lost, but you made it to level " + roundNum);
 
         findViewById(com.kingscastle.heroes.R.id.back_to_main_menu_button).setOnClickListener(this);
     }
@@ -34,7 +35,7 @@ public class GameOverActivity extends Activity implements View.OnClickListener {
 
 
     @Override
-    public void onClick(@NonNull View v) {
+    public void onClick( View v) {
         switch( v.getId() ){
             case com.kingscastle.heroes.R.id.back_to_main_menu_button:{
                 Intent i = new Intent(this, StartScreenActivity.class);

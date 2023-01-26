@@ -1,6 +1,6 @@
 package com.kingscastle.ui;
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Input.TouchEvent;
 import com.kingscastle.gameElements.livingThings.buildings.AttackingBuilding;
@@ -23,7 +23,7 @@ public class TowerController implements TouchEventAnalyzer{
 
 
     @Override
-    public boolean analyzeTouchEvent(@NonNull TouchEvent e) {
+    public boolean analyzeTouchEvent( TouchEvent e) {
         AttackingBuilding sb = selectedBuilding;
         if( sb == null )
             return false;

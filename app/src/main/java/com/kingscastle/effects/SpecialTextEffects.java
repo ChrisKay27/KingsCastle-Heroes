@@ -2,8 +2,8 @@ package com.kingscastle.effects;
 
 import android.graphics.Color;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.Log;
 
 import com.kingscastle.framework.Pool;
@@ -21,7 +21,7 @@ public class SpecialTextEffects
 	private static final float TXT_SIZE = Rpg.getTextSize();
 
 
-	@Nullable
+
     static RectF stillDraw;
 	static MM mm;
 
@@ -81,7 +81,7 @@ public class SpecialTextEffects
 	}
 
 
-	public static void showResourcesDropped(float x, float y, @Nullable Cost cost) {
+	public static void showResourcesDropped(float x, float y,  Cost cost) {
 		if( cost == null ){
 			Log.e( TAG , "showResourcesDropped() && cost==null");
 			return;
@@ -113,7 +113,7 @@ public class SpecialTextEffects
 
 
 
-	static void freeAll(@NonNull ArrayList<RisingText> list)
+	static void freeAll( ArrayList<RisingText> list)
 	{
 		for( RisingText t : list )
 			textPool.free( t );
@@ -122,13 +122,13 @@ public class SpecialTextEffects
 
 
 
-	@NonNull
+
     private static final Pool<RisingText> textPool;
 
 	static
 	{
 		Pool.PoolObjectFactory<RisingText> factory = new Pool.PoolObjectFactory<RisingText>() {
-			@NonNull
+
             @Override
 			public RisingText createObject() {
 				return new RisingText();

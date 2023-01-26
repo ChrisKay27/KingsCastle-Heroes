@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.effects.EffectsManager;
@@ -30,7 +30,7 @@ public class Well extends Building {
 
 	private static final Image image = Assets.loadImage(R.drawable.well);
 
-	@NonNull
+
     private static final Attributes STATIC_ATTRIBUTES;
 
 	private static Cost cost = new Cost( 1000 , 1000 , 1000 , 0 );
@@ -56,14 +56,14 @@ public class Well extends Building {
 
 	private final Image damagedImage = image;
 	private final Image deadImage = Assets.loadImage( R.drawable.small_rubble );
-	@NonNull
+
     private RectF percArea = staticPerceivedArea;
 
 
 
 
 
-	@NonNull
+
     @Override
 	protected Attributes getStaticLQ() {
 		return STATIC_ATTRIBUTES;
@@ -117,7 +117,7 @@ public class Well extends Building {
 	}
 
 	@Override
-	protected void addAnimationToEm(@NonNull Anim a, boolean sorted, @NonNull EffectsManager em)
+	protected void addAnimationToEm( Anim a, boolean sorted,  EffectsManager em)
 	{
 		em.add( a , EffectsManager.Position.Sorted );
 		em.add( backing, EffectsManager.Position.Behind );
@@ -126,7 +126,7 @@ public class Well extends Building {
 
 
 
-	private static void adjustBackingOffs( @Nullable Backing backing ){
+	private static void adjustBackingOffs(  Backing backing ){
 		if( backing != null )
 			backing.setOffs(0,Rpg.eightDp);
 	}
@@ -161,7 +161,7 @@ public class Well extends Building {
 	/**
 	 * returns a rectangle to be placed with its center on the mapLocation of the tower
 	 */
-	@NonNull
+
     @Override
 	public RectF getPerceivedArea()
 	{
@@ -172,7 +172,7 @@ public class Well extends Building {
 	public void setPerceivedSpriteArea( RectF perceivedSpriteArea2 ){
 	}
 
-	@NonNull
+
     @Override
 	public RectF getStaticPerceivedArea(){
 		return percArea;
@@ -231,7 +231,7 @@ public class Well extends Building {
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -241,7 +241,7 @@ public class Well extends Building {
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;

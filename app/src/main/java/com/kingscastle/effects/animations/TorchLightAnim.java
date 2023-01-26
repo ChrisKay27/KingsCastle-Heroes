@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -15,12 +15,12 @@ import java.util.List;
 public class TorchLightAnim extends Anim
 {
 
-	@NonNull
+
     private static final List<Image> staticImages = Assets.loadAnimationImages(R.drawable.torchlight, 8, 8);
 	private final int staticTfb = 35;
 
 
-	public TorchLightAnim( @NonNull vector loc )	{
+	public TorchLightAnim(  vector loc )	{
         super( loc );
         setImages(staticImages );
 
@@ -30,7 +30,7 @@ public class TorchLightAnim extends Anim
 
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v )
+	public void paint(  Graphics g ,  vector v )
 	{
 		Image image = getImage();
 		if( image != null )

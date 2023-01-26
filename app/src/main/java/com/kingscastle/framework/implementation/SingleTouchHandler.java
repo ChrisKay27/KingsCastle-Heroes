@@ -1,7 +1,7 @@
 package com.kingscastle.framework.implementation;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
+
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -17,16 +17,17 @@ public class SingleTouchHandler implements TouchHandler {
 	private boolean isTouched;
 	private int touchX;
 	private int touchY;
-	@NonNull
+	
     private final Pool<TouchEvent> touchEventPool;
 	private final List<TouchEvent> touchEvents = new ArrayList<TouchEvent>();
 	private final List<TouchEvent> touchEventsBuffer = new ArrayList<TouchEvent>();
 	private final float scaleX;
 	private final float scaleY;
 
-	public SingleTouchHandler(Activity context, @NonNull View view, float scaleX, float scaleY) {
+
+	public SingleTouchHandler(Activity context,  View view, float scaleX, float scaleY) {
 		PoolObjectFactory<TouchEvent> factory = new PoolObjectFactory<TouchEvent>() {
-			@NonNull
+			
             @Override
 			public TouchEvent createObject() {
 				return new TouchEvent();
@@ -40,7 +41,7 @@ public class SingleTouchHandler implements TouchHandler {
 	}
 
 	@Override
-	public boolean onTouch(View v, @NonNull MotionEvent event) {
+	public boolean onTouch(View v,  MotionEvent event) {
 		synchronized(this) {
 			TouchEvent touchEvent = touchEventPool.newObject();
 			switch (event.getAction()) {
@@ -91,7 +92,7 @@ public class SingleTouchHandler implements TouchHandler {
 		}
 	}
 
-	@NonNull
+	
     @Override
 	public List<TouchEvent> getTouchEvents() {
 		synchronized(this) {

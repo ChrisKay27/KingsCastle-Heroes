@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.spells;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.PowerBurnAnim;
@@ -35,7 +35,7 @@ public class PowerBurn extends InstantSpell{
 
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 
@@ -83,7 +83,7 @@ public class PowerBurn extends InstantSpell{
 
 
 	@Override
-	public int calculateManaCost( @NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost( @NotNull  LivingThing aWizard)
 	{
 		if( aWizard != null )
 			return 40 + aWizard.getLQ().getLevel() * 5;
@@ -105,13 +105,13 @@ public class PowerBurn extends InstantSpell{
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return "Power Burn Armor";
 	}
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return "PowerBurnArmor";
@@ -120,7 +120,7 @@ public class PowerBurn extends InstantSpell{
 
 
 
-	@NonNull
+
     @Override
 	public Spell newInstance()	{
 		return new PowerBurn();
@@ -146,7 +146,7 @@ public class PowerBurn extends InstantSpell{
 
 
 
-    @NonNull
+
     @Override
     public Abilities getAbility()				 {				return Abilities.POWERBURN ; 			}
 

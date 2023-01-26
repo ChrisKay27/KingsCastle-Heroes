@@ -6,7 +6,7 @@ import android.graphics.Paint.Align;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -97,8 +97,8 @@ public class GidBackground
 
 
 
-	@NonNull
-    private static TileLayer getBackgroundLayer(@NonNull Image backgroundTile , int mapWidthInPx , int mapHeightInPx , int screenWidth, int screenHeight)
+
+    private static TileLayer getBackgroundLayer( Image backgroundTile , int mapWidthInPx , int mapHeightInPx , int screenWidth, int screenHeight)
 	{
 		TileLayer tl = new TileLayer();
 
@@ -122,8 +122,8 @@ public class GidBackground
 
 
 
-	@NonNull
-    private static short[][] fillWith( @NonNull short[][] array2D, short filler )
+
+    private static short[][] fillWith(  short[][] array2D, short filler )
 	{
 
 
@@ -148,10 +148,10 @@ public class GidBackground
 
 
 	private int xTemp , yTemp , xOffs , yOffs , xGid , yGid ;
-	@NonNull
+
     private Rect src = new Rect(), dst = new Rect();
 
-	public void drawBackground( @NonNull Graphics g , @NonNull vector centeredOn )
+	public void drawBackground(  Graphics g ,  vector centeredOn )
 	{
 		xTemp = centeredOn.getIntX() - screenWidthDiv2;
 		yTemp = centeredOn.getIntY() - screenHeightDiv2;
@@ -258,7 +258,7 @@ public class GidBackground
 		clearPaint.setTextAlign( Align.CENTER );
 	}
 
-	@NonNull
+
     private Paint getPaint()
 	{
 		//

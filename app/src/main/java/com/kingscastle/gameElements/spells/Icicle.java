@@ -2,8 +2,8 @@ package com.kingscastle.gameElements.spells;
 
 import android.graphics.Color;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.IcicleAnim;
 import com.kingscastle.effects.animations.SparksAnim;
@@ -42,13 +42,13 @@ public class Icicle extends ProjectileSpell {
 		setDamage(damage);
 	}
 
-    public Icicle(@NonNull Icicle ice) {
+    public Icicle( Icicle ice) {
 		setDamage(ice.getDamage());
         speedCurse = ice.speedCurse;
 	}
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.ICICLE ; 			}
 
@@ -75,7 +75,7 @@ public class Icicle extends ProjectileSpell {
 	}
 
 	@Override
-	public int calculateManaCost(@NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost(@NotNull  LivingThing aWizard)
 	{
 		return 0;
 		//return 3 + aWizard.getLQ().getLevel()*2;
@@ -85,7 +85,7 @@ public class Icicle extends ProjectileSpell {
 
 
 	@Override
-	public void doDamage(  @Nullable LivingThing lt )
+	public void doDamage(   LivingThing lt )
 	{
 		if( lt != null )
 		{
@@ -115,7 +115,7 @@ public class Icicle extends ProjectileSpell {
 	}
 
 
-	@Nullable
+
     public Image getImage() {
 		return null;
 	}
@@ -141,7 +141,7 @@ public class Icicle extends ProjectileSpell {
 
 
 	@Override
-	public void loadAnimation(@NonNull vector unit)
+	public void loadAnimation( vector unit)
 	{
 		if( getAnim() == null )
 			setAnim( new IcicleAnim(loc, vector.getDirection8(unit).getDir()));
@@ -168,7 +168,7 @@ public class Icicle extends ProjectileSpell {
 
 
 
-	@NonNull
+
     @Override
 	public String getName()
 	{
@@ -182,7 +182,7 @@ public class Icicle extends ProjectileSpell {
 	{
 	}
 
-	@NonNull
+
     @Override
 	public Spell newInstance() {
 		return new Icicle(this);
@@ -190,7 +190,7 @@ public class Icicle extends ProjectileSpell {
 
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 

@@ -1,7 +1,7 @@
 package com.kingscastle.framework;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class Pool<T>
 		public T createObject();
 	}
 
-	@NonNull
+
     private final List<T> freeObjects;
 	private final PoolObjectFactory<T> factory;
 	private final int maxSize;
@@ -26,7 +26,7 @@ public class Pool<T>
 		this.freeObjects = new ArrayList<T>(maxSize);
 	}
 
-	@Nullable
+
     public synchronized T newObject() {
 		T object = null;
 

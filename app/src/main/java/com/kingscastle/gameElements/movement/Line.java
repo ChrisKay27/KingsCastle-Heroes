@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.movement;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.gameUtils.vector;
 
@@ -11,7 +11,7 @@ public class Line
 {
 
 	public vector start;
-	@Nullable
+
     public vector end;
 
 	private final vector tl = new vector();
@@ -31,7 +31,7 @@ public class Line
 	}
 
 
-	public boolean intersects( @NonNull RectF r )
+	public boolean intersects(  RectF r )
 	{
 
 		tl.set( r.left  , r.top     );
@@ -46,7 +46,7 @@ public class Line
 
 
 
-	private static boolean intersects(@NonNull vector tl, @NonNull vector bl, @NonNull vector tr, @NonNull vector br, @NonNull Line l)
+	private static boolean intersects( vector tl,  vector bl,  vector tr,  vector br,  Line l)
 	{
 
 		vector start = l.start;
@@ -103,7 +103,7 @@ public class Line
 	//	}
 
 
-	private static boolean linesIntersect(@NonNull vector p1, @NonNull vector p2, @NonNull vector p3, @NonNull vector p4)
+	private static boolean linesIntersect( vector p1,  vector p2,  vector p3,  vector p4)
 	{
 
 		//		float x1 = p1.getX();
@@ -208,14 +208,14 @@ public class Line
 		return true;
 	}
 
-	@Nullable
-    private static vector getLineLineIntersection(@NonNull vector p1, @NonNull vector p2, @NonNull vector p3, @NonNull vector p4)
+
+    private static vector getLineLineIntersection( vector p1,  vector p2,  vector p3,  vector p4)
 	{
 		return getLineLineIntersection( p1 , p2 , p3 , p4 , new vector() );
 	}
 
 
-	private static vector getLineLineIntersection(@NonNull vector p1, @NonNull vector p2, @NonNull vector p3, @NonNull vector p4, @NonNull vector intoThisVector)
+	private static vector getLineLineIntersection( vector p1,  vector p2,  vector p3,  vector p4,  vector intoThisVector)
 	{
 
 		float det1And2 = det( p1.x , p1.y , p2.x , p2.y );
@@ -259,7 +259,7 @@ public class Line
 
 
 
-	@NonNull
+
     @Override
 	public String toString()
 	{
@@ -268,7 +268,7 @@ public class Line
 	}
 
 
-	public static vector getLineRectIntersection ( @NonNull vector tl , @NonNull vector bl , @NonNull vector tr  , @NonNull vector br , @NonNull vector start , @NonNull vector end , @NonNull vector intoThisVector )
+	public static vector getLineRectIntersection (  vector tl ,  vector bl ,  vector tr  ,  vector br ,  vector start ,  vector end ,  vector intoThisVector )
 	{
 		if( linesIntersect( start , end , tl , bl ) )
 		{
@@ -291,8 +291,8 @@ public class Line
 	}
 
 
-	@Nullable
-    public vector getLineRectIntersection ( @NonNull vector tl , @NonNull vector bl , @NonNull vector tr  , @NonNull vector br , @NonNull Line l )
+
+    public vector getLineRectIntersection (  vector tl ,  vector bl ,  vector tr  ,  vector br ,  Line l )
 	{
 		vector start = l.start;
 		vector end = l.start;

@@ -3,8 +3,8 @@ package com.kingscastle.ui;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Graphics;
 import com.kingscastle.framework.Rpg;
@@ -20,25 +20,25 @@ import com.kingscastle.gameUtils.vector;
 class StatsInfo
 {
 
-	@Nullable
+
     private static LivingThing selectedHumanoid;
 
-	@NonNull
+
     private static final TextLabel statsLabel1;
-	@NonNull
+
     private static final TextLabel statsLabel2;
 
-	@NonNull
+
     private static final vector stats1Location;
-	@NonNull
+
     private static final vector stats2Location;
 
-	@NonNull
+
     private static final vector finalStats1Location;
-	@NonNull
+
     private static final vector finalStats2Location;
 
-	@NonNull
+
     private static final Paint statPaint;
 
 	private static final float HEIGHT_PLUS_TWENTY_FIVE_DP;
@@ -112,7 +112,7 @@ class StatsInfo
 
 
 
-	public static void paint( @NonNull Graphics g )
+	public static void paint(  Graphics g )
 	{
 
 		if ( selectedHumanoid != null )
@@ -126,7 +126,7 @@ class StatsInfo
 
 
 
-	@Nullable
+
     public static LivingThing getSelectedHumanoid() {
 		return selectedHumanoid;
 	}
@@ -134,7 +134,7 @@ class StatsInfo
 
 
 	@SuppressLint("DefaultLocale")
-	public static void setSelectedHumanoid( @Nullable LivingThing selectedHumanoid )
+	public static void setSelectedHumanoid(  LivingThing selectedHumanoid )
 	{
 
 
@@ -165,7 +165,7 @@ class StatsInfo
 	private static final String EMPTY    = "";
 	private static final String METERS    = "m";
 
-	@NonNull
+
     private static String getOptionalInfo(LivingThing selHumanoid)
 	{
 		if( selHumanoid instanceof Building)
@@ -208,7 +208,7 @@ class StatsInfo
 	//	private static final String ATTACKRATEBUFF = "Attack Rate";
 	//	private static final String HEALINGBUFF = "Healing Buff";
 
-	@NonNull
+
     private static String getOptionalInfo2( LivingThing selHumanoid )
 	{
 
@@ -229,7 +229,7 @@ class StatsInfo
 	private static final String BUILDING = "Building ";
 	private static final String MAGE     = "Mage     ";
 
-	@NonNull
+
     private static String getSoldierType( LivingThing selHumanoid )
 	{
 		if( selHumanoid instanceof MageSoldier )

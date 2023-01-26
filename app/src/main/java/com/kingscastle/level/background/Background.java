@@ -1,7 +1,7 @@
 package com.kingscastle.level.background;
 
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Graphics;
 import com.kingscastle.framework.Rpg;
@@ -12,9 +12,9 @@ public class Background
 	private final int mapWidth;
 	private final int mapHeight;
 
-	@NonNull
+
     private final GidBackground gidBackground ;
-	@NonNull
+
     private final ScrollingGidBasedBackground scrollingBackground ;
 
 
@@ -101,7 +101,7 @@ public class Background
 	//	}
 
 
-	@NonNull
+
     public ScrollingGidBasedBackground getScrollingBackground()
 	{
 		return scrollingBackground;
@@ -125,7 +125,7 @@ public class Background
 
 
 
-	@NonNull
+
     public GidBackground getGidBackground()
 	{
 		return gidBackground;

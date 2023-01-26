@@ -1,8 +1,8 @@
 package com.kingscastle.ui;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Graphics;
@@ -23,11 +23,11 @@ public class TroopDeployLocPlacer implements TouchEventAnalyzer
 		NOT_SETTING_DELPOY_FLAG , PLACED_WAITING_FOR_ACCEPT
 	}
 
-	@NonNull
+
     private static State state = State.NOT_SETTING_DELPOY_FLAG;
 	private static final Image flag = Assets.loadImage(R.drawable.deploy_flag);
 
-	@Nullable
+	
     private static Barracks selBuilding;
 	private static final vector v = new vector();
 	private static final vector downAt = new vector();
@@ -42,7 +42,7 @@ public class TroopDeployLocPlacer implements TouchEventAnalyzer
 	}
 
 
-	public boolean analyzeTouchEvent( @NonNull TouchEvent event )
+	public boolean analyzeTouchEvent(  TouchEvent event )
 	{
 //
 //		if( state == State.NOT_SETTING_DELPOY_FLAG )
@@ -109,7 +109,7 @@ public class TroopDeployLocPlacer implements TouchEventAnalyzer
 
 
 
-	public void paint( @NonNull Graphics g )
+	public void paint(  Graphics g )
 	{
 		Barracks selBuilding_local = selBuilding;
 		if( selBuilding_local != null ){
@@ -131,7 +131,7 @@ public class TroopDeployLocPlacer implements TouchEventAnalyzer
 //			state = State.PLACED_WAITING_FOR_ACCEPT;
 //	}
 
-	public void setSelectedBuilding(@Nullable Barracks selectedBuilding) {
+	public void setSelectedBuilding( Barracks selectedBuilding) {
 		this.selBuilding = selectedBuilding;
 		if( selectedBuilding != null ){
 			v.set(selectedBuilding.getTroopDeployLoc());

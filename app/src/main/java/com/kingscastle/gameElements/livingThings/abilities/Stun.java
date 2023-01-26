@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.AuraAnim;
@@ -30,7 +30,7 @@ public class Stun extends Buff{
     }
 
 
-    @NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.STUN ; 			}
 
@@ -52,14 +52,14 @@ public class Stun extends Buff{
 
 
 	@Override
-	public int calculateManaCost(@NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost(@NotNull  LivingThing aWizard)
 	{
 		if(aWizard != null )
 			return 25 + aWizard.getLQ().getLevel() * 7;
 		return 25;
 	}
 
-	@NonNull
+
     @Override
 	public Ability newInstance(@NotNull LivingThing target) {
 		return new Stun(getCaster(),target);
@@ -67,7 +67,7 @@ public class Stun extends Buff{
 
 
 	@Override
-	public void loadAnimation( @NonNull MM mm )
+	public void loadAnimation(  MM mm )
 	{
 		if( getAnim() == null)
 			setAnim(new AuraAnim(getTarget().loc));
@@ -75,7 +75,7 @@ public class Stun extends Buff{
 
 
 
-	@NonNull
+
     public String getName()	{
 		return "Stun";
 	}

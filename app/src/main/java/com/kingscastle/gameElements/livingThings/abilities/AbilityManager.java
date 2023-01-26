@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.gameElements.managment.MM;
 
@@ -18,7 +18,7 @@ public class AbilityManager
 
 	private final List<Ability> activeAbilities = new LinkedList<>();
 
-	@NonNull
+
     private final MM mm;
 
 	private final List<Runnable> runnables = new ArrayList<>();
@@ -72,7 +72,7 @@ public class AbilityManager
 
 
 
-	@NonNull
+
     public List<Ability> getAbilities()
 	{
 		synchronized (activeAbilities) {

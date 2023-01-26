@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.spells;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.WhirlwindAnim;
 import com.kingscastle.framework.Image;
@@ -22,7 +22,7 @@ public class Whirlwind extends InstantSpell
 	private final boolean hitsOnlyOneThing = false;
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.WHIRLWIND ; 			}
 
@@ -33,7 +33,7 @@ public class Whirlwind extends InstantSpell
 	private Whirlwind(){}
 
 
-	@NonNull
+
     @Override
 	public Spell newInstance()
 	{
@@ -56,7 +56,7 @@ public class Whirlwind extends InstantSpell
 
 
 	@Override
-	public int calculateManaCost( @NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost( @NotNull  LivingThing aWizard)
 	{
 		if( aWizard != null )
 		{
@@ -78,7 +78,7 @@ public class Whirlwind extends InstantSpell
 
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 		mm.getEm().add(getAnim(),true);
@@ -88,7 +88,7 @@ public class Whirlwind extends InstantSpell
 
 
 
-	@NonNull
+
     @Override
 	public RectF getPerceivedArea()
 	{
@@ -104,14 +104,14 @@ public class Whirlwind extends InstantSpell
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return "Whirl Wind";
 	}
 
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return "WhirlWind";

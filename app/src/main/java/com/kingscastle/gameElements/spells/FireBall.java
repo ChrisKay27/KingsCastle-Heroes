@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.spells;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.FireBallAnim;
@@ -32,18 +32,18 @@ public class FireBall extends ProjectileSpell {
 	public FireBall(int damage) {
 		setDamage(damage);
 	}
-	public FireBall(@NonNull FireBall fb) {
+	public FireBall( FireBall fb) {
 		setDamage(fb.getDamage());
 	}
 
 
-	@NonNull
+	
     @Override
 	public Abilities getAbility()				 {				return Abilities.FIREBALL ; 			}
 
 	private MM mm;
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		this.mm = mm;
 		super.cast(mm);
@@ -67,7 +67,7 @@ public class FireBall extends ProjectileSpell {
 	}
 
 	@Override
-	void doDamage( @Nullable LivingThing lt){
+	void doDamage(  LivingThing lt){
 		if( lt != null ){
 			die();
 
@@ -93,7 +93,7 @@ public class FireBall extends ProjectileSpell {
 		//		return 1;
 	}
 
-	@NonNull
+	
     @Override
 	public Spell newInstance() {
 		return new FireBall(this);
@@ -134,7 +134,7 @@ public class FireBall extends ProjectileSpell {
 
 
 	@Override
-	public void loadAnimation(@NonNull vector unit)	{
+	public void loadAnimation( vector unit)	{
 		FireBallAnim fba = new FireBallAnim( loc , vector.getDirection8(unit).getDir() );
 		setAnim(fba);
 	}
@@ -153,14 +153,14 @@ public class FireBall extends ProjectileSpell {
 
 
 
-	@NonNull
+	
     @Override
 	public String toString()
 	{
 		return TAG;
 	}
 
-	@NonNull
+	
     @Override
 	public String getName()
 	{

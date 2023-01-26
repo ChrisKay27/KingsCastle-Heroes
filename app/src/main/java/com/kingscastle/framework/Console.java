@@ -6,8 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -32,10 +32,10 @@ import com.kingscastle.ui.GameScreen;
 public class Console {
 
 	public static Game tdg;
-	@Nullable
+
     private static View graphicsView;
 
-	public static void cmd( @Nullable String input ){
+	public static void cmd(  String input ){
 		if( input == null ) input = "";
 
 		//		if( input.startsWith("save "))
@@ -161,7 +161,7 @@ public class Console {
 
 			View.OnClickListener ocl = new View.OnClickListener() {
 				@Override
-				public void onClick(@NonNull View v) {
+				public void onClick( View v) {
 					RadioButton rb = (RadioButton) rg.findViewById(rg.getCheckedRadioButtonId());
 
 					Anim a = null;
@@ -239,7 +239,7 @@ public class Console {
 	}
 
 
-	private static void spawn(@NonNull String input) {
+	private static void spawn( String input) {
 		Level level = tdg.getLevel();
 		if( level != null ){
 			Teams teams = Teams.RED;

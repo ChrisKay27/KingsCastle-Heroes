@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -27,12 +27,12 @@ public class Priestess extends AdvancedHealer
 	private static ImageFormatInfo imageFormatInfo;
 	private static Image[] redImages , blueImages , greenImages , orangeImages , whiteImages ;
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+	
+    private static final AttackerQualities staticAttackerQualities; 
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+	
+    private static final Attributes STATIC_ATTRIBUTES; 
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -69,7 +69,7 @@ public class Priestess extends AdvancedHealer
 	}
 
 
-	public Priestess(@NonNull vector loc,Teams team)
+	public Priestess( vector loc,Teams team)
 	{
 		super(team);
 		setLoc(loc);
@@ -222,7 +222,7 @@ public class Priestess extends AdvancedHealer
 
 
 
-	@NonNull
+	
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -305,12 +305,12 @@ public class Priestess extends AdvancedHealer
 		Priestess.whiteImages = whiteImages;
 	}
 	private static final String TAG = "Priestess";
-	@NonNull
+	
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+	
     @Override
 	public String getName() {
 		return TAG;

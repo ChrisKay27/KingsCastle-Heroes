@@ -4,8 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -20,7 +20,7 @@ public class CTextView extends View{
 		UIUtil.applyCooperBlack(mPaint);
 	}
 	private final ArrayList<String> text = new ArrayList<String>();
-	@Nullable
+
     private String text2;
 
 	private float x;
@@ -29,15 +29,15 @@ public class CTextView extends View{
 	public CTextView(Context context) {
 		super(context);
 	}
-	public CTextView(@NonNull Context context, AttributeSet attrs) {
+	public CTextView( Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
-	public CTextView(@NonNull Context context, AttributeSet attrs, int defStyle) {
+	public CTextView( Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
 
 	@Override
-	protected void onDraw( @NonNull Canvas c ){
+	protected void onDraw(  Canvas c ){
 		float yOffs = 0f;
 		synchronized( text ){
 			for( String t : text ){
@@ -51,12 +51,12 @@ public class CTextView extends View{
 			}
 		}
 	}
-	@Nullable
+
     public String getText() {
 		return text2;
 	}
-	@NonNull
-    public CTextView setText(@Nullable String text_ ) {
+
+    public CTextView setText( String text_ ) {
 		this.text2 = text_;
 
 		if( text_ != null ){
@@ -82,7 +82,7 @@ public class CTextView extends View{
 	public void setX(int x) {
 		this.x = x;
 	}
-	@NonNull
+
     public Paint getPaint() {
 		return mPaint;
 	}

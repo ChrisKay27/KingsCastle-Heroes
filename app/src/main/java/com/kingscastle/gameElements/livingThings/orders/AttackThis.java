@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.orders;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Input;
@@ -36,7 +36,7 @@ public final class AttackThis extends Order
 
 
 
-	@NonNull
+
     public static AttackThis getInstance()
 	{
 		return new AttackThis();
@@ -55,7 +55,7 @@ public final class AttackThis extends Order
 
 
 
-	@NonNull
+
     @Override
 	public List<? extends Humanoid> getHumanoidsToBeOrdered() {
 		return unitsToBeOrdered;
@@ -65,7 +65,7 @@ public final class AttackThis extends Order
 
 
 	@Override
-	public void setHumanoidsToBeOrdered(@NonNull List<? extends Humanoid> livingThings) {
+	public void setHumanoidsToBeOrdered( List<? extends Humanoid> livingThings) {
 		unitsToBeOrdered.clear();
 		unitsToBeOrdered.addAll( livingThings );
 	}
@@ -83,7 +83,7 @@ public final class AttackThis extends Order
 
 
 
-	public boolean analyseTouchEvent(@NotNull MM mm, @NonNull Input.TouchEvent event, @NonNull CoordConverter cc , @NotNull CD cd )	{
+	public boolean analyseTouchEvent(@NotNull MM mm,  Input.TouchEvent event,  CoordConverter cc , @NotNull CD cd )	{
 		cc.getCoordsScreenToMap( event.x , event.y , mapRel );
 
 		return analyseCoordinate( cd, mapRel , unitsToBeOrdered );
@@ -120,7 +120,7 @@ public final class AttackThis extends Order
 	}
 
 
-	@NonNull
+
     @Override
 	public OrderTypes getOrderType()
 	{
@@ -129,7 +129,7 @@ public final class AttackThis extends Order
 
 	private static final String name = "Attack";
 
-	@NonNull
+
     @Override
 	public String toString()
 	{

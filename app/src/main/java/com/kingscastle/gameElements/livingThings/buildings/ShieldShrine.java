@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -32,19 +32,19 @@ public class ShieldShrine extends Shrine
 
 	private static RectF staticPerceivedArea = Rpg.oneByOneArea; // this is only the offset from the mapLocation.
 
-	@NonNull
+
     private static final AttackerQualities staticAttackerQualities;
-	@NonNull
+
     private static final Attributes STATIC_ATTRIBUTES;
 
 	private static final Cost costs = new Cost( 500 , 0 , 500 , 500 , 0 );
 
-	@NonNull
+
     @Override
 	protected AttackerQualities getStaticAQ() {
 		return staticAttackerQualities;
 	}
-	@NonNull
+
     @Override
 	protected Attributes getStaticLQ() {
 		return STATIC_ATTRIBUTES;
@@ -85,7 +85,7 @@ public class ShieldShrine extends Shrine
 		super(name);
 	}
 
-	public ShieldShrine( @NonNull vector v, Teams t )
+	public ShieldShrine(  vector v, Teams t )
 	{
 		this();
 		setTeam(t);
@@ -139,8 +139,8 @@ public class ShieldShrine extends Shrine
 		//return isOutOfRangeOrDeadORFullHealth( thing1 , thingA );
 	}
 
-	private boolean isOutOfRangeOrDeadORFullHealth( @Nullable LivingThing healer ,
-			@Nullable LivingThing healingTarget2 )
+	private boolean isOutOfRangeOrDeadORFullHealth(  LivingThing healer ,
+			 LivingThing healingTarget2 )
 	{
 
 		if( healer == null || healingTarget2 == null )
@@ -217,20 +217,20 @@ public class ShieldShrine extends Shrine
 
 
 
-	@NonNull
+
     @Override
 	public Cost getCosts(){
 		return costs;
 	}
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;
 	}
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities() {
 		return new Attributes(STATIC_ATTRIBUTES);

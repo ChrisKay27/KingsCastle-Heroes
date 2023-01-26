@@ -1,7 +1,7 @@
 package com.kingscastle.gameUtils;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.buildings.Building;
@@ -24,7 +24,7 @@ public class BuildQueueChecker
 	 * @param mm
 	 * @return
 	 */
-	public static boolean checkBuildQueue( @NonNull BuildQueue buildQueue , Building building , @NonNull MM mm )
+	public static boolean checkBuildQueue(  BuildQueue buildQueue , Building building ,  MM mm )
 	{
 		ArrayList<LivingThing> lts=null;
 		while( buildQueue.isThereACompletedQueueable() ){
@@ -80,7 +80,7 @@ public class BuildQueueChecker
 
 
 
-	public static boolean addToBuildQueue( @NonNull BuildQueue buildQueue , @Nullable Queueable toBeBuild , @NonNull Building building )
+	public static boolean addToBuildQueue(  BuildQueue buildQueue ,  Queueable toBeBuild ,  Building building )
 	{
 		if ( toBeBuild == null )
 			throw new IllegalArgumentException(" toBeBuild == null " );

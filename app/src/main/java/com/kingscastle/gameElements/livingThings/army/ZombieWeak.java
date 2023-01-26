@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.Assets;
@@ -28,12 +28,12 @@ public class ZombieWeak extends MeleeSoldier
 	private static ImageFormatInfo imageFormatInfo;
 
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -73,7 +73,7 @@ public class ZombieWeak extends MeleeSoldier
 	}
 
 
-	public ZombieWeak(@NonNull vector loc, Teams team)
+	public ZombieWeak( vector loc, Teams team)
 	{
 		super(team);
 		setLoc( loc );
@@ -178,7 +178,7 @@ public class ZombieWeak extends MeleeSoldier
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -197,13 +197,13 @@ public class ZombieWeak extends MeleeSoldier
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return NAME;

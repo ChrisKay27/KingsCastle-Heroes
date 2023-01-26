@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
 
-import android.support.annotation.Nullable;
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.Image;
@@ -25,10 +25,10 @@ public interface Ability
 
 	int calculateManaCost(@NotNull LivingThing aWizard);
 	//Ability newInstance();
-    @Nullable
+    
     Ability newInstance(@NotNull LivingThing target);
 	boolean cast(MM mm);
-	@Nullable
+	
     Image getIconImage();
 	void saveYourSelf(@NotNull BufferedWriter b) throws IOException;
 	LivingThing getCaster();
@@ -36,7 +36,7 @@ public interface Ability
 	void setTarget(@NotNull LivingThing target);
 	boolean act();
 	boolean cast(@NotNull MM mm, @NotNull LivingThing target);
-	@Nullable
+	
     Abilities getAbility();
 	LivingThing getTarget();
 	boolean isStackable();

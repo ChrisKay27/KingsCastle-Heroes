@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -33,19 +33,19 @@ public class UndeadWatchTower extends AttackingBuilding
 
 	private static final Cost cost = new Cost( 500 , 0 , 500 , 0 );
 
-	@NonNull
+
     private static final AttackerQualities staticAttackerQualities;
-	@NonNull
+
     private static final Attributes STATIC_ATTRIBUTES;
 
 	private static ArrayList<vector> staticDamageOffsets;
 
-	@NonNull
+
     @Override
 	protected AttackerQualities getStaticAQ() {
 		return staticAttackerQualities;
 	}
-	@NonNull
+
     @Override
 	protected Attributes getStaticLQ() {
 		return STATIC_ATTRIBUTES;
@@ -98,7 +98,7 @@ public class UndeadWatchTower extends AttackingBuilding
 		loadPerceivedArea();
 	}
 
-	public UndeadWatchTower(@NonNull vector v, Teams t)
+	public UndeadWatchTower( vector v, Teams t)
 	{
 		super( name , t );
 		setLoc(v);
@@ -210,13 +210,13 @@ public class UndeadWatchTower extends AttackingBuilding
 
 
 
-	@NonNull
+
     @Override
 	public String toString()
 	{
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName()
 	{
@@ -224,14 +224,14 @@ public class UndeadWatchTower extends AttackingBuilding
 	}
 
 
-	@NonNull
+
     @Override
 	public Cost getCosts() {
 		return cost;
 	}
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{

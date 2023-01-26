@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.projectiles;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.SpecialEffects;
 import com.kingscastle.framework.Assets;
@@ -39,12 +39,12 @@ public class Arrow extends Projectile
 		setAttributes( shooter , getHumanoid() );
 	}
 
-	public Arrow( @NonNull LivingThing caster , LivingThing target ) {
+	public Arrow(  LivingThing caster , LivingThing target ) {
 		this( caster , null , target );
 	}
 
 
-	private Arrow(@NonNull LivingThing shooter, @Nullable vector to, @Nullable LivingThing target)	{
+	private Arrow( LivingThing shooter,  vector to,  LivingThing target)	{
 		super(shooter);
 		setShooter(shooter);
 
@@ -81,7 +81,7 @@ public class Arrow extends Projectile
 		return false;
 	}
 
-	private void setAttributes( @Nullable LivingThing shooter ,@NotNull vector unit ) {
+	private void setAttributes(  LivingThing shooter ,@NotNull vector unit ) {
 
         if( shooter != null ) {
 			vector loc = new vector();
@@ -149,7 +149,7 @@ public class Arrow extends Projectile
 	}
 
 
-	@NonNull
+	
     @Override
 	public Projectile newInstance(@NotNull LivingThing shooter ,@NotNull vector predLoc ,@NotNull LivingThing target )	{
 		return new Arrow( shooter , predLoc , target );

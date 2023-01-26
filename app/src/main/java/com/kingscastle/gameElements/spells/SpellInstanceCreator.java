@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.spells;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameUtils.vector;
@@ -11,7 +11,7 @@ public class SpellInstanceCreator {
 
 
 
-	public static Spell getSpellInstance( @NonNull SpellCreationParams params)
+	public static Spell getSpellInstance(  SpellCreationParams params)
 	{
 		Spell s;
 

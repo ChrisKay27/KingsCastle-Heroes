@@ -1,16 +1,16 @@
 package com.kingscastle.gameElements.projectiles;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.gameUtils.vector;
 
 class ProjectileCreator {
 
 
-	@Nullable
-    public static Projectile getSpellInstance(@NonNull ProjectileParams params)
+
+    public static Projectile getSpellInstance( ProjectileParams params)
 	{
 		Projectile p;
 
@@ -114,7 +114,7 @@ class ProjectileCreator {
 
 
 
-	@Nullable
+
     private static Projectile getProjFromString(String spellName)
 	{
 		return null;

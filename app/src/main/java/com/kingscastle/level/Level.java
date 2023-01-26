@@ -3,7 +3,7 @@ package com.kingscastle.level;
 
 import android.graphics.RectF;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+
 import android.util.Log;
 
 import com.kingscastle.Game;
@@ -48,16 +48,16 @@ public abstract class Level implements CoordConverter,SoundController
 
 	protected HumanPlayer hPlayer;
 
-	@NonNull
+
     protected MM mm = new MM(this);
 	protected UI ui;
 
 	private int width = 80;
 	private int height = 60;
 
-	@NonNull
+
     protected final Background background;
-	@NonNull
+
     private final Grid grid;
 
 	protected HashMap<String, String> extras;
@@ -148,7 +148,7 @@ public abstract class Level implements CoordConverter,SoundController
 	 * Creates the players, teams, adds map border objects, no build zones, adds start and end
 	 * location animations, tree border, creates the first round object and centers the map
 	 */
-	public final void onCreate(@NonNull UI ui, Game tdg){
+	public final void onCreate( UI ui, Game tdg){
 		Log.v(TAG,"onCreate()");
 		onCreateCalled = true;
 
@@ -377,7 +377,7 @@ public abstract class Level implements CoordConverter,SoundController
 
 	//***************   Background Methods   ****************//
 
-	@NonNull
+
     public Background getBackground(){
 		return background;
 	}
@@ -444,7 +444,7 @@ public abstract class Level implements CoordConverter,SoundController
 	 * Not Null
 	 * @return The grid
 	 */
-	@NonNull
+
     public Grid getGrid(){
 		return grid;
 	}
@@ -473,7 +473,7 @@ public abstract class Level implements CoordConverter,SoundController
 	}
 
 	@Override
-	public vector getCoordsScreenToMap(@NonNull vector v, vector intoThis) {
+	public vector getCoordsScreenToMap( vector v, vector intoThis) {
 		return getBackground().getScrollingBackground().getCoordinatesScreenToMap(
 				v.x, v.y, intoThis);
 	}
@@ -485,7 +485,7 @@ public abstract class Level implements CoordConverter,SoundController
 	}
 
 	@Override
-	public vector getCoordsMapToScreen(@NonNull vector v, vector intoThis) {
+	public vector getCoordsMapToScreen( vector v, vector intoThis) {
 		return getBackground().getScrollingBackground().getCoordinatesMapToScreen(
 				v.x, v.y, intoThis);
 	}
@@ -503,7 +503,7 @@ public abstract class Level implements CoordConverter,SoundController
 
 
 
-	@NonNull
+
     public MM getMM() {
 		return mm;
 	}

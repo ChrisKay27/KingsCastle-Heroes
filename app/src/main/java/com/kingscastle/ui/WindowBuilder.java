@@ -7,7 +7,7 @@ import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.app.Activity;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class WindowBuilder{
 
-	@NonNull
+
     private static ArrayList<View> popups = new ArrayList<View>();
 
 
@@ -70,7 +70,7 @@ public class WindowBuilder{
 	 * @param title Title to be displayed
 	 * @return this to allow streamlining calls
 	 */
-	@NonNull
+
     public WindowBuilder setTitle( String title ){
 		this.title = title;
 		return this;
@@ -79,7 +79,7 @@ public class WindowBuilder{
 	/**
 	 * @return this to allow streamlining calls
 	 */
-	@NonNull
+
     public WindowBuilder setContent( View content ){
 		this.content = content;
 		return this;
@@ -89,7 +89,7 @@ public class WindowBuilder{
 	 * @param ocl listener to use
 	 * @return this to allow streamlining calls
 	 */
-	@NonNull
+
     public WindowBuilder setCloseButtonListener( OnClickListener ocl ){
 		closeListener = ocl;
 		return this;
@@ -99,7 +99,7 @@ public class WindowBuilder{
 	 * @param gll listener to use
 	 * @return this to allow streamlining calls
 	 */
-	@NonNull
+
     public WindowBuilder setOnGlobalLayoutListener( OnGlobalLayoutListener gll ){
 		globalLayoutListener = gll;
 		return this;
@@ -111,7 +111,7 @@ public class WindowBuilder{
 	 * @param ocl listener to use
 	 * @return this to allow streamlining calls
 	 */
-	@NonNull
+
     public WindowBuilder setPositiveButton( String text , int bkrndResource , OnClickListener ocl ){
 
 		posBText = text;
@@ -127,7 +127,7 @@ public class WindowBuilder{
 	 * @param ocl listener to use
 	 * @return this to allow streamlining calls
 	 */
-	@NonNull
+
     public WindowBuilder setNegativeButton( String text , int bkrndResource , OnClickListener ocl ){
 
 		negBText = text;
@@ -147,7 +147,7 @@ public class WindowBuilder{
 	 * @param cancelable
 	 * @return this to allow chaining calls
 	 */
-	@NonNull
+
     public WindowBuilder setCancelable(boolean cancelable) 	{	this.cancelable = cancelable; return this;	}
 
 
@@ -237,7 +237,7 @@ public class WindowBuilder{
 				a.setDuration(150);
 				a.addUpdateListener(new AnimatorUpdateListener() {
 					@Override
-					public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+					public void onAnimationUpdate( ValueAnimator animation) {
 						window.setScaleX((Float) animation.getAnimatedValue() );
 						window.setScaleY((Float) animation.getAnimatedValue() );
 						window.setAlpha((Float) animation.getAnimatedValue() );
@@ -294,7 +294,7 @@ public class WindowBuilder{
 
 						d2.setOnTouchListener(new OnTouchListener() {
 							@Override
-							public boolean onTouch(View v, @NonNull MotionEvent event) {
+							public boolean onTouch(View v,  MotionEvent event) {
 								if( cancelable )
 									if( !wArea.contains( event.getX(), event.getY()) ){
 										d2.setOnTouchListener(null);
@@ -335,7 +335,7 @@ public class WindowBuilder{
 			a.setDuration(150);
 			a.addUpdateListener(new AnimatorUpdateListener() {
 				@Override
-				public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+				public void onAnimationUpdate( ValueAnimator animation) {
 					float value = (Float) animation.getAnimatedValue();
 					mWindow.setScaleX(value);
 					mWindow.setScaleY(value);
@@ -372,7 +372,7 @@ public class WindowBuilder{
 					ValueAnimator animation = ValueAnimator.ofFloat( 1f , 0f );
 					animation.addUpdateListener(new AnimatorUpdateListener() {
 						@Override
-						public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+						public void onAnimationUpdate( ValueAnimator animation) {
 							dialog.setScaleX((Float) animation.getAnimatedValue());
 							dialog.setScaleY((Float) animation.getAnimatedValue());
 							dialog.setAlpha((Float) animation.getAnimatedValue());

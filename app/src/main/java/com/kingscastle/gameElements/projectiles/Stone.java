@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.projectiles;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.QuakeAnim;
 import com.kingscastle.framework.Assets;
@@ -29,7 +29,7 @@ public class Stone extends Projectile
 
 	public Stone()	{}
 
-	public Stone( @NonNull LivingThing caster , @NonNull LivingThing target )
+	public Stone(  LivingThing caster ,  LivingThing target )
 	{
 		this(caster, new vector(target.loc), target);
 	}
@@ -153,7 +153,7 @@ public class Stone extends Projectile
 //			endPosIfAbove.setY( loc.y + dy );
 //	}
 
-	@NonNull
+	
     @Override
 	public String getName()
 	{
@@ -162,7 +162,7 @@ public class Stone extends Projectile
 
 
 
-	@NonNull
+	
     @Override
 	public Projectile newInstance(@NotNull LivingThing shooter ,@NotNull vector predLoc ,@NotNull LivingThing target )	{
 		return new Stone( shooter , predLoc , target );
@@ -170,7 +170,7 @@ public class Stone extends Projectile
 
 
 
-	@Nullable
+	
     @Override
 	public Projectile newInstance(@NotNull LivingThing shooter,@NotNull vector unitVectorInDirection)	{
 		return new Stone(shooter,unitVectorInDirection,null);
@@ -199,7 +199,7 @@ public class Stone extends Projectile
 
 
 
-	@NonNull
+	
     @Override
 	public Projectile newInstance()
 	{
@@ -229,12 +229,12 @@ public class Stone extends Projectile
 
 
 
-	@NonNull
+	
     @Override
 	public RectF getStaticPerceivedArea()	{
 		return staticPerceivedArea;
 	}
-	@NonNull
+	
     @Override
 	public RectF getPerceivedArea()	{
 		return staticPerceivedArea;
@@ -246,7 +246,7 @@ public class Stone extends Projectile
 	}
 
 	
-	@Nullable
+	
     @Override
 	public ArrayList<Image> getDeadImages(){	
 		return null;

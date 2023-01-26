@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.spells;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Input;
@@ -81,7 +81,7 @@ public abstract class InstantSpell extends Spell {
 	}
 
 
-	void doDamage( @Nullable ArrayList<LivingThing> lts)
+	void doDamage(  ArrayList<LivingThing> lts)
 	{
 		if( lts == null )
 			return;
@@ -111,7 +111,7 @@ public abstract class InstantSpell extends Spell {
 
 
 	@Override
-	public void saveYourSelf( @NonNull BufferedWriter b) throws IOException
+	public void saveYourSelf(  BufferedWriter b) throws IOException
 	{
 		String s = "<"+this+" team=\""+ getTeamName() + "\" damage=\"" + getDamage() +
 				"\" x=\"" + loc.getIntX() + "\" y=\"" + loc.getIntY() + "\"/>";
@@ -191,7 +191,7 @@ public abstract class InstantSpell extends Spell {
 
 
 	@Override
-	public boolean cast(@NotNull @NonNull MM mm, @NotNull LivingThing target) {
+	public boolean cast(@NotNull  MM mm, @NotNull LivingThing target) {
 		return false;
 	}
 

@@ -1,6 +1,6 @@
 package com.kingscastle.effects.animations;
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -21,7 +21,7 @@ public class DestroyedBuildingAnim extends Anim {
     }
 
 
-    public DestroyedBuildingAnim(@NonNull vector loc) {
+    public DestroyedBuildingAnim( vector loc) {
         super( loc );
         onlyShowIfOnScreen = true;
         setAliveTime(60);
@@ -32,13 +32,13 @@ public class DestroyedBuildingAnim extends Anim {
     }
 
     @Override
-    @NonNull
-    public Anim newInstance(@NonNull vector loc){
+
+    public Anim newInstance( vector loc){
         return new DestroyedBuildingAnim(loc);
     }
 
 
-    @NonNull
+
     @Override
     public String toString() {
         return "DestroyedBuildingAnim";

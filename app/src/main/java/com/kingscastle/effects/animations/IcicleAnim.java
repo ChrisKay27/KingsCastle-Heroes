@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -35,7 +35,7 @@ public class IcicleAnim extends Anim {
 
 
 
-	public IcicleAnim(@NonNull vector loc, int dir){
+	public IcicleAnim( vector loc, int dir){
         super(loc);
         setImages(getImages(dir));
 
@@ -49,7 +49,7 @@ public class IcicleAnim extends Anim {
 
 
 	@Override
-	public void paint(@NonNull Graphics g, @NonNull vector v)
+	public void paint( Graphics g,  vector v)
 	{
 		vTemp.set( v );
 		vTemp.add( offs );

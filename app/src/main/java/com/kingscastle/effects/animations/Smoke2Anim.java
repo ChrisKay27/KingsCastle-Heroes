@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Image;
 import com.kingscastle.gameUtils.vector;
@@ -13,7 +13,7 @@ class Smoke2Anim extends Anim {
 	private static final List<Image> staticImages = null;
 	private final int staticTfb = 50;
 
-	public Smoke2Anim(@NonNull vector loc) {
+	public Smoke2Anim( vector loc) {
         super(loc);
 		setImages( staticImages );
 		setTbf(staticTfb);
@@ -31,7 +31,7 @@ class Smoke2Anim extends Anim {
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return "SmokeType2";

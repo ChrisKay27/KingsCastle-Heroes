@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.effects.EffectsManager;
@@ -30,7 +30,7 @@ public class Scarecrow extends AttackingBuilding {
 
 	private static final Image image = Assets.loadImage(R.drawable.scarecrow);
 
-	@NonNull
+
     private static final Attributes STATIC_ATTRIBUTES;
 
 	private static Cost cost = new Cost( 1000 , 1000 , 1000 , 0 );
@@ -53,7 +53,7 @@ public class Scarecrow extends AttackingBuilding {
 
 	private final Image damagedImage = image;
 	private final Image deadImage = Assets.loadImage( R.drawable.small_rubble );
-	@NonNull
+
     private RectF percArea = staticPerceivedArea;
 
 
@@ -63,7 +63,7 @@ public class Scarecrow extends AttackingBuilding {
 
 	}
 
-	@NonNull
+
     @Override
 	protected Attributes getStaticLQ() {
 		return STATIC_ATTRIBUTES;
@@ -75,7 +75,7 @@ public class Scarecrow extends AttackingBuilding {
 
 	}
 
-	public Scarecrow(@NonNull vector v, Teams t)
+	public Scarecrow( vector v, Teams t)
 	{
 		super( name, t );
 
@@ -117,14 +117,14 @@ public class Scarecrow extends AttackingBuilding {
 	}
 
 	@Override
-	protected void addAnimationToEm(@NonNull Anim a, boolean sorted, @NonNull EffectsManager em)
+	protected void addAnimationToEm( Anim a, boolean sorted,  EffectsManager em)
 	{
 		em.add( a , EffectsManager.Position.Sorted );
 		em.add( backing, EffectsManager.Position.Behind );
 	}
 
 
-	private static void adjustBackingOffs( @Nullable Backing backing ){
+	private static void adjustBackingOffs(  Backing backing ){
 		if( backing != null )
 			backing.setOffs(0,Rpg.eightDp);
 	}
@@ -159,7 +159,7 @@ public class Scarecrow extends AttackingBuilding {
 	/**
 	 * returns a rectangle to be placed with its center on the mapLocation of the tower
 	 */
-	@NonNull
+
     @Override
 	public RectF getPerceivedArea()
 	{
@@ -170,7 +170,7 @@ public class Scarecrow extends AttackingBuilding {
 	public void setPerceivedSpriteArea( RectF perceivedSpriteArea2 ){
 	}
 
-	@NonNull
+
     @Override
 	public RectF getStaticPerceivedArea(){
 		return percArea;
@@ -229,7 +229,7 @@ public class Scarecrow extends AttackingBuilding {
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -239,7 +239,7 @@ public class Scarecrow extends AttackingBuilding {
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;

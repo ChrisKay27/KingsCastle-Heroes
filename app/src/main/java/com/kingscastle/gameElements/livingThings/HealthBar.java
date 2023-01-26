@@ -2,8 +2,8 @@ package com.kingscastle.gameElements.livingThings;
 
 import android.graphics.Color;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.Graphics;
@@ -14,9 +14,9 @@ import com.kingscastle.gameUtils.vector;
 
 public class HealthBar extends Anim
 {
-	@Nullable
+	
     private LivingThing owner;
-	@Nullable
+	
     private Rect healthBar;
 	private int fullWidth;
 
@@ -27,7 +27,7 @@ public class HealthBar extends Anim
 
 
 	@Override
-	public void paint( @NonNull Graphics g , vector v )
+	public void paint(  Graphics g , vector v )
 	{
 		if( Settings.showHealthBar == false )
 		{
@@ -49,7 +49,7 @@ public class HealthBar extends Anim
 
 
 
-	@Nullable
+	
     Rect getHealthBar()
 	{
 		if ( healthBar == null )

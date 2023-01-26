@@ -3,7 +3,7 @@
  */
 package com.kingscastle.gameElements.managment;
 
-import android.support.annotation.Nullable;
+
 import android.util.Log;
 
 import com.kingscastle.Game;
@@ -31,7 +31,7 @@ public class SubGemManager extends GemManager
 
 
 	@Override
-	public boolean add( @Nullable GameElement ge )
+	public boolean add(  GameElement ge )
 	{
 		if( ge == null )
 		{

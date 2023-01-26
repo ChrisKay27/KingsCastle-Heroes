@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -25,12 +25,12 @@ public class BrownTemplar extends MeleeSoldier {
 	private static Image[] images = Assets.loadImages( R.drawable.brown_horned  , 0 , 0 , 1 , 1 );
 
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -67,7 +67,7 @@ public class BrownTemplar extends MeleeSoldier {
 		setGoldDropped(10);
 	}
 
-	public BrownTemplar(@NonNull vector loc, Teams team){
+	public BrownTemplar( vector loc, Teams team){
 		super(team);
 		setLoc(loc);
 
@@ -137,7 +137,7 @@ public class BrownTemplar extends MeleeSoldier {
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@Nullable
+
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -162,7 +162,7 @@ public class BrownTemplar extends MeleeSoldier {
 	@Override
 	public void setStaticPerceivedArea(RectF staticPercArea) {
 	}
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities() {
 		return new Attributes(STATIC_ATTRIBUTES);
@@ -182,12 +182,12 @@ public class BrownTemplar extends MeleeSoldier {
 
 	private static final String TAG = "Knight";
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;

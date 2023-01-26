@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.SoldierTypes;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.gameElements.livingThings.attacks.Bow;
 import com.kingscastle.gameElements.managment.MM;
@@ -36,7 +36,7 @@ public abstract class RangedSoldier extends Humanoid {
 
 
 	@Override
-	public void loadAnimation(@NotNull @NonNull MM mm) {
+	public void loadAnimation(@NotNull  MM mm) {
 		super.loadAnimation(mm);
 		getAQ().setCurrentAttack( new Bow( mm, this , new Arrow() ) );
 		aliveAnim.add(getAQ().getCurrentAttack().getAnimator(), true);

@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -19,7 +19,7 @@ public class StaticNebulaAnim extends Anim
 	private final int staticTfb = 50;
 
 
-	public StaticNebulaAnim( @NonNull vector loc )
+	public StaticNebulaAnim(  vector loc )
 	{
         super(loc);
 		setImages( staticImages );
@@ -33,7 +33,7 @@ public class StaticNebulaAnim extends Anim
 
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v )
+	public void paint(  Graphics g ,  vector v )
 	{
 		Image image = getImage();
 		if( image != null )

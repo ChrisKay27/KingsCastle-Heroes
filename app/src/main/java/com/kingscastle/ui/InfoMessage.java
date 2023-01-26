@@ -5,8 +5,8 @@ import android.graphics.Color;
 import android.graphics.EmbossMaskFilter;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,7 +26,7 @@ public class InfoMessage
 
 	public static final String TOO_POOR = "Sorry, you cannot afford this.";
 
-	@Nullable
+	
     private Message message;
 
 	private long stopDisplayingAt;
@@ -106,7 +106,7 @@ public class InfoMessage
 
 
 
-	@Nullable
+	
     public String getMessage()
 	{
 		if( message != null )
@@ -116,7 +116,7 @@ public class InfoMessage
 		return null;
 	}
 
-	public void setMessage( @NonNull Message message )
+	public void setMessage(  Message message )
 	{
 		this.message = message;
 		stopDisplayingAt = GameTime.getTime() + message.forHowLong;
@@ -133,7 +133,7 @@ public class InfoMessage
 		messageQueue.add( new Message( message , forHowLong ) );
 	}
 
-	public void addMessage( @Nullable Message message )
+	public void addMessage(  Message message )
 	{
 		if( message == null )
 		{
@@ -186,7 +186,7 @@ public class InfoMessage
 		}
 
 
-		public void paint( @NonNull Graphics g )
+		public void paint(  Graphics g )
 		{
 			if( message != null && paint != null)
 			{

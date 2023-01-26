@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Graphics;
 import com.kingscastle.framework.Image;
@@ -16,7 +16,7 @@ public class GreenSparksAnim extends Anim {
 	private final int staticTfb = 50;
 
 
-    public GreenSparksAnim(@NonNull vector loc ) {
+    public GreenSparksAnim( vector loc ) {
         super( loc );
 		setImages( staticImages );
 		setTbf( staticTfb );
@@ -27,7 +27,7 @@ public class GreenSparksAnim extends Anim {
 
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v )
+	public void paint(  Graphics g ,  vector v )
 	{
 		Image image = getImage();
 		if( image != null )

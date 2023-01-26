@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.SpecialEffects;
 import com.kingscastle.effects.SpecialEffects.SpellType;
@@ -40,7 +40,7 @@ public class SpellAttack extends Attack {
 	}
 
 	@Override
-	public void attackFromHumanoidVector(@NonNull vector unitVector) {
+	public void attackFromHumanoidVector( vector unitVector) {
 		SpellCreationParams params = getSpellCreationParams(this);
 		tempHumanoid.set(unitVector);
 		params.setHumanoidVectorInDirection(tempHumanoid);
@@ -53,7 +53,7 @@ public class SpellAttack extends Attack {
 	}
 
 	@Override
-	public void attack( @NonNull vector inDirection )
+	public void attack(  vector inDirection )
 	{
 		SpellCreationParams params = getSpellCreationParams(this);
 		tempHumanoid.set( inDirection );
@@ -109,8 +109,8 @@ public class SpellAttack extends Attack {
 	}
 
 
-	@NonNull
-    public static SpellCreationParams getSpellCreationParams( @NonNull SpellAttack sa )
+
+    public static SpellCreationParams getSpellCreationParams(  SpellAttack sa )
 	{
 		SpellCreationParams params = new SpellCreationParams();
 		params.setShooter( sa.getOwner() );

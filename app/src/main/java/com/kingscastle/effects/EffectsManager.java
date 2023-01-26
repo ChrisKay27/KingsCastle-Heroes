@@ -1,7 +1,7 @@
 package com.kingscastle.effects;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.WorkerThread;
+
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.GameTime;
@@ -105,7 +105,7 @@ public class EffectsManager
 		this.mm = mm;
 	}
 
-	@WorkerThread
+
 	public void act()
 	{
 		synchronized (runnables) {
@@ -648,7 +648,7 @@ public class EffectsManager
 
 	}
 
-	public void add( @NonNull Anim anim , boolean sorted )
+	public void add(  Anim anim , boolean sorted )
 	{
 		//////Log.d( TAG , "Adding " + anim + " inFront?:" + sorted );
 		if( sorted )
@@ -659,7 +659,7 @@ public class EffectsManager
 	}
 
 
-	public void add( @NonNull Anim anim )
+	public void add(  Anim anim )
 	{
 		add( anim , false );
 	}
@@ -668,7 +668,7 @@ public class EffectsManager
 
 
 
-	@NonNull
+
     public List<Anim> getLightEffectsInFrontAnimations() {
 		synchronized( lightEffectsInFrontAnimsList )
 		{
@@ -676,7 +676,7 @@ public class EffectsManager
 		}
 	}
 
-	@NonNull
+
     public List<Anim> getBehindAnimations()
 	{
 		synchronized( behindAnimsList )
@@ -685,7 +685,7 @@ public class EffectsManager
 		}
 	}
 
-	@NonNull
+
     public List<Anim> getSortedAnimations()
 	{
 		synchronized( sortedAnimsList )
@@ -694,7 +694,7 @@ public class EffectsManager
 		}
 	}
 
-	@NonNull
+
     public List<Anim> getInFrontAnimations()
 	{
 		synchronized( inFrontAnimsList )
@@ -703,7 +703,7 @@ public class EffectsManager
 		}
 	}
 
-	@NonNull
+
     public List<Anim> getXFerAddAnims()
 	{
 		synchronized( xFerAddAnimsList )
@@ -753,7 +753,7 @@ public class EffectsManager
 	}
 
 
-	public void saveYourSelf(@NonNull BufferedWriter b) throws IOException
+	public void saveYourSelf( BufferedWriter b) throws IOException
 	{
 		String s = "<EffectsManager>";
 		b.write(s,0,s.length());

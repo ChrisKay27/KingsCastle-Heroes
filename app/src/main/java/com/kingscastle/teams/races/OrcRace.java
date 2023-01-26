@@ -1,8 +1,8 @@
 package com.kingscastle.teams.races;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.SoldierTypes.SoldierType;
@@ -95,7 +95,7 @@ public class OrcRace extends Race
 
 
 
-	@Nullable
+	
     @Override
 	public SoldierType getMy( GeneralSoldierType soldierType )
 	{
@@ -104,7 +104,7 @@ public class OrcRace extends Race
 
 
 
-	@Nullable
+	
     @Override
 	public LivingThing getMyVersionOfA( GeneralSoldierType soldierType )
 	{
@@ -112,9 +112,9 @@ public class OrcRace extends Race
 	}
 
 
-	@NonNull
+
     @Override
-	public Buildings getMyRacesBuildingType( @NonNull Buildings building )
+	public Buildings getMyRacesBuildingType(  Buildings building )
 	{
 
 
@@ -177,9 +177,9 @@ public class OrcRace extends Race
 	}
 
 
-	@NonNull
+
     @Override
-	public Building getMyVersionOfA(@NonNull Buildings building)
+	public Building getMyVersionOfA( Buildings building)
 	{
 		switch( building )
 		{
@@ -231,9 +231,9 @@ public class OrcRace extends Race
 		return new WatchTower();
 	}
 
-	@Nullable
+	
     @Override
-	public BuildableSoldiers getHumanoidsFor( @NonNull Buildings building , @NonNull Age age )
+	public BuildableSoldiers getHumanoidsFor(  Buildings building ,  Age age )
 	{
 
 		switch( building )
@@ -264,7 +264,7 @@ public class OrcRace extends Race
 
 
 
-	BuildableSoldiers getChurchHumanoidsFor(@NonNull Age age)
+	BuildableSoldiers getChurchHumanoidsFor( Age age)
 	{
 		switch( age )
 		{
@@ -287,7 +287,7 @@ public class OrcRace extends Race
 
 
 
-	BuildableSoldiers getTownCenterHumanoidsFor(@NonNull Age age)
+	BuildableSoldiers getTownCenterHumanoidsFor( Age age)
 	{
 		switch( age )
 		{
@@ -310,7 +310,7 @@ public class OrcRace extends Race
 
 
 
-	BuildableSoldiers getBarracksHumanoidsFor(@NonNull Age age)
+	BuildableSoldiers getBarracksHumanoidsFor( Age age)
 	{
 		switch( age )
 		{
@@ -474,7 +474,7 @@ public class OrcRace extends Race
 	}
 
 
-	@NonNull
+
     @Override
 	public Races getRace()
 	{

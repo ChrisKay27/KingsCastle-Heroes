@@ -4,7 +4,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 import android.view.View;
 import android.widget.TextView;
 
@@ -34,7 +34,7 @@ public class GameScreen extends Screen
 {
 
 	private final Level level;
-	@NonNull
+	
     private final UI ui;
 
 	private final int width = game.getGraphics().getWidth();
@@ -44,7 +44,7 @@ public class GameScreen extends Screen
 
 	//private final RectF stillDrawMold = new RectF(  - width -  ( 2 * width ) / 3  ,  - height - ( 2 * height ) / 3    , width +  ( 2 * width ) / 3   , height +  ( 2 * height ) / 3  );
 	private final RectF stillDrawMold = new RectF( - width , - height , width , height );
-	@NonNull
+	
     private final RectF onScreenDrawMold;
 
 	private long start_time;
@@ -52,12 +52,12 @@ public class GameScreen extends Screen
 	private TextView fpsTextView;
 
 
-	@NonNull
+	
     private final RectF stillDraw;
-	@NonNull
+	
     private final RectF onScreen;
 
-	@NonNull
+	
     private final Paint alphaPaint;
 
 
@@ -68,7 +68,7 @@ public class GameScreen extends Screen
 	//private final Fire1Anim[] fires;
 
 
-	public GameScreen( @NonNull Game game , Level lvl, @NonNull UI ui_ )
+	public GameScreen(  Game game , Level lvl,  UI ui_ )
 	{
 		super( game );
 
@@ -94,7 +94,7 @@ public class GameScreen extends Screen
 
 	}
 
-	@NonNull
+	
     Paint xfer = new Paint();{
 		xfer.setXfermode(new PorterDuffXfermode( PorterDuff.Mode.CLEAR ));
 		xfer.setARGB(0,0,0,0);
@@ -108,7 +108,7 @@ public class GameScreen extends Screen
 	 * @param g
 	 */
 	@Override
-	public void paint( @NonNull Graphics g )
+	public void paint(  Graphics g )
 	{
 		if(nightTime) {
 			if( nightAlpha < 128 ) nightAlpha++;
@@ -261,7 +261,7 @@ public class GameScreen extends Screen
 
 
 
-	private boolean stillDraw( @NonNull RectF r, @NonNull vector bLoc )
+	private boolean stillDraw(  RectF r,  vector bLoc )
 	{
 		if ( r.contains( bLoc.x , bLoc.y ) )
 			return true;
@@ -300,12 +300,12 @@ public class GameScreen extends Screen
 	}
 
 
-	@NonNull
+	
     public RectF getStillDrawRect() {
 		return stillDraw;
 	}
 
-	@NonNull
+	
     public RectF getOnScreen() {
 		return onScreen;
 	}

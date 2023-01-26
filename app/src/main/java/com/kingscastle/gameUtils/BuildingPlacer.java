@@ -1,7 +1,7 @@
 package com.kingscastle.gameUtils;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.level.GridUtil;
 
@@ -13,7 +13,7 @@ public class BuildingPlacer {
 	}
 
 
-	public static boolean findAPlaceForThis( @NonNull GridUtil gUtil , @NonNull RectF area , @NonNull RectF percArea , float gridSize , @NonNull Checker checker ){
+	public static boolean findAPlaceForThis(  GridUtil gUtil ,  RectF area ,  RectF percArea , float gridSize ,  Checker checker ){
 
 		int xOffs = -5;
 		int yOffs = -5;

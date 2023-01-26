@@ -1,7 +1,7 @@
 package com.kingscastle.framework;
 
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
+
 
 public class Settings
 {
@@ -130,7 +130,7 @@ public class Settings
 		savedSettings[6] = alwaysShowAreaBorders;
 	}
 
-	public static void saveToPreferences(@NonNull SharedPreferences prefObs)
+	public static void saveToPreferences( SharedPreferences prefObs)
 	{
 		SharedPreferences.Editor e = prefObs.edit();
 		e.putString( "muteSounds" , muteSounds + "");
@@ -144,7 +144,7 @@ public class Settings
 	}
 
 
-	public static void loadFromPreferences(@NonNull SharedPreferences prefObs)
+	public static void loadFromPreferences( SharedPreferences prefObs)
 	{
 		muteSounds = Boolean.parseBoolean( prefObs.getString( "muteSounds" , "false" ) );
 		muteMusic = Boolean.parseBoolean( prefObs.getString( "muteMusic" , "false" ) );

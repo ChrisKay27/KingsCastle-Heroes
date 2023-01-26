@@ -1,7 +1,7 @@
 package com.kingscastle.ui;
 
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.gameUtils.vector;
 
@@ -26,7 +26,7 @@ public class TextLabel
         this.paint=paint;
 	}
 
-	@NonNull
+
     public String getMsg() {
 		return msg;
 	}
@@ -37,7 +37,7 @@ public class TextLabel
 	}
 
 
-	@NonNull
+
     public vector getLoc() {
 		return loc;
 	}
@@ -48,7 +48,7 @@ public class TextLabel
 	}
 
 
-	@NonNull
+
     public Paint getPaint() {
 		return paint;
 	}

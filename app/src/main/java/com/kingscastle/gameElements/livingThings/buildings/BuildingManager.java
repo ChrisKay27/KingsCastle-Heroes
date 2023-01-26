@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.managment.ListPkg;
@@ -30,7 +30,7 @@ public class BuildingManager
 //	protected final Building[] buildings1 = new Building[1000];
 //	protected final Building[] buildings2 = new Building[1000];
 
-	@NonNull
+	
     protected List<Building> buildings = new LinkedList<>();
 
 	//protected Building[] buildings = buildings1;
@@ -51,7 +51,7 @@ public class BuildingManager
 //	protected final ListPkg<Building> pkg1 = new ListPkg<>();
 //	protected final ListPkg<Building> pkg2 = new ListPkg<>();
 
-	@NonNull
+	
     protected ListPkg<Building> pkg = new ListPkg<>();
 	{
 		Building[] bds = new Building[buildings.size()];
@@ -59,10 +59,10 @@ public class BuildingManager
 		pkg.size = bds.length;
 	}
 
-	@NonNull
+	
     protected final MM mm;
 
-	public BuildingManager( @NonNull MM mm2 )
+	public BuildingManager(  MM mm2 )
 	{
 		assert mm2 != null : "mm2 == null";
 		mm = mm2;
@@ -178,7 +178,7 @@ public class BuildingManager
 	}
 
 
-	public boolean add( @NotNull final LivingThing u , @Nullable final OnBuildingAddedListener obal )
+	public boolean add( @NotNull final LivingThing u ,  final OnBuildingAddedListener obal )
 	{
 //		if( u == null )
 //		{
@@ -278,7 +278,7 @@ public class BuildingManager
 
 
 
-	@NonNull
+	
     public ListPkg<Building> getBuildings()	{
 		return pkg;
 	}
@@ -332,7 +332,7 @@ public class BuildingManager
 		this.timeToCleanBuildings = timeToCleanBuildings;
 	}
 
-	public void saveYourSelf( @NonNull BufferedWriter b ) throws IOException {
+	public void saveYourSelf(  BufferedWriter b ) throws IOException {
 
 		synchronized( gameRunningLock ){
 			if( gameRunning )

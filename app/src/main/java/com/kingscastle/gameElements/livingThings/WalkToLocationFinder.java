@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.CD;
@@ -12,7 +12,7 @@ public class WalkToLocationFinder
 {
 
 
-	public static vector walkTo( @NonNull vector here , @NonNull CD cd )
+	public static vector walkTo(  vector here ,  CD cd )
 	{
 
 		GameElement ge = cd.checkPlaceableOrTarget( here );

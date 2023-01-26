@@ -3,8 +3,8 @@ package com.kingscastle.ui;
 import android.graphics.Color;
 import android.graphics.EmbossMaskFilter;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.view.View;
 import android.widget.TextView;
 
@@ -71,8 +71,8 @@ public class UIUtil {
 	 * @param tv
 	 * @return
 	 */
-	@Nullable
-    public static TextView applyKcStyle(@Nullable final TextView tv){
+	
+    public static TextView applyKcStyle( final TextView tv){
 		if( tv == null ){
 			//Log.e( "applyEmbroyMaskFilter()", "TextView is null! ");
 			return null;
@@ -90,8 +90,8 @@ public class UIUtil {
 	 * @param tv
 	 * @return
 	 */
-	@Nullable
-    public static TextView applyKcStyleAsync(@Nullable final TextView tv){
+	
+    public static TextView applyKcStyleAsync( final TextView tv){
 		if( tv == null ){
 			//Log.e( "applyEmbroyMaskFilter()", "TextView is null! ");
 			return null;
@@ -122,7 +122,7 @@ public class UIUtil {
 
 
 
-	public static void applyKcStyle(@NonNull Paint paint) {
+	public static void applyKcStyle( Paint paint) {
 		paint.setTypeface( Rpg.getImpact() );
 		paint.setColor( Palette.lightGray );
 		//paint.setMaskFilter(emf);
@@ -144,7 +144,7 @@ public class UIUtil {
 	 * @param tvs
 	 * @return
 	 */
-	public static void applyCooperBlack(@Nullable final TextView... tvs ){
+	public static void applyCooperBlack( final TextView... tvs ){
 		if( tvs == null )
 			return;
 
@@ -170,19 +170,19 @@ public class UIUtil {
 
 
 
-	public static void applyCooperBlack(@NonNull Paint mPaint) {
+	public static void applyCooperBlack( Paint mPaint) {
 		mPaint.setTypeface(Rpg.getCooperBlack());
 	}
 
 
 
 
-	public static void setText(String text, @NonNull TextView... tvs) {
+	public static void setText(String text,  TextView... tvs) {
 		for( int i = 0; i < tvs.length; i++)
 			tvs[i].setText(text);
 	}
 
-	public static void setTranslationY(float offs, @NonNull TextView... tvs) {
+	public static void setTranslationY(float offs,  TextView... tvs) {
 		for( int i = 0; i < tvs.length; i++)
 			tvs[i].setTranslationY(offs);
 	}
@@ -208,7 +208,7 @@ public class UIUtil {
 
 
 
-	public static void setVisibility(int visibility, @NonNull TextView... tvs) {
+	public static void setVisibility(int visibility,  TextView... tvs) {
 		for( int i = 0; i < tvs.length; i++){
 			TextView tv = tvs[i];
 			if( tv != null && tv.getVisibility() != visibility )
@@ -219,7 +219,7 @@ public class UIUtil {
 
 
 
-	public static void setTextSize(float twentyDp_, @NonNull TextView... tvs) {
+	public static void setTextSize(float twentyDp_,  TextView... tvs) {
 		for( int i = 0; i < tvs.length; i++)
 			tvs[i].setTextSize(twentyDp_);
 	}
@@ -227,20 +227,20 @@ public class UIUtil {
 
 
 
-	public static void setMaxLines(int lines, @NonNull TextView... tvs) {
+	public static void setMaxLines(int lines,  TextView... tvs) {
 		for( int i = 0; i < tvs.length; i++)
 			tvs[i].setMaxLines(lines);
 	}
 
 
 
-	public static void setLoc(float x, float y, @NonNull TextView... tvs) {
+	public static void setLoc(float x, float y,  TextView... tvs) {
 		for( int i = 0; i < tvs.length; i++){
 			tvs[i].setX(x);
 			tvs[i].setY(y);
 		}
 	}
-	public static void setTranslation(float x, float y, @NonNull TextView... tvs) {
+	public static void setTranslation(float x, float y,  TextView... tvs) {
 		for( int i = 0; i < tvs.length; i++){
 			TextView tv = tvs[i];
 			tv.setTranslationX(tv.getTranslationX()+x);
@@ -249,7 +249,7 @@ public class UIUtil {
 	}
 
 
-	public static void bringToFront(@NonNull TextView... tvs) {
+	public static void bringToFront( TextView... tvs) {
 		for( int i = 0; i < tvs.length; i++)
 			tvs[i].bringToFront();
 	}

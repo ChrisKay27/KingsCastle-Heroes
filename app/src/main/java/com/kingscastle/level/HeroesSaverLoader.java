@@ -1,6 +1,6 @@
 package com.kingscastle.level;
 
-import android.support.annotation.NonNull;
+
 import android.util.Log;
 
 import com.kingscastle.gameElements.livingThings.LivingThing;
@@ -34,7 +34,7 @@ public class HeroesSaverLoader {
     public static final String HEALTH = "Health";
     public static final String HERO = "Hero";
 
-    public static void loadGame(@NonNull ObjectInputStream ois, @NonNull HeroesLevel lvl) throws IOException, ClassNotFoundException {
+    public static void loadGame( ObjectInputStream ois,  HeroesLevel lvl) throws IOException, ClassNotFoundException {
         Log.v(TAG, "Loading Level: " + lvl);
 
         int heroLevel = (Integer) ois.readObject();
@@ -86,7 +86,7 @@ public class HeroesSaverLoader {
 //                //Log.v(TAG, "Loaded " + buildin);
 //                bm.add(buildin,new BuildingManager.OnBuildingAddedListener() {
 //                    @Override
-//                    public boolean onBuildingAdded(@NonNull Building b) {
+//                    public boolean onBuildingAdded( Building b) {
 //                        b.upgradeToLevel((int) attr.get(LVL));
 //                        return true;
 //                    }
@@ -124,7 +124,7 @@ public class HeroesSaverLoader {
                     }
                 });
 
-                if( attr.containsKey(HERO) && attr.get(HERO) == true ){
+                if(attr.containsKey(HERO) && (Boolean) attr.get(HERO)){
                     lvl.setHero(lt);
                 }
             }
@@ -134,7 +134,7 @@ public class HeroesSaverLoader {
     }
 
 
-    public static void saveLevel(FileOutputStream fos , @NonNull HeroesLevel lvl) throws IOException {
+    public static void saveLevel(FileOutputStream fos ,  HeroesLevel lvl) throws IOException {
 
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(lvl.getClass().getName());

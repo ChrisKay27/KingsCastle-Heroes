@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.movement;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Rpg;
@@ -24,28 +24,28 @@ public class MovingTechnique
 	private static float speedCheatY = 1;
 
 	private final Random rand = new Random();
-	@Nullable
+	
     private Humanoid driver;
-	@Nullable
+	
     private Teams team;
-	@Nullable
+	
     private vector position;
-	@Nullable
+	
     private vector velocity = new vector();
-	@Nullable
+	
     private vector end = new vector();
 	private final vector seekForce = new vector();
 	private final vector separationForce = new vector();
 	private final vector normal = new vector();
 	private final vector temp = new vector();
-	@NonNull
+
     private vector pathForce = new vector();
 	private final vector desiredVelocity = new vector();
 
 	private vector force = new vector();
 	private final Line whisker = new Line();
 	private Rpg.Direction d;
-	@Nullable
+	
     private Inter inter = new Inter();
 	private long lastPlayedWalkingSound;
 
@@ -60,7 +60,7 @@ public class MovingTechnique
 
 	//private final String name;
 
-	public void act( @NonNull MovementTechniqueParams params )
+	public void act(  MovementTechniqueParams params )
 	{
 
 		position = driver.loc;
@@ -303,7 +303,7 @@ public class MovingTechnique
 
 
 
-	private void truncate( @NonNull vector v , float maxLength )
+	private void truncate(  vector v , float maxLength )
 	{
 		if( v.distanceSquared( 0 , 0 ) > maxLength*maxLength )
 		{
@@ -326,7 +326,7 @@ public class MovingTechnique
 
 	}
 
-	@Nullable
+	
     public vector getVelocity()
 	{
 		return velocity;
@@ -344,8 +344,8 @@ public class MovingTechnique
 	 * @param normal This vector MUST only be one of the vectors [1,0] or [0,1].
 	 * @return The vector AVector, possibly not modified.
 	 */
-	@NonNull
-    protected vector removeComponentInDirOfNormal( @NonNull vector aVector , vector normal )
+
+    protected vector removeComponentInDirOfNormal(  vector aVector , vector normal )
 	{
 		return aVector.removeComponentInDir(normal);
 	}
@@ -354,7 +354,7 @@ public class MovingTechnique
 
 
 
-	void removeVectorsCompInDirOfNormalAndCompensate(@NonNull vector vector, @NonNull vector normal)
+	void removeVectorsCompInDirOfNormalAndCompensate( vector vector,  vector normal)
 	{
 
 		float normX = normal.x;
@@ -440,8 +440,8 @@ public class MovingTechnique
 	 * @param normal This vector MUST only be one of the vectors [1,0] or [0,1] or [-1,0] or [1,0].
 	 * @return  The vector unitVector with only one component.
 	 */
-	@NonNull
-    protected vector removeHumanoidVectorsCompInDirOfNormal( @NonNull vector unitVector , @Nullable vector normal )
+
+    protected vector removeHumanoidVectorsCompInDirOfNormal(  vector unitVector ,  vector normal )
 	{
 		if( normal == null )
 		{

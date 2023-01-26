@@ -1,6 +1,6 @@
 package com.kingscastle.gameElements.spells;
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.managment.MM;
@@ -107,7 +107,7 @@ public class SpellManager
 	}
 
 
-	@NonNull
+
     public ArrayList<Spell> getSpells() {
 		return new ArrayList<>(spells);
 	}

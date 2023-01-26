@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -47,7 +47,7 @@ public class Cost
 
 
 
-	public Cost( @Nullable Cost costs )
+	public Cost(  Cost costs )
 	{
 		if( costs == null )
 			return;
@@ -68,7 +68,7 @@ public class Cost
 	}
 
 
-	public void set(@Nullable Cost c) {
+	public void set( Cost c) {
 		if( c == null ) return;
 		goldCost = c.goldCost;
 		foodCost = c.foodCost;
@@ -81,7 +81,7 @@ public class Cost
 	 * Ex. 15 Gold, 5 Food, 10 Wood
 	 * @return
 	 */
-	@NonNull
+
     public String toResString(){
 		StringBuilder sb = new StringBuilder();
 		boolean b = false;
@@ -92,7 +92,7 @@ public class Cost
 		return sb.toString();
 	}
 
-	@NonNull
+
     @Override
 	public String toString()
 	{
@@ -160,7 +160,7 @@ public class Cost
 
 
 
-	public void add(@Nullable Cost c) {
+	public void add( Cost c) {
 		if( c == null )
 			return;
 
@@ -199,7 +199,7 @@ public class Cost
 
 
 
-	public void saveYourself(@NonNull BufferedWriter bw) throws IOException {
+	public void saveYourself( BufferedWriter bw) throws IOException {
 		String temp = "<" + getClass().getSimpleName() + " g=\"" + goldCost + "\" f=\"" +foodCost+ "\" w=\""+woodCost+"\" m=\""+mdCost+"\" p=\""+popCost+"\">";
 		bw.write( temp , 0 , temp.length() );
 		bw.newLine();

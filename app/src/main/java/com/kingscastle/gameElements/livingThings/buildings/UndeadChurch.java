@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -28,13 +28,13 @@ public class UndeadChurch extends Building
 
 	private static Cost cost = new Cost( 700 , 0 , 700 , 0 );
 
-	@NonNull
+
     private static final Attributes STATIC_ATTRIBUTES;
 
 
 
 
-	@NonNull
+
     @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
@@ -64,7 +64,7 @@ public class UndeadChurch extends Building
 
 
 
-	public UndeadChurch( @NonNull vector v , Teams t )
+	public UndeadChurch(  vector v , Teams t )
 	{
 		this();
 		setLoc( v );
@@ -166,7 +166,7 @@ public class UndeadChurch extends Building
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -176,13 +176,13 @@ public class UndeadChurch extends Building
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return NAME;

@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Graphics;
 import com.kingscastle.framework.Image;
@@ -16,7 +16,7 @@ public class RisingHeartsAnim extends Anim
 	private final int staticTfb = 100;
 
 
-	public RisingHeartsAnim( @NonNull vector loc )	{
+	public RisingHeartsAnim(  vector loc )	{
         super(loc);
         setImages( staticImages );
 		setTbf( staticTfb );
@@ -28,7 +28,7 @@ public class RisingHeartsAnim extends Anim
 
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v )
+	public void paint(  Graphics g ,  vector v )
 	{
 		Image image = getImage();
 		if( image != null )

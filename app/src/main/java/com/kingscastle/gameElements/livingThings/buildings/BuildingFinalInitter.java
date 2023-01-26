@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.buildings;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.gameElements.managment.MM;
 import com.kingscastle.level.PR;
@@ -11,7 +11,7 @@ public class BuildingFinalInitter
 {
 
 
-	public static boolean finalInit( @NonNull Building b , @NonNull MM mm )
+	public static boolean finalInit(  Building b ,  MM mm )
 	{
 		try
 		{

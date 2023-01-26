@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -17,7 +17,7 @@ public class BerzerkAnim extends Anim
 	private final int staticTfb = 50;
 
 
-	public BerzerkAnim( @NonNull vector loc ){
+	public BerzerkAnim(  vector loc ){
         super(loc);
 		setImages( staticImages );
 		setTbf(staticTfb);

@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -32,7 +32,7 @@ public class ShieldBuff extends Buff
 		super(caster,target);
 	}
 
-	@NonNull
+	
     @Override
 	public Abilities getAbility()				 {				return Abilities.ARMOR_BUFF ; 			}
 
@@ -57,7 +57,7 @@ public class ShieldBuff extends Buff
 	}
 
 	@Override
-	public int calculateManaCost(@NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost(@NotNull  LivingThing aWizard)
 	{
 		return 0;
 	}
@@ -65,7 +65,7 @@ public class ShieldBuff extends Buff
 
 
 	@Override
-	public void loadAnimation( @NonNull MM mm )
+	public void loadAnimation(  MM mm )
 	{
 		if( getAnim() == null )
 		{
@@ -75,7 +75,7 @@ public class ShieldBuff extends Buff
 	}
 
 	@Override
-	protected void addAnimationToManager( @NonNull MM mm , @NonNull Anim anim2)
+	protected void addAnimationToManager(  MM mm ,  Anim anim2)
 	{
 		mm.getEm().add( anim2 , EffectsManager.Position.InFront );
 	}
@@ -86,26 +86,26 @@ public class ShieldBuff extends Buff
     }
 
 
-    @NonNull
+    
     @Override
 	public String toString() {
 		return name;
 	}
-	@NonNull
+	
     public String getName() {
 		return name;
 	}
 
 
 
-	@NonNull
+	
     @Override
 	public Ability newInstance(@NotNull LivingThing target)    {
 		return new ShieldBuff(getCaster(),target);
 	}
 
 
-	@Nullable
+	
     @Override
 	public Image getIconImage()
 	{

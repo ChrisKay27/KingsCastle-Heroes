@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.spells;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.effects.animations.EruptionAnim;
@@ -21,13 +21,13 @@ public class Eruption extends InstantSpell
 	private static Image iconImage;
 
 
-	@NonNull
+
     private static RectF staticPerceivedArea = new RectF(-Rpg.getDp()*30,-Rpg.getDp()*30,Rpg.getDp()*30,Rpg.getDp()*30);
 
 
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.ERUPTION ; 			}
 
@@ -51,7 +51,7 @@ public class Eruption extends InstantSpell
 
 
 	@Override
-	public int calculateManaCost( @NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost( @NotNull  LivingThing aWizard)
 	{
 		if( aWizard != null )
 			return 25 + aWizard.getLQ().getLevel() * 7;
@@ -62,7 +62,7 @@ public class Eruption extends InstantSpell
 
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 		if( mm.getSdac().stillDraw( loc ) ){
@@ -80,7 +80,7 @@ public class Eruption extends InstantSpell
 
 
 	@Override
-	public void setLoc(@NonNull vector loc){
+	public void setLoc( vector loc){
 		super.setLoc(loc);
 		super.loc.translate(0,1);
 	}
@@ -99,7 +99,7 @@ public class Eruption extends InstantSpell
 
 
 
-	@NonNull
+
     @Override
 	public RectF getPerceivedArea()
 	{
@@ -121,7 +121,7 @@ public class Eruption extends InstantSpell
 
 
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return "Eruption";
@@ -129,7 +129,7 @@ public class Eruption extends InstantSpell
 
 
 
-	@NonNull
+
     @Override
 	public Spell newInstance()
 	{

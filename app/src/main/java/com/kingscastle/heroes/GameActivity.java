@@ -9,8 +9,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,7 +37,7 @@ public class GameActivity extends Activity {//} implements GoogleApiClient.Conne
 
     private PowerManager.WakeLock wakeLock;
 
-    @Nullable
+    
     private static Game tdg;
     private Handler uiHandler;
     //private GoogleApiClient mGoogleApiClient;
@@ -125,7 +125,7 @@ public class GameActivity extends Activity {//} implements GoogleApiClient.Conne
 
 
         PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        wakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "KingsCastle");
+        wakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "kingscastle:my-app-lock");
 
         //signInClicked();
     }
@@ -134,13 +134,10 @@ public class GameActivity extends Activity {//} implements GoogleApiClient.Conne
     @Override
     public void onStart() {
         super.onStart();
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                String uiThreadName2 = Thread.currentThread().getName();
-                if (uiThreadName2 != null)
-                    tdg.uiThreadName = uiThreadName2;
-            }
+        runOnUiThread(() -> {
+            String uiThreadName2 = Thread.currentThread().getName();
+            if (uiThreadName2 != null)
+                tdg.uiThreadName = uiThreadName2;
         });
         tdg.onStart(this);
        //  mGoogleApiClient.connect();
@@ -190,7 +187,7 @@ public class GameActivity extends Activity {//} implements GoogleApiClient.Conne
 
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected( MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
             // This ID represents the Home or Up button. In the case of this

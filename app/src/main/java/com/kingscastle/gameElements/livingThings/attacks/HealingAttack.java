@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.BlackSummonSmokeAnim;
 import com.kingscastle.effects.animations.HealSparklesAnim;
@@ -16,7 +16,7 @@ public class HealingAttack extends Attack
 	private final Ability healingAbility;
 	private boolean showEvilAnimation = false;
 
-	public HealingAttack( @NonNull MM mm, @NonNull LivingThing caster , Ability healingAbility2 )
+	public HealingAttack(  MM mm,  LivingThing caster , Ability healingAbility2 )
 	{
 		super( mm, caster );
 		healingAbility = healingAbility2;
@@ -24,7 +24,7 @@ public class HealingAttack extends Attack
 
 
 	@Override
-	public boolean attack( @Nullable LivingThing target )
+	public boolean attack(  LivingThing target )
 	{
 		if( target == null || healingAbility == null )
 		{

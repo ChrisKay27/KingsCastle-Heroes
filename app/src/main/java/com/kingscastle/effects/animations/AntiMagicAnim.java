@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Graphics;
 import com.kingscastle.framework.Image;
@@ -17,7 +17,7 @@ public class AntiMagicAnim extends Anim
 	private final int staticTfb = 50;
 
 
-	public AntiMagicAnim( @NonNull vector loc )
+	public AntiMagicAnim(  vector loc )
 	{
 		setImages( staticImages );
 
@@ -37,7 +37,7 @@ public class AntiMagicAnim extends Anim
 
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v )
+	public void paint(  Graphics g ,  vector v )
 	{
 		Image image = getImage();
 		if( image != null )

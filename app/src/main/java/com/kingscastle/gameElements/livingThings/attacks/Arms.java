@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.gameElements.livingThings.LivingThing;
@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 public class Arms {
 	private static final String TAG = "Arms";
 
-	@NonNull
+	
     private final LivingThing owner;
 	private long lastAttackedAt;
 	private long attackAgainAt1;
@@ -168,7 +168,7 @@ public class Arms {
 		return lastAttackedAt + owner.getAQ().getROF() < GameTime.getTime();
 	}
 
-	@NonNull
+	
     public LivingThing getOwner()	{
 		return owner;
 	}

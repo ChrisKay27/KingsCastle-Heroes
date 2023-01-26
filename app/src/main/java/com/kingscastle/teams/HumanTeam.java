@@ -1,8 +1,8 @@
 package com.kingscastle.teams;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.buildings.Building;
@@ -19,19 +19,19 @@ public class HumanTeam extends Team
 
 	private static final String TAG = "HumanTeam";
 
-	public HumanTeam( Teams team , @NonNull HumanPlayer player, @NonNull Race race, GridUtil gUtil )
+	public HumanTeam( Teams team ,  HumanPlayer player,  Race race, GridUtil gUtil )
 	{
 		super( team, player, race, gUtil );
 		maxWorkersAllowed = Integer.MAX_VALUE;
 	}
 
 
-	public void setUpListeners( @NonNull final UI ui ){
+	public void setUpListeners(  final UI ui ){
 
 
 		addBcl(new OnBuildingCompleteListener() {
 			@Override
-			public void onBuildingComplete(@Nullable Building b) {
+			public void onBuildingComplete( Building b) {
 				if (b == null) return;
 				if (b.isSelected()) {
 					mm.getUI().setSelectedBuilding(b);
@@ -42,7 +42,7 @@ public class HumanTeam extends Team
 
 		addBdl(new OnBuildingDestroyedListener() {
 			@Override
-			public void onBuildingDestroyed(@Nullable Building b) {
+			public void onBuildingDestroyed( Building b) {
 				if (b == null) return;
 
 				if (b.isSelected())
@@ -54,7 +54,7 @@ public class HumanTeam extends Team
 
 		addUdl(new OnHumanoidDestroyedListener() {
 			@Override
-			public void onHumanoidDestroyed(@Nullable LivingThing lt) {
+			public void onHumanoidDestroyed( LivingThing lt) {
 				if (lt == null) return;
 				if (lt.isSelected())
 					mm.getUI().setUnSelected(lt);
@@ -66,7 +66,7 @@ public class HumanTeam extends Team
 
 
 	@Override
-	public void saveYourself( @NonNull BufferedWriter b ) throws IOException
+	public void saveYourself(  BufferedWriter b ) throws IOException
 	{
 		String s;
 
@@ -107,7 +107,7 @@ public class HumanTeam extends Team
 
 
 
-	@NonNull
+
     @Override
 	public HumanPlayer getPlayer() {
 		return (HumanPlayer) super.getPlayer();

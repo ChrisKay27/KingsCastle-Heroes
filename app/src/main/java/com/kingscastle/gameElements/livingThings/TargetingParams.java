@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.gameElements.targeting.TargetFinder.CondRespon;
 import com.kingscastle.gameUtils.NotAllowedInTowerDefenceException;
@@ -15,7 +15,7 @@ public class TargetingParams
 		ANY , RANGED , MELEE , HEALER , MAGE , SUMMONER
 	}
 
-	@NonNull
+
     public LivingThing[] possibleTargets = new LivingThing[500];
 
 
@@ -43,7 +43,7 @@ public class TargetingParams
 	{
 	}
 
-	public TargetingParams( @NonNull TargetingParams params )
+	public TargetingParams(  TargetingParams params )
 	{
 		team = params.team;
 		withMaxSpeedOf = params.withMaxSpeedOf;
@@ -58,7 +58,7 @@ public class TargetingParams
 		onThisTeam = params.onThisTeam;
 	}
 
-	@NonNull
+
     public static TargetingParams newInstance()
 	{
 		return new TargetingParams();
@@ -247,7 +247,7 @@ public class TargetingParams
 	 * @param target thing to look at to see if its a good target.
 	 * @return TRUE:Continue With Checks.    FALSE:skip rest of checks, not a good target.    RETURN_THIS_NOW: this target will be returned as the target found.
 	 */
-	@NonNull
+
     public CondRespon postRangeCheckCondition( LivingThing target ){
 		return CondRespon.DEFAULT;
 	}
@@ -258,7 +258,7 @@ public class TargetingParams
 	 * @return TRUE:Saved in a list to be looked at after everything else is looked at.    FALSE: Doesnt do anything with this check.
 	 * RETURN_THIS_NOW: this target will be returned as the target found.
 	 */
-	@NonNull
+
     public CondRespon wouldWorkButSecondChoice(LivingThing lt) {
 		return CondRespon.DEFAULT;
 	}

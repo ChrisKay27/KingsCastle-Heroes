@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.SoldierTypes;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.gameElements.livingThings.LivingThing;
@@ -11,11 +11,11 @@ import java.util.ArrayList;
 public abstract class Summoner extends RangedSoldier
 {
 	private ArrayList<LivingThing> aliveSummons;
-    @NonNull
+
     private final ArrayList<LivingThing> deadSummons ;
 
 	protected abstract int getMaxNumSummons();
-	@NonNull
+
     protected abstract LivingThing getAPossibleSummon();
 	
 	private long lastCheckedSummonSituation;	
@@ -54,7 +54,7 @@ public abstract class Summoner extends RangedSoldier
 	
 
 	
-	private static void removeDeadSummons(@Nullable ArrayList<LivingThing> aliveSummons , @NonNull ArrayList<LivingThing> deadSummons)
+	private static void removeDeadSummons( ArrayList<LivingThing> aliveSummons ,  ArrayList<LivingThing> deadSummons)
 	{
 		deadSummons.clear();
 		

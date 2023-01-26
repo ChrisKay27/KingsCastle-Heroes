@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.movement.pathing;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.Game;
 import com.kingscastle.effects.animations.DarkStarAnim;
@@ -61,13 +61,13 @@ public class AStarPathFinder
 	}
 
 
-	@Nullable
-    public static Path findMeAPath( @NonNull Grid grid , @NonNull vector fromHere , @NonNull vector toHere , long timeOutAt ) throws TimeOutException
+
+    public static Path findMeAPath(  Grid grid ,  vector fromHere ,  vector toHere , long timeOutAt ) throws TimeOutException
 	{
 		return findMeAPath( grid , fromHere , toHere , timeOutAt , numberOfTilesAllowedToSearch );
 	}
 
-	public static Path findMeAPath( @NonNull Grid grid , @NonNull vector fromHere , @NonNull vector toHere , long timeOutAt , int numberOfTilesAllowedToSearchThrough ) throws TimeOutException
+	public static Path findMeAPath(  Grid grid ,  vector fromHere ,  vector toHere , long timeOutAt , int numberOfTilesAllowedToSearchThrough ) throws TimeOutException
 	{
 		boolean[][] tiles = grid.getGridTiles();
 		Path path;
@@ -299,7 +299,7 @@ public class AStarPathFinder
 
 
 
-	private static void clean(@NonNull Tile[] list, int listSize)
+	private static void clean( Tile[] list, int listSize)
 	{
 		listSize = listSize >= list.length ? list.length : listSize;
 		for( int i = 0 ; i < listSize ; ++i )
@@ -331,7 +331,7 @@ public class AStarPathFinder
 
 
 
-	private static void ensureTileIsReachable( @NonNull boolean[][] tiles , @NonNull Tile tile, Tile fromThisTile )
+	private static void ensureTileIsReachable(  boolean[][] tiles ,  Tile tile, Tile fromThisTile )
 	{
 		if( tiles[tile.i][tile.j] )
 		{
@@ -384,7 +384,7 @@ public class AStarPathFinder
 
 
 
-	private static int getAdjacentTiles( @NonNull boolean[][] tiles , @NonNull Tile currTile , Tile[] adjTiles , Tile[] openList , int openListSize , Tile[][] closedListLookedAtAlready )
+	private static int getAdjacentTiles(  boolean[][] tiles ,  Tile currTile , Tile[] adjTiles , Tile[] openList , int openListSize , Tile[][] closedListLookedAtAlready )
 	{
 		int lookAtDiagonalsCount = 0;
 		int adjTileSize = 0;
@@ -512,7 +512,7 @@ public class AStarPathFinder
 
 
 
-	private static void calculateFGHValuesAndSetParentIfNeeded( Tile[] adjTiles , int adjTilesSize , Tile[][] openList , Tile[][] closedList , @NonNull Tile currTile , @NonNull Tile endTile )
+	private static void calculateFGHValuesAndSetParentIfNeeded( Tile[] adjTiles , int adjTilesSize , Tile[][] openList , Tile[][] closedList ,  Tile currTile ,  Tile endTile )
 	{
 		int g;
 		Tile t;
@@ -563,7 +563,7 @@ public class AStarPathFinder
 
 
 
-	private static int addAllNewToOpenList( Tile[] openList , int openListSize , Tile[][] openListLookedAtAlready , @NonNull Tile[] adjTiles )
+	private static int addAllNewToOpenList( Tile[] openList , int openListSize , Tile[][] openListLookedAtAlready ,  Tile[] adjTiles )
 	{
 		int length = adjTiles.length;
 		for( int i = 0 ; i < length ; ++i )
@@ -587,7 +587,7 @@ public class AStarPathFinder
 
 
 
-	private static int calcH( @NonNull Tile t , @NonNull Tile endTile )
+	private static int calcH(  Tile t ,  Tile endTile )
 	{
 
 		int dx = endTile.i - t.i;
@@ -632,7 +632,7 @@ public class AStarPathFinder
 
 
 
-	private static void tracePathBackToStart( Tile[] closedList , @NonNull Tile startTile , Tile endTile , @NonNull ArrayList<Tile> pathToStart )
+	private static void tracePathBackToStart( Tile[] closedList ,  Tile startTile , Tile endTile ,  ArrayList<Tile> pathToStart )
 	{
 		pathToStart.add( endTile );
 
@@ -653,7 +653,7 @@ public class AStarPathFinder
 
 
 
-	private static void convertToVectorPath( @NonNull ArrayList<Tile> pathToStart , @NonNull ArrayList<vector> vectorPathToStart, float tileSize , float halfTileSize )
+	private static void convertToVectorPath(  ArrayList<Tile> pathToStart ,  ArrayList<vector> vectorPathToStart, float tileSize , float halfTileSize )
 	{
 		Tile t;
 
@@ -668,8 +668,8 @@ public class AStarPathFinder
 
 
 
-	@NonNull
-    private static vector createVectorFromTile( @NonNull Tile t , float tileSize , float halfTileSize )
+
+    private static vector createVectorFromTile(  Tile t , float tileSize , float halfTileSize )
 	{
 		return new vector( t.i*tileSize + halfTileSize , t.j*tileSize + halfTileSize );
 	}
@@ -688,7 +688,7 @@ public class AStarPathFinder
 
 
 
-	private static void freeAll(@NonNull Tile[] list)
+	private static void freeAll( Tile[] list)
 	{
 
 		for( Tile t : list )
@@ -700,13 +700,13 @@ public class AStarPathFinder
 
 
 
-	@NonNull
+
     private static final Pool<Tile> tilePool;
 
 	static
 	{
 		PoolObjectFactory<Tile> factory = new PoolObjectFactory<Tile>() {
-			@NonNull
+
             @Override
 			public Tile createObject() {
 				return new Tile();
@@ -729,12 +729,12 @@ public class AStarPathFinder
 
 
 
-		public boolean equals( @NonNull Tile t )
+		public boolean equals(  Tile t )
 		{
 			return t.i == i && t.j == j ;
 		}
 
-		@NonNull
+
         @Override
 		public String toString()
 		{

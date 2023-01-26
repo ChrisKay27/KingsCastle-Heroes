@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.spells;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.QuakeAnim;
 import com.kingscastle.framework.Image;
@@ -22,13 +22,13 @@ public class Quake extends InstantSpell{
 	public Quake() {
 
 	}
-	public Quake(@NonNull Quake quake_) {
+	public Quake( Quake quake_) {
 		setDamage(quake_.getDamage());
 	}
 
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.QUAKE ; 			}
 
@@ -43,14 +43,14 @@ public class Quake extends InstantSpell{
 	}
 
 	@Override
-	public int calculateManaCost( @NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost( @NotNull  LivingThing aWizard)
 	{
 		return 20 + aWizard.getLQ().getLevel() * 3;
 	}
 
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 		doDamage(cd.checkMultiHit( getTeamName() , getArea() ) );
@@ -99,7 +99,7 @@ public class Quake extends InstantSpell{
 
 
 
-	@NonNull
+
     @Override
 	public String getName()
 	{
@@ -124,7 +124,7 @@ public class Quake extends InstantSpell{
 
 
 
-	@NonNull
+
     @Override
 	public Spell newInstance()
 	{

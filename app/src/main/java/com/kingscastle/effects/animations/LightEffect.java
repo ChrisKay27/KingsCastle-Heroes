@@ -1,6 +1,6 @@
 package com.kingscastle.effects.animations;
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.framework.Assets;
@@ -20,7 +20,7 @@ public class LightEffect extends Anim {
     private static final List<Image> staticImages = Assets.loadAnimationImages(R.drawable.light_effects,3,4);
 
 
-    public LightEffect(vector loc, @NonNull LightEffectColor color) {
+    public LightEffect(vector loc,  LightEffectColor color) {
         super(loc);
 
         switch(color){
@@ -34,7 +34,7 @@ public class LightEffect extends Anim {
         setPaint(Rpg.getXferAddPaint());
     }
 
-    @NonNull
+    
     @Override
     public String toString() {
         return getClass().getSimpleName();

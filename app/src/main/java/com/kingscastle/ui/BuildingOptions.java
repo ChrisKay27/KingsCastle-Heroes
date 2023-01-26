@@ -1,8 +1,8 @@
 package com.kingscastle.ui;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.Log;
 
 import com.kingscastle.Game;
@@ -33,15 +33,15 @@ public class BuildingOptions
 
 	protected final UI ui;
 	protected final SelectedUI selUI;
-	@NonNull
+
     protected final MM mm;
 
-	@NonNull
+
     protected final Level level;
 	private Game tdg;
 
 
-	public BuildingOptions( Game tdg, SelectedUI selUI, UI ui , @NonNull Level level )
+	public BuildingOptions( Game tdg, SelectedUI selUI, UI ui ,  Level level )
 	{
 		this.tdg = tdg;
 		this.ui = ui;
@@ -62,7 +62,7 @@ public class BuildingOptions
 
 
 
-	public boolean determineIfAndWhatToDisplay( @NonNull Building selB2 )
+	public boolean determineIfAndWhatToDisplay(  Building selB2 )
 	{
 		final Activity a = tdg.getActivity();
 
@@ -157,7 +157,7 @@ public class BuildingOptions
 
 
 
-	public boolean determineIfAndWhatToDisplay( @Nullable List<? extends GameElement> selBs )
+	public boolean determineIfAndWhatToDisplay(  List<? extends GameElement> selBs )
 	{
 		Activity a = Rpg.getGame().getActivity();
 
@@ -199,7 +199,7 @@ public class BuildingOptions
 
 
 
-	private static boolean oneOfTheseCanLevelUp(@Nullable ArrayList<? extends GameElement> selBs) {
+	private static boolean oneOfTheseCanLevelUp( ArrayList<? extends GameElement> selBs) {
 		if( selBs == null )
 			return false;
 
@@ -212,7 +212,7 @@ public class BuildingOptions
 	}
 
 
-	public void showBuildingOptionsScroller(@NonNull Building selB){
+	public void showBuildingOptionsScroller( Building selB){
 		if( determineIfAndWhatToDisplay( selB ) )
 			selUI.displayTheseInRightScroller( OSButtons , BS );
 	}
@@ -226,7 +226,7 @@ public class BuildingOptions
 
 
 
-	public void refresh(@NonNull Building b) {
+	public void refresh( Building b) {
 		showBuildingOptionsScroller(b);
 	}
 
@@ -236,7 +236,7 @@ public class BuildingOptions
 
 
 
-	@NonNull
+
     public ArrayList<SButton> getPSButtons() {
 		return PSButtons;
 	}

@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.spells;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.LaserAnim;
 import com.kingscastle.framework.GameTime;
@@ -36,7 +36,7 @@ public class Laser extends InstantSpell
 
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.LASER ; 			}
 
@@ -61,7 +61,7 @@ public class Laser extends InstantSpell
 
 
 	@Override
-	public int calculateManaCost(@NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost(@NotNull  LivingThing aWizard)
 	{
 		return 0;
 	}
@@ -69,7 +69,7 @@ public class Laser extends InstantSpell
 
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 		setAliveTime     ( 1000 );
@@ -86,7 +86,7 @@ public class Laser extends InstantSpell
 
 
 	@Override
-	public void setLoc(@NonNull vector loc){
+	public void setLoc( vector loc){
 		super.setLoc(loc);
 	}
 
@@ -123,7 +123,7 @@ public class Laser extends InstantSpell
 
 
 
-	@NonNull
+
     @Override
 	public RectF getPerceivedArea()
 	{
@@ -140,7 +140,7 @@ public class Laser extends InstantSpell
 
 
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return "Laser";
@@ -148,7 +148,7 @@ public class Laser extends InstantSpell
 
 
 
-	@NonNull
+
     @Override
 	public Spell newInstance() {
 		Laser laser = new Laser();

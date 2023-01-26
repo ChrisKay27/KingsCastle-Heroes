@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 import android.graphics.Color;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Image;
@@ -23,7 +23,7 @@ public class SparksAnim extends Anim {
     private final int staticTfb = 50;
 	private final int color;
 
-	public SparksAnim( @NonNull vector loc , int color )
+	public SparksAnim(  vector loc , int color )
 	{
 		super(loc);
 		setTbf( staticTfb );

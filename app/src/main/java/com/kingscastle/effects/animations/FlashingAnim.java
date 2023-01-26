@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Graphics;
@@ -17,7 +17,7 @@ public class FlashingAnim extends Anim {
 	private boolean on=true;
 
 
-	public FlashingAnim(@NonNull vector loc,Image img,int aliveTime) {
+	public FlashingAnim( vector loc,Image img,int aliveTime) {
         super( loc );
 		ArrayList<Image> imgs = new ArrayList<>(1);
         imgs.add(img);
@@ -27,7 +27,7 @@ public class FlashingAnim extends Anim {
 	}
 
 	@Override
-	public void paint(@NonNull Graphics g, @NonNull vector v) {
+	public void paint( Graphics g,  vector v) {
 		if( on )
 			super.paint(g,v);
 

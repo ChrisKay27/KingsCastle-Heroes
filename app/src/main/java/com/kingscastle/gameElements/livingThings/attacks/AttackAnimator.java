@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.GameTime;
@@ -18,7 +18,7 @@ public abstract class AttackAnimator extends Anim
 {
 	private static final Paint dstOverPaint = Rpg.getDstOverPaint();
 
-	@NonNull
+
     private final Humanoid owner;
 	private int framePeriod;
 	private final int attackAtFrame;
@@ -60,7 +60,7 @@ public abstract class AttackAnimator extends Anim
 	 * @param owner LivingThing which this anim is paired to.
 	 * @param attackAtFrame frame (starting at 0) when doAttack() is called;
 	 */
-	AttackAnimator(@NonNull Humanoid owner, int attackAtFrame)
+	AttackAnimator( Humanoid owner, int attackAtFrame)
 	{
 		loadSounds();
 		this.owner = owner;
@@ -100,7 +100,7 @@ public abstract class AttackAnimator extends Anim
 	 * @param inDirection Does not have to be a unit vector, you should use attackFromHumanoidVector(...) if you have already computed the unit vector
 	 * to save on unnecessary repeated calculations.
 	 */
-	public void attack( @NonNull vector inDirection )
+	public void attack(  vector inDirection )
 	{
 		tempHumanoidVector.set( inDirection );
 		tempHumanoidVector.turnIntoHumanoidVector();
@@ -247,7 +247,7 @@ public abstract class AttackAnimator extends Anim
 
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v )
+	public void paint(  Graphics g ,  vector v )
 	{
 		if( !isVisible() )
 			return;

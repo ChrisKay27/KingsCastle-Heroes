@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.Assets;
@@ -27,12 +27,12 @@ public class UndeadSkeletonArcher extends MediumRangedSoldier
 	private static Image[] staticImages , redImages , blueImages , greenImages , orangeImages , whiteImages ;
 	private static ImageFormatInfo imageFormatInfo;
 
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+	
+    private static final Attributes STATIC_ATTRIBUTES; 
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+	
+    private static final AttackerQualities staticAttackerQualities; 
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
 	private static Cost cost = new Cost( 400 , 400 , 400 , 2 );
@@ -73,7 +73,7 @@ public class UndeadSkeletonArcher extends MediumRangedSoldier
 		setGoldDropped(4);
 	}
 
-	public UndeadSkeletonArcher(@NonNull vector loc, Teams team){
+	public UndeadSkeletonArcher( vector loc, Teams team){
 		super(team);
 		setLoc(loc);
 		setTeam(team);
@@ -206,7 +206,7 @@ public class UndeadSkeletonArcher extends MediumRangedSoldier
 		return Assets.deadSkeletonAnim;
 	}
 
-	@NonNull
+	
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -227,12 +227,12 @@ public class UndeadSkeletonArcher extends MediumRangedSoldier
 
 
 
-	@NonNull
+	
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+	
     @Override
 	public String getName() {
 		return NAME;

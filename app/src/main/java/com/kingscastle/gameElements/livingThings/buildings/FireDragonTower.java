@@ -3,7 +3,7 @@ package com.kingscastle.gameElements.livingThings.buildings;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -38,17 +38,17 @@ public class FireDragonTower extends AttackingBuilding
 
 	private static final Cost cost = new Cost( 100 , 0 , 0 , 0 );
 
-	@NonNull
+
     private static final AttackerQualities staticAttackerQualities;
-	@NonNull
+
     private static final Attributes STATIC_ATTRIBUTES;
 	private static ArrayList<vector> staticDamageOffsets;
 
 
-	@NonNull
+
     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
+
     @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES;   }
 
@@ -109,7 +109,7 @@ public class FireDragonTower extends AttackingBuilding
 		loadPerceivedArea();
 	}
 
-	public FireDragonTower(@NonNull vector v, Teams t)
+	public FireDragonTower( vector v, Teams t)
 	{
 		super( name , t );
 		setLoc(v);
@@ -171,7 +171,7 @@ public class FireDragonTower extends AttackingBuilding
 
 
 	@Override
-	protected void addAnimationToEm(@NonNull Anim a, boolean sorted, @NonNull EffectsManager em)
+	protected void addAnimationToEm( Anim a, boolean sorted,  EffectsManager em)
 	{
 		backing.setSize(Backing.TINY);
 		//final LightEffect le = new LightEffect(loc, LightEffect.LightEffectColor.LIGHT_ORANGE);
@@ -288,14 +288,14 @@ public class FireDragonTower extends AttackingBuilding
 
 
 
-	@NonNull
+
     @Override
 	public String toString()
 	{
 		return TAG;
 	}
 
-	@NonNull
+
     @Override
 	public String getName()
 	{
@@ -315,7 +315,7 @@ public class FireDragonTower extends AttackingBuilding
 
 
 
-	@NonNull
+
     @Override
 	public Cost getCosts() {
 		return cost;
@@ -324,7 +324,7 @@ public class FireDragonTower extends AttackingBuilding
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{

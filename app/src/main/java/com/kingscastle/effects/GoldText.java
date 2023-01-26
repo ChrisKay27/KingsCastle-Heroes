@@ -3,7 +3,7 @@ package com.kingscastle.effects;
 
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Rpg;
 import com.kingscastle.gameElements.livingThings.LivingThing;
@@ -22,7 +22,7 @@ public class GoldText extends RisingText{
 		super(m+"", on);
 
 	}
-	@NonNull
+
     @Override
 	public Paint getPaint(){
 		return yellowCenter;

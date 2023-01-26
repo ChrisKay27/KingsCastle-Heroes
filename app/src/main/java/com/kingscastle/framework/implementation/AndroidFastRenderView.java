@@ -2,8 +2,8 @@ package com.kingscastle.framework.implementation;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -21,15 +21,15 @@ public class AndroidFastRenderView extends SurfaceView implements Runnable,Surfa
 	private static final String TAG = "AndroidFastRenderView";
 
 
-	@Nullable
+
     private Game game;
 	private Graphics g;
-	@Nullable
+
     private Thread renderThread = null;
 	private SurfaceHolder holder;
 	private volatile boolean running = false;
 
-	@Nullable
+
     private Screen loadingScreen;
 	private long nextMessage;
 
@@ -44,12 +44,12 @@ public class AndroidFastRenderView extends SurfaceView implements Runnable,Surfa
 		init(null, 0);
 	}
 
-	public AndroidFastRenderView(@NonNull Context context, AttributeSet attrs) {
+	public AndroidFastRenderView( Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(attrs, 0);
 	}
 
-	public AndroidFastRenderView(@NonNull Context context, AttributeSet attrs, int defStyle) {
+	public AndroidFastRenderView( Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		init(attrs, defStyle);
 	}
@@ -63,7 +63,7 @@ public class AndroidFastRenderView extends SurfaceView implements Runnable,Surfa
 	}
 
 
-	public synchronized void onResume( @Nullable Game game)
+	public synchronized void onResume(  Game game)
 	{
 		if( game == null )
 			throw new IllegalArgumentException("Game cannot be null");
@@ -84,7 +84,7 @@ public class AndroidFastRenderView extends SurfaceView implements Runnable,Surfa
 
 
 	@Override
-	public void draw( @NonNull Canvas canvas )
+	public void draw(  Canvas canvas )
 	{
 		try{
 			super.draw(canvas);
@@ -96,7 +96,7 @@ public class AndroidFastRenderView extends SurfaceView implements Runnable,Surfa
 	}
 
 	@Override
-	protected void onDraw( @Nullable Canvas c )
+	protected void onDraw(  Canvas c )
 	{
 		//try
 		//{
@@ -209,7 +209,7 @@ public class AndroidFastRenderView extends SurfaceView implements Runnable,Surfa
 
 
 
-	public void setLoadingScreen( @Nullable Screen ls )
+	public void setLoadingScreen(  Screen ls )
 	{
 		if( ls == null )
 			removeLoadingScreenAt = GameTime.getTime() + 500;

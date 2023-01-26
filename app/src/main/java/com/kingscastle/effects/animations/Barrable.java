@@ -1,6 +1,6 @@
 package com.kingscastle.effects.animations;
 
-import android.support.annotation.NonNull;
+
 
 public interface Barrable
 {
@@ -10,6 +10,6 @@ public interface Barrable
 
 	public int getValue();
 
-	@NonNull
+
     String getTimeToCompletion();
 }

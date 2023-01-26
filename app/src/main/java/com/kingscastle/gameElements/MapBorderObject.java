@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements;
 
 import android.graphics.RectF;
-import android.support.annotation.Nullable;
+
 
 import com.kingscastle.framework.Image;
 import com.kingscastle.gameElements.managment.MM;
@@ -35,7 +35,7 @@ public class MapBorderObject extends GameElement
 
 
 
-	@Nullable
+
     @Override
 	public RectF getStaticPerceivedArea()
 	{
@@ -46,14 +46,14 @@ public class MapBorderObject extends GameElement
 
 
 
-	@Nullable
+
     @Override
 	public ImageFormatInfo getImageFormatInfo() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Nullable
+
     @Override
 	public Image[] getStaticImages() {
 		// TODO Auto-generated method stub

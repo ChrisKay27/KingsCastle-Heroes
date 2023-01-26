@@ -1,6 +1,6 @@
 package com.kingscastle.ui;
 
-import android.support.annotation.NonNull;
+
 import android.util.Log;
 
 import com.kingscastle.framework.Input;
@@ -127,7 +127,7 @@ public class Selecter implements TouchEventAnalyzer
 		return true;
 	}
 
-	public void unselect( @NonNull GameElement ge )
+	public void unselect(  GameElement ge )
 	{
 		ge.setSelected( false );
 		ui.setUnSelected( ge );

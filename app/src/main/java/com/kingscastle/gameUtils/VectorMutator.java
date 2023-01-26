@@ -1,6 +1,6 @@
 package com.kingscastle.gameUtils;
 
-import android.support.annotation.NonNull;
+
 
 import java.util.Random;
 
@@ -29,15 +29,15 @@ public class VectorMutator
 
 
 
-	@NonNull
-    public static vector rotateCW90(@NonNull vector v)
+
+    public static vector rotateCW90( vector v)
 	{
 		v.set(v.getY(),v.getX());
 		return v;
 	}
 
 
-	public static void randomlyRotate( @NonNull vector v , float plusOrMinusX , float plusOrMinusY )
+	public static void randomlyRotate(  vector v , float plusOrMinusX , float plusOrMinusY )
 	{
 
 		v.add( - plusOrMinusX +   rand.nextFloat() * 2 * plusOrMinusX , - plusOrMinusY +   rand.nextFloat() * 2 * plusOrMinusY );

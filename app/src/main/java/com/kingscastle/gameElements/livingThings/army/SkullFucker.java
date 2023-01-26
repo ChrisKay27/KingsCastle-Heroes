@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.livingThings.army;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.heroes.R;
 import com.kingscastle.effects.animations.Anim;
@@ -28,16 +28,16 @@ public class SkullFucker extends AdvancedRangedSoldier
 	private static Image[] staticImages;
 	private static ImageFormatInfo imageFormatInfo;
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
-	@Nullable
+
     private static Cost cost = null;
 
 	static
@@ -71,7 +71,7 @@ public class SkullFucker extends AdvancedRangedSoldier
 	}
 
 
-	public SkullFucker(@NonNull vector loc, Teams team)
+	public SkullFucker( vector loc, Teams team)
 	{
 		super(team);
 		setLoc(loc);
@@ -140,7 +140,7 @@ public class SkullFucker extends AdvancedRangedSoldier
 
 
 
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities()
 	{
@@ -160,7 +160,7 @@ public class SkullFucker extends AdvancedRangedSoldier
 	public void setStaticPerceivedArea(RectF staticPercArea) {
 	}
 
-	@Nullable
+
     @Override
 	public Cost getCosts()
 	{
@@ -171,12 +171,12 @@ public class SkullFucker extends AdvancedRangedSoldier
 		SkullFucker.cost = cost;
 	}
 	private static final String TAG = "Ancient Mecha Winged";
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;

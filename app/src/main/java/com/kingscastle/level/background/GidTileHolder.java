@@ -1,7 +1,7 @@
 package com.kingscastle.level.background;
 
 import android.graphics.Bitmap;
-import android.support.annotation.Nullable;
+
 
 import com.kingscastle.framework.Graphics;
 import com.kingscastle.framework.Image;
@@ -17,7 +17,7 @@ public class GidTileHolder
 		gidImages.add(new AndroidImage());
 	}
 
-	void addImageToGidImages(@Nullable Image image, int tileWidth, int tileHeight)
+	void addImageToGidImages( Image image, int tileWidth, int tileHeight)
 	{
 		if ( image == null || tileWidth <= 0 || tileHeight <= 0){
 			return;
@@ -36,7 +36,7 @@ public class GidTileHolder
 		//Rpg.print("TileGidHolder.addImageToGidImages() : So far there are " + gidImages.size() + " gid images.") ;
 	}
 
-	public void loadImageIntoGids(@Nullable TilesetParams readTileset)
+	public void loadImageIntoGids( TilesetParams readTileset)
 	{
 		if( readTileset == null )
 		{
@@ -49,8 +49,8 @@ public class GidTileHolder
 	}
 
 
-	@Nullable
-    private Image getTilesetImageFromString(@Nullable String fileName)
+
+    private Image getTilesetImageFromString( String fileName)
 	{
 		//Rpg.print("getting the tileset for filename of " + fileName);
 
@@ -74,7 +74,7 @@ public class GidTileHolder
 		return null;
 	}
 
-	@Nullable
+
     public Image getImage(short s)
 	{
 		//System.out.println("Trying to get Image with gid of " + s);

@@ -1,7 +1,7 @@
 package com.kingscastle.teams.races;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ public enum Races
 	HUMAN("Human") , DWARF("Dwarf") , ORC("Orc") , UNDEAD("Undead") , HOLY("Holy") ;
 
 
-	@NonNull
+	
     private static final ArrayList<Races> races;
 
 	static
@@ -141,8 +141,8 @@ public enum Races
 
 
 
-	@NonNull
-    public static Races getFromString( @Nullable String raceString )
+	
+    public static Races getFromString(  String raceString )
 	{
 		if( raceString == null )
 		{
@@ -172,7 +172,7 @@ public enum Races
 	}
 
 
-	@NonNull
+	
     public static ArrayList<Races> getRaces()
 	{
 		return races;

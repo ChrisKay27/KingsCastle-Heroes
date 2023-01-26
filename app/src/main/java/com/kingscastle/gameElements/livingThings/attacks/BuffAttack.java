@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.gameElements.livingThings.LivingThing;
 import com.kingscastle.gameElements.livingThings.abilities.Buff;
@@ -14,7 +14,7 @@ public class BuffAttack extends Attack
 
 	private Buff buffSpell;
 
-	public BuffAttack( @NonNull MM mm , @NonNull LivingThing lt , Buff is )
+	public BuffAttack(  MM mm ,  LivingThing lt , Buff is )
 	{
 		super( mm , lt );
 		this.setSpell( is );
@@ -22,7 +22,7 @@ public class BuffAttack extends Attack
 
 
 	@Override
-	public boolean attack( @NonNull LivingThing target )
+	public boolean attack(  LivingThing target )
 	{
 		mm.add( buffSpell.newInstance(target) );
 		//boolean added =  ;

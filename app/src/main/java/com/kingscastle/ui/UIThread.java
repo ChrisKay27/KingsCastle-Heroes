@@ -1,6 +1,6 @@
 package com.kingscastle.ui;
 
-import android.support.annotation.Nullable;
+
 import android.util.Log;
 
 import com.kingscastle.framework.GameTime;
@@ -11,18 +11,18 @@ public class UIThread implements Runnable {
 
 	private static final String TAG = "UIThread";
 
-	@Nullable
+	
     private Thread thread = null;
 	private volatile boolean running = false;
-	@Nullable
+	
     private UI ui;
-	@Nullable
+	
     private AndroidFastRenderView renderView;
 
 	public UIThread(){
 	}
 
-	public void resume( @Nullable UI ui , @Nullable AndroidFastRenderView renderView )
+	public void resume(  UI ui ,  AndroidFastRenderView renderView )
 	{
 		Log.v( TAG , "UIThread.resume()");
 		if( ui == null || renderView == null )

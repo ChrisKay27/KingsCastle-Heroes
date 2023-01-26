@@ -28,9 +28,12 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.Xfermode;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+
 import android.view.View;
+
+import androidx.annotation.RequiresApi;
 
 
 public class XferMode extends GraphicsActivity {
@@ -103,7 +106,8 @@ public class XferMode extends GraphicsActivity {
             m.setScale(6, 6);
             mBG.setLocalMatrix(m);
         }
-        @Override protected void onDraw(@NonNull Canvas canvas) {
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        @Override protected void onDraw(Canvas canvas) {
             canvas.drawColor(Color.WHITE);
             Paint labelP = new Paint(Paint.ANTI_ALIAS_FLAG);
             labelP.setTextAlign(Paint.Align.CENTER);
@@ -123,12 +127,15 @@ public class XferMode extends GraphicsActivity {
                 paint.setShader(mBG);
                 canvas.drawRect(x, y, x + W, y + H, paint);
                 // draw the src/dst example into our offscreen bitmap
-                int sc = canvas.saveLayer(x, y, x + W, y + H, null,
-                        Canvas.MATRIX_SAVE_FLAG |
-                                Canvas.CLIP_SAVE_FLAG |
-                                Canvas.HAS_ALPHA_LAYER_SAVE_FLAG |
-                                Canvas.FULL_COLOR_LAYER_SAVE_FLAG |
-                                Canvas.CLIP_TO_LAYER_SAVE_FLAG);
+
+                int sc = canvas.saveLayer(x, y, x + W , y+ H, null); //TODO FIX THIS
+//                int sc = canvas.saveLayer(x, y, x + W, y + H, null,
+//                        Canvas.MATRIX_SAVE_FLAG |
+//                                Canvas.CLIP_SAVE_FLAG |
+//                                Canvas.HAS_ALPHA_LAYER_SAVE_FLAG |
+//                                Canvas.FULL_COLOR_LAYER_SAVE_FLAG |
+//                                Canvas.CLIP_TO_LAYER_SAVE_FLAG);
+
                 canvas.translate(x, y);
                 canvas.drawBitmap(mDstB, 0, 0, paint);
                 paint.setXfermode(sModes[i]);

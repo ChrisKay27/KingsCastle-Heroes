@@ -1,13 +1,14 @@
 package com.kingscastle.level;
 
 import android.graphics.RectF;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
+
+
 import android.util.Log;
 
 import com.kingscastle.effects.animations.DecoAnimation;
 import com.kingscastle.framework.GameTime;
 import com.kingscastle.framework.Rpg;
+import com.kingscastle.gameElements.Cost;
 import com.kingscastle.gameElements.GameElement;
 import com.kingscastle.gameElements.GenericGameElement;
 import com.kingscastle.gameElements.Tree;
@@ -18,6 +19,7 @@ import com.kingscastle.gameElements.livingThings.abilities.Buff;
 import com.kingscastle.gameElements.livingThings.abilities.DamageBuff;
 import com.kingscastle.gameElements.livingThings.army.HumanWizard;
 import com.kingscastle.gameUtils.Difficulty;
+import com.kingscastle.gameUtils.LevelUpChecker;
 import com.kingscastle.gameUtils.vector;
 import com.kingscastle.heroes.PlayerAchievements;
 import com.kingscastle.level.Heroes.BuffPickup;
@@ -35,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Created by Chris on 7/12/2015 for TowerDefence
@@ -75,12 +78,9 @@ public abstract class HeroesLevel extends Level{
 
         mm.add(Team.getNewInstance(Teams.RED, new UndeadRace(), mm.getGridUtil()));
 
-        hPlayer.addLVCL(new HumanPlayer.onLivesValueChangedListener() {
-            @Override
-            public void onLivesValueChanged(int newLivesValue) {
-                if (newLivesValue <= 0)
-                    playerHasLost();
-            }
+        hPlayer.addLVCL(newLivesValue -> {
+            if (newLivesValue <= 0)
+                playerHasLost();
         });
 
 
@@ -147,12 +147,24 @@ public abstract class HeroesLevel extends Level{
             return;
         getBackground().setCenteredOn(hero.loc);
 
+        updateExpBar(LevelUpChecker.getLevelPercent(hero.attributes.getExp()));
 
         if( nextSpawn < GameTime.getTime() && bossisNotAlive){
             nextSpawn = GameTime.getTime() + 1000;
 
             try{
                 Humanoid spawn = forestSpawns.getSpawnClass(hero.attributes.getLevel()).getConstructor(vector.class, Teams.class).newInstance(getRandomLocOnMapAndNotOnScreen(), Teams.RED);
+                spawn.addLTL(new LivingThingListenerAdapter(){
+                    @Override
+                    public void onDeath(LivingThing lt) {
+                        super.onDeath(lt);
+
+                        if( lt instanceof Humanoid ) {
+                            getHumanPlayer().refundCosts(new Cost(((Humanoid) lt).getGoldDropped()));
+                            ui.updateScore();
+                        }
+                    }
+                });
                 mm.add(spawn);
 
 
@@ -174,7 +186,7 @@ public abstract class HeroesLevel extends Level{
                 throw new RuntimeException(e);
             }
 
-            if( Math.random() < 0.8 ) {
+            if( Math.random() < 0.85 ) {
                 try {
                     Humanoid ally = forestSpawns.getAllyClass(hero.attributes.getLevel()).getConstructor(vector.class, Teams.class).newInstance(getRandomLocOnMapAndNotOnScreen(),Teams.BLUE);
                     mm.add(ally);
@@ -188,7 +200,7 @@ public abstract class HeroesLevel extends Level{
 
 
         if( nextPickupSpawn < GameTime.getTime() ){
-            nextPickupSpawn = GameTime.getTime() + 2000 + (long) (Math.random()* 5000);
+            nextPickupSpawn = GameTime.getTime() + 2000 + (long) (Math.random()* 2000);
 
             vector pickupLoc = new vector(getLevelWidthInPx() * Math.random(), getLevelHeightInPx() * Math.random());
 
@@ -227,6 +239,49 @@ public abstract class HeroesLevel extends Level{
             }
         }
     }
+
+    private void updateExpBar(double levelPercent) {
+        ui.updateExpBar(levelPercent);
+    }
+
+    public void spawnSoldiers(int num){
+        vector randomLocOnMap = getRandomLocOnMap();
+        for (int i = 0; i < num; i++) {
+            try {
+                Humanoid ally = forestSpawns.getAllyClass(hero.attributes.getLevel()).getConstructor(vector.class, Teams.class).newInstance(new vector(randomLocOnMap),Teams.BLUE);
+                mm.add(ally);
+                ally.aq.setFocusRangeSquared(ALLIED_FOCUS_RANGE_SQUARED);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void spawnWizards(int num){
+        vector randomLocOnMap = getRandomLocOnMap();
+        for (int i = 0; i < num; i++) {
+            try {
+                Humanoid ally = forestSpawns.getWizardAllyClass(hero.attributes.getLevel()).getConstructor(vector.class, Teams.class).newInstance(new vector(randomLocOnMap),Teams.BLUE);
+                mm.add(ally);
+                ally.aq.setFocusRangeSquared(ALLIED_FOCUS_RANGE_SQUARED);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    public void spawnHealers(int num){
+
+        for (int i = 0; i < num; i++) {
+            try {
+                Humanoid ally = forestSpawns.getHealerAllyClass(hero.attributes.getLevel()).getConstructor(vector.class, Teams.class).newInstance(new vector(hero.loc),Teams.BLUE);
+                mm.add(ally);
+                ally.aq.setFocusRangeSquared(ALLIED_FOCUS_RANGE_SQUARED);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
 
     private vector getRandomLocOnMapAndNotOnScreen() {
         vector loc = new vector(getLevelWidthInPx()*Math.random(), getLevelHeightInPx()*Math.random());
@@ -290,7 +345,7 @@ public abstract class HeroesLevel extends Level{
 
 
 
-    @NonNull
+
     protected GameElement getBorderElement(vector v){
         return new Tree(v);
     }
@@ -299,7 +354,7 @@ public abstract class HeroesLevel extends Level{
         mm.getEm().add(new DecoAnimation(loc, drawable));
     }
 
-    protected void addDecoGE(@NonNull GameElement ge) {
+    protected void addDecoGE( GameElement ge) {
         ge.updateArea();
         mm.getGridUtil().setProperlyOnGrid(ge.area, Rpg.gridSize);
         GridUtil.getLocFromArea(ge.area, ge.getPerceivedArea(), ge.loc);
@@ -319,7 +374,7 @@ public abstract class HeroesLevel extends Level{
         }
     }
 
-    protected void addDecoGE(vector loc, @DrawableRes int drawableID) {
+    protected void addDecoGE(vector loc,  int drawableID) {
         GenericGameElement f = new GenericGameElement(loc,drawableID);
         addDecoGE(f);
     }

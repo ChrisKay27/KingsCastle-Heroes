@@ -149,7 +149,7 @@ public abstract class GameElement
 	}
 
 
-	@android.support.annotation.Nullable
+	
     public RectF getPerceivedArea()	{
 		if( getStaticPerceivedArea() != null )
 			return getStaticPerceivedArea();
@@ -166,7 +166,7 @@ public abstract class GameElement
 
 
 	@NotNull
-	public RectF loadPerceivedAreaFromImage( @Nullable Image img )	{
+	public RectF loadPerceivedAreaFromImage(  Image img )	{
 		if ( img == null )
 		{
 			float dp = Rpg.getDp();
@@ -183,7 +183,7 @@ public abstract class GameElement
 
 
 
-	@android.support.annotation.Nullable
+	
     public Image[] getImages()	{
 		loadImages();
 		return getStaticImages();
@@ -195,8 +195,8 @@ public abstract class GameElement
 	}
 
 
-	@android.support.annotation.Nullable
-    @Nullable
+	
+    
 	public Teams getTeamName() {
 		return team;
 	}
@@ -279,17 +279,17 @@ public abstract class GameElement
 
 
 
-	@android.support.annotation.Nullable
+	
     protected ImageFormatInfo getImageFormatInfo(){
 		return null;
 	}
-	@android.support.annotation.Nullable
+	
     protected  Image[] getStaticImages(){
 		return null;
 	}
 	protected void setStaticImages(Image[] images){
 	}
-	@android.support.annotation.Nullable
+	
     public RectF getStaticPerceivedArea(){
 		return null;
 	}

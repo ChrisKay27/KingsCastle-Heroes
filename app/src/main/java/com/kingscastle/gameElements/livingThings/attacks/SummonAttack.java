@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.attacks;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.Anim;
@@ -33,7 +33,7 @@ public class SummonAttack extends Attack
 	private final List<Humanoid> summons = new LinkedList<>();
 
 
-	public SummonAttack( @NonNull MM mm, @NonNull LivingThing owner , Humanoid summon , int maxSummons )
+	public SummonAttack(  MM mm,  LivingThing owner , Humanoid summon , int maxSummons )
 	{
 		super( mm, owner );
 		this.maxSummons = maxSummons;

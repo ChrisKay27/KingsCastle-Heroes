@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.targeting;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 import android.util.Log;
 
 import com.kingscastle.gameElements.GameElement;
@@ -50,7 +50,7 @@ public class TargetingGridWorker
 
 
 
-	public static boolean workTheQueue( @NonNull TargetingGrid grid )
+	public static boolean workTheQueue(  TargetingGrid grid )
 	{
 		////Log.d( TAG , "Working da Queue" );
 
@@ -73,7 +73,7 @@ public class TargetingGridWorker
 
 
 
-	private static boolean workThisQueue( @NonNull TargetingGrid grid , @NonNull ArrayList<GameElement> ges , boolean adding )
+	private static boolean workThisQueue(  TargetingGrid grid ,  ArrayList<GameElement> ges , boolean adding )
 	{
 		if( ges.size() == 0 )
 			return false;
@@ -138,7 +138,7 @@ public class TargetingGridWorker
 
 
 
-	public static synchronized void addToGridNow( @NonNull GameElement ge , boolean adding , @NonNull TargetingGrid grid )
+	public static synchronized void addToGridNow(  GameElement ge , boolean adding ,  TargetingGrid grid )
 	{
 		RectF area = ge.area;
 		float gridSize = grid.getGridSize();
@@ -178,7 +178,7 @@ public class TargetingGridWorker
 	 * @param grid
 	 * @return
 	 */
-	public synchronized static boolean checkAndAddToGrid( @NonNull RectF area , boolean walkable , @NonNull Grid grid )
+	public synchronized static boolean checkAndAddToGrid(  RectF area , boolean walkable ,  Grid grid )
 	{
 		if( area.width()*area.height() == 0 ){
 			Log.v( TAG , "Area of area == 0, skipping adding" );

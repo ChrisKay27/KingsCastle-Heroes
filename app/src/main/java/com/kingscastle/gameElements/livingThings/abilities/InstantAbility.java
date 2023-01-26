@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.livingThings.abilities;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.Input;
@@ -35,7 +35,7 @@ public abstract class InstantAbility implements Ability
 	}
 
 	@Override
-	public boolean cast( @NotNull @NonNull MM mm , @NotNull LivingThing target)
+	public boolean cast( @NotNull  MM mm , @NotNull LivingThing target)
 	{
         this.mm = mm;
         this.target = target;
@@ -60,7 +60,7 @@ public abstract class InstantAbility implements Ability
 		return caster;
 	}
 	@Override
-	public void setCaster(@NonNull LivingThing caster) {
+	public void setCaster( LivingThing caster) {
 		this.caster = caster;
 	}
 
@@ -70,7 +70,7 @@ public abstract class InstantAbility implements Ability
 		return target;
 	}
 	@Override
-	public void setTarget(@NonNull LivingThing target) {
+	public void setTarget( LivingThing target) {
 		this.target = target;
 	}
 

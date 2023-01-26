@@ -1,8 +1,8 @@
 package com.kingscastle.effects;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.Anim;
 import com.kingscastle.framework.Rpg;
@@ -37,7 +37,7 @@ public class ShouldDrawAnimCalcer
 
 
 
-	public boolean shouldThisAnimBeDrawn( @NonNull Anim a )
+	public boolean shouldThisAnimBeDrawn(  Anim a )
 	{
 		//boolean onAVisibleTile = true;
 
@@ -56,7 +56,7 @@ public class ShouldDrawAnimCalcer
 
 
 
-	public boolean shouldThisRtBeDrawn( @NonNull RisingText rt )
+	public boolean shouldThisRtBeDrawn(  RisingText rt )
 	{
 //		boolean onAVisibleTile = true;//isThisOnAVisibleTile( rt.loc );
 //		return ( onAVisibleTile || !Settings.showFogOfWar || Settings.mapEditingMode ) && rt.isVisible() && stillDraw( rt.loc );
@@ -68,7 +68,7 @@ public class ShouldDrawAnimCalcer
 
 
 
-	public boolean stillDraw( @NonNull vector bLoc )	{
+	public boolean stillDraw(  vector bLoc )	{
 		return screenArea.contains( bLoc.x , bLoc.y );
 	}
 
@@ -89,7 +89,7 @@ public class ShouldDrawAnimCalcer
 
 
 
-	public boolean isWithinRangeOfSightOfHumanPlayer( @Nullable vector loc )
+	public boolean isWithinRangeOfSightOfHumanPlayer(  vector loc )
 	{
 		if( Settings.showFogOfWar == false )
 			return true;

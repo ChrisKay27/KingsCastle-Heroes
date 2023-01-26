@@ -1,7 +1,7 @@
 package com.kingscastle.effects.animations;
 
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Assets;
 import com.kingscastle.framework.Graphics;
@@ -19,7 +19,7 @@ public class CycloneAnim extends Anim
 	private final int staticTfb = 50;
 
 
-	public CycloneAnim( @NonNull vector loc )	{
+	public CycloneAnim(  vector loc )	{
         super( loc );
         setImages(staticImages );
 		setTbf( staticTfb );
@@ -30,7 +30,7 @@ public class CycloneAnim extends Anim
 
 
 	@Override
-	public void paint( @NonNull Graphics g , @NonNull vector v )	{
+	public void paint(  Graphics g ,  vector v )	{
 		Image image = getImage();
 		if( image != null )
 			g.drawImage( image , v.x - image.getWidthDiv2() , v.y - image.getHeightDiv2() , getPaint() );

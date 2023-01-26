@@ -1,7 +1,7 @@
 package com.kingscastle.ui;
 
 
-import android.support.annotation.Nullable;
+
 
 import com.kingscastle.gameElements.livingThings.SoldierTypes.Humanoid;
 
@@ -23,7 +23,7 @@ public class UIUpdater
 
 
 
-	public static void onHumanoidRemovedFromMap(@Nullable Humanoid u) {
+	public static void onHumanoidRemovedFromMap( Humanoid u) {
 		UIUpdater updater = UIUpdater.updater;
 		if( updater == null ) return;
 

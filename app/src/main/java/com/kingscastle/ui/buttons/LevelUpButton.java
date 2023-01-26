@@ -3,8 +3,8 @@ package com.kingscastle.ui.buttons;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -51,7 +51,7 @@ public class LevelUpButton extends SButton
 
 
 
-	@NonNull
+
     public static LevelUpButton getInstance( Activity a , MM mm,  LivingThing lt , Building fromHere , ArrayList<? extends Building> selBs, Team team_ )
 	{
 		LevelUpButton singleton = new LevelUpButton( a , mm ,  lt , fromHere , selBs , team_ );
@@ -85,7 +85,7 @@ public class LevelUpButton extends SButton
 		}*/
 
 
-	@NonNull
+
     @Override
 	public LevelUpButton clone(){
 		LevelUpButton ab = new LevelUpButton( a , mm ,  lt , fromHere , selBs, team );
@@ -237,7 +237,7 @@ public class LevelUpButton extends SButton
 			////Log.d( TAG , "doAction() finished" );
 		}
 
-		private void startResearchingLevelUpTech( @NonNull Team team , LivingThing lt , Building fromHere ){
+		private void startResearchingLevelUpTech(  Team team , LivingThing lt , Building fromHere ){
 			if( lt instanceof Building )
 			{
 				LevelUpTechnology lut;
@@ -261,7 +261,7 @@ public class LevelUpButton extends SButton
 
 
 	@Override
-	public boolean equals(@Nullable Object o) {
+	public boolean equals( Object o) {
 		if(o == null)
 			return false;
 		if(o == this)

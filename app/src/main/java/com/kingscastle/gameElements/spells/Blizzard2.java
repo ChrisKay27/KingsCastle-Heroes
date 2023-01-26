@@ -1,6 +1,6 @@
 package com.kingscastle.gameElements.spells;
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.framework.Image;
 import com.kingscastle.framework.Rpg;
@@ -25,7 +25,7 @@ public class Blizzard2 extends InstantSpell {
 	private static final Icicle icicle = new Icicle(15, 0.5f);
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.BLIZZARD ; 			}
 	static
@@ -70,7 +70,7 @@ public class Blizzard2 extends InstantSpell {
 
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 		SpellCreationParams params;
@@ -107,7 +107,7 @@ public class Blizzard2 extends InstantSpell {
 	}
 
 	@Override
-	public int calculateManaCost( @NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost( @NotNull  LivingThing aWizard)
 	{
 		if(aWizard != null )
 		{
@@ -130,7 +130,7 @@ public class Blizzard2 extends InstantSpell {
 
 
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return "Blizzard2";
@@ -156,7 +156,7 @@ public class Blizzard2 extends InstantSpell {
 
 
 
-	@NonNull
+
     @Override
 	public Spell newInstance() {
 		return new Blizzard2();

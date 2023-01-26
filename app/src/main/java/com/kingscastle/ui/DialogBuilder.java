@@ -6,7 +6,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.app.Activity;
-import android.support.annotation.NonNull;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class DialogBuilder{
 
-	@NonNull
+
     private static ArrayList<View> popups = new ArrayList<View>();
 
 
@@ -60,7 +60,7 @@ public class DialogBuilder{
 	 * @param text Message to be displayed
 	 * @return this to allow streamlining calls
 	 */
-	@NonNull
+
     public DialogBuilder setText( String text ){
 
 		this.text = text;
@@ -73,7 +73,7 @@ public class DialogBuilder{
 	 * @param ocl listener to use
 	 * @return this to allow streamlining calls
 	 */
-	@NonNull
+
     public DialogBuilder setPositiveButton( int type , OnClickListener ocl ){
 		if( type != 0 || type != 1 )
 			type = 0;
@@ -90,7 +90,7 @@ public class DialogBuilder{
 	 * @param ocl listener to use
 	 * @return this to allow streamlining calls
 	 */
-	@NonNull
+
     public DialogBuilder setNegativeButton( int type , OnClickListener ocl ){
 		if( type != 0 || type != 1 )
 			type = 0;
@@ -111,7 +111,7 @@ public class DialogBuilder{
 	 * @param cancelable
 	 * @return this to allow chaining calls
 	 */
-	@NonNull
+
     public DialogBuilder setCancelable(boolean cancelable) 	{	this.cancelable = cancelable; return this;	}
 
 
@@ -270,7 +270,7 @@ public class DialogBuilder{
 					ValueAnimator animation = ValueAnimator.ofFloat( 1f , 0f );
 					animation.addUpdateListener(new AnimatorUpdateListener() {
 						@Override
-						public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+						public void onAnimationUpdate( ValueAnimator animation) {
 							dialog.setScaleX((Float) animation.getAnimatedValue());
 							dialog.setScaleY((Float) animation.getAnimatedValue());
 							dialog.setAlpha((Float) animation.getAnimatedValue());

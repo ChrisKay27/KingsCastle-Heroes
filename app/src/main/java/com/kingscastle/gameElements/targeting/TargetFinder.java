@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.targeting;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 import android.util.Log;
 
 import com.kingscastle.framework.Settings;
@@ -36,7 +36,7 @@ public class TargetFinder
 		this.tm = tm;
 	}
 
-	public void findTargetAsync( @NonNull final TargetingParams params , @NonNull final LivingThing attacker )
+	public void findTargetAsync(  final TargetingParams params ,  final LivingThing attacker )
 	{
 		pool.execute(new Runnable() {
 			@Override
@@ -59,8 +59,8 @@ public class TargetFinder
 	}
 
 
-	@Nullable
-    public LivingThing findTarget( @NonNull TargetingParams params )
+
+    public LivingThing findTarget(  TargetingParams params )
 	{
 		if( Settings.targetFindingDisabled )
 			return null;
@@ -127,7 +127,7 @@ public class TargetFinder
 	}
 
 
-	private static LivingThing findOneWithRange( LivingThing[] lts , int size , @NonNull TargetingParams params )
+	private static LivingThing findOneWithRange( LivingThing[] lts , int size ,  TargetingParams params )
 	{
 		ArrayList<LivingThing> targets = new ArrayList<LivingThing>();
 
@@ -170,9 +170,9 @@ public class TargetFinder
 
 
 
-	@Nullable
-    private static LivingThing getClosest(@NonNull vector loc,
-			@NonNull ArrayList<LivingThing> targets) {
+
+    private static LivingThing getClosest( vector loc,
+			 ArrayList<LivingThing> targets) {
 
 		float closestDist = Float.MAX_VALUE;
 		LivingThing closest=null;
@@ -189,7 +189,7 @@ public class TargetFinder
 
 
 
-	private static LivingThing findOneWithRange( @NonNull BuildingManager bm , @NonNull TargetingParams params )
+	private static LivingThing findOneWithRange(  BuildingManager bm ,  TargetingParams params )
 	{
 
 		vector loc = params.fromThisPoint;

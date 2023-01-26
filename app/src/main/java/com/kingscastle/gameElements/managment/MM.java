@@ -1,7 +1,7 @@
 package com.kingscastle.gameElements.managment;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+
 import android.util.Log;
 
 import com.kingscastle.Game;
@@ -172,7 +172,7 @@ public class MM
 	}
 
 
-	public boolean add( @Nullable Ability ability )
+	public boolean add(  Ability ability )
 	{
 		if( ability == null )
 			throw new IllegalArgumentException( " Trying to add a null ability to a manager.");
@@ -322,8 +322,8 @@ public class MM
 	}
 
 
-	@Nullable
-	public ListPkg<Building> getBuildingsOnTeam( @NonNull Teams team )
+
+	public ListPkg<Building> getBuildingsOnTeam(  Teams team )
 	{
 		if( team == null )
 			throw new IllegalArgumentException("team == null");
@@ -541,13 +541,13 @@ public class MM
 	//	}
 
 
-	public void remove(@Nullable Team team) {
+	public void remove( Team team) {
 		if( tm != null && team != null )
 			tm.remove(team);
 	}
 
 
-	public void add(@Nullable Team team) {
+	public void add( Team team) {
 		if( tm != null && team != null )
 			tm.add(team);
 	}
@@ -560,7 +560,7 @@ public class MM
 	}
 
 
-	@Nullable
+
 	public Races getRace(Teams team) {
 		Team t = getTeam( team );
 		if( t != null )
@@ -603,7 +603,7 @@ public class MM
 	}
 
 
-	@NonNull
+
 	public CD getCD() {
 		if( cd == null )
 			throw new WtfException("Getting cd before it has been created");

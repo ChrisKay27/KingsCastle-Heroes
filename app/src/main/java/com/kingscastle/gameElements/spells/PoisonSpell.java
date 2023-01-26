@@ -1,8 +1,8 @@
 package com.kingscastle.gameElements.spells;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.EffectsManager;
 import com.kingscastle.effects.animations.QuickBurstAnim;
@@ -46,7 +46,7 @@ public class PoisonSpell extends InstantSpell{
 
 
 	@Override
-	public int calculateManaCost(@NotNull @NonNull LivingThing aWizard)
+	public int calculateManaCost(@NotNull  LivingThing aWizard)
 	{
 		return 0;
 		//return 20 + aWizard.getLQ().getLevel() * 3;
@@ -63,14 +63,14 @@ public class PoisonSpell extends InstantSpell{
 
 
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return toString ;
 	}
 
 
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;
@@ -83,7 +83,7 @@ public class PoisonSpell extends InstantSpell{
 	}
 
 	@Override
-	public boolean cast( @NonNull MM mm )
+	public boolean cast(  MM mm )
 	{
 		super.cast(mm);
 		//		area.set(getStaticPerceivedArea());
@@ -104,20 +104,20 @@ public class PoisonSpell extends InstantSpell{
 	}
 
 
-	@Nullable
-    GameElement checkSingleHit(@NonNull Teams teams)
+
+    GameElement checkSingleHit( Teams teams)
 	{
 		return cd.checkSingleHit( teams , area , false );
 	}
 
 
-	@NonNull
+
     @Override
 	public Abilities getAbility()				 {				return Abilities.TEMPORAL_SHOCK ; 			}
 
 
 
-	void hitCreature( @Nullable LivingThing lt)	{
+	void hitCreature(  LivingThing lt)	{
 		if( lt == null )
 			return;
 		else
@@ -131,7 +131,7 @@ public class PoisonSpell extends InstantSpell{
 
 
 
-	@NonNull
+
     @Override
 	public Spell newInstance()
 	{

@@ -1,6 +1,6 @@
 package com.kingscastle.level;
 
-import android.support.annotation.NonNull;
+
 
 import com.kingscastle.Game;
 
@@ -33,7 +33,7 @@ public class Levels {
     }
 
 
-    @NonNull
+
     public static HeroesLevel get(String levelClass) {
 
         try

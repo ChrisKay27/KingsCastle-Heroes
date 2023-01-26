@@ -3,8 +3,8 @@ package com.kingscastle.gameElements.livingThings.army;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
 
 import com.kingscastle.effects.animations.LightEffect2;
 import com.kingscastle.framework.Assets;
@@ -34,12 +34,12 @@ public class Gaia extends MageSoldier {
 	private static Image[] images = Assets.loadImages( R.drawable.gaia_red  , 0 , 0 , 1 , 1 );
 
 
-	@NonNull
-    private static final AttackerQualities staticAttackerQualities; @NonNull
+
+    private static final AttackerQualities staticAttackerQualities;
                                                                     @Override
 	protected AttackerQualities getStaticAQ() { return staticAttackerQualities; }
-	@NonNull
-    private static final Attributes STATIC_ATTRIBUTES; @NonNull
+
+    private static final Attributes STATIC_ATTRIBUTES;
                                                                 @Override
 	protected Attributes getStaticLQ() { return STATIC_ATTRIBUTES; }
 
@@ -71,7 +71,7 @@ public class Gaia extends MageSoldier {
 		STATIC_ATTRIBUTES.setSpeed(0.5f * dp);
 	}
 
-	@NonNull
+
     private List<SummonAttack> summonAtks = new ArrayList<>();
 	private long checkSummonsAt;
 
@@ -81,7 +81,7 @@ public class Gaia extends MageSoldier {
 		setCostsLives(50);
 	}
 
-	public Gaia(@NonNull vector loc, Teams team){
+	public Gaia( vector loc, Teams team){
 		super(team);
 		setLoc(loc);
 
@@ -103,7 +103,7 @@ public class Gaia extends MageSoldier {
 	}
 
 	@Override
-	public boolean create(@NonNull MM mm) {
+	public boolean create( MM mm) {
 		boolean superCreate =  super.create(mm);
 		getAnim().setScale(1.5f);
 		final LightEffect2 le = new LightEffect2(loc);
@@ -169,7 +169,7 @@ public class Gaia extends MageSoldier {
 	 * DO NOT LOAD THE IMAGES, USE GETIMAGES() to make sure they are not null.
 	 * @return the staticImages
 	 */
-	@Nullable
+
     @Override
 	public Image[] getStaticImages() {
 		return null;
@@ -194,7 +194,7 @@ public class Gaia extends MageSoldier {
 	@Override
 	public void setStaticPerceivedArea(RectF staticPercArea) {
 	}
-	@NonNull
+
     @Override
 	public Attributes getNewLivingQualities() {
 		return new Attributes(STATIC_ATTRIBUTES);
@@ -214,12 +214,12 @@ public class Gaia extends MageSoldier {
 
 	private static final String TAG = "Knight";
 
-	@NonNull
+
     @Override
 	public String toString() {
 		return TAG;
 	}
-	@NonNull
+
     @Override
 	public String getName() {
 		return TAG;
